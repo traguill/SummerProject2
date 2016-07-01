@@ -17,31 +17,11 @@ public class EnemySight : MonoBehaviour
 
     void Update()
     {
-        Vector3 movement = new Vector3(0, 0, 0);
-        //Debug
-        if(Input.GetKey(KeyCode.A))
-        {
-            movement.x -= Time.deltaTime * 18;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            movement.x += Time.deltaTime * 18;
-        }
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            movement.z += Time.deltaTime * 18;
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            movement.z -= Time.deltaTime * 18;
-        }
-
-        transform.position += movement;
+        
 
         if(debug)
         {
+            //DrawLines
             Vector3 left_line = new Vector3(current_direction.x * range.radius, current_direction.y * range.radius, current_direction.z * range.radius);
             left_line = Quaternion.Euler(0, field_of_view_angle * 0.5f, 0) * left_line;
             left_line += transform.position;
@@ -53,6 +33,31 @@ public class EnemySight : MonoBehaviour
             right_line += transform.position;
 
             Debug.DrawLine(transform.position, right_line, Color.green);
+
+
+            //Move enemy
+            Vector3 movement = new Vector3(0, 0, 0);
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                movement.x -= Time.deltaTime * 18;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                movement.x += Time.deltaTime * 18;
+            }
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                movement.z += Time.deltaTime * 18;
+            }
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                movement.z -= Time.deltaTime * 18;
+            }
+
+            transform.position += movement;
         }
 
     }
