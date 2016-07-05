@@ -17,9 +17,7 @@ public class EnemySight : MonoBehaviour
 
     void Update()
     {
-        
-
-        if(debug)
+        if (debug)
         {
             //DrawLines
             Vector3 left_line = new Vector3(current_direction.x * range.radius, current_direction.y * range.radius, current_direction.z * range.radius);
