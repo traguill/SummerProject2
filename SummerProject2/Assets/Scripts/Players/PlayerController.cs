@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
         selection_circle.SetActive(false);
 
         agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
 	}
 	
 	// Update is called once per frame
