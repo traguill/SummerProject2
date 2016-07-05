@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool is_selected;
 
+    private NavMeshAgent agent;
+
     void Awake()
     {
         selection_circle = transform.GetChild(0).gameObject;
@@ -17,6 +19,8 @@ public class PlayerController : MonoBehaviour
     {
         is_selected = false;
         selection_circle.SetActive(false);
+
+        agent = GetComponent<NavMeshAgent>();
 	}
 	
 	// Update is called once per frame
@@ -27,6 +31,14 @@ public class PlayerController : MonoBehaviour
         if(is_selected)
         {
             selection_circle.SetActive(true);
+            if(Input.GetMouseButton(1))
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+                {
+                    agent.destination = hit.point;
+                }
+            }            
         }
         else
         {

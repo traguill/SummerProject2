@@ -84,7 +84,7 @@ NavMeshSettings:
     minRegionArea: 2
     cellSize: 0.16666667
     manualCellSize: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: fd4f2e67c0ee5f748b646d80e41e9348, type: 2}
 --- !u!1 &211095686
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +315,7 @@ GameObject:
   - 65: {fileID: 691028261}
   - 114: {fileID: 691028264}
   - 54: {fileID: 691028265}
+  - 195: {fileID: 691028266}
   m_Layer: 9
   m_Name: Player4
   m_TagString: Player
@@ -371,7 +372,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 691028260}
   m_LocalRotation: {x: 0.50000006, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: -0.61, y: 0.1400001, z: -7.5}
+  m_LocalPosition: {x: -3.18, y: 0.1400001, z: -7.5}
   m_LocalScale: {x: 0.20055586, y: 0.20055586, z: 0.20055586}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
   m_Children:
@@ -405,6 +406,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!195 &691028266
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 691028260}
+  m_Enabled: 1
+  m_Radius: 5.245
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 13.379998
+  m_BaseOffset: 6.689999
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &708638916
 Prefab:
   m_ObjectHideFlags: 0
@@ -451,6 +472,10 @@ Prefab:
     - target: {fileID: 6400000, guid: d71532cd721b29b429e776905b66ab77, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d71532cd721b29b429e776905b66ab77, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d71532cd721b29b429e776905b66ab77, type: 3}
@@ -558,6 +583,7 @@ GameObject:
   - 65: {fileID: 872696763}
   - 114: {fileID: 872696764}
   - 54: {fileID: 872696765}
+  - 195: {fileID: 872696766}
   m_Layer: 9
   m_Name: Player2
   m_TagString: Player
@@ -648,6 +674,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!195 &872696766
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 872696760}
+  m_Enabled: 1
+  m_Radius: 3.9749997
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 13.480001
+  m_BaseOffset: 6.7400007
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &904132872
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +769,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!23 &915855943
 MeshRenderer:
@@ -971,6 +1017,7 @@ GameObject:
   - 65: {fileID: 1101146801}
   - 114: {fileID: 1101146802}
   - 54: {fileID: 1101146803}
+  - 195: {fileID: 1101146804}
   m_Layer: 9
   m_Name: Player1
   m_TagString: Player
@@ -1061,6 +1108,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!195 &1101146804
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1101146798}
+  m_Enabled: 1
+  m_Radius: 6.824997
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 14.6900015
+  m_BaseOffset: 7.3450007
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1164950502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,6 +1170,7 @@ GameObject:
   - 65: {fileID: 1364748579}
   - 114: {fileID: 1364748580}
   - 54: {fileID: 1364748581}
+  - 195: {fileID: 1364748582}
   m_Layer: 9
   m_Name: Player3
   m_TagString: Player
@@ -1193,6 +1261,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!195 &1364748582
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1364748576}
+  m_Enabled: 1
+  m_Radius: 7.24
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 16.720009
+  m_BaseOffset: 8.360004
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1440071411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,7 +1454,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1753193543}
   m_LocalRotation: {x: 0.50000006, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 11.4, y: 0.7, z: 1.9637904}
+  m_LocalPosition: {x: 11.8, y: 0.7, z: 1.9637904}
   m_LocalScale: {x: 0.19906504, y: 0.19906506, z: 0.19906506}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
   m_Children: []
