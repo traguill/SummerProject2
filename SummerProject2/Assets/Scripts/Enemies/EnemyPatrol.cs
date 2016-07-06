@@ -9,17 +9,23 @@ public class EnemyPatrol : MonoBehaviour {
 
     void Awake()
     {
-        GameObject waypoints = GameObject.Find("Patrol_Routes");
-  
-        patrol_path = new Transform[GameObject.FindGameObjectsWithTag("PatrolUnitPath").Length];
-
-        int i = patrol_path.Length - 1;
-        foreach (GameObject g in GameObject.FindGameObjectsWithTag("PatrolUnitPath"))
+        GameObject path = GameObject.Find("Patrol_path_" + name);
+        if(path != null)
         {
-            patrol_path[i] = g.GetComponent<Transform>();
-            i--;
+            // linking its corresponding patrol route.
+            patrol_path = new Transform[path.transform.childCount];
+            int i = 0;
+            foreach (Transform path_unit in path.transform.getChilds())
+            {
+                patrol_path[i] = path_unit;
+                ++i;
+            }
         }
-        
+        else
+        {
+            Debug.Log("There is no patrol route for " + name);
+        }
+                
         agent = GetComponent<NavMeshAgent>();
     }
 
