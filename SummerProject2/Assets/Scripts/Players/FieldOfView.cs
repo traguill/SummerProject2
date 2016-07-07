@@ -57,7 +57,7 @@ public class FieldOfView : MonoBehaviour
             {
                 float distance_to_target = Vector3.Distance(transform.position, target.position);
 
-                if(Physics.Raycast(transform.position, direction, distance_to_target, target_mask))
+                if(!Physics.Raycast(transform.position, direction, distance_to_target, obstacle_mask))
                 {
                     visible_targets.Add(target);
                 }

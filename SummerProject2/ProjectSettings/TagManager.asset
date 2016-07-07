@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - PatrolUnitPath
+  - Enemy
   layers:
   - Default
   - TransparentFX
