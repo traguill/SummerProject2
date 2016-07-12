@@ -315,7 +315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &359366096
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -467,6 +467,10 @@ Prefab:
       value: 
       objectReference: {fileID: -3545028842045912814, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 145756, guid: d32691345c43487409a00311a38e4044, type: 2}
+      propertyPath: m_Name
+      value: Point1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d32691345c43487409a00311a38e4044, type: 2}
   m_IsPrefabParent: 0
@@ -635,7 +639,7 @@ Prefab:
         type: 0}
     - target: {fileID: 145756, guid: d32691345c43487409a00311a38e4044, type: 2}
       propertyPath: m_Name
-      value: Patrol_path_unit (3)
+      value: Point4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d32691345c43487409a00311a38e4044, type: 2}
@@ -995,7 +999,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &843409213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1110,7 +1114,7 @@ Prefab:
         type: 0}
     - target: {fileID: 145756, guid: d32691345c43487409a00311a38e4044, type: 2}
       propertyPath: m_Name
-      value: Patrol_path_unit (1)
+      value: Point2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d32691345c43487409a00311a38e4044, type: 2}
@@ -1176,7 +1180,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 872696760}
   m_LocalRotation: {x: 0.50000006, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 0, z: 3.8}
+  m_LocalPosition: {x: -13.9, y: 0, z: -10.2}
   m_LocalScale: {x: 0.19780968, y: 0.1978097, z: 0.1978097}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
   m_Children:
@@ -2069,7 +2073,7 @@ Prefab:
         type: 0}
     - target: {fileID: 145756, guid: d32691345c43487409a00311a38e4044, type: 2}
       propertyPath: m_Name
-      value: Patrol_path_unit (2)
+      value: Point3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d32691345c43487409a00311a38e4044, type: 2}
@@ -2090,7 +2094,7 @@ GameObject:
   - 114: {fileID: 1753193548}
   - 195: {fileID: 1753193549}
   m_Layer: 10
-  m_Name: Enemy_1
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2150,6 +2154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31efc4ce968123f49a4e81c84ea84151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  assigned_path: {fileID: 2136321636}
 --- !u!195 &1753193549
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2216,7 +2221,7 @@ Prefab:
         type: 0}
     - target: {fileID: 145756, guid: d32691345c43487409a00311a38e4044, type: 2}
       propertyPath: m_Name
-      value: Patrol_path_unit (4)
+      value: Point5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d32691345c43487409a00311a38e4044, type: 2}
@@ -2247,7 +2252,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2136321637}
   m_Layer: 0
-  m_Name: Patrol_path_Enemy_1
+  m_Name: Patrol_path
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

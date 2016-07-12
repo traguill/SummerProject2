@@ -80,7 +80,7 @@ public class CameraMove : MonoBehaviour {
             position_target.Set(player3.transform.position.x, pos.y, player3.transform.position.z - z_correction);
         }
 
-        //if (Input.GetKey(KeyCode.Alpha3))
+        //if (Input.GetKey(KeyCode.Alpha4))
         //{
         //    smooth_transition = true;
         //    position_target.Set(player4.transform.position.x, pos.y, player4.transform.position.z - z_correction);

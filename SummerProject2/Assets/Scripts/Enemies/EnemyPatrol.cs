@@ -3,19 +3,18 @@ using System.Collections;
 
 public class EnemyPatrol : MonoBehaviour {
 
+    public GameObject assigned_path;
     private Transform[] patrol_path;
     private int current_position;
     private NavMeshAgent agent;
 
     void Awake()
     {
-        GameObject path = GameObject.Find("Patrol_path_" + name);
-        if(path != null)
+        if(assigned_path != null)
         {
-            // linking its corresponding patrol route.
-            patrol_path = new Transform[path.transform.childCount];
+            patrol_path = new Transform[assigned_path.transform.childCount];
             int i = 0;
-            foreach (Transform path_unit in path.transform.getChilds())
+            foreach (Transform path_unit in assigned_path.transform.getChilds())
             {
                 patrol_path[i] = path_unit;
                 ++i;
