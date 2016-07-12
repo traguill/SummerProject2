@@ -29,7 +29,6 @@ public class EnemyManager : MonoBehaviour
         SetVisible();
 	}
 
-
     /// <summary>
     /// Sets the enemies visible or not depending of the fog of war.
     /// </summary>
