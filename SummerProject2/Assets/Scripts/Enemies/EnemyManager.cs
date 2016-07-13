@@ -17,10 +17,6 @@ public class EnemyManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-	    foreach(GameObject enemy in enemies)
-        {
-            enemy.GetComponent<SpriteRenderer>().enabled = false;
-        }
 	}
 	
 	// Update is called once per frame
@@ -47,12 +43,12 @@ public class EnemyManager : MonoBehaviour
         //Set all to invisble
         foreach(GameObject enemy in enemies)
         {
-            enemy.GetComponent<SpriteRenderer>().enabled = false;
+            enemy.GetComponent<EnemyController>().is_visible = false;
         }
         //Set only the visible enemies to visible
         foreach(Transform visible_enemy in visible_enemies)
         {
-            visible_enemy.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            visible_enemy.gameObject.GetComponent<EnemyController>().is_visible = true;
         }
     }
 }
