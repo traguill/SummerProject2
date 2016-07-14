@@ -56,4 +56,19 @@ public class EnemyPatrol : MonoBehaviour {
         // cycling to the start if necessary.
         current_position = (current_position + 1) % patrol_path.Length;
     }
+
+    /// <summary>
+    /// stopMovement finishes all pathFinding activity
+    /// </summary>
+    public void stopMovement()
+    {
+        agent.Stop();
+        agent.ResetPath();
+    }
+
+    public void initiateMovement()
+    {
+        current_position = 0;
+        goToNextPoint();
+    }
 }

@@ -6,14 +6,13 @@ public class ScreenFader : MonoBehaviour {
 
     private RawImage screen_fader;
     public float seconds_for_fading;
-    private bool is_fading;
-
+    //private bool is_fading;
 
     void Awake()
     {
         screen_fader = GetComponent<RawImage>();
         seconds_for_fading = 1.0f;
-        is_fading = false;
+       // is_fading = false;
     }
 
     void fadeToClear()

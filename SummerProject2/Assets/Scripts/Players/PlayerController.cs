@@ -27,17 +27,17 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-
         //Show/Hide selection circle
         if(is_selected)
         {
             selection_circle.SetActive(true);
+            // Whether someone has clicked with the right button, with the player selected...
             if(Input.GetMouseButton(1))
             {
                 RaycastHit hit;
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
                 {
-                    agent.destination = hit.point;
+                    agent.SetDestination(hit.point);
                 }
             }            
         }
@@ -46,4 +46,13 @@ public class PlayerController : MonoBehaviour
             selection_circle.SetActive(false);
         }
 	}
+
+    /// <summary>
+    /// stopMovement finishes all pathFinding activity
+    /// </summary>
+    public void stopMovement()
+    {
+        agent.Stop();
+        agent.ResetPath();               
+    }
 }
