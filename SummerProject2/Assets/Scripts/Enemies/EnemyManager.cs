@@ -10,8 +10,8 @@ public class EnemyManager : MonoBehaviour
 
     void Awake()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        players = GameObject.FindGameObjectsWithTag("Player");
+        enemies = GameObject.FindGameObjectsWithTag(Tags.enemy);
+        players = GameObject.FindGameObjectsWithTag(Tags.player);
     }
 
 	// Use this for initialization
