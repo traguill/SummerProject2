@@ -39,7 +39,7 @@ public class EnemyPatrol : MonoBehaviour {
     {
         // Choose the next destination point when the agent gets
         // close to the current one.
-        if (agent.remainingDistance < 0.5f)
+        if (agent.hasPath && agent.remainingDistance < 0.5f)
             goToNextPoint();
     }
 

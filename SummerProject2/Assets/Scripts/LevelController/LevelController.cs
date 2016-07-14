@@ -71,7 +71,7 @@ public class LevelController : MonoBehaviour
         {
             enemies[i].transform.position = initial_enemy_positions[i];
             enemy_patrol_controller[i].stopMovement();
-            enemy_patrol_controller[i].initiateMovement();
+            //enemy_patrol_controller[i].initiateMovement();
         }
 
         // Resetting camera
