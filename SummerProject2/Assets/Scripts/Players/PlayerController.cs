@@ -46,13 +46,4 @@ public class PlayerController : MonoBehaviour
             selection_circle.SetActive(false);
         }
 	}
-
-    /// <summary>
-    /// stopMovement finishes all pathFinding activity
-    /// </summary>
-    public void stopMovement()
-    {
-        agent.Stop();
-        agent.ResetPath();               
-    }
 }
