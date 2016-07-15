@@ -51,6 +51,10 @@ public class MentalistController : MonoBehaviour {
                 InputMouse();
                 break;
             case State.SENSORIAL:
+                 if(GetComponent<SensorialAbility>().is_playing == false)
+                {
+                    state = State.IDLE;
+                }
                 break;
         }
 	}
@@ -72,6 +76,8 @@ public class MentalistController : MonoBehaviour {
             if(GetComponent<SensorialAbility>().is_playing == false)
             {
                 GetComponent<SensorialAbility>().UseAbility();
+
+                ChangeState(State.SENSORIAL);
             }           
         }
     }
@@ -91,7 +97,7 @@ public class MentalistController : MonoBehaviour {
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
             {
                 agent.SetDestination(hit.point);
-                state = State.WALKING;
+                ChangeState(State.WALKING);
             }
         }
     }
@@ -104,5 +110,30 @@ public class MentalistController : MonoBehaviour {
     {
         agent.Stop();
         agent.ResetPath();
+    }
+
+
+    /// <summary>
+    /// Change state (if possible) and resolves all possible conflicts when chaning.
+    /// </summary>
+    private void ChangeState(State new_state)
+    {
+        switch(new_state)
+        {
+            case State.IDLE:
+                stopMovement();
+                state = new_state;
+                break;
+            case State.WALKING:
+                if (state != State.SENSORIAL)
+                    state = new_state;
+                break;
+            case State.SENSORIAL:
+                stopMovement();
+                state = new_state;
+                break;
+        }
+
+        
     }
 }
