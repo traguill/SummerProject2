@@ -50,4 +50,23 @@ public class EnemyManager : MonoBehaviour
             visible_enemy.gameObject.GetComponent<EnemyController>().is_visible = true;
         }
     }
+
+    /// <summary>
+    /// Kill or let unconscious an enemy (depens on bool).
+    /// </summary>
+    public void KillEnemy(GameObject enemy,bool kill)
+    {
+        if (enemy.tag == Tags.enemy)
+        {
+            if(kill)
+            { //Kill
+                enemy.tag = Tags.corpse;
+                enemy.GetComponent<EnemyController>().ChangeState(EnemyController.State.CORPSE);
+            }
+            else
+            {
+                //Unconscious
+            }
+        }
+    }
 }

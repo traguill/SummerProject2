@@ -87,6 +87,9 @@ public class MentalistController : MonoBehaviour {
     /// </summary>
     private void InputMouse()
     {
+        if (is_selected == false)
+            return;
+
         //Right click UP
         if(Input.GetMouseButtonUp(1))
         {
