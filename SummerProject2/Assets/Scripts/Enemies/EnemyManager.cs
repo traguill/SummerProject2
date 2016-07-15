@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class EnemyManager : MonoBehaviour
 {
-
     GameObject[] enemies;
     GameObject[] players;
 
