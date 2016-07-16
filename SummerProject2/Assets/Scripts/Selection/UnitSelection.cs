@@ -40,10 +40,6 @@ public class UnitSelection : MonoBehaviour
             //Remove previous selected units if key combination is not pressed
             if (Input.GetAxis("MultipleSelection") == 0)
             {
-                foreach (GameObject obj in units_selected)
-                {
-                    obj.GetComponent<PlayerController>().is_selected = false;
-                }
                 units_selected.Clear();
             }
 
@@ -56,15 +52,8 @@ public class UnitSelection : MonoBehaviour
         //BUTTON_UP
         if(Input.GetMouseButtonUp(0))
         {
-            if(is_dragging)
-            {
-                foreach (GameObject obj in units_selected)
-                {
-                    obj.GetComponent<PlayerController>().is_selected = true;
-                }
-            }
-            else
-            {
+            if(is_dragging == false)
+            { 
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 if(Physics.Raycast(ray, out hit, 100, player_mask))
@@ -72,7 +61,6 @@ public class UnitSelection : MonoBehaviour
                     //Add and Normal
                     if(Input.GetAxis("MultipleSelection") >= 0)
                     {
-                        hit.transform.gameObject.GetComponent<PlayerController>().is_selected = true;
                         if (units_selected.Find(obj => obj.name == hit.transform.gameObject.name) == false)
                             units_selected.Add(hit.transform.gameObject);
                     }
@@ -80,7 +68,6 @@ public class UnitSelection : MonoBehaviour
                     //Remove
                     if (Input.GetAxis("MultipleSelection") < 0)
                     {
-                        hit.transform.gameObject.GetComponent<PlayerController>().is_selected = false;
                         units_selected.Remove(hit.transform.gameObject);
                     }
                     
@@ -103,7 +90,6 @@ public class UnitSelection : MonoBehaviour
                     {
                         if(Input.GetAxis("MultipleSelection") >= 0)
                         {
-                            obj.GetComponent<PlayerController>().is_selected = true;
                             if (units_selected.Find(game_obj => game_obj.name == obj.transform.gameObject.name) == false)
                             {
                                 units_selected.Add(obj);
@@ -111,7 +97,6 @@ public class UnitSelection : MonoBehaviour
                         }
                         else
                         {
-                            obj.GetComponent<PlayerController>().is_selected = false;
                             units_selected.Remove(obj);
                         }    
                     }
@@ -142,7 +127,8 @@ public class UnitSelection : MonoBehaviour
         }
     }
 
-    public bool IsSelected(GameObject game_object)
+
+    private bool IsSelected(GameObject game_object)
     {
         if (!is_selecting)
             return false;
@@ -151,5 +137,13 @@ public class UnitSelection : MonoBehaviour
         Bounds viewport_bounds = DrawRect.GetViewportBounds(Camera.main, mouse_origin_position, Input.mousePosition);
 
         return viewport_bounds.Contains(Camera.main.WorldToViewportPoint(game_object.transform.position));
+    }
+    
+    /// <summary>
+    /// Returns true if a Player is currently selected.
+    /// </summary>
+    public bool IsPlayerSelected(GameObject game_object)
+    {
+        return units_selected.Find(obj => obj.name == game_object.name);
     }
 }
