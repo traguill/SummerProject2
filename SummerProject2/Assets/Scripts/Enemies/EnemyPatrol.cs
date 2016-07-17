@@ -7,6 +7,9 @@ public class EnemyPatrol : MonoBehaviour {
     private Transform[] patrol_path;
     private int current_position;
     private NavMeshAgent agent;
+    public int damage;
+    public int armor;
+    public GameObject gun;
 
     void Awake()
     {
