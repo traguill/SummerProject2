@@ -7,7 +7,7 @@ public class AlarmLight : MonoBehaviour
     public float high_intensity = 2f;        // The maximum intensity of the light whilst the alarm is on.
     public float low_intensity = 0.5f;       // The minimum intensity of the light whilst the alarm is on.
     public float change_margin = 0.2f;       // The margin within which the target intensity is changed.
-    public bool  alarm_on;                   // Whether or not the alarm is on.
+    private EnemyFieldView enemy_field_view;    // Useful to access the alarm trigger.
 
     private Light alarm_light;              // The light GameObject that will be modified.
     private float targetIntensity;          // The intensity that the light is aiming for currently.
@@ -16,17 +16,21 @@ public class AlarmLight : MonoBehaviour
     {
         // Getting light from Alarm component
         alarm_light = GetComponent<Light>();
+        alarm_light.enabled = true;
         // When the level starts we want the light to be "off".
         alarm_light.intensity = 0f;
         // When the alarm starts for the first time, the light should aim to have the maximum intensity.
         targetIntensity = high_intensity;
+
+        // EnemyFieldView script to access Alarm boolean.
+        enemy_field_view = GameObject.FindGameObjectWithTag(Tags.enemy).GetComponent<EnemyFieldView>();
     }
 
 
     void Update()
     {
-        // If the light is on...
-        if (alarm_on)
+        // If the alarm is active...
+        if (enemy_field_view.isAlarmOn())
         {
             // ... Lerp the light's intensity towards the current target.
             alarm_light.intensity = Mathf.Lerp(alarm_light.intensity, targetIntensity, fade_speed * Time.deltaTime);

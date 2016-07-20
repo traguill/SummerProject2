@@ -10,7 +10,7 @@ public class EnemyPatrolEditor : Editor
     void OnEnable()
     {
         EnemyPatrol item = target as EnemyPatrol;
-        Transform[] path = item.assigned_path.transform.getChilds();
+        Transform[] path = item.neutral_path.transform.getChilds();
         path_positions = new Vector3[path.Length];
 
         for (int i = 0; i < path.Length; ++i)

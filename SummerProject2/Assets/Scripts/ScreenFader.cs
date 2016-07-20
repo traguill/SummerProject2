@@ -5,13 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class ScreenFader : MonoBehaviour {
 
-    public RawImage fade_img;
-    public float fade_speed = 1.5f;
-    public bool scene_starting = true;
+    private RawImage fade_img;
+    private float fade_speed;
+    private bool scene_starting;
 
     void Awake()
     {
+        fade_img = GetComponent<RawImage>();
         fade_img.rectTransform.localScale = new Vector2(Screen.width, Screen.height);
+        fade_img.enabled = true;
+
+        fade_speed = 1.5f;
+        scene_starting = true;
     }
 
     void Update()

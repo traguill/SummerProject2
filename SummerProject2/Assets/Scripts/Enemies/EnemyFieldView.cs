@@ -11,6 +11,8 @@ public class EnemyFieldView : MonoBehaviour {
     public LayerMask target_mask;
     public LayerMask obstacle_mask;
 
+    public static bool alarm_on;                  // Whether or not the alarm is on.
+
     [HideInInspector]
     public List<Transform> visible_targets = new List<Transform>();
 
@@ -29,6 +31,10 @@ public class EnemyFieldView : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// FindVisibleTargets() looks if any player is on the enemy vision cone, each XX seconds, according to FindTargetsWithDelay.
+    /// Visible_targets includes every player position.
+    /// </summary>
     void FindVisibleTargets()
     {
         visible_targets.Clear();
@@ -57,5 +63,10 @@ public class EnemyFieldView : MonoBehaviour {
             angle += transform.eulerAngles.y;
         }
         return new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0, Mathf.Cos(angle * Mathf.Deg2Rad));
+    }
+
+    public bool isAlarmOn()
+    {
+        return alarm_on;
     }
 }
