@@ -6,7 +6,7 @@ using System.Collections;
 using System;
 
 [Serializable]
-public class OnEvent : UnityEvent{}
+public class OnEvent : UnityEvent<GameObject>{}
 
 //Radial button template
 
@@ -17,6 +17,7 @@ public class RadialButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public Image icon;
     public string title;
     public RadialMenu main_menu;
+    public GameObject interactable_object;
 
     Color default_color; //Change color on hover button (in the future change this for better animations)
 

@@ -27,6 +27,7 @@ public class RadialMenu : MonoBehaviour {
             new_button.title = obj.options[i].title;
             new_button.main_menu = this;
             new_button.function = obj.options[i].function;
+            new_button.interactable_object = obj.gameObject;
         }
   
 	}
@@ -38,7 +39,7 @@ public class RadialMenu : MonoBehaviour {
         {
             if(selected)
             {
-                selected.function.Invoke(); //Something is selected, call function attached
+                selected.function.Invoke(selected.interactable_object); //Something is selected, call function attached
             }
             Destroy(gameObject); //Destroy the menu on mouse up
         }

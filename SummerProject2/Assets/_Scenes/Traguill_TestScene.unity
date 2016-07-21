@@ -1347,6 +1347,14 @@ Prefab:
       propertyPath: selection_circle
       value: 
       objectReference: {fileID: 1190983061}
+    - target: {fileID: 11404058, guid: f09ab54564df2a945a6fb140075f97c3, type: 2}
+      propertyPath: raycast_layers.m_Bits
+      value: 4294954975
+      objectReference: {fileID: 0}
+    - target: {fileID: 11404058, guid: f09ab54564df2a945a6fb140075f97c3, type: 2}
+      propertyPath: movement_layers.m_Bits
+      value: 2304
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f09ab54564df2a945a6fb140075f97c3, type: 2}
   m_IsPrefabParent: 0
