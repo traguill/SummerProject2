@@ -2,6 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public enum ALARM_STATE : byte
+{
+    ALARM_ON,
+    ALARM_OFF
+};
+
 public class EnemyFieldView : MonoBehaviour {
 
     public float view_radius;
@@ -9,9 +15,9 @@ public class EnemyFieldView : MonoBehaviour {
     public float view_angle;
 
     public LayerMask target_mask;
-    public LayerMask obstacle_mask;
+    public LayerMask obstacle_mask;    
 
-    public static bool alarm_on;                  // Whether or not the alarm is on.
+    public static ALARM_STATE alarm_state;                
 
     [HideInInspector]
     public List<Transform> visible_targets = new List<Transform>();
@@ -20,6 +26,7 @@ public class EnemyFieldView : MonoBehaviour {
     void Start ()
     {
         StartCoroutine("FindTargetsWithDelay", 0.2f);
+        alarm_state = ALARM_STATE.ALARM_OFF;
     }
 
     IEnumerator FindTargetsWithDelay(float delay)
@@ -51,6 +58,7 @@ public class EnemyFieldView : MonoBehaviour {
                 if (!Physics.Raycast(transform.position, direction, distance_to_target, obstacle_mask))
                 {
                     visible_targets.Add(target);
+                    alarm_state = ALARM_STATE.ALARM_ON;
                 }
             }
         }
@@ -65,8 +73,8 @@ public class EnemyFieldView : MonoBehaviour {
         return new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0, Mathf.Cos(angle * Mathf.Deg2Rad));
     }
 
-    public bool isAlarmOn()
+    public ALARM_STATE getAlarmState()
     {
-        return alarm_on;
+        return alarm_state;
     }
 }

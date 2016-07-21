@@ -26,23 +26,23 @@ public class AlarmLight : MonoBehaviour
         enemy_field_view = GameObject.FindGameObjectWithTag(Tags.enemy).GetComponent<EnemyFieldView>();
     }
 
-
     void Update()
     {
-        // If the alarm is active...
-        if (enemy_field_view.isAlarmOn())
+        // Using alarm state, we modulate light alarm intensity when the alarm is active...
+        if(enemy_field_view.getAlarmState() == ALARM_STATE.ALARM_ON)
         {
             // ... Lerp the light's intensity towards the current target.
             alarm_light.intensity = Mathf.Lerp(alarm_light.intensity, targetIntensity, fade_speed * Time.deltaTime);
 
             // Check whether the target intensity needs changing and change it if so.
-            CheckTargetIntensity();
+            CheckTargetIntensity();   
         }
         else
+        {
             // Otherwise fade the light's intensity to zero.
-            alarm_light.intensity = Mathf.Lerp(alarm_light.intensity, 0f, fade_speed * Time.deltaTime);
+            alarm_light.intensity = Mathf.Lerp(alarm_light.intensity, 0f, fade_speed * Time.deltaTime);          
+        }           
     }
-
 
     void CheckTargetIntensity()
     {

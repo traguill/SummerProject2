@@ -29,12 +29,12 @@ public class LevelController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        for (int i = 0; i < enemy_field_view.Length; ++i)
-        {
-            if(enemy_field_view[i].visible_targets.Count > 0)
-            {
-                screen_fader.EndScene(0);
-            }            
-        }
+        //for (int i = 0; i < enemy_field_view.Length; ++i)
+        //{
+        //    if(enemy_field_view[i].visible_targets.Count > 0)
+        //    {
+        //        screen_fader.EndScene(0);
+        //    }            
+        //}
     }
 }

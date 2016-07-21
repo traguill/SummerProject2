@@ -5,53 +5,82 @@ using UnityEditor;
 [CustomEditor(typeof(EnemyPatrol))]
 public class EnemyPatrolEditor : Editor
 {
-    private Vector3[] path_positions;
+    private Vector3[] path_neutral_positions;
+    private Vector3[] path_alarm_positions;
 
     void OnEnable()
     {
         EnemyPatrol item = target as EnemyPatrol;
         Transform[] path = item.neutral_path.transform.getChilds();
-        path_positions = new Vector3[path.Length];
+        path_neutral_positions = new Vector3[path.Length];
 
         for (int i = 0; i < path.Length; ++i)
         {
-            path_positions[i] = path[i].transform.position;
+            path_neutral_positions[i] = path[i].transform.position;
+        }
+
+        path = item.alarm_path.transform.getChilds();
+        path_alarm_positions = new Vector3[path.Length];
+
+        for (int i = 0; i < path.Length; ++i)
+        {
+            path_alarm_positions[i] = path[i].transform.position;
         }
     }
 
-    public override void OnInspectorGUI()
-    {
-        for (int i = 0; i < path_positions.Length; i++)
-        {
-            EditorGUILayout.Vector2Field("Point " + (i+1), new Vector2(path_positions[i].x, path_positions[i].z) );
-        }
-    }
+    // CRZ -> I don't like the layout!
+    //public override void OnInspectorGUI()
+    //{
+    //    for (int i = 0; i < path_positions.Length; i++)
+    //    {
+    //        EditorGUILayout.Vector2Field("Point " + (i+1), new Vector2(path_positions[i].x, path_positions[i].z) );
+    //    }
+    //}
 
     [ExecuteInEditMode]
     void OnSceneGUI()
     {
-       Vector3[] line_segments = new Vector3[path_positions.Length * 2];
+        Vector3[] line_segments = new Vector3[path_neutral_positions.Length * 2];
         int point_index = 0;
 
-        for (int i = 0; i < path_positions.Length - 1; i++)
+        for (int i = 0; i < path_neutral_positions.Length - 1; i++)
         {
-            line_segments[point_index++] = path_positions[i];
-            line_segments[point_index++] = path_positions[i + 1];
+            line_segments[point_index++] = path_neutral_positions[i];
+            line_segments[point_index++] = path_neutral_positions[i + 1];
         }
 
         // We close the patrol loop
-        line_segments[point_index++] = path_positions[path_positions.Length - 1];
-        line_segments[point_index] = path_positions[0];
+        line_segments[point_index++] = path_neutral_positions[path_neutral_positions.Length - 1];
+        line_segments[point_index] = path_neutral_positions[0];
 
         Handles.DrawDottedLines(line_segments, 1.5f);
-        Color initial_color = Color.green;
-        Color final_color = Color.red;
-
-        for (int i = 0; i < path_positions.Length; i++)
+        
+        for (int i = 0; i < path_neutral_positions.Length; i++)
         {
-            Handles.color = initial_color;
-            initial_color = Color.Lerp(initial_color, final_color, 0.5f);
-            Handles.ConeCap(0, path_positions[i], Quaternion.Euler(-90,0,0), 1);
+            Handles.ConeCap(0, path_neutral_positions[i], Quaternion.Euler(-90,0,0), 1);
+            Handles.Label(path_neutral_positions[i], i.ToString());
+        }
+
+        line_segments = new Vector3[path_alarm_positions.Length * 2];
+        point_index = 0;
+
+        for (int i = 0; i < path_alarm_positions.Length - 1; i++)
+        {
+            line_segments[point_index++] = path_alarm_positions[i];
+            line_segments[point_index++] = path_alarm_positions[i + 1];
+        }
+
+        // We close the patrol loop
+        line_segments[point_index++] = path_alarm_positions[path_alarm_positions.Length - 1];
+        line_segments[point_index] = path_alarm_positions[0];
+
+        Handles.color = Color.red;
+        Handles.DrawDottedLines(line_segments, 1.5f);
+        
+        for (int i = 0; i < path_alarm_positions.Length; i++)
+        {
+            Handles.ConeCap(0, path_alarm_positions[i], Quaternion.Euler(-90, 0, 0), 1);
+            Handles.Label(path_alarm_positions[i], i.ToString());
         }
     }
 }
