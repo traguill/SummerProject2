@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BarionController : MonoBehaviour {
+public class CosmoController : MonoBehaviour {
 
     //Selection
     public GameObject selection_circle;
@@ -14,14 +14,10 @@ public class BarionController : MonoBehaviour {
     public LayerMask movement_layers; //Layers that the raycast must hit to start movement.
 
     //State machine
-    [HideInInspector] public IBarionState current_state;
-    [HideInInspector] public BarionWalkingState walking_state;
-    [HideInInspector] public BarionIdleState idle_state;
-    [HideInInspector] public BarionMovingBoxState moving_box_state;
-
-
-    //Move box
-   [HideInInspector] public GameObject target_box = null; //Selected box to move.
+    public ICosmoState current_state;
+    public CosmoIdleState idle_state;
+    public CosmoWalkingState walking_state;
+    public CosmoSensorialState sensorial_state;
 
     void Awake()
     {
@@ -30,27 +26,26 @@ public class BarionController : MonoBehaviour {
         agent.updateRotation = false;
 
         //State machine
-        idle_state = new BarionIdleState(this);
-        walking_state = new BarionWalkingState(this);
-        moving_box_state = new BarionMovingBoxState(this);
+        idle_state = new CosmoIdleState(this);
+        walking_state = new CosmoWalkingState(this);
+        sensorial_state = new CosmoSensorialState(this);
     }
 
-    void Start()
+	// Use this for initialization
+	void Start ()
     {
-
         selection_circle.SetActive(false);
         is_selected = false;
 
         current_state = idle_state;
-    }
-
-
-    void Update ()
+	}
+	
+	void Update ()
     {
         UpdateSelection();
 
         current_state.UpdateState();
-    }
+	}
 
     /// <summary>
     /// Checks if the Player is selected and updates the selection circle.
@@ -62,6 +57,7 @@ public class BarionController : MonoBehaviour {
         selection_circle.SetActive(is_selected);
     }
 
+
     /// <summary>
     /// stopMovement finishes all pathFinding activity
     /// </summary>
@@ -70,6 +66,7 @@ public class BarionController : MonoBehaviour {
         agent.Stop();
         agent.ResetPath();
     }
+
 
     //STATE MACHINE UTILS ------------------------------------------------------------------------
 
@@ -104,28 +101,6 @@ public class BarionController : MonoBehaviour {
             return true;
         else
             return false;
-    }
-
-
-    //BOX INTERACTION ------------------------------------------------------------
-    public void CarryBox(GameObject box)
-    {
-        target_box = box;
-    }
-
-    public void HideCorpse(GameObject box)
-    {
-        //Code to hide a corpse inside a selected box
-    }
-
-    public void HideInBox(GameObject box)
-    {
-        //Code to hide Barion inside a selected box.
-    }
-
-    public void DropBox(GameObject box)
-    {
-        moving_box_state.drop_box = true;
     }
 
 }
