@@ -8,7 +8,7 @@ public class BarionController : MonoBehaviour {
     //Selection
     public GameObject selection_circle;
     UnitSelection selection_system;
-    bool is_selected = false;
+    [HideInInspector] public bool is_selected = false;
 
     //Navigation
     [HideInInspector] public NavMeshAgent agent;
@@ -23,8 +23,7 @@ public class BarionController : MonoBehaviour {
 
 
     //Move box
-    GameObject target_box = null; //Selected box to move.
-    Vector3 move_box_position; //Selected location to move the box from.
+   [HideInInspector] public GameObject target_box = null; //Selected box to move.
 
     void Awake()
     {
@@ -68,7 +67,7 @@ public class BarionController : MonoBehaviour {
     /// <summary>
     /// stopMovement finishes all pathFinding activity
     /// </summary>
-    public void stopMovement()
+    public void StopMovement()
     {
         agent.Stop();
         agent.ResetPath();
@@ -110,28 +109,25 @@ public class BarionController : MonoBehaviour {
     }
 
 
-    //MOVE BOX ------------------------------------------------------------
-    public void BoxUp(GameObject box)
+    //BOX INTERACTION ------------------------------------------------------------
+    public void CarryBox(GameObject box)
     {
         target_box = box;
-        move_box_position = new Vector3(0, 0, 1);
     }
 
-    public void BoxRight(GameObject box)
+    public void HideCorpse(GameObject box)
     {
-        target_box = box;
-        move_box_position = new Vector3(1, 0, 0);
+        //Code to hide a corpse inside a selected box
     }
 
-    public void BoxDown(GameObject box)
+    public void HideInBox(GameObject box)
     {
-        target_box = box;
-        move_box_position = new Vector3(0, 0, -1);
+        //Code to hide Barion inside a selected box.
     }
 
-    public void BoxLeft(GameObject box)
+    public void DropBox(GameObject box)
     {
-        target_box = box;
-        move_box_position = new Vector3(-1, 0, 0);
+        moving_box_state.drop_box = true;
     }
+
 }

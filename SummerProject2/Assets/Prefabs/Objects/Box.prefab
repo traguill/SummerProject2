@@ -12,9 +12,11 @@ GameObject:
   - 65: {fileID: 6512658}
   - 23: {fileID: 2390832}
   - 114: {fileID: 11431726}
+  - 114: {fileID: 11489442}
+  - 114: {fileID: 11477080}
   m_Layer: 14
   m_Name: Box
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,15 +90,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c723bf65f75ea364bab4f46cb4e747b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: Ground
   options:
-  - color: {r: 0, g: 0.46206903, b: 1, a: 0.472}
+  - color: {r: 0, g: 0.46206903, b: 1, a: 1}
     sprite: {fileID: 21300000, guid: 36e1302fde22db844a70cd6d6ef2cb30, type: 3}
-    title: Up
+    title: CarryBox
     function:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
-          m_MethodName: BoxUp
+          m_MethodName: CarryBox
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -107,50 +110,14 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: OnEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - color: {r: 0, g: 0.45882353, b: 1, a: 0.478}
-    sprite: {fileID: 21300000, guid: 41edfffef99099842a9379ccfe840d3f, type: 3}
-    title: Right
-    function:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: BoxRight
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: OnEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - color: {r: 0, g: 0.45882353, b: 1, a: 0.472}
-    sprite: {fileID: 21300000, guid: b6884be38f25a3b42bc9efb11525e539, type: 3}
-    title: Down
-    function:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: BoxDown
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: OnEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - color: {r: 0, g: 0.45882353, b: 1, a: 0.472}
+  - color: {r: 0, g: 1, b: 0.048275948, a: 1}
     sprite: {fileID: 21300000, guid: cbcf7087b586088489aa57b8ead9ddde, type: 3}
-    title: Left
+    title: Hide
     function:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
-          m_MethodName: BoxUp
+          m_MethodName: HideInBox
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -161,6 +128,66 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: OnEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - color: {r: 1, g: 0, b: 0, a: 1}
+    sprite: {fileID: 21300000, guid: b6884be38f25a3b42bc9efb11525e539, type: 3}
+    title: HideCorpse
+    function:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: HideCorpse
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: OnEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11477080
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c723bf65f75ea364bab4f46cb4e747b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Carry
+  options:
+  - color: {r: 0.89705884, g: 0.7238337, b: 0, a: 0}
+    sprite: {fileID: 21300000, guid: 41edfffef99099842a9379ccfe840d3f, type: 3}
+    title: Drop
+    function:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: DropBox
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: OnEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11489442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5825acfe672bdd7468bf5766da093a06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

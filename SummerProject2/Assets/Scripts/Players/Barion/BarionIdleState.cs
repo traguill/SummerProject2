@@ -15,9 +15,20 @@ public class BarionIdleState : IBarionState {
 
     public void UpdateState()
     {
-        //Check if its selected to perform actions
+        //If it's not selected no action is performed
+        if (barion.is_selected == false)
+            return;
+        //Can transition to walking
         if (barion.GetMovement(ref destination))
+        {
             ToWalkingState();
+        }
+
+        //Can transition to moving box
+        if (barion.target_box != null)
+        {
+            ToMoveBoxState();
+        }
     }
 
     public void ToIdleState()

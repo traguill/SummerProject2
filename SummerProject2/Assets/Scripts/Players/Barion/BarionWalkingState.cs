@@ -19,11 +19,20 @@ public class BarionWalkingState : IBarionState {
         if (barion.DstArrived())
             ToIdleState();
 
-        //Check new input movement
-        if (barion.GetMovement(ref destination))
-            ToWalkingState();
+        //Actions performed when Barion is selected
+        if(barion.is_selected)
+        {
+            //Check new input movement
+            if (barion.GetMovement(ref destination))
+                ToWalkingState();
 
-        //Check new input box selection
+            //Can transition to moving box
+            if (barion.target_box != null)
+            {
+                ToMoveBoxState();
+            }
+        }
+        
     }
 
     public void ToIdleState()

@@ -25,7 +25,7 @@ public class UnitSelection : MonoBehaviour
     GameObject[] selectable_units;
     List<GameObject> units_selected;
 
-    GameObject object_selected;
+    GameObject object_selected; //Save if an object is selected to NOT update player selection
 
     void Start()
     {
@@ -174,7 +174,11 @@ public class UnitSelection : MonoBehaviour
             if(Physics.Raycast(ray, out hit, 100, selectable_object_mask))
             {
                 object_selected = hit.transform.gameObject;
-                object_selected.GetComponent<RadialMenu_ObjectInteractable>().OnInteractableClicked();
+
+                //Tell object that is being selected (all types of objects here)
+                if (object_selected.tag == Tags.box)
+                    object_selected.GetComponent<BoxController>().Selected();
+     
             }
             else
             {

@@ -8,4 +8,5 @@ public static class Tags {
     public const string main_camera = "MainCamera";
     public const string screen_fader = "ScreenFader";
     public const string corpse = "Corpse";
+    public const string box = "Box";
 }

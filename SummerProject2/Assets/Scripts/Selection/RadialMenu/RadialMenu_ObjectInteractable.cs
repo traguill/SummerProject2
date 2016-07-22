@@ -16,7 +16,7 @@ public class RadialMenu_ObjectInteractable : MonoBehaviour {
         public string title;
         public OnEvent function; //Function to call when the button is pressed.
     }
-
+    public string id; //Id to allow multiple menus on same object
     public Action[] options;
 
     //When an interactable object is clicked (mouse button down) this method is called.
