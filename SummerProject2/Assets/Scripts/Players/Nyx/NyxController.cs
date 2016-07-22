@@ -1,23 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CosmoController : MonoBehaviour {
+public class NyxController : MonoBehaviour {
 
     //Selection
     public GameObject selection_circle;
     UnitSelection selection_system;
-    [HideInInspector] public bool is_selected = false;
+    [HideInInspector]
+    public bool is_selected = false;
 
     //Navigation
-    [HideInInspector] public NavMeshAgent agent;
+    [HideInInspector]
+    public NavMeshAgent agent;
     public LayerMask raycast_layers; //Available layers for raycasting (ingore fog of war).
     public LayerMask movement_layers; //Layers that the raycast must hit to start movement.
 
     //State machine
-     [HideInInspector] public ICosmoState current_state;
-     [HideInInspector] public CosmoIdleState idle_state;
-     [HideInInspector] public CosmoWalkingState walking_state;
-     [HideInInspector] public CosmoSensorialState sensorial_state;
+    [HideInInspector] public INyxState current_state;
+    [HideInInspector] public NyxIdleState idle_state;
+    [HideInInspector] public NyxWalkingState walking_state;
+    [HideInInspector] public NyxKillingState killing_state;
+
+    //Killing
+    public GameObject target_to_kill; //Enemy marked to kill with passive.
 
     void Awake()
     {
@@ -25,27 +30,25 @@ public class CosmoController : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
 
-        //State machine
-        idle_state = new CosmoIdleState(this);
-        walking_state = new CosmoWalkingState(this);
-        sensorial_state = new CosmoSensorialState(this);
+        idle_state = new NyxIdleState(this);
+        walking_state = new NyxWalkingState(this);
+        killing_state = new NyxKillingState(this);
     }
 
-	// Use this for initialization
-	void Start ()
+    void Start ()
     {
         selection_circle.SetActive(false);
         is_selected = false;
 
         current_state = idle_state;
-	}
+    }
 	
 	void Update ()
     {
         UpdateSelection();
 
         current_state.UpdateState();
-	}
+    }
 
     /// <summary>
     /// Checks if the Player is selected and updates the selection circle.
@@ -57,7 +60,6 @@ public class CosmoController : MonoBehaviour {
         selection_circle.SetActive(is_selected);
     }
 
-
     /// <summary>
     /// stopMovement finishes all pathFinding activity
     /// </summary>
@@ -66,7 +68,6 @@ public class CosmoController : MonoBehaviour {
         agent.Stop();
         agent.ResetPath();
     }
-
 
     //STATE MACHINE UTILS ------------------------------------------------------------------------
 
@@ -102,5 +103,35 @@ public class CosmoController : MonoBehaviour {
         else
             return false;
     }
+
+    /// <summary>
+    /// Returns if an enemy is selected to kill (as passive)
+    /// </summary>
+    public bool KillEnemy()
+    {
+        if (Input.GetMouseButtonUp(1))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, raycast_layers))
+            {
+                if (movement_layers == (movement_layers | (1 << hit.transform.gameObject.layer)))
+                {
+                    if(hit.transform.tag == Tags.enemy) //Check if the hitted point is an enemy (alive)
+                    {
+
+                        target_to_kill = hit.transform.gameObject;
+                        return true;
+                    }
+                  
+                }
+            }
+        }
+
+        return false;
+    }
+
+
+   
+
 
 }

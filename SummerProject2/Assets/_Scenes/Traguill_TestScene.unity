@@ -930,25 +930,25 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 19543118, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
-      propertyPath: m_StoppingDistance
-      value: 2
+    - target: {fileID: 11485460, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
+      propertyPath: selection_circle
+      value: 
+      objectReference: {fileID: 831762985}
+    - target: {fileID: 11485460, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
+      propertyPath: raycast_layers.m_Bits
+      value: 4294955007
       objectReference: {fileID: 0}
-    - target: {fileID: 21224258, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
-      propertyPath: m_Color.r
-      value: 0.3882622
+    - target: {fileID: 11485460, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
+      propertyPath: movement_layers.m_Bits
+      value: 3328
       objectReference: {fileID: 0}
-    - target: {fileID: 21224258, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
-      propertyPath: m_Color.g
-      value: 0.16738753
+    - target: {fileID: 11494918, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
+      propertyPath: target_mask.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
-    - target: {fileID: 21224258, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
-      propertyPath: m_Color.b
-      value: 0.9485294
-      objectReference: {fileID: 0}
-    - target: {fileID: 21224258, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
-      propertyPath: m_Color.a
-      value: 1
+    - target: {fileID: 11494918, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
+      propertyPath: obstacle_mask.m_Bits
+      value: 2048
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
@@ -984,6 +984,10 @@ Transform:
   - {fileID: 1235618665}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!1 &831762985 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 134160, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
+  m_PrefabInternal: {fileID: 774422937}
 --- !u!4 &861954579 stripped
 Transform:
   m_PrefabParentObject: {fileID: 433644, guid: ebd81c830588a5743b5a94b77464ca00, type: 2}
