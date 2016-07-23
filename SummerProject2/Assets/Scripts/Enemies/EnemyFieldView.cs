@@ -2,31 +2,32 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public enum ALARM_STATE : byte
+public class EnemyFieldView : MonoBehaviour
 {
-    ALARM_ON,
-    ALARM_OFF
-};
-
-public class EnemyFieldView : MonoBehaviour {
 
     public float view_radius;
     [Range(0, 360)]
     public float view_angle;
 
     public LayerMask target_mask;
-    public LayerMask obstacle_mask;    
+    public LayerMask obstacle_mask;
 
-    public static ALARM_STATE alarm_state;                
+    private AlarmSystem alarm_system;
 
     [HideInInspector]
     public List<Transform> visible_targets = new List<Transform>();
 
+
+    // Awake
+    void Awake()
+    {
+        alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
+    }
+
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         StartCoroutine("FindTargetsWithDelay", 0.2f);
-        alarm_state = ALARM_STATE.ALARM_OFF;
     }
 
     IEnumerator FindTargetsWithDelay(float delay)
@@ -58,7 +59,7 @@ public class EnemyFieldView : MonoBehaviour {
                 if (!Physics.Raycast(transform.position, direction, distance_to_target, obstacle_mask))
                 {
                     visible_targets.Add(target);
-                    alarm_state = ALARM_STATE.ALARM_ON;
+                    alarm_system.SetAlarm(ALARM_STATE.ALARM_ON);
                 }
             }
         }
@@ -73,8 +74,4 @@ public class EnemyFieldView : MonoBehaviour {
         return new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0, Mathf.Cos(angle * Mathf.Deg2Rad));
     }
 
-    public ALARM_STATE getAlarmState()
-    {
-        return alarm_state;
-    }
 }

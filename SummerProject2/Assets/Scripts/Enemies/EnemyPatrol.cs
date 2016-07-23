@@ -7,8 +7,7 @@ public class EnemyPatrol : MonoBehaviour {
     private Transform[] neutral_patrol, alarm_patrol, current_patrol;
     private int current_position;
     private NavMeshAgent agent;
-    private ALARM_STATE alarm_state;
-    private EnemyFieldView enemy_field_view;
+    private AlarmSystem alarm_system;
    
     void Awake()
     {
@@ -41,8 +40,7 @@ public class EnemyPatrol : MonoBehaviour {
         current_patrol = neutral_patrol;
 
         agent = GetComponent<NavMeshAgent>();   // Agent for NavMesh
-        enemy_field_view = GameObject.FindGameObjectWithTag(Tags.enemy).GetComponent<EnemyFieldView>();
-        alarm_state = enemy_field_view.getAlarmState();
+        alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
     }
 
     // Use this for initialization
@@ -56,26 +54,16 @@ public class EnemyPatrol : MonoBehaviour {
     {
         // Every time the alarm changes, the enemy will find the closest point
         // to continue its patrol.
-
-        if (alarm_state != enemy_field_view.getAlarmState())
+        if (alarm_system.isAlarmActive())
         {
-            alarm_state = enemy_field_view.getAlarmState();
-            switch (alarm_state)
-            {
-                case (ALARM_STATE.ALARM_OFF):
-                    {
-                        current_patrol = neutral_patrol;
-                        break;
-                    }
-                case (ALARM_STATE.ALARM_ON):
-                    {
-                        current_patrol = alarm_patrol;
-                        break;
-                    }
-            }
-
-            current_position = findClosestPoint();
-        }       
+            current_patrol = alarm_patrol;
+        }
+        else
+        {
+            current_patrol = neutral_patrol;
+        }
+            
+        //current_position = findClosestPoint();       
 
         // Choose the next destination point when the agent gets
         // close to the current one.
