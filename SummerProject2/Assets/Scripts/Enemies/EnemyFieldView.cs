@@ -37,18 +37,24 @@ public class EnemyFieldView : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(delay);
-            FindVisibleTargets();
+            if(FindVisibleTargets())
+            {
+                CheckVisibleTargets();
+            }            
         }
     }
 
     /// <summary>
-    /// FindVisibleTargets() looks if any player is on the enemy vision cone, each XX seconds, according to FindTargetsWithDelay.
-    /// Visible_targets includes every player position.
+    /// FindVisibleTargets() looks if any player and enemy is on the enemy vision cone, each XX seconds, according to FindTargetsWithDelay.
+    /// Visible_targets includes every player and/or enemy positions.
     /// </summary>
-    void FindVisibleTargets()
+    /// <return> true whether some visible objects has been spotted. False otherwise. </return>
+    bool FindVisibleTargets()
     {
         visible_targets.Clear();
         Collider[] targets_in_view_radius = Physics.OverlapSphere(transform.position, view_radius, target_mask);
+
+        Debug.Log("Number of colliders: " + targets_in_view_radius.Length);
 
         for (int i = 0; i < targets_in_view_radius.Length; i++)
         {
@@ -61,10 +67,29 @@ public class EnemyFieldView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, direction, distance_to_target, obstacle_mask))
                 {
                     visible_targets.Add(target);
-                    screen_fader.EndScene(0);
                 }
             }
         }
+        
+        return visible_targets.Count > 0;
+    }
+
+    /// <summary>
+    /// CheckVisibleTargets() checks every Transform gameObject and checks its Tag. If player is found, the level resets. 
+    /// If enemy corpse is found, alert mode is activated
+    /// </summary>
+    void CheckVisibleTargets()
+    {
+        foreach(Transform t in visible_targets)
+        {
+            // If enemy corpse is found, alert mode is activated
+            if (t.tag.Equals(Tags.corpse))
+                alarm_system.SetAlarm(ALARM_STATE.ALARM_ON);
+
+            // If player is found, the level resets.
+            if (t.tag.Equals(Tags.player))
+                screen_fader.EndScene(0);
+        }        
     }
 
     public Vector3 DirectionFromAngle(float angle, bool angle_is_global)

@@ -16,7 +16,6 @@ public class EnemyAController : MonoBehaviour {
     void Awake()
     {
         // State machine
-
         // -- IDLE --
         idle_state = new EnemyAIdleState(this);
         // -- PATROL --
