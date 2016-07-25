@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface IEnemyTypeAstates
+public interface IEnemyAStates
     {
+
     void UpdateState();
 
     void ToIdleState();
 
-    void ToWalkingState();
+    void ToPatrolState();
 
-    void ToMoveBoxState();
+    void ToAlertState();
 
 }
 

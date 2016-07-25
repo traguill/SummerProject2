@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEditor;
 
-[CustomEditor(typeof(EnemyPatrol))]
+[CustomEditor(typeof(EnemyAController))]
 public class EnemyPatrolEditor : Editor
 {
     private Vector3[] path_neutral_positions;
@@ -10,7 +10,7 @@ public class EnemyPatrolEditor : Editor
 
     void OnEnable()
     {
-        EnemyPatrol item = target as EnemyPatrol;
+        EnemyAController item = target as EnemyAController;
         Transform[] path = item.neutral_path.transform.getChilds();
         path_neutral_positions = new Vector3[path.Length];
 
@@ -19,7 +19,7 @@ public class EnemyPatrolEditor : Editor
             path_neutral_positions[i] = path[i].transform.position;
         }
 
-        path = item.alarm_path.transform.getChilds();
+        //path = item.alarm_path.transform.getChilds();
         path_alarm_positions = new Vector3[path.Length];
 
         for (int i = 0; i < path.Length; ++i)

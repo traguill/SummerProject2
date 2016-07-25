@@ -3,8 +3,7 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
-    [HideInInspector]
-    public enum State
+    [HideInInspector] public enum State
     {
         IDLE,
         CORPSE
@@ -59,16 +58,13 @@ public class EnemyController : MonoBehaviour
                 {
                     is_detected = false;
                     render.material = normal_material;
-                
-                }
-                    
+                }  
             }
             else
             {
                 render.enabled = false; //Inside the fow
             } 
-        }
-            
+        }        
     }
 
     /// <summary>

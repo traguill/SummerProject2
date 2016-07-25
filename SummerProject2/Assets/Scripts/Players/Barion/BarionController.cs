@@ -37,7 +37,6 @@ public class BarionController : MonoBehaviour {
 
     void Start()
     {
-
         selection_circle.SetActive(false);
         is_selected = false;
 

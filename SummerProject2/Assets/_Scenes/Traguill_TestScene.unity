@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6908b9dab2d6c4fb0af479a80b6526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_camera: 1
+  speed_camera: 0
   disable_camera_movement_mouse: 0
   zone_for_displacement: 0
   player1: {fileID: 0}
@@ -1721,7 +1721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e628952d2411849a439c9db6ce1d27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoClearAfterStart: 1
+  NoClearAfterStart: 0
 --- !u!92 &1511865488
 Behaviour:
   m_ObjectHideFlags: 0
