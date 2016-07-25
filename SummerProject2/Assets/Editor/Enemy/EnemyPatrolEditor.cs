@@ -11,6 +11,7 @@ public class EnemyPatrolEditor : Editor
     void OnEnable()
     {
         EnemyAController item = target as EnemyAController;
+
         Transform[] path = item.neutral_path.transform.getChilds();
         path_neutral_positions = new Vector3[path.Length];
 

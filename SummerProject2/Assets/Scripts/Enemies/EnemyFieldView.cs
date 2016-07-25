@@ -13,6 +13,7 @@ public class EnemyFieldView : MonoBehaviour
     public LayerMask obstacle_mask;
 
     private AlarmSystem alarm_system;
+    private ScreenFader screen_fader;
 
     [HideInInspector]
     public List<Transform> visible_targets = new List<Transform>();
@@ -22,6 +23,7 @@ public class EnemyFieldView : MonoBehaviour
     void Awake()
     {
         alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
+        screen_fader = GameObject.FindGameObjectWithTag(Tags.screen_fader).GetComponent<ScreenFader>();
     }
 
     // Use this for initialization
@@ -59,7 +61,7 @@ public class EnemyFieldView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, direction, distance_to_target, obstacle_mask))
                 {
                     visible_targets.Add(target);
-                    alarm_system.SetAlarm(ALARM_STATE.ALARM_ON);
+                    screen_fader.EndScene(0);
                 }
             }
         }
