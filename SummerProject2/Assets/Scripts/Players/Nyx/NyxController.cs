@@ -155,9 +155,9 @@ public class NyxController : MonoBehaviour {
     /// <summary>
     /// This method is called when the player wants to hide inside the box. Note: when one player wants to hide the 3 players recieve the call to this method (we discard the action if the player is not selected)
     /// </summary>
-    public void HideBox(GameObject box)
+    public void HideInBox(GameObject box)
     {
-        if(is_selected)
+        if (is_selected)
         {
             target_box = box;
             ChangeStateTo(hiding_state);

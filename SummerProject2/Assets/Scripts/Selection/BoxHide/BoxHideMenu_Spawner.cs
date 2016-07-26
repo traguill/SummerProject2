@@ -18,6 +18,7 @@ public class BoxHideMenu_Spawner : MonoBehaviour {
 
         menu.transform.SetParent(transform, false);
         menu.transform.position = spawn_position;
+        menu.box_object = obj;
 
         return menu;
     }

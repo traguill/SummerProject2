@@ -23,7 +23,8 @@ public class RadialMenu_Spawner : MonoBehaviour {
         RadialMenu menu = Instantiate(menu_prefab) as RadialMenu;
         menu.transform.SetParent(transform, false);
 
-        menu.transform.position = Input.mousePosition;
+        menu.transform.position =  RectTransformUtility.WorldToScreenPoint(Camera.main, obj.transform.position); //Position of the menu in Canvas coordinates
+        menu.obj = obj;
 
         menu.SpawnButtons(obj, display_options);
     }

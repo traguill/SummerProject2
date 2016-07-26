@@ -13,6 +13,16 @@ public class BoxHideMenu : MonoBehaviour
     int current_icons = 0; //Current number of displayed icons in the menu (max 2)
 
     List<BoxHideButton> buttons = new List<BoxHideButton>(); //List of buttons displayed at the moment
+
+    public BoxHideInteractable box_object; //Box to follow
+
+    void Update()
+    {
+        //Follow the box position
+        Vector3 pos = RectTransformUtility.WorldToScreenPoint(Camera.main, box_object.transform.position); //Position of the menu in Canvas coordinates
+        pos.y -= box_object.menu_position_delay;
+        transform.position = pos;
+    }
          
     /// <summary>
     /// Creates a button to display in the box hide menu from a given id.
@@ -75,4 +85,6 @@ public class BoxHideMenu : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+
 }

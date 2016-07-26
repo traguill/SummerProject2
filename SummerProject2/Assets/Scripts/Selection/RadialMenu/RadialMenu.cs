@@ -9,6 +9,8 @@ public class RadialMenu : MonoBehaviour {
     public RadialButton selected; //Current button selected.
     public float button_local_distance = 40; //Distance between buttons.
 
+    public RadialMenu_ObjectInteractable obj; //Object to follow
+
 	public void SpawnButtons (RadialMenu_ObjectInteractable obj, string[] display_options = null)
     {
         //Creates all the buttons in the menu with the interactable object information
@@ -52,7 +54,10 @@ public class RadialMenu : MonoBehaviour {
 
     void Update()
     {
-        if(Input.GetMouseButtonUp(0))
+        //Follow the object
+        transform.position = RectTransformUtility.WorldToScreenPoint(Camera.main, obj.transform.position); //Position of the menu in Canvas coordinates
+
+        if (Input.GetMouseButtonUp(0))
         {
             if(selected)
             {

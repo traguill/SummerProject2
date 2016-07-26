@@ -68,9 +68,12 @@ public class BarionMovingBoxState : IBarionState {
        if(carrying_box == true)
        {
             //Get new destination
-            if(barion.GetMovement(ref destination))
+            if(barion.is_selected)
             {
-                barion.agent.SetDestination(destination);
+                if (barion.GetMovement(ref destination))
+                {
+                    barion.agent.SetDestination(destination);
+                }
             }
 
             //Update box position
