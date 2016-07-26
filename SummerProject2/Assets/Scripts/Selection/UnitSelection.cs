@@ -23,7 +23,7 @@ public class UnitSelection : MonoBehaviour
     int selectable_object_mask;
 
     GameObject[] selectable_units;
-    List<GameObject> units_selected;
+    List<GameObject> units_selected; //Players selected
 
     GameObject object_selected; //Save if an object is selected to NOT update player selection
 
@@ -78,6 +78,14 @@ public class UnitSelection : MonoBehaviour
     public bool IsPlayerSelected(GameObject game_object)
     {
         return units_selected.Find(obj => obj.name == game_object.name);
+    }
+
+    /// <summary>
+    /// Returns the number of players selected at the moment.
+    /// </summary>
+    public int PlayersSelected()
+    {
+        return units_selected.Count;
     }
 
     private void UpdatePlayerSelection()
@@ -186,6 +194,26 @@ public class UnitSelection : MonoBehaviour
             }
         }
 
-        
+    }
+
+    /// <summary>
+    /// Removes a player of the current selection.
+    /// </summary>
+    public void DeselectPlayer(GameObject player)
+    {
+        if(player != null)
+        units_selected.Remove(player);
+    }
+
+    /// <summary>
+    /// Removes the current selection and selects ONLY the given player.
+    /// </summary>
+    public void AutoSelectPlayer(GameObject player)
+    {
+        if(player != null && player.tag == Tags.player) //Make sure the object given is a viable
+        {
+            units_selected.Clear();
+            units_selected.Add(player);
+        }
     }
 }

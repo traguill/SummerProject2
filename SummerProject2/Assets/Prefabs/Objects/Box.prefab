@@ -14,6 +14,7 @@ GameObject:
   - 114: {fileID: 11431726}
   - 114: {fileID: 11489442}
   - 114: {fileID: 11477080}
+  - 114: {fileID: 11479004}
   m_Layer: 14
   m_Name: Box
   m_TagString: Box
@@ -127,6 +128,28 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_MethodName: HideInBox
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_MethodName: HideBox
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: OnEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - color: {r: 1, g: 0, b: 0, a: 1}
     sprite: {fileID: 21300000, guid: b6884be38f25a3b42bc9efb11525e539, type: 3}
@@ -159,7 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Carry
   options:
-  - color: {r: 0.89705884, g: 0.7238337, b: 0, a: 0}
+  - color: {r: 0.89705884, g: 0.7238337, b: 0, a: 1}
     sprite: {fileID: 21300000, guid: 41edfffef99099842a9379ccfe840d3f, type: 3}
     title: Drop
     function:
@@ -177,6 +200,47 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: OnEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11479004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a25b6dee4ed7074e98f816bbf8ae347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - function:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: OnEventSimple, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    icon: {fileID: 21300002, guid: 77df9e89c3a74cb4a9ccabae1f8990e9, type: 3}
+    name: Barion
+  - function:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: OnEventSimple, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    icon: {fileID: 21300004, guid: 77df9e89c3a74cb4a9ccabae1f8990e9, type: 3}
+    name: Cosmo
+  - function:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: OnEventSimple, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    icon: {fileID: 21300006, guid: 77df9e89c3a74cb4a9ccabae1f8990e9, type: 3}
+    name: Nyx
+  - function:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: OnEventSimple, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    icon: {fileID: 21300008, guid: 77df9e89c3a74cb4a9ccabae1f8990e9, type: 3}
+    name: Corpse
+  menu_position_delay: 22
 --- !u!114 &11489442
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,7 +5,7 @@ public class BarionController : MonoBehaviour {
 
     //Selection
     public GameObject selection_circle;
-    UnitSelection selection_system;
+    public UnitSelection selection_system;
     [HideInInspector] public bool is_selected = false;
 
     //Navigation
@@ -14,14 +14,16 @@ public class BarionController : MonoBehaviour {
     public LayerMask movement_layers; //Layers that the raycast must hit to start movement.
 
     //State machine
-    [HideInInspector] public IBarionState current_state;
+    [HideInInspector] private IBarionState current_state;
     [HideInInspector] public BarionWalkingState walking_state;
     [HideInInspector] public BarionIdleState idle_state;
     [HideInInspector] public BarionMovingBoxState moving_box_state;
+    [HideInInspector] public BarionHidingState hiding_state;
 
+    [HideInInspector] public bool is_hide; 
 
-    //Move box
-   [HideInInspector] public GameObject target_box = null; //Selected box to move.
+    //Box interaction
+   [HideInInspector] public GameObject target_box = null; //Box to interact with
 
     void Awake()
     {
@@ -33,12 +35,14 @@ public class BarionController : MonoBehaviour {
         idle_state = new BarionIdleState(this);
         walking_state = new BarionWalkingState(this);
         moving_box_state = new BarionMovingBoxState(this);
+        hiding_state = new BarionHidingState(this);
     }
 
     void Start()
     {
         selection_circle.SetActive(false);
         is_selected = false;
+        is_hide = false;
 
         current_state = idle_state;
     }
@@ -72,6 +76,22 @@ public class BarionController : MonoBehaviour {
 
     //STATE MACHINE UTILS ------------------------------------------------------------------------
 
+    /// <summary>
+    /// Transition to the passed state and resets all the new state variables.
+    /// </summary>
+    public void ChangeStateTo(IBarionState new_state)
+    {
+        current_state = new_state;
+        current_state.StartState();
+    }
+
+    /// <summary>
+    /// Returns the current state.
+    /// </summary>
+    public IBarionState GetState()
+    {
+        return current_state;
+    }
     /// <summary>
     /// Checks if walking action is performed. If so, destination parameter is filed.
     /// </summary>
@@ -117,14 +137,30 @@ public class BarionController : MonoBehaviour {
         //Code to hide a corpse inside a selected box
     }
 
+    /// <summary>
+    /// This method is called when the player wants to hide inside the box. Note: when one player wants to hide the 3 players recieve the call to this method (we discard the action if the player is not selected)
+    /// </summary>
     public void HideInBox(GameObject box)
     {
-        //Code to hide Barion inside a selected box.
+        if(is_selected)
+        {
+            target_box = box;
+            ChangeStateTo(hiding_state);
+        }
     }
 
     public void DropBox(GameObject box)
     {
         moving_box_state.drop_box = true;
+    }
+
+
+    /// <summary>
+    /// This method is called when Barion is selected and hided in a box.
+    /// </summary>
+    public void HideSelected()
+    {
+        selection_system.AutoSelectPlayer(gameObject);
     }
 
 }

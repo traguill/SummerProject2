@@ -17,7 +17,7 @@ public class RadialMenu_Spawner : MonoBehaviour {
     /// <summary>
     /// Creates a radial menu with the parameters set in the interactable object
     /// </summary>
-	public void SpawnMenu(RadialMenu_ObjectInteractable obj)
+	public void SpawnMenu(RadialMenu_ObjectInteractable obj, string[] display_options = null)
     { //Instanciates the menu prefab
 
         RadialMenu menu = Instantiate(menu_prefab) as RadialMenu;
@@ -25,6 +25,6 @@ public class RadialMenu_Spawner : MonoBehaviour {
 
         menu.transform.position = Input.mousePosition;
 
-        menu.SpawnButtons(obj);
+        menu.SpawnButtons(obj, display_options);
     }
 }

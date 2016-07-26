@@ -3,6 +3,8 @@ using System.Collections;
 
 public interface IBarionState
 {
+    void StartState(); 
+
     void UpdateState();
 
     void ToIdleState();
@@ -10,5 +12,7 @@ public interface IBarionState
     void ToWalkingState();
 
     void ToMoveBoxState();
+
+    void ToHideState();
 
 }

@@ -9,11 +9,28 @@ public class RadialMenu : MonoBehaviour {
     public RadialButton selected; //Current button selected.
     public float button_local_distance = 40; //Distance between buttons.
 
-	public void SpawnButtons (RadialMenu_ObjectInteractable obj)
+	public void SpawnButtons (RadialMenu_ObjectInteractable obj, string[] display_options = null)
     {
         //Creates all the buttons in the menu with the interactable object information
         for(int i = 0; i < obj.options.Length; i++)
         {
+            if(display_options != null)
+            {
+                bool valid_option = false; //Find if button has to be displayed or not
+
+                for(int j = 0; j < display_options.Length; j++)
+                {
+                    if (display_options[j] == obj.options[i].title)
+                    {
+                        valid_option = true;
+                        break;
+                    }
+                }
+                if(valid_option == false)
+                {
+                    continue;
+                }
+            }
             RadialButton new_button = Instantiate(button_prefab) as RadialButton;
             new_button.transform.SetParent(transform, false);
 

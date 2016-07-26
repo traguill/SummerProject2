@@ -44,19 +44,23 @@ public class NyxWalkingState : INyxState
 
     public void ToIdleState()
     {
-        nyx.current_state = nyx.idle_state;
+        nyx.ChangeStateTo(nyx.idle_state);
     }
 
     public void ToKillingState()
     {
-        nyx.current_state = nyx.killing_state;
-        nyx.current_state.StartState();
+        nyx.ChangeStateTo(nyx.killing_state);
     }
 
     public void ToWalkingState()
     {
         //Resets destination to a new one
         nyx.agent.SetDestination(destination);
+    }
+
+    public void ToHideState()
+    {
+        nyx.ChangeStateTo(nyx.hiding_state);
     }
 
     

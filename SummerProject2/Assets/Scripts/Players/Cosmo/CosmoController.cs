@@ -5,7 +5,7 @@ public class CosmoController : MonoBehaviour {
 
     //Selection
     public GameObject selection_circle;
-    UnitSelection selection_system;
+    public UnitSelection selection_system;
     [HideInInspector] public bool is_selected = false;
 
     //Navigation
@@ -14,10 +14,16 @@ public class CosmoController : MonoBehaviour {
     public LayerMask movement_layers; //Layers that the raycast must hit to start movement.
 
     //State machine
-     [HideInInspector] public ICosmoState current_state;
+     [HideInInspector] ICosmoState current_state;
      [HideInInspector] public CosmoIdleState idle_state;
      [HideInInspector] public CosmoWalkingState walking_state;
      [HideInInspector] public CosmoSensorialState sensorial_state;
+     [HideInInspector] public CosmoHidingState hiding_state;
+
+    [HideInInspector] public bool is_hide; 
+
+     //Box interaction
+   [HideInInspector] public GameObject target_box = null; //Box to interact with
 
     void Awake()
     {
@@ -29,6 +35,7 @@ public class CosmoController : MonoBehaviour {
         idle_state = new CosmoIdleState(this);
         walking_state = new CosmoWalkingState(this);
         sensorial_state = new CosmoSensorialState(this);
+        hiding_state = new CosmoHidingState(this);
     }
 
 	// Use this for initialization
@@ -38,6 +45,8 @@ public class CosmoController : MonoBehaviour {
         is_selected = false;
 
         current_state = idle_state;
+
+        is_hide = false;
 	}
 	
 	void Update ()
@@ -71,6 +80,15 @@ public class CosmoController : MonoBehaviour {
     //STATE MACHINE UTILS ------------------------------------------------------------------------
 
     /// <summary>
+    /// Transition to the passed state and resets all the new state variables.
+    /// </summary>
+    public void ChangeStateTo(ICosmoState new_state)
+    {
+        current_state = new_state;
+        current_state.StartState();
+    }
+
+    /// <summary>
     /// Checks if walking action is performed. If so, destination parameter is filed.
     /// </summary>
     public bool GetMovement(ref Vector3 destination)
@@ -101,6 +119,28 @@ public class CosmoController : MonoBehaviour {
             return true;
         else
             return false;
+    }
+
+    //Box interaction -----------------------------------------------------------------------
+
+    /// <summary>
+    /// This method is called when the player wants to hide inside the box. Note: when one player wants to hide the 3 players recieve the call to this method (we discard the action if the player is not selected)
+    /// </summary>
+    public void HideInBox(GameObject box)
+    {
+        if (is_selected)
+        {
+            target_box = box;
+            ChangeStateTo(hiding_state);
+        }
+    }
+
+    /// <summary>
+    /// This method is called when Barion is selected and hided in a box.
+    /// </summary>
+    public void HideSelected()
+    {
+        selection_system.AutoSelectPlayer(gameObject);
     }
 
 }

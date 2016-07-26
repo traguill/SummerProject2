@@ -13,6 +13,9 @@ public class BarionIdleState : IBarionState {
         barion = barion_controller;
     }
 
+    public void StartState()
+    { }
+
     public void UpdateState()
     {
         //If it's not selected no action is performed
@@ -38,13 +41,18 @@ public class BarionIdleState : IBarionState {
 
     public void ToMoveBoxState()
     {
-        barion.current_state = barion.moving_box_state;
+        barion.ChangeStateTo(barion.moving_box_state);
     }
 
     public void ToWalkingState()
     {
-        barion.current_state = barion.walking_state;
+        barion.ChangeStateTo(barion.walking_state);
         barion.agent.SetDestination(destination);
+    }
+
+    public void ToHideState()
+    {
+        barion.ChangeStateTo(barion.hiding_state);
     }
 
     

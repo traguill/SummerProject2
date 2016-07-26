@@ -32,14 +32,18 @@ public class NyxIdleState : INyxState
 
     public void ToKillingState()
     {
-        nyx.current_state = nyx.killing_state;
-        nyx.current_state.StartState();
+        nyx.ChangeStateTo(nyx.killing_state);
     }
 
     public void ToWalkingState()
     {
-        nyx.current_state = nyx.walking_state;
+        nyx.ChangeStateTo(nyx.walking_state);
         nyx.agent.SetDestination(destination);
+    }
+
+    public void ToHideState()
+    {
+        nyx.ChangeStateTo(nyx.hiding_state);
     }
 
     /// <summary>
@@ -61,7 +65,8 @@ public class NyxIdleState : INyxState
             return;
         }
 
-        
     }
+
+   
 
 }

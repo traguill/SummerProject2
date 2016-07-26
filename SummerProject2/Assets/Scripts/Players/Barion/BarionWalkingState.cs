@@ -13,6 +13,9 @@ public class BarionWalkingState : IBarionState {
         barion = barion_controller;
     }
 
+    public void StartState()
+    { }
+
     public void UpdateState()
     {
         //Check arrive destination
@@ -37,18 +40,23 @@ public class BarionWalkingState : IBarionState {
 
     public void ToIdleState()
     {
-        barion.current_state = barion.idle_state;
+        barion.ChangeStateTo(barion.idle_state);
     }
 
     public void ToMoveBoxState()
     {
-        barion.current_state = barion.moving_box_state;
+        barion.ChangeStateTo(barion.moving_box_state);
     }
 
     public void ToWalkingState()
     {
         //Resets destination to a new one
         barion.agent.SetDestination(destination);
+    }
+
+    public void ToHideState()
+    {
+        barion.ChangeStateTo(barion.hiding_state);
     }
 
     

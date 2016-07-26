@@ -32,14 +32,18 @@ public class CosmoIdleState : ICosmoState
 
     public void ToSensorialState()
     {
-        cosmo.current_state = cosmo.sensorial_state;
-        cosmo.current_state.StartState();
+        cosmo.ChangeStateTo(cosmo.sensorial_state);
     }
 
     public void ToWalkingState()
     {
-        cosmo.current_state = cosmo.walking_state;
+        cosmo.ChangeStateTo(cosmo.walking_state);
         cosmo.agent.SetDestination(destination);
+    }
+
+    public void ToHideState()
+    {
+
     }
 
     

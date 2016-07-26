@@ -77,7 +77,7 @@ public class CosmoSensorialState : ICosmoState
 
     public void ToIdleState()
     {
-        cosmo.current_state = cosmo.idle_state;
+        cosmo.ChangeStateTo(cosmo.idle_state);
     }
 
     public void ToSensorialState()
@@ -90,5 +90,9 @@ public class CosmoSensorialState : ICosmoState
         Debug.Log("Cosmo can't transition from SENSORIAL state to WALKING");
     }
 
+    public void ToHideState()
+    {
+        Debug.Log("Cosmo can't transition from SENSORIAL state to WALKING");
+    }
   
 }

@@ -12,4 +12,6 @@ public interface ICosmoState
     void ToWalkingState();
 
     void ToSensorialState();
+
+    void ToHideState();
 }

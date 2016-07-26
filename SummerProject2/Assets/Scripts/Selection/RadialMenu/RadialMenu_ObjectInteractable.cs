@@ -20,9 +20,9 @@ public class RadialMenu_ObjectInteractable : MonoBehaviour {
     public Action[] options;
 
     //When an interactable object is clicked (mouse button down) this method is called.
-    public void OnInteractableClicked()
+    public void OnInteractableClicked(string[] display_options = null)
     {
-        RadialMenu_Spawner.instance.SpawnMenu(this);
+        RadialMenu_Spawner.instance.SpawnMenu(this, display_options);
     }
 
 

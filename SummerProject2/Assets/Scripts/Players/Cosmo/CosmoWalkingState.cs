@@ -24,13 +24,13 @@ public class CosmoWalkingState : ICosmoState
 
     public void ToIdleState()
     {
-        cosmo.current_state = cosmo.idle_state;
+        cosmo.ChangeStateTo(cosmo.idle_state);
         cosmo.StopMovement();
     }
 
     public void ToSensorialState()
     {
-        cosmo.current_state = cosmo.sensorial_state;
+        cosmo.ChangeStateTo(cosmo.sensorial_state);
         cosmo.StopMovement();
     }
 
@@ -65,6 +65,11 @@ public class CosmoWalkingState : ICosmoState
                 return;
             }
         }
+    }
+
+    public void ToHideState()
+    {
+        
     }
 
     

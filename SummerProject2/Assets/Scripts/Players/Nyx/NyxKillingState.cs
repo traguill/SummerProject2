@@ -44,7 +44,7 @@ public class NyxKillingState : INyxState
 
     public void ToIdleState()
     {
-        nyx.current_state = nyx.idle_state;
+        nyx.ChangeStateTo(nyx.idle_state);
     }
 
     public void ToKillingState()
@@ -55,6 +55,11 @@ public class NyxKillingState : INyxState
     public void ToWalkingState()
     {
         //For now this doesnt work
+    }
+
+    public void ToHideState()
+    {
+        Debug.Log("Nyx can't transition from KILLING to HIDING");
     }
 
     

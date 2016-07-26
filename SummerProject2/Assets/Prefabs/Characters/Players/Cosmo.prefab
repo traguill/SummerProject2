@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selection_circle: {fileID: 139498}
+  selection_system: {fileID: 0}
   is_selected: 0
   agent: {fileID: 0}
   raycast_layers:
@@ -199,6 +200,8 @@ MonoBehaviour:
   movement_layers:
     serializedVersion: 2
     m_Bits: 2304
+  is_hide: 0
+  target_box: {fileID: 0}
 --- !u!195 &19566292
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -211,7 +214,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0.5
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

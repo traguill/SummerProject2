@@ -24,13 +24,11 @@ public class BarionMovingBoxState : IBarionState {
         box = null;
     }
 
-    public void UpdateState()
+    public void StartState()
     {
-        //TODO: cancel actions in progress
-
-       //First time in this state
-       if(barion.target_box != null)
-       {
+        //First time in this state
+        if (barion.target_box != null)
+        {
             box = barion.target_box; //Save box info
             barion.target_box = null; //Reset controller input
 
@@ -38,16 +36,23 @@ public class BarionMovingBoxState : IBarionState {
             carrying_box = false;
             drop_box = false;
 
-            if(Vector3.Distance(barion.transform.position, box.transform.position) > carry_box_distance) //Too far to pick up the box
+            if (Vector3.Distance(barion.transform.position, box.transform.position) > carry_box_distance) //Too far to pick up the box
             {
                 barion.agent.SetDestination(box.transform.position); //Go to box position
                 moving_to_box = true;
             }
             else
-            {                           
+            {
                 PickUpBox();
             }
-       }
+        }
+    }
+
+    public void UpdateState()
+    {
+        //TODO: cancel actions in progress
+
+       
 
        //The box is far, Barion is approaching
        if(moving_to_box == true)
@@ -81,7 +86,7 @@ public class BarionMovingBoxState : IBarionState {
 
     public void ToIdleState()
     {
-        barion.current_state = barion.idle_state;
+        barion.ChangeStateTo(barion.idle_state);
         barion.StopMovement();
     }
 
@@ -92,8 +97,13 @@ public class BarionMovingBoxState : IBarionState {
 
     public void ToWalkingState()
     {
-        barion.current_state = barion.walking_state;
+        barion.ChangeStateTo(barion.walking_state);
         barion.agent.SetDestination(destination);
+    }
+
+    public void ToHideState()
+    {
+        Debug.Log("Barion can't transition from MOVING_BOX to HIDING");
     }
 
     /// <summary>
@@ -139,5 +149,7 @@ public class BarionMovingBoxState : IBarionState {
 
         ToIdleState();
     }
+
+
 
 }

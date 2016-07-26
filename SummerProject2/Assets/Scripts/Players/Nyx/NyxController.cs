@@ -5,7 +5,7 @@ public class NyxController : MonoBehaviour {
 
     //Selection
     public GameObject selection_circle;
-    UnitSelection selection_system;
+    public UnitSelection selection_system;
     [HideInInspector]
     public bool is_selected = false;
 
@@ -16,13 +16,21 @@ public class NyxController : MonoBehaviour {
     public LayerMask movement_layers; //Layers that the raycast must hit to start movement.
 
     //State machine
-    [HideInInspector] public INyxState current_state;
+    [HideInInspector] INyxState current_state;
     [HideInInspector] public NyxIdleState idle_state;
     [HideInInspector] public NyxWalkingState walking_state;
     [HideInInspector] public NyxKillingState killing_state;
+    [HideInInspector] public NyxHidingState hiding_state;
 
     //Killing
     public GameObject target_to_kill; //Enemy marked to kill with passive.
+
+    [HideInInspector]
+    public bool is_hide;
+
+    //Box interaction
+    [HideInInspector]
+    public GameObject target_box = null; //Box to interact with
 
     void Awake()
     {
@@ -33,6 +41,7 @@ public class NyxController : MonoBehaviour {
         idle_state = new NyxIdleState(this);
         walking_state = new NyxWalkingState(this);
         killing_state = new NyxKillingState(this);
+        hiding_state = new NyxHidingState(this);
     }
 
     void Start ()
@@ -41,6 +50,7 @@ public class NyxController : MonoBehaviour {
         is_selected = false;
 
         current_state = idle_state;
+        is_hide = false;
     }
 	
 	void Update ()
@@ -70,6 +80,15 @@ public class NyxController : MonoBehaviour {
     }
 
     //STATE MACHINE UTILS ------------------------------------------------------------------------
+
+    /// <summary>
+    /// Transition to the passed state and resets all the new state variables.
+    /// </summary>
+    public void ChangeStateTo(INyxState new_state)
+    {
+        current_state = new_state;
+        current_state.StartState();
+    }
 
     /// <summary>
     /// Checks if walking action is performed. If so, destination parameter is filed.
@@ -130,8 +149,27 @@ public class NyxController : MonoBehaviour {
         return false;
     }
 
+    //Box interaction -------------------------------------------------------------------------------------------------------
 
-   
 
+    /// <summary>
+    /// This method is called when the player wants to hide inside the box. Note: when one player wants to hide the 3 players recieve the call to this method (we discard the action if the player is not selected)
+    /// </summary>
+    public void HideBox(GameObject box)
+    {
+        if(is_selected)
+        {
+            target_box = box;
+            ChangeStateTo(hiding_state);
+        }
+    }
+
+    /// <summary>
+    /// This method is called when Barion is selected and hided in a box.
+    /// </summary>
+    public void HideSelected()
+    {
+        selection_system.AutoSelectPlayer(gameObject);
+    }
 
 }
