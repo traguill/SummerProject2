@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class EnemyFieldView : MonoBehaviour
 {
-
     public float view_radius;
     [Range(0, 360)]
     public float view_angle;
@@ -53,8 +52,6 @@ public class EnemyFieldView : MonoBehaviour
     {
         visible_targets.Clear();
         Collider[] targets_in_view_radius = Physics.OverlapSphere(transform.position, view_radius, target_mask);
-
-        Debug.Log("Number of colliders: " + targets_in_view_radius.Length);
 
         for (int i = 0; i < targets_in_view_radius.Length; i++)
         {
