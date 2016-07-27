@@ -36,6 +36,14 @@ public class NyxWalkingState : INyxState
             if (nyx.GetMovement(ref destination))
             {
                 ToWalkingState();
+                return;
+            }
+
+            //To DASH
+            if (Input.GetKeyUp(KeyCode.Q) && nyx.selection_system.PlayersSelected() == 1) //TODO: change getkeyup for ability 1 axis
+            {
+                ToDashState();
+                return;
             }
         }
 

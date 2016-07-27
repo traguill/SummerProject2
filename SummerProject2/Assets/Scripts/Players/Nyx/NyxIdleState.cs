@@ -14,7 +14,8 @@ public class NyxIdleState : INyxState
     }
 
     public void StartState()
-    {}
+    {
+    }
 
     public void UpdateState()
     {

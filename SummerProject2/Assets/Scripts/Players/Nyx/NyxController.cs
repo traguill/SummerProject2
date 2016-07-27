@@ -158,6 +158,14 @@ public class NyxController : MonoBehaviour {
         return false;
     }
 
+    /// <summary>
+    /// Returns the current state.
+    /// </summary>
+    public INyxState GetState()
+    {
+        return current_state;
+    }
+
     //Box interaction -------------------------------------------------------------------------------------------------------
 
 

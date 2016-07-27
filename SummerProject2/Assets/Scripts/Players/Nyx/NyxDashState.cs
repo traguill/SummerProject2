@@ -16,6 +16,8 @@ public class NyxDashState : INyxState {
 
     public void StartState()
     {
+        nyx.StopMovement(); //Stops the movement
+
         Ray ray_mouse = Camera.main.ScreenPointToRay(Input.mousePosition); //Ray to mouse position to set destination of the dash
         RaycastHit hit_mouse;
         if(Physics.Raycast(ray_mouse, out hit_mouse, 100, nyx.floor_layer))
@@ -42,7 +44,15 @@ public class NyxDashState : INyxState {
             RaycastHit hit_dash;
             if(Physics.Raycast(ray_dash, out hit_dash, distance, nyx.dash_collision_layer))
             {
-                destination = hit_dash.point; //Something is between nyx and the dash final position
+                if(hit_dash.transform.tag == Tags.enemy) //Enemy found in the way
+                {
+                    hit_dash.transform.tag = Tags.corpse; //Kill enemy in the way (for now only change tag) TODO.
+                }
+                else
+                {
+                    destination = hit_dash.point; //Something is between nyx and the dash final position
+                }
+                
             }
 
             
