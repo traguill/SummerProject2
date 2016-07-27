@@ -14,6 +14,7 @@ public class NyxController : MonoBehaviour {
     public NavMeshAgent agent;
     public LayerMask raycast_layers; //Available layers for raycasting (ingore fog of war).
     public LayerMask movement_layers; //Layers that the raycast must hit to start movement.
+   
 
     //State machine
     [HideInInspector] INyxState current_state;
@@ -21,9 +22,16 @@ public class NyxController : MonoBehaviour {
     [HideInInspector] public NyxWalkingState walking_state;
     [HideInInspector] public NyxKillingState killing_state;
     [HideInInspector] public NyxHidingState hiding_state;
+    [HideInInspector] public NyxDashState dash_state;
 
     //Killing
     public GameObject target_to_kill; //Enemy marked to kill with passive.
+
+    //Dash
+    public LayerMask floor_layer; //Floor layer (for dash position for now)
+    public float dash_speed = 100; //Speed of the dash
+    public LayerMask dash_collision_layer; //Layers that will stop the dash on collision
+    public float dash_range = 20; //Maximum range of the dash ability
 
     [HideInInspector]
     public bool is_hide;
@@ -42,6 +50,7 @@ public class NyxController : MonoBehaviour {
         walking_state = new NyxWalkingState(this);
         killing_state = new NyxKillingState(this);
         hiding_state = new NyxHidingState(this);
+        dash_state = new NyxDashState(this);
     }
 
     void Start ()

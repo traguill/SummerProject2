@@ -62,5 +62,10 @@ public class NyxKillingState : INyxState
         Debug.Log("Nyx can't transition from KILLING to HIDING");
     }
 
+    public void ToDashState()
+    {
+        Debug.Log("Nyx can't transition from KILLING to DASH");
+    }
+
     
 }

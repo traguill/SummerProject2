@@ -79,6 +79,11 @@ public class NyxHidingState : INyxState
         nyx.ChangeStateTo(nyx.walking_state);
     }
 
+    public void ToDashState()
+    {
+        Debug.Log("Nyx can't transition form HIDING to DASH");
+    }
+
     void Hide()
     {
         hiding = true;

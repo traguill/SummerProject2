@@ -166,15 +166,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f732be72e7d5f4849b2e54a9db580fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
   selection_circle: {fileID: 134160}
   selection_system: {fileID: 0}
   is_selected: 0
   agent: {fileID: 0}
-  kill_point_name: 4b696c6c506f696e74
+  raycast_layers:
+    serializedVersion: 2
+    m_Bits: 4294955007
+  movement_layers:
+    serializedVersion: 2
+    m_Bits: 3328
   target_to_kill: {fileID: 0}
-  enemy_manager: {fileID: 0}
-  raycast_layer: {}
+  floor_layer:
+    serializedVersion: 2
+    m_Bits: 256
+  dash_speed: 100
+  dash_collision_layer:
+    serializedVersion: 2
+    m_Bits: 2048
+  dash_range: 10
+  is_hide: 0
+  target_box: {fileID: 0}
 --- !u!114 &11494918
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,14 +200,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   view_radius: 20.37
   view_angle: 360
-  target_mask: {}
-  obstacle_mask: {}
+  target_mask:
+    serializedVersion: 2
+    m_Bits: 1024
+  obstacle_mask:
+    serializedVersion: 2
+    m_Bits: 2048
   visible_targets: []
   mesh_resolution: 1
   edge_resolve_iterations: 4
   edge_dst_threshold: 10
   view_mesh_filter: {fileID: 3327376}
-  view_mesh: {fileID: 0}
 --- !u!195 &19543118
 NavMeshAgent:
   m_ObjectHideFlags: 1

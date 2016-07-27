@@ -63,5 +63,11 @@ public class NyxWalkingState : INyxState
         nyx.ChangeStateTo(nyx.hiding_state);
     }
 
+    public void ToDashState()
+    {
+        nyx.StopMovement();
+        nyx.ChangeStateTo(nyx.dash_state);
+    }
+
     
 }

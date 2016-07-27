@@ -14,4 +14,6 @@ public interface INyxState
     void ToKillingState();
 
     void ToHideState();
+
+    void ToDashState();
 }
