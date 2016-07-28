@@ -1002,10 +1002,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11485460, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
-      propertyPath: dash_collision_layer.m_Bits
-      value: 3072
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
   m_IsPrefabParent: 0
@@ -1312,10 +1308,6 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 433644, guid: ebd81c830588a5743b5a94b77464ca00, type: 2}
   m_PrefabInternal: {fileID: 1334221919}
---- !u!1 &1190983061 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 108744, guid: f09ab54564df2a945a6fb140075f97c3, type: 2}
-  m_PrefabInternal: {fileID: 1290375442}
 --- !u!4 &1235618665 stripped
 Transform:
   m_PrefabParentObject: {fileID: 446368, guid: f09ab54564df2a945a6fb140075f97c3, type: 2}
@@ -1426,18 +1418,6 @@ Prefab:
     - target: {fileID: 446368, guid: f09ab54564df2a945a6fb140075f97c3, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11404058, guid: f09ab54564df2a945a6fb140075f97c3, type: 2}
-      propertyPath: selection_circle
-      value: 
-      objectReference: {fileID: 1190983061}
-    - target: {fileID: 11404058, guid: f09ab54564df2a945a6fb140075f97c3, type: 2}
-      propertyPath: raycast_layers.m_Bits
-      value: 4294954975
-      objectReference: {fileID: 0}
-    - target: {fileID: 11404058, guid: f09ab54564df2a945a6fb140075f97c3, type: 2}
-      propertyPath: movement_layers.m_Bits
-      value: 2304
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f09ab54564df2a945a6fb140075f97c3, type: 2}

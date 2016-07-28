@@ -25,9 +25,13 @@ public class BarionController : MonoBehaviour {
     //Box interaction
    [HideInInspector] public GameObject target_box = null; //Box to interact with
 
+     //Abilities cooldown
+    [HideInInspector] public Cooldown cooldown_inst; //Instance to cooldown script
+
     void Awake()
     {
         selection_system = GameObject.Find("SelectionSystem").GetComponent<UnitSelection>();
+        cooldown_inst = GetComponent<Cooldown>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
 

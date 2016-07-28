@@ -16,6 +16,8 @@ public class NyxDashState : INyxState {
 
     public void StartState()
     {
+        nyx.cooldown_inst.StartCooldown(1); //Starts the cooldown
+
         nyx.StopMovement(); //Stops the movement
 
         Ray ray_mouse = Camera.main.ScreenPointToRay(Input.mousePosition); //Ray to mouse position to set destination of the dash

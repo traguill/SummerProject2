@@ -47,6 +47,7 @@ GameObject:
   - 195: {fileID: 19566292}
   - 114: {fileID: 11469332}
   - 114: {fileID: 11486648}
+  - 114: {fileID: 11425936}
   m_Layer: 9
   m_Name: Cosmo
   m_TagString: Player
@@ -155,6 +156,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 13.649999, y: 15.19, z: 0.2}
   m_Center: {x: 0, y: -0.000000044703484, z: 0}
+--- !u!114 &11425936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb500b437d20eb43b7c147216db2a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilities:
+  - timer: 0
+    cooldown_seconds: 3
+    in_use: 0
+  - timer: 0
+    cooldown_seconds: 0
+    in_use: 0
+  - timer: 0
+    cooldown_seconds: 0
+    in_use: 0
 --- !u!114 &11469332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -202,6 +224,7 @@ MonoBehaviour:
     m_Bits: 2304
   is_hide: 0
   target_box: {fileID: 0}
+  cooldown_inst: {fileID: 0}
 --- !u!195 &19566292
 NavMeshAgent:
   m_ObjectHideFlags: 1

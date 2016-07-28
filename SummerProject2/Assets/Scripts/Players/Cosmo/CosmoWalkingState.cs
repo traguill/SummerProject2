@@ -59,7 +59,7 @@ public class CosmoWalkingState : ICosmoState
             }
 
             //To Ability1: sensorial
-            if (Input.GetAxis("Ability1") != 0)
+            if (Input.GetAxis("Ability1") != 0 && cosmo.cooldown_inst.AbilityIsReady(1))
             {
                 ToSensorialState();
                 return;

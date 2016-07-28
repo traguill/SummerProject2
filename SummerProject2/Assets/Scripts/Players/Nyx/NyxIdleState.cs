@@ -67,7 +67,7 @@ public class NyxIdleState : INyxState
         }
 
         //To DASH
-        if(Input.GetKeyUp(KeyCode.Q) && nyx.selection_system.PlayersSelected() == 1) //TODO: change getkeyup for ability 1 axis
+        if(Input.GetKeyUp(KeyCode.Q) && nyx.selection_system.PlayersSelected() == 1 && nyx.cooldown_inst.AbilityIsReady(1)) //TODO: change getkeyup for ability 1 axis
         {
             ToDashState();
             return;

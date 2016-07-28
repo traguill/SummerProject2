@@ -27,6 +27,8 @@ public class CosmoSensorialState : ICosmoState
 
     public void StartState()
     {
+        cosmo.cooldown_inst.StartCooldown(1); //Starts the cooldown of the ability
+
         is_loading = false;
         load_time = 0.0f;
         detection_radius = 0.0f;
