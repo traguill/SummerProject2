@@ -4,6 +4,8 @@ using System.Collections;
 public interface IEnemyAStates
     {
 
+    void StartState();
+
     void UpdateState();
 
     void ToIdleState();

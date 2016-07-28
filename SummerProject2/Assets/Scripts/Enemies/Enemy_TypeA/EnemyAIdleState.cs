@@ -10,6 +10,11 @@ public class EnemyAIdleState : IEnemyAStates
         enemy = enemy_controller;
     }
 
+    public void StartState()
+    {
+       // Enemies don't have IDLE! For now...
+    }
+
     public void UpdateState()
     {
         // Enemy doesn't have a IDLE state right now.
@@ -22,12 +27,12 @@ public class EnemyAIdleState : IEnemyAStates
 
     public void ToPatrolState()
     {
-        enemy.current_state = enemy.patrol_state;
+        enemy.ChangeStateTo(enemy.patrol_state);
     }
 
     public void ToAlertState()
     {
-        enemy.current_state = enemy.alert_state;
+        enemy.ChangeStateTo(enemy.alert_state);
     }
 
 }

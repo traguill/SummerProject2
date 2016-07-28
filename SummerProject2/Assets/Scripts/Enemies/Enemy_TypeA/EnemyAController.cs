@@ -7,6 +7,9 @@ public class EnemyAController : MonoBehaviour {
     [HideInInspector] public Transform[] neutral_patrol, alert_patrol;
     [HideInInspector] public int current_position;
 
+    // NavMeshAgent variables
+    float patrol_speed, alert_speed;
+
     //State machine
     [HideInInspector] public IEnemyAStates current_state;
     [HideInInspector] public EnemyAIdleState idle_state;
@@ -20,21 +23,27 @@ public class EnemyAController : MonoBehaviour {
         idle_state = new EnemyAIdleState(this);
         // -- PATROL --
         patrol_state = new EnemyAPatrolState(this);
-        neutral_patrol = patrol_state.AwakeState();
-        patrol_state.StartState();
+        neutral_patrol = patrol_state.AwakeState();  // It transforms the path GameObject to Transform[]
         // -- ALERT --
         alert_state = new EnemyAAlertState(this);
-        alert_patrol = alert_state.AwakeState();
+        alert_patrol = alert_state.AwakeState();     // It transforms the path GameObject to Transform[]
     }
     
     void Start()
     {
-        current_state = patrol_state;
+        ChangeStateTo(patrol_state);
     }
 
     void Update()
     {
         current_state.UpdateState();
     }
+
+    public void ChangeStateTo(IEnemyAStates new_state)
+    {
+        current_state = new_state;
+        current_state.StartState();
+    }
+
 }
 

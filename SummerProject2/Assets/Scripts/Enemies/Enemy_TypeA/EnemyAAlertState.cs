@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemyAAlertState : IEnemyAStates
 {
     private NavMeshAgent agent;
+    private float alert_speed;
     private AlarmSystem alarm_system;
 
     private readonly EnemyAController enemy;
@@ -35,10 +36,17 @@ public class EnemyAAlertState : IEnemyAStates
         }
 
         agent = enemy.GetComponent<NavMeshAgent>();     // Agent for NavMesh
-        //agent.updateRotation = false;                 // Avoiding a 3D rotation of the Sprite
+        alert_speed = 5.0f;
         alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
 
         return alert_patrol;
+    }
+
+    public void StartState()
+    {
+        agent.speed = alert_speed;
+        enemy.current_position = findClosestPoint(enemy.alert_patrol);
+        goToNextPoint();
     }
 
     public void UpdateState()
@@ -50,19 +58,18 @@ public class EnemyAAlertState : IEnemyAStates
         }
 
         // Choose the next destination point when the agent gets close to the current one.
-        if (agent.hasPath && agent.remainingDistance < 0.5f)
+        if (agent.hasPath && agent.remainingDistance < agent.stoppingDistance)
             goToNextPoint();
     }
 
     public void ToIdleState()
     {
-        enemy.current_state = enemy.idle_state;
+        enemy.ChangeStateTo(enemy.idle_state);
     }
 
     public void ToPatrolState()
     {
-        enemy.current_position = findClosestPoint(enemy.neutral_patrol);
-        enemy.current_state = enemy.patrol_state;      
+        enemy.ChangeStateTo(enemy.patrol_state);
     }
 
     public void ToAlertState()
@@ -88,7 +95,7 @@ public class EnemyAAlertState : IEnemyAStates
     /// findClosestPoint finds the nearest position from the current patrol path
     /// assigned to this enemy. It is used when the game switches between alarm states.
     /// </summary>
-    /// <returns> The index of the closest position </returns>
+    /// <returns> The index of the closest position on its Transform[] patrol </returns>
     private int findClosestPoint(Transform[] path_to_search)
     {
         int index = -1;
@@ -113,5 +120,4 @@ public class EnemyAAlertState : IEnemyAStates
 
         return index;
     }
-
 }

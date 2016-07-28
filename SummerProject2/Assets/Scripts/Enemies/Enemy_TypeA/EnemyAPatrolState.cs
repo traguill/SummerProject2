@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemyAPatrolState : IEnemyAStates
 {
     private NavMeshAgent agent;
+    private float patrol_speed;
     private AlarmSystem alarm_system;
 
     private readonly EnemyAController enemy;
@@ -36,7 +37,7 @@ public class EnemyAPatrolState : IEnemyAStates
           
         enemy.current_position = 0;
         agent = enemy.GetComponent<NavMeshAgent>();     // Agent for NavMesh
-        //agent.updateRotation = false;                 // Avoiding a 3D rotation of the Sprite
+        patrol_speed = 2.5f;
         alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
 
         return neutral_patrol;
@@ -44,6 +45,8 @@ public class EnemyAPatrolState : IEnemyAStates
 
     public void StartState()
     {
+        agent.speed = patrol_speed;
+        enemy.current_position = findClosestPoint(enemy.neutral_patrol);
         goToNextPoint();
     }
 
@@ -56,13 +59,13 @@ public class EnemyAPatrolState : IEnemyAStates
         }             
 
         // Choose the next destination point when the agent gets close to the current one.
-        if (agent.hasPath && agent.remainingDistance < 0.5f)
+        if (agent.hasPath && agent.remainingDistance < agent.stoppingDistance)
             goToNextPoint();
     }
 
     public void ToIdleState()
     {
-        enemy.current_state = enemy.idle_state;
+        enemy.ChangeStateTo(enemy.idle_state);
     }
 
     public void ToPatrolState()
@@ -72,8 +75,7 @@ public class EnemyAPatrolState : IEnemyAStates
 
     public void ToAlertState()
     {
-        enemy.current_position = findClosestPoint(enemy.alert_patrol);
-        enemy.current_state = enemy.alert_state;
+        enemy.ChangeStateTo(enemy.alert_state);
     }
 
     private void goToNextPoint()
