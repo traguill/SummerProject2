@@ -34,6 +34,11 @@ public class BarionWalkingState : IBarionState {
             {
                 ToMoveBoxState();
             }
+
+            if(Input.GetAxis("Ability1") != 0 && barion.cooldown_inst.AbilityIsReady(1))
+            {
+                ToInvisibleSphereState();
+            }
         }
         
     }
@@ -59,6 +64,11 @@ public class BarionWalkingState : IBarionState {
         barion.ChangeStateTo(barion.hiding_state);
     }
 
-    
+    public void ToInvisibleSphereState()
+    {
+        barion.StopMovement();
+        barion.ChangeStateTo(barion.invisible_sphere_state);
+    }
+
 
 }

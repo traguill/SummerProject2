@@ -19,6 +19,7 @@ public class BarionController : MonoBehaviour {
     [HideInInspector] public BarionIdleState idle_state;
     [HideInInspector] public BarionMovingBoxState moving_box_state;
     [HideInInspector] public BarionHidingState hiding_state;
+    [HideInInspector] public BarionInvisibleSphereState invisible_sphere_state;
 
     [HideInInspector] public bool is_hide; 
 
@@ -27,6 +28,12 @@ public class BarionController : MonoBehaviour {
 
      //Abilities cooldown
     [HideInInspector] public Cooldown cooldown_inst; //Instance to cooldown script
+
+    //Abilities utilities
+    //******************************************************************
+    //Invisible Sphere Ability
+    public GameObject invisible_sphere_prefab; //Invisible sphere to throw on ability invisible sphere
+    public LayerMask floor_layer; //Layer to set directions depending on mouse position
 
     void Awake()
     {
@@ -40,6 +47,7 @@ public class BarionController : MonoBehaviour {
         walking_state = new BarionWalkingState(this);
         moving_box_state = new BarionMovingBoxState(this);
         hiding_state = new BarionHidingState(this);
+        invisible_sphere_state = new BarionInvisibleSphereState(this);
     }
 
     void Start()

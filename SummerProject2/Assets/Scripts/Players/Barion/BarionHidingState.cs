@@ -79,6 +79,11 @@ public class BarionHidingState : IBarionState
         barion.ChangeStateTo(barion.walking_state);
     }
 
+    public void ToInvisibleSphereState()
+    {
+        Debug.Log("Barion can't transition from HIDING to SPHERE");
+    }
+
     void Hide()
     {
         hiding = true;

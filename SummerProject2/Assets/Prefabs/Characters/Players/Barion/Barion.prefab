@@ -48,6 +48,7 @@ GameObject:
   - 114: {fileID: 11478396}
   - 114: {fileID: 11404058}
   - 114: {fileID: 11471832}
+  - 114: {fileID: 11476030}
   m_Layer: 9
   m_Name: Barion
   m_TagString: Player
@@ -179,6 +180,12 @@ MonoBehaviour:
     m_Bits: 2304
   is_hide: 0
   target_box: {fileID: 0}
+  cooldown_inst: {fileID: 0}
+  invisible_sphere_prefab: {fileID: 119294, guid: 57c415cf90b84f441beacd44326f60b7,
+    type: 2}
+  floor_layer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &11471832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - timer: 0
-    cooldown_seconds: 0
+    cooldown_seconds: 7
     in_use: 0
   - timer: 0
     cooldown_seconds: 0
@@ -200,6 +207,18 @@ MonoBehaviour:
   - timer: 0
     cooldown_seconds: 0
     in_use: 0
+--- !u!114 &11476030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f53a66fb32908484e880f482e54a2937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invisible_time: 2
 --- !u!114 &11478396
 MonoBehaviour:
   m_ObjectHideFlags: 1

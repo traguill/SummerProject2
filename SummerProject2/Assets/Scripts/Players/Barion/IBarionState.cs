@@ -15,4 +15,6 @@ public interface IBarionState
 
     void ToHideState();
 
+    void ToInvisibleSphereState();
+
 }
