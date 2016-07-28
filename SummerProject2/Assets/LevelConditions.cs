@@ -4,10 +4,10 @@ using System.Collections;
 public class LevelConditions : MonoBehaviour
 {
     private GameObject[] players;
-    private Transform start_point, finish_point;
+    private Transform start_point;
     private ScreenFader screen_fader;
     private float radius;
-    private uint num_players_reaching_end_level;
+    public static int players_at_end_level;
 
     // Call before any Start function
     void Awake()
@@ -15,15 +15,16 @@ public class LevelConditions : MonoBehaviour
         players = GameObject.FindGameObjectsWithTag(Tags.player);
         screen_fader = GameObject.FindGameObjectWithTag(Tags.screen_fader).GetComponent<ScreenFader>();
 
-        start_point = transform.GetChild(0);
-        finish_point = transform.GetChild(1);
+        start_point = GameObject.Find("Start_point").transform;   // I don't know any other efficient way!
         radius = 3.5f;
-        num_players_reaching_end_level = 0;
+        players_at_end_level = 0;
     }
 
     // Use this for initialization
     void Start()
     {
+        // The different players is distributed equidistantly on a circle of radius "radius". The script automatically take into account
+        // the number of players to put along the circle.
         float angle = 0.0f;
         float incr_angle = ((2 * Mathf.PI) / players.Length);
 
@@ -43,26 +44,12 @@ public class LevelConditions : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// checkFinishingLevel() checks if the number of players on the trigger are the total number of players.
+    /// </summary>
+    /// <returns> True if all the players are on the finish point. False otherwise </returns>
     bool checkFinishingLevel()
     {
-        return num_players_reaching_end_level == players.Length;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(Tags.player))
-            num_players_reaching_end_level++;
-
-        Debug.Log("Somebody has entered: " + num_players_reaching_end_level);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag(Tags.player))
-            num_players_reaching_end_level--;
-
-        Debug.Log("Somebody has leaved: " + num_players_reaching_end_level);
-    }
-
-    
+        return players_at_end_level == players.Length;
+    }   
 }
