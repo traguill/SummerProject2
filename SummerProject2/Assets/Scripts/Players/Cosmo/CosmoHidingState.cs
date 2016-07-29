@@ -79,6 +79,11 @@ public class CosmoHidingState : ICosmoState
         cosmo.ChangeStateTo(cosmo.walking_state);
     }
 
+    public void ToPortalState()
+    {
+        Debug.Log("Cosmo can't transition from HIDING to PORTAL");
+    }
+
     void Hide()
     {
         hiding = true;

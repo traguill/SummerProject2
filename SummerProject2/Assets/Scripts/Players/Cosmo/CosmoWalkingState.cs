@@ -64,12 +64,24 @@ public class CosmoWalkingState : ICosmoState
                 ToSensorialState();
                 return;
             }
+
+            if (Input.GetAxis("Ability2") != 0 && cosmo.cooldown_inst.AbilityIsReady(2))
+            {
+                ToPortalState();
+                return;
+            }
         }
     }
 
     public void ToHideState()
     {
         
+    }
+
+    public void ToPortalState()
+    {
+        cosmo.StopMovement();
+        cosmo.ChangeStateTo(cosmo.portal_state);
     }
 
     

@@ -10,4 +10,5 @@ public static class Tags {
     public const string game_controller = "GameController";
     public const string corpse = "Corpse";
     public const string box = "Box";
+    public const string portal = "Portal";
 }

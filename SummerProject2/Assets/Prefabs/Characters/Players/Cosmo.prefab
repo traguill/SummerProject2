@@ -238,6 +238,14 @@ MonoBehaviour:
   is_hide: 0
   target_box: {fileID: 0}
   cooldown_inst: {fileID: 0}
+  portal_controller_prefab: {fileID: 11469712, guid: 61b91c439bab61f48978660ad555bec5,
+    type: 2}
+  portal_build_layers:
+    serializedVersion: 2
+    m_Bits: 4294954952
+  floor_layer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!195 &19566292
 NavMeshAgent:
   m_ObjectHideFlags: 1

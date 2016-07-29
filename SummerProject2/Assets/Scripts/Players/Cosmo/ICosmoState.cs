@@ -14,4 +14,6 @@ public interface ICosmoState
     void ToSensorialState();
 
     void ToHideState();
+
+    void ToPortalState();
 }

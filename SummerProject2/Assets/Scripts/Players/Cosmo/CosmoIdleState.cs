@@ -46,6 +46,11 @@ public class CosmoIdleState : ICosmoState
 
     }
 
+   public void ToPortalState()
+    {
+        cosmo.ChangeStateTo(cosmo.portal_state);
+    }
+
     
     /// <summary>
     /// Checks the conditons to transition to another state.
@@ -63,6 +68,12 @@ public class CosmoIdleState : ICosmoState
         if(Input.GetAxis("Ability1") != 0 && cosmo.cooldown_inst.AbilityIsReady(1))
         {
             ToSensorialState();
+            return;
+        }
+
+        if(Input.GetAxis("Ability2")!= 0 && cosmo.cooldown_inst.AbilityIsReady(2))
+        {
+            ToPortalState();
             return;
         }
         

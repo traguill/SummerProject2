@@ -19,6 +19,7 @@ public class CosmoController : MonoBehaviour {
      [HideInInspector] public CosmoWalkingState walking_state;
      [HideInInspector] public CosmoSensorialState sensorial_state;
      [HideInInspector] public CosmoHidingState hiding_state;
+     [HideInInspector] public CosmoPortalState portal_state;   
 
     [HideInInspector] public bool is_hide; 
 
@@ -27,6 +28,14 @@ public class CosmoController : MonoBehaviour {
 
      //Abilities cooldown
     [HideInInspector] public Cooldown cooldown_inst; //Instance to cooldown script
+
+    //Abilities utils
+    //***************************************************************************************
+    //Portal
+    public PortalController portal_controller_prefab; //Controller of both portals
+    public LayerMask portal_build_layers; //Layers to collide when raycasting for building portals. (Everithing except fog of war)
+    public LayerMask floor_layer; //Floor layer
+    public GameObject build_portal_prefab; //Portal image to show when building
 
     void Awake()
     {
@@ -40,6 +49,7 @@ public class CosmoController : MonoBehaviour {
         walking_state = new CosmoWalkingState(this);
         sensorial_state = new CosmoSensorialState(this);
         hiding_state = new CosmoHidingState(this);
+        portal_state = new CosmoPortalState(this);
     }
 
 	// Use this for initialization
@@ -140,11 +150,12 @@ public class CosmoController : MonoBehaviour {
     }
 
     /// <summary>
-    /// This method is called when Barion is selected and hided in a box.
+    /// This method is called when Cosmo is selected and hided in a box.
     /// </summary>
     public void HideSelected()
     {
         selection_system.AutoSelectPlayer(gameObject);
     }
 
+   
 }

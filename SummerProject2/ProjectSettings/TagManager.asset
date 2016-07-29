@@ -8,6 +8,7 @@ TagManager:
   - ScreenFader
   - Corpse
   - Box
+  - Portal
   layers:
   - Default
   - TransparentFX

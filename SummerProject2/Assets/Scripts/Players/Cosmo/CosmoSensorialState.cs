@@ -96,5 +96,10 @@ public class CosmoSensorialState : ICosmoState
     {
         Debug.Log("Cosmo can't transition from SENSORIAL state to WALKING");
     }
+
+    public void ToPortalState()
+    {
+        Debug.Log("Cosmo can't transition from SENSORIAL to PORTAL");
+    }
   
 }
