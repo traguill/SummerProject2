@@ -1,22 +1,29 @@
 fileFormatVersion: 2
-guid: 5532f9b35e66e694b9d9c95efab66673
-timeCreated: 1469784552
+guid: accd2cd48f5138a4bb3f394014bfd4f6
+timeCreated: 1469786623
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: camera_joint
     100002: camera_lens
-    100004: //RootNode
+    100004: frustrum
+    100006: lens
+    100008: //RootNode
     400000: camera_joint
     400002: camera_lens
-    400004: //RootNode
+    400004: frustrum
+    400006: lens
+    400008: //RootNode
     2300000: camera_joint
-    2300002: camera_lens
+    2300002: frustrum
+    2300004: lens
     3300000: camera_joint
-    3300002: camera_lens
+    3300002: frustrum
+    3300004: lens
     4300000: camera_joint
-    4300002: camera_lens
+    4300002: lens
+    4300004: frustrum
   materials:
     importMaterials: 1
     materialName: 0
