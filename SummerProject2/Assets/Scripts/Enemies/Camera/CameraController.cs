@@ -25,11 +25,12 @@ public class CameraController : MonoBehaviour
         following_state = new CameraFollowingState(this);
 
         camera_lens = GameObject.Find("camera_lens").transform;
+        camera_lens.transform.forward = new Vector3(0.0f, -camera_lens.transform.forward.y, -camera_lens.transform.forward.z);
     }
 
     void Start()
     {
-        ChangeStateTo(idle_state);
+        ChangeStateTo(following_state);
     }
 
     void Update()
