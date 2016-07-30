@@ -79,13 +79,6 @@ public class CameraIdleState : ICameraStates {
 
         if (returning && current_angle < 1.0f || !returning && Mathf.Abs(current_angle - camera.angle_range) < 1.0f)
             returning = !returning;
-
-        Vector2 from, to;
-        from = new Vector2(camera.initial_forward_direction.x, camera.initial_forward_direction.z);
-        to = new Vector2(camera.camera_lens.forward.x, camera.camera_lens.forward.z);
-        Debug.Log(Vector2.Angle(from, to));
-        
-
     }
 
     enum ANGLE_DIR
