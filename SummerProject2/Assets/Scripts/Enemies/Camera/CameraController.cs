@@ -4,8 +4,8 @@ using System.Collections;
 public class CameraController : MonoBehaviour
 {
 
-    public float max_angle;
-    public float rotation_speed;
+    public float angle_range;
+    public float max_rotation_speed, min_rotation_speed;
     [HideInInspector] public Transform camera_lens;
 
     //State machine
@@ -25,12 +25,11 @@ public class CameraController : MonoBehaviour
         following_state = new CameraFollowingState(this);
 
         camera_lens = GameObject.Find("camera_lens").transform;
-        camera_lens.transform.forward = new Vector3(0.0f, -camera_lens.transform.forward.y, -camera_lens.transform.forward.z);
     }
 
     void Start()
     {
-        ChangeStateTo(following_state);
+        ChangeStateTo(idle_state);
     }
 
     void Update()
