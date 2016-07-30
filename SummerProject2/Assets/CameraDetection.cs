@@ -12,13 +12,12 @@ public class CameraDetection : MonoBehaviour {
         camera = GetComponentInParent<CameraController>();
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag(Tags.player))
+        if (other.CompareTag(Tags.player) && !alarm_system.isAlarmActive())
         {
             alarm_system.SetAlarm(ALARM_STATE.ALARM_ON);
             camera.ChangeStateTo(camera.following_state);
-        }
-           
+        }           
     }
 }

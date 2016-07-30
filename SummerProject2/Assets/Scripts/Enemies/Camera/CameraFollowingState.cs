@@ -4,8 +4,10 @@ using System.Collections;
 public class CameraFollowingState : ICameraStates
 {
     private readonly CameraController camera;
+    private float time_without_detection;
+    private AlarmSystem alarm_system;
 
-    GameObject player;
+    GameObject[] players;
 
     public CameraFollowingState(CameraController camera_controller)
     {
@@ -14,12 +16,15 @@ public class CameraFollowingState : ICameraStates
 
     public void StartState()
     {
-        player = GameObject.FindGameObjectWithTag(Tags.player);
+        players = GameObject.FindGameObjectsWithTag(Tags.player);
+        time_without_detection = 0.0f;
+        alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
     }
 
     public void UpdateState()
     {
-        camera.camera_lens.LookAt(player.transform);
+        FollowNearPlayer();
+        IsTimeExceeded();      
     }
 
     public void ToIdleState()
@@ -36,4 +41,53 @@ public class CameraFollowingState : ICameraStates
     {
         Debug.Log("Camera" + camera.name + "can't transition to same state FOLLOWING");
     }
+
+    private void FollowNearPlayer()
+    {
+        GameObject player_to_follow = NearPlayer();
+
+        float angle = Vector3.Angle(camera.initial_forward_direction, (player_to_follow.transform.position - camera.camera_lens.transform.position).normalized);
+
+        if( angle < camera.mid_angle)
+        {
+            camera.camera_lens.LookAt(player_to_follow.transform);
+            time_without_detection = 0.0f;
+        }            
+        else
+        {
+            time_without_detection += Time.deltaTime;
+        }
+
+    }
+
+    private GameObject NearPlayer()
+    {
+        GameObject near_player = null;
+        float min_distance = 100000.0f;
+
+        foreach (GameObject p in players)
+        {
+            if (Vector3.Distance(camera.transform.position, p.transform.position) < min_distance)
+            {
+                min_distance = Vector3.Distance(camera.transform.position, p.transform.position);
+                near_player = p;
+            }
+        }
+
+        return near_player;
+    }
+
+    private void IsTimeExceeded()
+    {
+        if (time_without_detection > camera.seconds_from_last_sight)
+            if (alarm_system.isAlarmActive())
+            {
+                camera.ChangeStateTo(camera.idle_state);
+            }
+            else
+            {
+                camera.ChangeStateTo(camera.idle_state);
+            }
+    }
+
 }
