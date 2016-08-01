@@ -1,0 +1,204 @@
+fileFormatVersion: 2
+guid: defb86c4f74627e408b034712f268cfd
+timeCreated: 1470041334
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: HUD_invisible_sphere
+    21300002: HUD_barion
+    21300004: hud_sensorial
+    21300006: HUD_cosmo
+    21300008: HUD_dash
+    21300010: HUD_nyx
+    21300012: HUD_punch
+    21300014: HUD_portal
+    21300016: HUD_projectile
+    21300018: HUD_clock
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: HUD_invisible_sphere
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 37
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: HUD_barion
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 0
+        width: 69
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: 36}
+        - {x: -34.5, y: 22}
+        - {x: -34.5, y: -25}
+        - {x: -33.5, y: -28}
+        - {x: -24.5, y: -36}
+        - {x: 26.5, y: -36}
+        - {x: 34.5, y: -30}
+        - {x: 34.5, y: 26}
+        - {x: 28.5, y: 36}
+    - name: hud_sensorial
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 37
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: HUD_cosmo
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 0
+        width: 69
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.5, y: 36}
+        - {x: -32.5, y: 27}
+        - {x: -34.5, y: 21}
+        - {x: -34.5, y: -24}
+        - {x: -19.5, y: -36}
+        - {x: 29.5, y: -36}
+        - {x: 34.5, y: -25}
+        - {x: 34.5, y: 31}
+        - {x: 27.5, y: 36}
+    - name: HUD_dash
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 37
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: HUD_nyx
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 0
+        width: 69
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.5, y: 36}
+        - {x: -33.5, y: 27}
+        - {x: -34.5, y: 20}
+        - {x: -34.5, y: -22}
+        - {x: -21.5, y: -36}
+        - {x: 20.5, y: -36}
+        - {x: 34.5, y: -21}
+        - {x: 34.5, y: 30}
+        - {x: 22.5, y: 36}
+    - name: HUD_punch
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: HUD_portal
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 7
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: HUD_projectile
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 7
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: HUD_clock
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 35
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

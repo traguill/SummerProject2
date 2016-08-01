@@ -5,7 +5,7 @@ public class BarionController : MonoBehaviour {
 
     //Selection
     public GameObject selection_circle;
-    public UnitSelection selection_system;
+    [HideInInspector]public UnitSelection selection_system;
     [HideInInspector] public bool is_selected = false;
 
     //Navigation
