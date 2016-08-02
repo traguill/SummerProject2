@@ -16,6 +16,7 @@ public class BarionInvisibleSphereState : IBarionState
 
         //Get throw direction
         Vector3 direction = new Vector3();
+        
 
         Ray ray_mouse = Camera.main.ScreenPointToRay(Input.mousePosition); //Ray to mouse position to set direction of the sphere
         RaycastHit hit_mouse;
@@ -71,5 +72,10 @@ public class BarionInvisibleSphereState : IBarionState
         Debug.Log("Barion can't transition from SPHERE to WALKING");
     }
 
-    
+    public void ToShieldState()
+    {
+        Debug.Log("Barion can't transition from INVISIBLE_SPHERE to SHIELD");
+    }
+
+
 }

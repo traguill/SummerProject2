@@ -20,6 +20,7 @@ public class BarionController : MonoBehaviour {
     [HideInInspector] public BarionMovingBoxState moving_box_state;
     [HideInInspector] public BarionHidingState hiding_state;
     [HideInInspector] public BarionInvisibleSphereState invisible_sphere_state;
+    [HideInInspector] public BarionShieldState shield_state;
 
     [HideInInspector] public bool is_hide; 
 
@@ -34,6 +35,8 @@ public class BarionController : MonoBehaviour {
     //Invisible Sphere Ability
     public GameObject invisible_sphere_prefab; //Invisible sphere to throw on ability invisible sphere
     public LayerMask floor_layer; //Layer to set directions depending on mouse position
+    //Shield Ability
+    public GameObject shield_prefab; //Prefab to create the shield
 
     void Awake()
     {
@@ -48,6 +51,7 @@ public class BarionController : MonoBehaviour {
         moving_box_state = new BarionMovingBoxState(this);
         hiding_state = new BarionHidingState(this);
         invisible_sphere_state = new BarionInvisibleSphereState(this);
+        shield_state = new BarionShieldState(this);
     }
 
     void Start()

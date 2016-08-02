@@ -84,6 +84,11 @@ public class BarionHidingState : IBarionState
         Debug.Log("Barion can't transition from HIDING to SPHERE");
     }
 
+    public void ToShieldState()
+    {
+        Debug.Log("Barion can't transition from HIDING to SHIELD");
+    }
+
     void Hide()
     {
         hiding = true;

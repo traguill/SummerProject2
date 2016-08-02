@@ -114,6 +114,11 @@ public class BarionMovingBoxState : IBarionState {
         Debug.Log("Barion can't transition from HIDING to SPHERE");
     }
 
+    public void ToShieldState()
+    {
+        Debug.Log("Barion can't transition from MOVING_BOX to SHIELD");
+    }
+
     /// <summary>
     /// Updates the state depending on the current conditions of each state.
     /// </summary>

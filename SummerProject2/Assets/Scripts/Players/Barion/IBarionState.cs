@@ -17,4 +17,6 @@ public interface IBarionState
 
     void ToInvisibleSphereState();
 
+    void ToShieldState();
+
 }
