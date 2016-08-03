@@ -62,6 +62,10 @@ public class BarionMovingBoxState : IBarionState {
                 barion.StopMovement();
                 PickUpBox();
             }
+            else
+            {
+                barion.agent.SetDestination(box.transform.position); //Constantly follow the box
+            }
         }
 
        //Is carrying the box, now move with it.
@@ -138,6 +142,7 @@ public class BarionMovingBoxState : IBarionState {
     /// </summary>
     void PickUpBox()
     {
+        moving_to_box = false;
         carrying_box = true;
         Vector3 pos = barion.transform.position;
         box.transform.position = new Vector3(pos.x, box_height, pos.z);
