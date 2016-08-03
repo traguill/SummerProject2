@@ -17,15 +17,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &139498
+--- !u!1 &174694
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 479072}
-  - 119: {fileID: 11987624}
+  - 4: {fileID: 461846}
+  - 119: {fileID: 11909184}
   m_Layer: 0
   m_Name: selection_circle
   m_TagString: Untagged
@@ -56,16 +56,16 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &479072
+--- !u!4 &461846
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139498}
+  m_GameObject: {fileID: 174694}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
   m_LocalPosition: {x: 0.79, y: 0.32, z: -1.59}
-  m_LocalScale: {x: 1.4193914, y: 1.4193926, z: 1.4193926}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalScale: {x: 7.4036093, y: 7.4036164, z: 7.4036164}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 481172}
   m_RootOrder: 1
@@ -76,12 +76,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.5, y: 1, z: -5.6}
+  m_LocalPosition: {x: 6.3, y: 1, z: -5.6}
   m_LocalScale: {x: 0.19171613, y: 0.19171607, z: 0.19171607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 484292}
-  - {fileID: 479072}
+  - {fileID: 461846}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &484292
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e57c0908bd67964e89d7c27da0a348c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selection_circle: {fileID: 139498}
+  selection_circle: {fileID: 174694}
   selection_system: {fileID: 0}
   is_selected: 0
   agent: {fileID: 0}
@@ -247,12 +247,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   build_portal_prefab: {fileID: 160804, guid: 1de3c890849ba2045bb642ef8e3e68d8, type: 2}
---- !u!119 &11987624
+--- !u!119 &11909184
 Projector:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139498}
+  m_GameObject: {fileID: 174694}
   m_Enabled: 1
   serializedVersion: 2
   m_NearClipPlane: 0.01
