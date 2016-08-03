@@ -19,15 +19,6 @@ public class Portal : MonoBehaviour
             {
                 controller.CrossingPortal(coll.gameObject, this); //Tell the controller to ignore the object for future collisions with the other portal
                 
-
-                //Update destination of the player
-                Vector3 position = coll.transform.position;
-                NavMeshAgent agent = coll.GetComponent<NavMeshAgent>();
-
-                Vector3 distance = agent.destination - position;
-                position = new Vector3(second_portal.position.x, position.y, second_portal.position.z); //Teleport
-                coll.transform.position = position; //Position updated after crossing the portal
-                agent.SetDestination(position + distance); //New pathfinding
             }
         }
     }

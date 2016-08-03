@@ -10,6 +10,13 @@ public class PortalController : MonoBehaviour
 
     [HideInInspector]public CosmoPortalState cosmo_portal_controller; //Instance to the portal state
 
+    PlayersManager players_manager;
+
+    void Awake()
+    {
+        players_manager = GameObject.Find("Players").GetComponent<PlayersManager>();
+    }
+
     /// <summary>
     /// Tells the other portal to ignore collisions with the game object crossing the portal.
     /// </summary>
@@ -18,10 +25,12 @@ public class PortalController : MonoBehaviour
         if(start == portal_a)
         {
             portal_b.obj_crossing = obj;
+            players_manager.CrossPortal(obj, portal_b.transform.position);
         }
         else
         {
             portal_a.obj_crossing = obj;
+            players_manager.CrossPortal(obj, portal_a.transform.position);
         }
     }
 

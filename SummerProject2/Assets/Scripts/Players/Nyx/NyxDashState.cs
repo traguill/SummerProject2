@@ -6,7 +6,7 @@ public class NyxDashState : INyxState {
 
     private readonly NyxController nyx;
 
-    Vector3 destination = new Vector3(); //Final position of the dash
+    public Vector3 destination = new Vector3(); //Final position of the dash
     Vector3 direction = new Vector3(); //Direction of nyx dashing
 
     public NyxDashState(NyxController nyx_controller)
