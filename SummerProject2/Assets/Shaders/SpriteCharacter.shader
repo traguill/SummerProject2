@@ -37,11 +37,13 @@
 			struct vertexInput {
 				float4 vertex : POSITION;
 				float4 tex : TEXCOORD0;
+				float4 color : COLOR;
 			};
 
 			struct vertexOutput {
 				float4 pos : SV_POSITION;
 				float4 tex : TEXCOORD0;
+				float4 color_o : COLOR;
 			};
 
 			vertexOutput vert(vertexInput input)
@@ -55,7 +57,7 @@
 					mul(UNITY_MATRIX_MV, float4(0.0, 0.0, 0.0, 1.0))
 					- float4(input.vertex.x * scaleX, input.vertex.y * scaleY, 0.0, 0.0));
 
-
+				output.color_o = input.color;
 				output.tex = input.tex;
 
 				return output;
@@ -67,6 +69,8 @@
 
 				float4 final_col = _Color;
 				 final_col *= col.a;
+
+				 final_col *= input.color_o.a;
 
 				return final_col;
 			}
@@ -100,11 +104,13 @@
 			struct vertexInput{
 				float4 vertex : POSITION;
 				float4 tex : TEXCOORD0;
+				float4 color : COLOR;
 			};
 
 			struct vertexOutput{
 				float4 pos : SV_POSITION;
 				float4 tex : TEXCOORD0;
+				float4 color_o : COLOR;
 			};
 
 			vertexOutput vert(vertexInput input)
@@ -120,6 +126,7 @@
 
 
 				output.tex = input.tex;
+				output.color_o = input.color;
 
 				return output;
 			}
@@ -129,6 +136,8 @@
 				float4 col = tex2D(_MainTex, float2(input.tex.xy));
 
 				col.rgb *= col.a;
+
+				col *= input.color_o.a;
 
 				return col;
 			}
