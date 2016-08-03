@@ -13,14 +13,19 @@ public class Portal : MonoBehaviour
 
 	void OnTriggerEnter(Collider coll)
     {
-        if(coll.tag == Tags.player && coll.gameObject != obj_crossing)
+
+        if(coll.gameObject != obj_crossing && second_portal != null)
         {
-            if(second_portal != null)
+            if (coll.tag == Tags.player)
             {
-                controller.CrossingPortal(coll.gameObject, this); //Tell the controller to ignore the object for future collisions with the other portal
-                
+                controller.CrossingPortal(coll.gameObject, this, true); //Tell the controller to ignore the object for future collisions with the other portal             
+            }
+            else
+            {
+                controller.CrossingPortal(coll.gameObject, this, false);
             }
         }
+       
     }
 
     void OnTriggerExit(Collider coll)

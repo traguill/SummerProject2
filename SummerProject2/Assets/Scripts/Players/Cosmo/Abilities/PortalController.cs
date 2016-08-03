@@ -18,19 +18,36 @@ public class PortalController : MonoBehaviour
     }
 
     /// <summary>
-    /// Tells the other portal to ignore collisions with the game object crossing the portal.
+    /// Tells the other portal to ignore collisions with the game object crossing the portal. Special consideration with a player.
     /// </summary>
-	public void CrossingPortal(GameObject obj, Portal start)
+	public void CrossingPortal(GameObject obj, Portal start, bool is_player)
     {
         if(start == portal_a)
         {
             portal_b.obj_crossing = obj;
-            players_manager.CrossPortal(obj, portal_b.transform.position);
+            if(is_player)
+            {
+                players_manager.CrossPortal(obj, portal_b.transform.position);
+            }
+            else
+            {
+                Vector3 portal_pos = portal_b.transform.position;
+                obj.transform.position = new Vector3(portal_pos.x, obj.transform.position.y, portal_pos.z);
+            }
+                
         }
         else
         {
             portal_a.obj_crossing = obj;
-            players_manager.CrossPortal(obj, portal_a.transform.position);
+            if (is_player)
+            {
+                players_manager.CrossPortal(obj, portal_a.transform.position);
+            }
+            else
+            {
+                Vector3 portal_pos = portal_a.transform.position;
+                obj.transform.position = new Vector3(portal_pos.x, obj.transform.position.y, portal_pos.z);
+            }
         }
     }
 
