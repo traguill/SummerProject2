@@ -41,6 +41,15 @@ public class CosmoPortalState : ICosmoState
         build_portal = GameObject.Instantiate(cosmo.build_portal_prefab) as GameObject;
         build_portal_mat = build_portal.GetComponent<MeshRenderer>().material;
 
+        if(AbleToBuild())
+        {
+            build_portal_mat.color = build_zone_col;
+        }
+        else
+        {
+            build_portal_mat.color = no_build_col;
+        }
+
     }
 
     public void UpdateState()
