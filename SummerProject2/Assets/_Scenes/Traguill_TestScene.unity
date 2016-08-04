@@ -186,7 +186,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 56
   orthographic: 0
   orthographic size: 5
   m_Depth: 1
@@ -577,10 +577,6 @@ Prefab:
     - target: {fileID: 481172, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11486648, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
-      propertyPath: portal_build_layers.m_Bits
-      value: 4294954952
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
@@ -1648,7 +1644,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 5d7d65f44cb3a2841b1db8376b22cf5b, type: 2}
+  - {fileID: 2100000, guid: 8d5e263bf8227404d8fb12888b99f37a, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1

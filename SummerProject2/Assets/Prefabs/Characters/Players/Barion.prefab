@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca48d3232930c04384db3ca5fa27081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  view_radius: 20.37
+  view_radius: 50
   view_angle: 360
   target_mask:
     serializedVersion: 2
@@ -243,6 +243,7 @@ MonoBehaviour:
   mesh_resolution: 1
   edge_resolve_iterations: 4
   edge_dst_threshold: 10
+  cutaway_dst: 0.15
   view_mesh_filter: {fileID: 3350106}
 --- !u!119 &11902434
 Projector:
