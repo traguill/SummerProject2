@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6f1b36bd6e28e864c90c9d9acdd2ef42
-timeCreated: 1470328852
+timeCreated: 1470335268
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -41,6 +41,8 @@ TextureImporter:
     21300068: cosmoAttackSlot
     21300070: nyxAttackSlot
     21300072: closeButtonH
+    21300074: Barion_unselected
+    21300076: Unselected_cooldown
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -259,25 +261,6 @@ TextureImporter:
         - {x: 72.865845, y: -40.417114}
         - {x: 72.865845, y: 45.582886}
         - {x: 27.865845, y: 79.582886}
-    - name: barionBW
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 707
-        width: 219
-        height: 201
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -52.394714, y: 80.8349}
-        - {x: -75.394714, y: 75.8349}
-        - {x: -75.394714, y: -59.1651}
-        - {x: -33.394714, y: -84.1651}
-        - {x: 51.605286, y: -84.1651}
-        - {x: 90.605286, y: -66.1651}
-        - {x: 90.605286, y: 71.8349}
-        - {x: 80.605286, y: 80.8349}
     - name: cosmoBW
       rect:
         serializedVersion: 2
@@ -856,32 +839,34 @@ TextureImporter:
         serializedVersion: 2
         x: 556
         y: 1032
-        width: 73
+        width: 72
         height: 72
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -32.96579, y: 32.621094}
-        - {x: -32.96579, y: -32.378906}
-        - {x: 33.03421, y: -32.378906}
-        - {x: 33.03421, y: 32.621094}
+      - - {x: -27.46579, y: 32.621094}
+        - {x: -32.46579, y: 27.621094}
+        - {x: -32.46579, y: -29.378906}
+        - {x: -30.46579, y: -32.378906}
+        - {x: 32.53421, y: -32.378906}
+        - {x: 32.53421, y: 28.621094}
+        - {x: 30.53421, y: 32.621094}
     - name: cosmoAttackSlot
       rect:
         serializedVersion: 2
         x: 871
         y: 1032
-        width: 78
+        width: 77
         height: 76
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 1, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -30.173035, y: 30.621094}
-        - {x: -30.173035, y: -34.378906}
-        - {x: 35.826965, y: -34.378906}
-        - {x: 35.826965, y: 29.621094}
-        - {x: 34.826965, y: 30.621094}
+      - - {x: -29.673035, y: 30.621094}
+        - {x: -29.673035, y: -34.378906}
+        - {x: 35.326965, y: -34.378906}
+        - {x: 35.326965, y: 30.621094}
     - name: nyxAttackSlot
       rect:
         serializedVersion: 2
@@ -914,6 +899,44 @@ TextureImporter:
         - {x: 32.83026, y: -31.780884}
         - {x: 32.83026, y: 33.219116}
         - {x: -32.16974, y: 33.219116}
+    - name: Barion_unselected
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 708
+        width: 188
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 44.68622, y: 81.73419}
+        - {x: -44.31378, y: 81.73419}
+        - {x: -84.31378, y: 63.73419}
+        - {x: -84.31378, y: -68.26581}
+        - {x: -51.31378, y: -83.26581}
+        - {x: 23.686218, y: -83.26581}
+        - {x: 51.68622, y: -78.26581}
+        - {x: 78.68622, y: -41.26581}
+        - {x: 78.68622, y: 35.73419}
+        - {x: 75.68622, y: 52.73419}
+    - name: Unselected_cooldown
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 1799
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.80066, y: 32.416504}
+        - {x: -30.80066, y: 31.416504}
+        - {x: -30.80066, y: -28.583496}
+        - {x: -29.80066, y: -30.583496}
+        - {x: 31.19934, y: -30.583496}
+        - {x: 31.19934, y: 32.416504}
     outline: []
   spritePackingTag: 
   userData: 
