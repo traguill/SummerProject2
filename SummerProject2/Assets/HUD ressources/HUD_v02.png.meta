@@ -1,0 +1,844 @@
+fileFormatVersion: 2
+guid: aea26918748ff264eb69ba8565854616
+timeCreated: 1470399782
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: menuButtonH
+    21300002: menuButtonC
+    21300004: textPanel
+    21300006: pausePanel
+    21300008: missionPanel
+    21300010: missonScrollBar1
+    21300012: slot1
+    21300014: missionScrollBar2
+    21300016: slot2
+    21300018: slot3
+    21300020: slot4
+    21300022: nyxSlot
+    21300024: cosmoSlot
+    21300026: barionSlot
+    21300028: barion
+    21300030: cosmo
+    21300032: nyx
+    21300034: itemManual
+    21300036: barionAttack1
+    21300038: cosmoAttack1
+    21300040: nyxAttack1
+    21300042: barionBW
+    21300044: cosmoBW
+    21300046: nyxBW
+    21300048: itemKey
+    21300050: barionAttack2
+    21300052: cosmoAttack2
+    21300054: nyxAttack2
+    21300056: itemPassword
+    21300058: characterPanel
+    21300060: skipButtonN
+    21300062: skipButtonH
+    21300064: skipButtonC
+    21300066: closeButtonN
+    21300068: closeButtonH
+    21300070: closeButtonC
+    21300072: missionButtonN
+    21300074: missionButtonH
+    21300076: missionButtonC
+    21300078: menuButtonN
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: menuButtonH
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 2216
+        width: 166
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 67.37567, y: 19.442139}
+        - {x: -71.62433, y: 19.442139}
+        - {x: -74.62433, y: 11.442139}
+        - {x: -74.62433, y: -13.557861}
+        - {x: -68.62433, y: -17.557861}
+        - {x: 68.37567, y: -17.557861}
+        - {x: 75.37567, y: -8.557861}
+        - {x: 75.37567, y: 12.442139}
+    - name: menuButtonC
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 2216
+        width: 166
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 69.14343, y: 19.442139}
+        - {x: -64.85657, y: 19.442139}
+        - {x: -74.85657, y: 12.442139}
+        - {x: -74.85657, y: -11.557861}
+        - {x: -68.85657, y: -17.557861}
+        - {x: 70.14343, y: -17.557861}
+        - {x: 75.14343, y: -11.557861}
+        - {x: 75.14343, y: 12.442139}
+        - {x: 74.14343, y: 17.442139}
+    - name: textPanel
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 2013
+        width: 1233
+        height: 174
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 555.527, y: 72.87573}
+        - {x: 554.527, y: 75.87573}
+        - {x: 551.527, y: 78.87573}
+        - {x: -549.473, y: 78.87573}
+        - {x: -553.473, y: 75.87573}
+        - {x: -554.473, y: 72.87573}
+        - {x: -554.473, y: -72.12427}
+        - {x: -549.473, y: -78.12427}
+        - {x: 550.527, y: -78.12427}
+        - {x: 555.527, y: -73.12427}
+    - name: pausePanel
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 559
+        width: 475
+        height: 1434
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -213.61711, y: 646.23224}
+        - {x: -213.61711, y: -644.76776}
+        - {x: 214.38289, y: -644.76776}
+        - {x: 214.38289, y: 646.23224}
+    - name: missionPanel
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 1600
+        width: 616
+        height: 384
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 278.1184, y: 169.44739}
+        - {x: 273.1184, y: 174.44739}
+        - {x: -270.8816, y: 174.44739}
+        - {x: -271.8816, y: 173.44739}
+        - {x: -276.8816, y: 169.44739}
+        - {x: -276.8816, y: -165.55261}
+        - {x: -275.8816, y: -168.55261}
+        - {x: -272.8816, y: -171.55261}
+        - {x: -269.8816, y: -172.55261}
+        - {x: 272.1184, y: -172.55261}
+        - {x: 277.1184, y: -168.55261}
+        - {x: 278.1184, y: -165.55261}
+    - name: missonScrollBar1
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 1614
+        width: 17
+        height: 355
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: slot1
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 1881
+        width: 68
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.901245, y: 32.162476}
+        - {x: -30.901245, y: -30.837524}
+        - {x: 31.098755, y: -30.837524}
+        - {x: 31.098755, y: 32.162476}
+    - name: missionScrollBar2
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 1747
+        width: 18
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: slot2
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 1799
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.901245, y: 32.416504}
+        - {x: -30.901245, y: -30.583496}
+        - {x: 31.098755, y: -30.583496}
+        - {x: 31.098755, y: 31.416504}
+        - {x: 30.098755, y: 32.416504}
+    - name: slot3
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 1717
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.901245, y: 31.17041}
+        - {x: -30.901245, y: -30.82959}
+        - {x: 31.098755, y: -30.82959}
+        - {x: 31.098755, y: 31.17041}
+    - name: slot4
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 1635
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.901245, y: 31.424316}
+        - {x: -30.901245, y: -30.575684}
+        - {x: 31.098755, y: -30.575684}
+        - {x: 31.098755, y: 31.424316}
+    - name: nyxSlot
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 1548
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.901245, y: 31.18164}
+        - {x: -30.901245, y: -30.81836}
+        - {x: 31.098755, y: -30.81836}
+        - {x: 31.098755, y: 31.18164}
+    - name: cosmoSlot
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 1467
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.901245, y: 31.334839}
+        - {x: -30.901245, y: -27.665161}
+        - {x: -27.901245, y: -30.665161}
+        - {x: 31.098755, y: -30.665161}
+        - {x: 31.098755, y: 31.334839}
+    - name: barionSlot
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 1385
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.901245, y: 31.588867}
+        - {x: -30.901245, y: -30.411133}
+        - {x: 31.098755, y: -30.411133}
+        - {x: 31.098755, y: 31.588867}
+    - name: barion
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 520
+        width: 181
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -55.112488, y: 82.6579}
+        - {x: -81.11249, y: 58.657898}
+        - {x: -81.11249, y: -52.342102}
+        - {x: -53.112488, y: -81.3421}
+        - {x: 61.887512, y: -81.3421}
+        - {x: 82.88751, y: -48.342102}
+        - {x: 82.88751, y: 59.657898}
+        - {x: 66.88751, y: 82.6579}
+    - name: cosmo
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 519
+        width: 181
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -57.322998, y: 82.758545}
+        - {x: -81.323, y: 75.758545}
+        - {x: -81.323, y: -56.241455}
+        - {x: -69.323, y: -81.241455}
+        - {x: 43.677002, y: -81.241455}
+        - {x: 82.677, y: -42.241455}
+        - {x: 82.677, y: 47.758545}
+        - {x: 64.677, y: 82.758545}
+    - name: nyx
+      rect:
+        serializedVersion: 2
+        x: 1267
+        y: 519
+        width: 181
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 72.46643, y: 79.758545}
+        - {x: 45.46643, y: 82.758545}
+        - {x: -53.53357, y: 82.758545}
+        - {x: -81.53357, y: 66.758545}
+        - {x: -81.53357, y: -74.241455}
+        - {x: -57.53357, y: -81.241455}
+        - {x: 43.46643, y: -81.241455}
+        - {x: 59.46643, y: -72.241455}
+        - {x: 82.46643, y: -44.241455}
+        - {x: 82.46643, y: 45.758545}
+    - name: itemManual
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 408
+        width: 43
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.0855255, y: 19.43158}
+        - {x: -19.085526, y: 13.43158}
+        - {x: -19.085526, y: -6.5684204}
+        - {x: -7.0855255, y: -17.56842}
+        - {x: 16.914474, y: -17.56842}
+        - {x: 20.914474, y: -11.56842}
+        - {x: 20.914474, y: 11.43158}
+        - {x: 13.9144745, y: 19.43158}
+    - name: barionAttack1
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 392
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.677628, y: 28.042114}
+        - {x: -26.677628, y: 15.042114}
+        - {x: -26.677628, y: -13.957886}
+        - {x: -19.677628, y: -26.957886}
+        - {x: 15.322372, y: -26.957886}
+        - {x: 28.322372, y: -16.957886}
+        - {x: 28.322372, y: 23.042114}
+        - {x: 15.322372, y: 28.042114}
+    - name: cosmoAttack1
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 385
+        width: 73
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 19.860535, y: 32.746704}
+        - {x: -19.139465, y: 32.746704}
+        - {x: -20.139465, y: 29.746704}
+        - {x: -33.139465, y: 19.746704}
+        - {x: -33.139465, y: -26.253296}
+        - {x: -23.139465, y: -32.253296}
+        - {x: 21.860535, y: -32.253296}
+        - {x: 33.860535, y: -25.253296}
+        - {x: 33.860535, y: 23.746704}
+    - name: nyxAttack1
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 397
+        width: 56
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.305908, y: 21.538818}
+        - {x: -19.305908, y: 15.538818}
+        - {x: -17.305908, y: 13.538818}
+        - {x: -25.305908, y: 12.538818}
+        - {x: -25.305908, y: -19.461182}
+        - {x: -17.305908, y: -21.461182}
+        - {x: 25.694092, y: -21.461182}
+        - {x: 25.694092, y: 21.538818}
+    - name: barionBW
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 290
+        width: 181
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 44.887512, y: 82.309204}
+        - {x: -43.112488, y: 82.309204}
+        - {x: -81.11249, y: 41.309204}
+        - {x: -81.11249, y: -45.690796}
+        - {x: -49.112488, y: -80.690796}
+        - {x: 69.88751, y: -80.690796}
+        - {x: 82.88751, y: -39.690796}
+        - {x: 82.88751, y: 55.309204}
+        - {x: 66.88751, y: 76.309204}
+    - name: cosmoBW
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 289
+        width: 181
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 32.677002, y: 82.90988}
+        - {x: -42.322998, y: 82.90988}
+        - {x: -75.323, y: 56.90988}
+        - {x: -81.323, y: 31.909882}
+        - {x: -81.323, y: -35.09012}
+        - {x: -60.322998, y: -74.09012}
+        - {x: -46.322998, y: -81.09012}
+        - {x: 49.677002, y: -81.09012}
+        - {x: 82.677, y: -49.09012}
+        - {x: 82.677, y: 60.90988}
+        - {x: 76.677, y: 72.90988}
+    - name: nyxBW
+      rect:
+        serializedVersion: 2
+        x: 1267
+        y: 289
+        width: 181
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -62.53357, y: 82.90988}
+        - {x: -81.53357, y: 45.90988}
+        - {x: -81.53357, y: -30.090118}
+        - {x: -60.53357, y: -74.09012}
+        - {x: -38.53357, y: -81.09012}
+        - {x: 55.46643, y: -81.09012}
+        - {x: 82.46643, y: -47.09012}
+        - {x: 82.46643, y: 42.90988}
+        - {x: 59.46643, y: 82.90988}
+    - name: itemKey
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 366
+        width: 36
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: barionAttack2
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 327
+        width: 56
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24.979599, y: 22.58487}
+        - {x: -24.979599, y: -21.41513}
+        - {x: -23.979599, y: -22.41513}
+        - {x: 24.020401, y: -22.41513}
+        - {x: 26.020401, y: -19.41513}
+        - {x: 26.020401, y: 22.58487}
+      - - {x: -11.979599, y: 8.584869}
+        - {x: -5.979599, y: 8.584869}
+        - {x: 4.020401, y: 9.584869}
+        - {x: -2.979599, y: -10.415131}
+        - {x: -11.979599, y: -10.415131}
+        - {x: -12.979599, y: -11.415131}
+        - {x: -11.979599, y: -11.415131}
+    - name: cosmoAttack2
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 325
+        width: 60
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.844086, y: 24.286194}
+        - {x: -23.844086, y: 15.286194}
+        - {x: -26.844086, y: 7.286194}
+        - {x: -26.844086, y: -6.713806}
+        - {x: -14.844086, y: -23.713806}
+        - {x: -4.8440857, y: -23.713806}
+        - {x: -4.8440857, y: 24.286194}
+      - - {x: 4.1559143, y: 24.286194}
+        - {x: 4.1559143, y: -22.713806}
+        - {x: 5.1559143, y: -23.713806}
+        - {x: 17.155914, y: -23.713806}
+        - {x: 27.155914, y: -10.713806}
+        - {x: 27.155914, y: 22.286194}
+        - {x: 23.155914, y: 24.286194}
+    - name: nyxAttack2
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 323
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.406586, y: 26.987518}
+        - {x: -26.406586, y: 10.987518}
+        - {x: -26.406586, y: -13.012482}
+        - {x: -15.406586, y: -22.012482}
+        - {x: -8.406586, y: -26.012482}
+        - {x: 10.593414, y: -26.012482}
+        - {x: 26.593414, y: -10.012482}
+        - {x: 26.593414, y: 8.987518}
+        - {x: 8.593414, y: 26.987518}
+    - name: itemPassword
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 320
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: characterPanel
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1520
+        height: 226
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 636.5, y: -97}
+        - {x: 632.5, y: -97}
+        - {x: 631.5, y: -96}
+        - {x: 629.5, y: -96}
+        - {x: 628.5, y: -94}
+        - {x: 625.5, y: -93}
+        - {x: 619.5, y: -88}
+        - {x: 619.5, y: -87}
+        - {x: 616.5, y: -83}
+        - {x: 616.5, y: -81}
+        - {x: 615.5, y: -80}
+        - {x: 615.5, y: -76}
+        - {x: 614.5, y: -75}
+        - {x: 614.5, y: 81}
+        - {x: 613.5, y: 82}
+        - {x: 613.5, y: 85}
+        - {x: 611.5, y: 90}
+        - {x: 605.5, y: 96}
+        - {x: 604.5, y: 96}
+        - {x: 602.5, y: 99}
+        - {x: 595.5, y: 102}
+        - {x: -596.5, y: 102}
+        - {x: -603.5, y: 99}
+        - {x: -609.5, y: 93}
+        - {x: -609.5, y: 92}
+        - {x: -612.5, y: 89}
+        - {x: -613.5, y: 85}
+        - {x: -614.5, y: 84}
+        - {x: -614.5, y: 82}
+        - {x: -615.5, y: 81}
+        - {x: -615.5, y: -73}
+        - {x: -616.5, y: -74}
+        - {x: -616.5, y: -79}
+        - {x: -617.5, y: -80}
+        - {x: -617.5, y: -82}
+        - {x: -620.5, y: -86}
+        - {x: -620.5, y: -87}
+        - {x: -624.5, y: -91}
+        - {x: -626.5, y: -92}
+        - {x: -630.5, y: -95}
+        - {x: -632.5, y: -95}
+        - {x: -633.5, y: -96}
+        - {x: -638.5, y: -96}
+        - {x: -639.5, y: -97}
+        - {x: -683.5, y: -97}
+        - {x: -683.5, y: -102}
+        - {x: 683.5, y: -102}
+        - {x: 683.5, y: -98}
+        - {x: 637.5, y: -98}
+    - name: skipButtonN
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 2190
+        width: 69
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24.82171, y: 30.559204}
+        - {x: -30.82171, y: 27.559204}
+        - {x: -30.82171, y: -29.440796}
+        - {x: 22.17829, y: -29.440796}
+        - {x: 32.17829, y: -20.440796}
+        - {x: 32.17829, y: 21.559204}
+        - {x: 20.17829, y: 30.559204}
+    - name: skipButtonH
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 2190
+        width: 69
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29.371048, y: 30.559204}
+        - {x: -31.371048, y: 28.559204}
+        - {x: -31.371048, y: -29.440796}
+        - {x: 31.628952, y: -29.440796}
+        - {x: 31.628952, y: 26.559204}
+        - {x: 30.628952, y: 30.559204}
+    - name: skipButtonC
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 2189
+        width: 69
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31.121704, y: 31.159912}
+        - {x: -31.121704, y: -29.840088}
+        - {x: 25.878296, y: -29.840088}
+        - {x: 31.878296, y: -22.840088}
+        - {x: 31.878296, y: 31.159912}
+    - name: closeButtonN
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 2102
+        width: 69
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24.82171, y: 30.417114}
+        - {x: -30.82171, y: 22.417114}
+        - {x: -30.82171, y: -23.582886}
+        - {x: -24.82171, y: -29.582886}
+        - {x: 26.17829, y: -29.582886}
+        - {x: 32.17829, y: -20.582886}
+        - {x: 32.17829, y: 19.417114}
+        - {x: 21.17829, y: 30.417114}
+    - name: closeButtonH
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 2102
+        width: 69
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29.371048, y: 30.417114}
+        - {x: -31.371048, y: 28.417114}
+        - {x: -31.371048, y: -29.582886}
+        - {x: 31.628952, y: -29.582886}
+        - {x: 31.628952, y: 26.417114}
+        - {x: 27.628952, y: 30.417114}
+    - name: closeButtonC
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 2102
+        width: 69
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31.021057, y: 30.417114}
+        - {x: -31.021057, y: -29.582886}
+        - {x: 31.978943, y: -29.582886}
+        - {x: 31.978943, y: 30.417114}
+    - name: missionButtonN
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 2013
+        width: 69
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.82171, y: 30.375732}
+        - {x: -30.82171, y: 24.375732}
+        - {x: -30.82171, y: -23.624268}
+        - {x: -23.82171, y: -29.624268}
+        - {x: 32.17829, y: -29.624268}
+        - {x: 32.17829, y: 27.375732}
+        - {x: 25.17829, y: 30.375732}
+    - name: missionButtonH
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 2013
+        width: 69
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 27.628952, y: 30.375732}
+        - {x: -30.371048, y: 30.375732}
+        - {x: -31.371048, y: 29.375732}
+        - {x: -31.371048, y: -27.624268}
+        - {x: -30.371048, y: -29.624268}
+        - {x: 31.628952, y: -29.624268}
+        - {x: 31.628952, y: 27.375732}
+        - {x: 28.628952, y: 29.375732}
+    - name: missionButtonC
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 2013
+        width: 69
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29.021057, y: 30.375732}
+        - {x: -31.021057, y: 27.375732}
+        - {x: -31.021057, y: -29.624268}
+        - {x: 31.978943, y: -29.624268}
+        - {x: 31.978943, y: 30.375732}
+    - name: menuButtonN
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 2216
+        width: 166
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74.69406, y: 15.442139}
+        - {x: -74.69406, y: -10.557861}
+        - {x: -73.69406, y: -13.557861}
+        - {x: 75.30594, y: -13.557861}
+        - {x: 75.30594, y: 15.442139}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
