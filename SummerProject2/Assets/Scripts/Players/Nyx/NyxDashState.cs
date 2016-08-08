@@ -104,5 +104,10 @@ public class NyxDashState : INyxState {
         Debug.Log("Nyx can't transition from DASH to WALKING");
     }
 
+
+    public void ToDeathTrapState()
+    {
+        Debug.Log("Nyx can't transition from DASH to DEATH_TRAP");
+    }
    
 }

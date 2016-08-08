@@ -45,6 +45,13 @@ public class NyxWalkingState : INyxState
                 ToDashState();
                 return;
             }
+
+            //To DEATH_TRAP
+            if (Input.GetKeyUp(KeyCode.W) && nyx.selection_system.PlayersSelected() == 1 && nyx.cooldown_inst.AbilityIsReady(2)) //TODO: change getkeyup for ability2 and add cooldown
+            {
+                ToDeathTrapState();
+                return;
+            }
         }
 
 
@@ -75,6 +82,12 @@ public class NyxWalkingState : INyxState
     {
         nyx.StopMovement();
         nyx.ChangeStateTo(nyx.dash_state);
+    }
+
+    public void ToDeathTrapState()
+    {
+        nyx.StopMovement();
+        nyx.ChangeStateTo(nyx.death_trap_state);
     }
 
     

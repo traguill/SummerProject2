@@ -84,6 +84,11 @@ public class NyxHidingState : INyxState
         Debug.Log("Nyx can't transition form HIDING to DASH");
     }
 
+    public void ToDeathTrapState()
+    {
+        Debug.Log("Nyx can't transition from HIDING to DEATH_TRAP");
+    }
+
     void Hide()
     {
         hiding = true;

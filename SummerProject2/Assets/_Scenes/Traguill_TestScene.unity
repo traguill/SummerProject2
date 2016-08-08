@@ -599,10 +599,9 @@ MonoBehaviour:
   speed_camera: 0
   disable_camera_movement_mouse: 0
   zone_for_displacement: 0
-  player1: {fileID: 1197501159}
-  player2: {fileID: 434072684}
-  player3: {fileID: 1576264769}
-  player4: {fileID: 0}
+  Barion: {fileID: 0}
+  Cosmo: {fileID: 0}
+  Nyx: {fileID: 0}
 --- !u!4 &222577980 stripped
 Transform:
   m_PrefabParentObject: {fileID: 481172, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}

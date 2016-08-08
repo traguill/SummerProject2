@@ -24,5 +24,12 @@ public class NyxController_Editor : Editor {
 
         if (nyx.GetState() == nyx.hiding_state)
             Handles.Label(nyx.transform.position, "HIDING");
+
+        if (nyx.GetState() == nyx.death_trap_state)
+            Handles.Label(nyx.transform.position, "DEATHTRAP");
+
+        //Range of death trap
+        Handles.color = Color.blue;
+        Handles.DrawWireArc(nyx.transform.position, Vector3.up, Vector3.forward, 360, nyx.death_trap_range);
     }
 }

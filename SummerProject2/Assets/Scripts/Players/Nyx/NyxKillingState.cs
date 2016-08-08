@@ -67,5 +67,10 @@ public class NyxKillingState : INyxState
         Debug.Log("Nyx can't transition from KILLING to DASH");
     }
 
+    public void ToDeathTrapState()
+    {
+        Debug.Log("Nyx can't transition from KILLING to DEATH_TRAP");
+    }
+
     
 }

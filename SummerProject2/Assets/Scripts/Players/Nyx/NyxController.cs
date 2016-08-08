@@ -5,7 +5,7 @@ public class NyxController : MonoBehaviour {
 
     //Selection
     public GameObject selection_circle;
-    public UnitSelection selection_system;
+    [HideInInspector] public UnitSelection selection_system;
     [HideInInspector]
     public bool is_selected = false;
 
@@ -23,15 +23,20 @@ public class NyxController : MonoBehaviour {
     [HideInInspector] public NyxKillingState killing_state;
     [HideInInspector] public NyxHidingState hiding_state;
     [HideInInspector] public NyxDashState dash_state;
+    [HideInInspector] public NyxDeathTrapState death_trap_state;
 
     //Killing
-    public GameObject target_to_kill; //Enemy marked to kill with passive.
+    [HideInInspector] public GameObject target_to_kill; //Enemy marked to kill with passive.
+    public float death_trap_range = 5;
 
     //Dash
     public LayerMask floor_layer; //Floor layer (for dash position for now)
     public float dash_speed = 100; //Speed of the dash
     public LayerMask dash_collision_layer; //Layers that will stop the dash on collision
     public float dash_range = 20; //Maximum range of the dash ability
+
+    //DeathTrap
+    public GameObject death_trap_prefab;
 
     [HideInInspector]
     public bool is_hide;
@@ -55,6 +60,7 @@ public class NyxController : MonoBehaviour {
         killing_state = new NyxKillingState(this);
         hiding_state = new NyxHidingState(this);
         dash_state = new NyxDashState(this);
+        death_trap_state = new NyxDeathTrapState(this);
     }
 
     void Start ()
