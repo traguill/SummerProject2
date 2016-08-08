@@ -5,23 +5,21 @@ public class CameraMove : MonoBehaviour {
 
     public float speed_camera;
     public bool disable_camera_movement_mouse;
-    public float zone_for_displacement; // From 0 to 1. For instance, 0.25 means 25% of some lenght (width or height screen dimensions)
-    private Vector2 edge_offset;
+    public float zone_for_displacement; // From 0 to 1. For instance, 0.25 means 25% of some length (width or height screen dimensions)
+    private Vector2 edge_offset;        // Zone where camera moves will occur when active.
     private Vector3 position_target;
-    private float z_correction; // Z_correction is used for center the different players due to camera inclination.
-    private bool smooth_transition;
+    private float z_correction;         // Z_correction is used for center the different players due to camera inclination.
+    private bool smooth_transition;     // When true, a camera transition is occurring.
 
-    public GameObject player1;
-    public GameObject player2;
-    public GameObject player3;
-    public GameObject player4;
+    public GameObject Barion, Cosmo, Nyx;
 
     // Use this for initialization
     void Start ()
     {
         disable_camera_movement_mouse = true;
+        smooth_transition = false;
         speed_camera = 10;
-        zone_for_displacement = 0.1f;   // 10%
+        zone_for_displacement = 0.1f;           // 10% of Width and Height Screen
         edge_offset.Set(zone_for_displacement * Screen.width, zone_for_displacement * Screen.height);
         z_correction = transform.position.y / Mathf.Tan(transform.eulerAngles.x * Mathf.PI / 180);
     }
@@ -29,12 +27,12 @@ public class CameraMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        checkingCameraMovement();
+        CheckingCameraMovement();
         if (smooth_transition)
-            moveCamera();
+            MoveCamera();
     }
 
-    void checkingCameraMovement()
+    void CheckingCameraMovement()
     {
         Vector3 mouse_position = Input.mousePosition;
         Vector3 pos = transform.position;
@@ -62,32 +60,19 @@ public class CameraMove : MonoBehaviour {
         // Updating position
         transform.position = pos;
 
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            smooth_transition = true;
-            position_target.Set(player1.transform.position.x, pos.y, player1.transform.position.z - z_correction);
-        }
-
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            smooth_transition = true;
-            position_target.Set(player2.transform.position.x, pos.y, player2.transform.position.z - z_correction);
-        }
-
         if (Input.GetKey(KeyCode.Alpha3))
         {
-            smooth_transition = true;
-            position_target.Set(player3.transform.position.x, pos.y, player3.transform.position.z - z_correction);
+            MoveCameraTo(new Vector3(Barion.transform.position.x, pos.y, Barion.transform.position.z - z_correction));
         }
-
-        //if (Input.GetKey(KeyCode.Alpha4))
-        //{
-        //    smooth_transition = true;
-        //    position_target.Set(player4.transform.position.x, pos.y, player4.transform.position.z - z_correction);
-        //}
     }
 
-    void moveCamera()
+    public void MoveCameraTo(Vector3 new_pos)
+    {
+        position_target = new_pos;
+        smooth_transition = true;        
+    }
+
+    private void MoveCamera()
     {
         transform.position = Vector3.Lerp(transform.position, position_target, 0.5f);
         float minimun_distance = 0.1f;
