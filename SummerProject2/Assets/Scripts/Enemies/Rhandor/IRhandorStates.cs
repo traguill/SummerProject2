@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface IEnemyAStates
-    {
+public interface IRhandorStates
+{
 
     void StartState();
 
@@ -10,9 +10,13 @@ public interface IEnemyAStates
 
     void ToIdleState();
 
+    //void ToSpotState();
+
     void ToPatrolState();
 
     void ToAlertState();
+
+    void ToCorpseState();
 
 }
 

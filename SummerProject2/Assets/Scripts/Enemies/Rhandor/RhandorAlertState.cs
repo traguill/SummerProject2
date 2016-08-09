@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyAAlertState : IEnemyAStates
+public class RhandorAlertState : IRhandorStates
 {
     private NavMeshAgent agent;
     private float alert_speed;
     private AlarmSystem alarm_system;
 
-    private readonly EnemyAController enemy;
+    private readonly RhandorController enemy;
 
     // Constructor
-    public EnemyAAlertState(EnemyAController enemy_controller)
+    public RhandorAlertState(RhandorController enemy_controller)
     {
         enemy = enemy_controller;
     }
@@ -75,6 +75,11 @@ public class EnemyAAlertState : IEnemyAStates
     public void ToAlertState()
     {
         Debug.Log("Enemy" + enemy.name + "can't transition to same state ALERT");
+    }
+
+    public void ToCorpseState()
+    {
+        enemy.ChangeStateTo(enemy.corpse_state);
     }
 
     private void goToNextPoint()

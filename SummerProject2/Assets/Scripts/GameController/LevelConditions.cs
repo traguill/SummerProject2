@@ -38,7 +38,7 @@ public class LevelConditions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (checkFinishingLevel())
+        if (CheckFinishingLevel())
         {
             screen_fader.EndScene(0);
         }
@@ -48,7 +48,7 @@ public class LevelConditions : MonoBehaviour
     /// checkFinishingLevel() checks if the number of players on the trigger are the total number of players.
     /// </summary>
     /// <returns> True if all the players are on the finish point. False otherwise </returns>
-    bool checkFinishingLevel()
+    bool CheckFinishingLevel()
     {
         return players_at_end_level == players.Length;
     }   

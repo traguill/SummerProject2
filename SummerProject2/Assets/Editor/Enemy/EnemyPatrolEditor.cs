@@ -2,15 +2,15 @@
 using System.Collections;
 using UnityEditor;
 
-[CustomEditor(typeof(EnemyAController))]
+[CustomEditor(typeof(RhandorController))]
 public class EnemyPatrolEditor : Editor
 {
-    private EnemyAController item;
+    private RhandorController item;
     private Vector3[] path_neutral_positions, path_alarm_positions;
 
     void OnEnable()
     {
-        item = target as EnemyAController;
+        item = target as RhandorController;
 
         Transform[] path = item.neutral_path.transform.getChilds();
         path_neutral_positions = new Vector3[path.Length];

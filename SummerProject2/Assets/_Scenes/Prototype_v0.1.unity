@@ -1658,11 +1658,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417174, guid: 25ab6aa46bf217f499ad8de5925415a5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -3.6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 417174, guid: 25ab6aa46bf217f499ad8de5925415a5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.8
+      value: -4.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25ab6aa46bf217f499ad8de5925415a5, type: 2}
@@ -3265,7 +3265,7 @@ GameObject:
   - 114: {fileID: 1796184103}
   - 65: {fileID: 1796184102}
   m_Layer: 10
-  m_Name: Enemy1
+  m_Name: Rhandor
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3312,6 +3312,7 @@ MonoBehaviour:
   neutral_patrol: []
   alert_patrol: []
   current_position: 0
+  render: {fileID: 0}
 --- !u!114 &1796184104
 MonoBehaviour:
   m_ObjectHideFlags: 0

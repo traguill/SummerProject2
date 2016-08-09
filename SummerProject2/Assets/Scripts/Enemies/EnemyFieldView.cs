@@ -14,8 +14,7 @@ public class EnemyFieldView : MonoBehaviour
     private AlarmSystem alarm_system;
     private ScreenFader screen_fader;
 
-    [HideInInspector]
-    public List<Transform> visible_targets = new List<Transform>();
+    [HideInInspector] public List<Transform> visible_targets = new List<Transform>();
 
 
     // Awake
@@ -79,6 +78,9 @@ public class EnemyFieldView : MonoBehaviour
     {
         foreach(Transform t in visible_targets)
         {
+            if (!t.GetComponentInParent<Invisible>().IsInvisible())
+                continue;
+
             // If enemy corpse is found, alert mode is activated
             if (t.tag.Equals(Tags.corpse))
                 alarm_system.SetAlarm(ALARM_STATE.ALARM_ON);

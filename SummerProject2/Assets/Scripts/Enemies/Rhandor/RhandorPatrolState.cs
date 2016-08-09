@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyAPatrolState : IEnemyAStates
+public class RhandorPatrolState : IRhandorStates
 {
     private NavMeshAgent agent;
     private float patrol_speed;
     private AlarmSystem alarm_system;
 
-    private readonly EnemyAController enemy;
+    private readonly RhandorController enemy;
 
     // Constructor
-    public EnemyAPatrolState(EnemyAController enemy_controller)
+    public RhandorPatrolState(RhandorController enemy_controller)
     {
         enemy = enemy_controller;
     }
@@ -52,6 +52,8 @@ public class EnemyAPatrolState : IEnemyAStates
 
     public void UpdateState()
     {
+        enemy.ChangeStateTo(enemy.corpse_state);
+
         // If the alarm is active, the enemy change its current state to Alert
         if (alarm_system.isAlarmActive())
         {
@@ -76,6 +78,11 @@ public class EnemyAPatrolState : IEnemyAStates
     public void ToAlertState()
     {
         enemy.ChangeStateTo(enemy.alert_state);
+    }
+
+    public void ToCorpseState()
+    {
+        enemy.ChangeStateTo(enemy.corpse_state);
     }
 
     private void goToNextPoint()
