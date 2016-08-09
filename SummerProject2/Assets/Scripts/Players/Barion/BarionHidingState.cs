@@ -50,6 +50,8 @@ public class BarionHidingState : IBarionState
         else
         { //Actually hiding
 
+            barion.transform.position = new Vector3(box.transform.position.x, barion.transform.position.y, box.transform.position.z); //Update position with box
+
             if (barion.is_selected)
             {
                 if(barion.GetMovement(ref destination)) //Get movement input

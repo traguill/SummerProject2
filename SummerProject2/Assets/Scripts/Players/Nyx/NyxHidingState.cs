@@ -50,6 +50,8 @@ public class NyxHidingState : INyxState
         else
         { //Actually hiding
 
+            nyx.transform.position = new Vector3(box.transform.position.x, nyx.transform.position.y, box.transform.position.z); //Update position with box
+
             if (nyx.is_selected)
             {
                 if (nyx.GetMovement(ref destination)) //Get movement input

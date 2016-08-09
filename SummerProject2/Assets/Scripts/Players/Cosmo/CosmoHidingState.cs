@@ -50,6 +50,8 @@ public class CosmoHidingState : ICosmoState
         else
         { //Actually hiding
 
+            cosmo.transform.position = new Vector3(box.transform.position.x, cosmo.transform.position.y, box.transform.position.z); //Update position with box
+
             if (cosmo.is_selected)
             {
                 if (cosmo.GetMovement(ref destination)) //Get movement input
