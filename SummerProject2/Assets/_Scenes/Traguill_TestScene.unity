@@ -599,9 +599,6 @@ MonoBehaviour:
   speed_camera: 0
   disable_camera_movement_mouse: 0
   zone_for_displacement: 0
-  Barion: {fileID: 0}
-  Cosmo: {fileID: 0}
-  Nyx: {fileID: 0}
 --- !u!4 &222577980 stripped
 Transform:
   m_PrefabParentObject: {fileID: 481172, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
@@ -1575,6 +1572,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24980e784eeaab240b0cd41812e212d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  environment_collision_layer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &800448276
 GameObject:
   m_ObjectHideFlags: 0
@@ -2226,8 +2226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89dfdb1ea66d1d1468bda00b00954c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sel_rect_color: {r: 0.8, g: 0.8, b: 0.95, a: 0.25}
-  sel_border_color: {r: 0.8, g: 0.8, b: 0.95, a: 1}
 --- !u!1 &1179630452
 GameObject:
   m_ObjectHideFlags: 0

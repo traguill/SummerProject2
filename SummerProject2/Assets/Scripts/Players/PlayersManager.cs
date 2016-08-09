@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayersManager : MonoBehaviour
 {
+    public LayerMask environment_collision_layer;
 
     //Players controller
     CosmoController cosmo;
@@ -25,28 +26,15 @@ public class PlayersManager : MonoBehaviour
         //Cosmo
         if(player.name == "Cosmo")
         {
-            //Update destination of the player                
-            Vector3 position = cosmo.transform.position;
-            NavMeshAgent agent = cosmo.agent;
-
-            Vector3 distance = agent.destination - position;
-            position = new Vector3(second_portal_position.x, position.y, second_portal_position.z); //Teleport
-            cosmo.transform.position = position; //Position updated after crossing the portal
-            agent.SetDestination(position + distance); //New pathfinding
+            Teleport(cosmo.gameObject, cosmo.agent, second_portal_position);
+                
             return;
         }
 
         //Barion
         if (player.name == "Barion")
         {
-            //Update destination of the player                
-            Vector3 position = barion.transform.position;
-            NavMeshAgent agent = barion.agent;
-
-            Vector3 distance = agent.destination - position;
-            position = new Vector3(second_portal_position.x, position.y, second_portal_position.z); //Teleport
-            barion.transform.position = position; //Position updated after crossing the portal
-            agent.SetDestination(position + distance); //New pathfinding
+            Teleport(barion.gameObject, barion.agent, second_portal_position);
             return;
         }
 
@@ -66,17 +54,34 @@ public class PlayersManager : MonoBehaviour
             }
             else
             {
-                //Update destination of the player                
-                Vector3 position = nyx.transform.position;
-                NavMeshAgent agent = nyx.agent;
-
-                Vector3 distance = agent.destination - position;
-                position = new Vector3(second_portal_position.x, position.y, second_portal_position.z); //Teleport
-                nyx.transform.position = position; //Position updated after crossing the portal
-                agent.SetDestination(position + distance); //New pathfinding
+                Teleport(nyx.gameObject, nyx.agent, second_portal_position);
             }
             return;
         }
 
+    }
+
+    /// <summary>
+    /// Teleports a player to the next portal updating the navmesh agent
+    /// </summary>
+    private void Teleport(GameObject player, NavMeshAgent _agent, Vector3 portal_position)
+    {
+        //Update destination of the player                
+        Vector3 position = player.transform.position;
+        NavMeshAgent agent = _agent;
+
+        Vector3 distance = agent.destination - position;
+        position = new Vector3(portal_position.x, position.y,portal_position.z); //Teleport
+        player.transform.position = position; //Position updated after crossing the portal
+
+        RaycastHit hit;
+        if (Physics.Raycast(position, agent.destination.normalized, out hit, distance.magnitude, environment_collision_layer) == false)
+        {
+            agent.SetDestination(position + distance); //New pathfinding
+        }
+        else
+        {
+            agent.SetDestination(hit.point); //Something between the desired destination;
+        }
     }
 }
