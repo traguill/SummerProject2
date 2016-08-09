@@ -185,7 +185,7 @@ MonoBehaviour:
     cooldown_seconds: 3
     in_use: 0
   - timer: 0
-    cooldown_seconds: 0
+    cooldown_seconds: 10
     in_use: 0
   - timer: 0
     cooldown_seconds: 0

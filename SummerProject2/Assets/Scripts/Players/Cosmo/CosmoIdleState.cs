@@ -71,7 +71,8 @@ public class CosmoIdleState : ICosmoState
             return;
         }
 
-        if(Input.GetAxis("Ability2")!= 0 && cosmo.cooldown_inst.AbilityIsReady(2))
+        //To Ability2: portals
+        if (Input.GetAxis("Ability2") != 0)
         {
             ToPortalState();
             return;

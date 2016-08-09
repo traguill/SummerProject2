@@ -12,7 +12,7 @@ public class CosmoPortalState : ICosmoState
     Color no_build_col = new Color(1.0f, 0.0f, 0.0f, 0.5f); //Color of no buildable zone
 
     GameObject build_portal; //Portal reference to build
-    Material build_portal_mat; 
+    Material build_portal_mat;
 
     public CosmoPortalState(CosmoController cosmo_controller)
     {
@@ -25,8 +25,16 @@ public class CosmoPortalState : ICosmoState
         //First time
         if (portal_controller == null)
         {
-            portal_controller = GameObject.Instantiate(cosmo.portal_controller_prefab) as PortalController; //Create the controller
-            portal_controller.cosmo_portal_controller = this;
+            if(cosmo.cooldown_inst.AbilityIsReady(2) == true) //The ability is ready
+            {
+                portal_controller = GameObject.Instantiate(cosmo.portal_controller_prefab) as PortalController; //Create the controller
+                portal_controller.cosmo_portal_controller = this;
+            }
+            else //The ability is still in cooldown
+            {
+                ToIdleState();
+                return;
+            }
         }
         else
         { //Both portals are already created?
@@ -76,6 +84,11 @@ public class CosmoPortalState : ICosmoState
                     if(finish)
                     {
                         CancelPortalCreation();
+                    }
+                    else
+                    {
+                        cosmo.cooldown_inst.StartCooldown(2); //Start the cooldown after create the first portal
+
                     }
                 }
             }
@@ -170,6 +183,7 @@ public class CosmoPortalState : ICosmoState
             GameObject.Destroy(portal_controller.gameObject);
 
             portal_controller = null;
+
         }
     }
 
