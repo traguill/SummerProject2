@@ -163,7 +163,9 @@ public class BarionMovingBoxState : IBarionState {
     {
         //For now it drops the box to the right
         Vector3 pos = barion.transform.position;
-        box.transform.position = new Vector3(pos.x + carry_box_distance, 1, pos.z);
+        Vector3 direction = barion.agent.velocity.normalized;
+
+        box.transform.position = pos + (direction * carry_box_distance);
 
         ToIdleState();
     }

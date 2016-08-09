@@ -157,5 +157,12 @@ public class CosmoController : MonoBehaviour {
         selection_system.AutoSelectPlayer(gameObject);
     }
 
+    /// <summary>
+    /// Returns the current state.
+    /// </summary>
+    public ICosmoState GetState()
+    {
+        return current_state;
+    }
    
 }
