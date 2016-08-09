@@ -34,9 +34,7 @@ public class NyxKillingState : INyxState
         }
         else //Killing the enemy
         {
-            //For now only change the enemy tag TODO
-            enemy.tag = Tags.corpse;
-
+            nyx.enemy_manager.KillEnemy(enemy);
             ToIdleState();
         }
         

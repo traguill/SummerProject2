@@ -3,16 +3,7 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
-    [HideInInspector] public enum State
-    {
-        IDLE,
-        CORPSE
-    };
-
-    State state;
-
-    [HideInInspector]
-    public bool is_visible = false;
+    [HideInInspector] public bool is_visible = false;
 
     //Detection
     bool is_detected = false;
@@ -27,7 +18,6 @@ public class EnemyController : MonoBehaviour
     {
         render = GetComponent<SpriteRenderer>();
         render.enabled = false; //Set to invisible by default
-        state = State.IDLE;
 	}
 	
 	// Update is called once per frame
@@ -80,10 +70,5 @@ public class EnemyController : MonoBehaviour
             //Show new visualization
             render.material = detected_material;
         }
-    }
-
-    public void ChangeState(State new_state)
-    {
-        state = new_state;
     }
 }

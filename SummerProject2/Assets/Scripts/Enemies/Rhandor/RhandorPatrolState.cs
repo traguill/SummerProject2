@@ -52,8 +52,6 @@ public class RhandorPatrolState : IRhandorStates
 
     public void UpdateState()
     {
-        enemy.ChangeStateTo(enemy.corpse_state);
-
         // If the alarm is active, the enemy change its current state to Alert
         if (alarm_system.isAlarmActive())
         {

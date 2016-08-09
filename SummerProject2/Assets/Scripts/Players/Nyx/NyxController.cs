@@ -6,8 +6,10 @@ public class NyxController : MonoBehaviour {
     //Selection
     public GameObject selection_circle;
     [HideInInspector] public UnitSelection selection_system;
-    [HideInInspector]
-    public bool is_selected = false;
+    [HideInInspector] public bool is_selected = false;
+
+    //Entity Manager
+    [HideInInspector] public EnemyManager enemy_manager;
 
     //Navigation
     [HideInInspector]
@@ -51,6 +53,7 @@ public class NyxController : MonoBehaviour {
     void Awake()
     {
         selection_system = GameObject.Find("SelectionSystem").GetComponent<UnitSelection>();
+        enemy_manager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         cooldown_inst = GetComponent<Cooldown>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;

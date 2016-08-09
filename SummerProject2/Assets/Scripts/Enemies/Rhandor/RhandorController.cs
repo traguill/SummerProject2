@@ -7,8 +7,8 @@ public class RhandorController : MonoBehaviour {
     [HideInInspector] public Transform[] neutral_patrol, alert_patrol;
     [HideInInspector] public int current_position;
 
-    // For corpses
-    public SpriteRenderer render;
+    // For corpses representation
+    [HideInInspector] public SpriteRenderer render;
 
     // NavMeshAgent variables
     float patrol_speed, alert_speed;
@@ -53,5 +53,9 @@ public class RhandorController : MonoBehaviour {
         current_state.StartState();
     }
 
+    public void Dead()
+    {
+        ChangeStateTo(corpse_state);
+    }
 }
 

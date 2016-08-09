@@ -44,6 +44,7 @@ public class EnemyManager : MonoBehaviour
         {
             enemy.GetComponent<EnemyController>().is_visible = false;
         }
+
         //Set only the visible enemies to visible
         foreach(Transform visible_enemy in visible_enemies)
         {
@@ -52,21 +53,23 @@ public class EnemyManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Kill or let unconscious an enemy (depens on bool).
+    /// Kill an enemy.
     /// </summary>
-    public void KillEnemy(GameObject enemy,bool kill)
+    public void KillEnemy(GameObject EnemyToKill)
     {
-        if (enemy.tag == Tags.enemy)
-        {
-            if(kill)
-            { //Kill
-                enemy.tag = Tags.corpse;
-                enemy.GetComponent<EnemyController>().ChangeState(EnemyController.State.CORPSE);
-            }
-            else
-            {
-                //Unconscious
-            }
-        }
+        EnemyToKill.GetComponent<RhandorController>().Dead();
+
+        //if (enemy.tag == Tags.enemy)
+        //{
+        //    if(kill)
+        //    { //Kill
+        //        enemy.tag = Tags.corpse;
+        //        enemy.GetComponent<EnemyController>().ChangeState(EnemyController.State.CORPSE);
+        //    }
+        //    else
+        //    {
+        //        //Unconscious
+        //    }
+        //}
     }
 }
