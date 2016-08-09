@@ -539,9 +539,6 @@ MonoBehaviour:
   speed_camera: 1
   disable_camera_movement_mouse: 0
   zone_for_displacement: 0.1
-  Barion: {fileID: 1197501159}
-  Cosmo: {fileID: 434072684}
-  Nyx: {fileID: 1576264769}
 --- !u!4 &222577980 stripped
 Transform:
   m_PrefabParentObject: {fileID: 481172, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
@@ -2088,8 +2085,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89dfdb1ea66d1d1468bda00b00954c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sel_rect_color: {r: 0.8, g: 0.8, b: 0.95, a: 0.25}
-  sel_border_color: {r: 0.8, g: 0.8, b: 0.95, a: 1}
 --- !u!1 &1166797266
 GameObject:
   m_ObjectHideFlags: 0
@@ -3236,7 +3231,7 @@ GameObject:
   - 4: {fileID: 1795589376}
   - 114: {fileID: 1795589377}
   m_Layer: 0
-  m_Name: Enemies
+  m_Name: EnemyManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3267,6 +3262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b96f3ec5a901d4daa9d150a78c0733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemies: []
+  players: []
 --- !u!1 &1796184100
 GameObject:
   m_ObjectHideFlags: 0
@@ -3275,11 +3272,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1796184101}
+  - 65: {fileID: 1796184102}
   - 212: {fileID: 1796184106}
   - 195: {fileID: 1796184105}
   - 114: {fileID: 1796184104}
   - 114: {fileID: 1796184103}
-  - 65: {fileID: 1796184102}
+  - 114: {fileID: 1796184107}
   m_Layer: 10
   m_Name: Rhandor
   m_TagString: Enemy
@@ -3294,7 +3292,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1796184100}
   m_LocalRotation: {x: 0.50000006, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 23.4, y: 0.7, z: -9.35}
+  m_LocalPosition: {x: 11.9, y: 0.7, z: -7.7}
   m_LocalScale: {x: 0.19906504, y: 0.19906506, z: 0.19906506}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
   m_Children: []
@@ -3399,6 +3397,20 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!114 &1796184107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1796184100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecdb1355f45fbc743b50e1fac8043599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detected_material: {fileID: 2100000, guid: 0e567dd3309d5a944bbcfee341ff23da, type: 2}
+  normal_material: {fileID: 2100000, guid: 2ec584f46772f274f8b7fdd684288113, type: 2}
+  max_detection_time: 3
 --- !u!1 &1806483319
 GameObject:
   m_ObjectHideFlags: 0

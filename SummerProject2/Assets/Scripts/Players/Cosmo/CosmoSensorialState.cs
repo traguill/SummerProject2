@@ -62,9 +62,9 @@ public class CosmoSensorialState : ICosmoState
                 {
                     detected_enemies.Add(item); //new enemy detected
 
-                    if (item.gameObject.GetComponent<EnemyController>() != null)
+                    if (item.gameObject.GetComponent<EnemyVisibility>() != null)
                     {
-                        item.gameObject.GetComponent<EnemyController>().SetDetected();
+                        item.gameObject.GetComponent<EnemyVisibility>().SetDetected();
                     }
                 }
             }

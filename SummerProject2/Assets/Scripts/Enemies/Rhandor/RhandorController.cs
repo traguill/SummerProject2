@@ -39,7 +39,7 @@ public class RhandorController : MonoBehaviour {
     
     void Start()
     {
-        ChangeStateTo(patrol_state);
+        ChangeStateTo(idle_state);
     }
 
     void Update()

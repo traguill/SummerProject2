@@ -1,28 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class EnemyController : MonoBehaviour
+public class EnemyVisibility : MonoBehaviour
 {
-    [HideInInspector] public bool is_visible = false;
-
     //Detection
-    bool is_detected = false;
-    public float max_detection_time = 3.0f;
-    float detected_time = 0.0f;
+    private bool is_visible;
+    private bool is_detected;
+    private float detected_time;
+    private SpriteRenderer render;
     public Material detected_material;
     public Material normal_material;
+    public float max_detection_time = 3.0f;
 
-    SpriteRenderer render;
+    // EnemyManager
+    private EnemyManager enemy_manager;
 
-    void Start ()
+    void Awake()
     {
         render = GetComponent<SpriteRenderer>();
         render.enabled = false; //Set to invisible by default
-	}
+        is_detected = false;
+        is_visible = false;
+        detected_time = 0.0f;
+
+        enemy_manager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        SetVisible();
         Visualization();
 	}
 
@@ -30,8 +38,8 @@ public class EnemyController : MonoBehaviour
     {
         if (is_visible)
         {
-            render.enabled = true; //Visible
-            if(is_detected)
+            render.enabled = true; // Visible
+            if (is_detected)
             {
                 is_detected = false;
                 render.material = normal_material;
@@ -39,7 +47,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            if(is_detected)
+            if (is_detected)
             {
                 render.enabled = true;
                 detected_time += Time.deltaTime;
@@ -48,13 +56,33 @@ public class EnemyController : MonoBehaviour
                 {
                     is_detected = false;
                     render.material = normal_material;
-                }  
+                }
             }
             else
             {
                 render.enabled = false; //Inside the fow
-            } 
-        }        
+            }
+        }         
+    }
+
+    /// <summary>
+    /// Sets the enemies visible or not depending of the fog of war.
+    /// </summary>
+    private void SetVisible()
+    {
+        is_visible = false;        
+
+        // Then, the spotted enemy turn to visible if some player is seeing him.
+        foreach (GameObject player in enemy_manager.players)
+        {
+            foreach (Transform spotted_enemy in player.GetComponent<FieldOfView>().visible_targets)
+            {
+                if(spotted_enemy == transform)
+                {
+                    is_visible = true;
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -70,5 +98,5 @@ public class EnemyController : MonoBehaviour
             //Show new visualization
             render.material = detected_material;
         }
-    }
+    }    
 }
