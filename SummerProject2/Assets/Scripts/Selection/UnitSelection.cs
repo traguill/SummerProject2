@@ -8,34 +8,31 @@ using System.Collections.Generic;
 
 public class UnitSelection : MonoBehaviour
 {
-    //Selection rectangle
-    public Color sel_rect_color = new Color (0.8f, 0.8f, 0.95f, 0.25f);
-    public Color sel_border_color = new Color (0.8f, 0.8f, 0.95f);
-
-    bool is_selecting = false;
-    bool is_dragging = false;
-
-    Vector3 mouse_position_begin; //World coordinates
-
     //Masks
     int floor_mask;
     int player_mask;
     int selectable_object_mask;
 
-    GameObject[] selectable_units;
-    List<GameObject> units_selected; //Players selected
+    GameObject player_selected; //Current player selected
 
     GameObject object_selected; //Save if an object is selected to NOT update player selection
 
-    void Start()
+    //Players
+    GameObject barion;
+    GameObject nyx;
+    GameObject cosmo;
+
+    void Awake()
     {
         floor_mask = LayerMask.GetMask("Floor");
         player_mask = LayerMask.GetMask("Player");
         selectable_object_mask = LayerMask.GetMask("SelectableObject");
 
-        selectable_units = GameObject.FindGameObjectsWithTag("Player");
+        player_selected = null;
 
-        units_selected = new List<GameObject>();
+        barion = GameObject.Find("Barion");
+        cosmo = GameObject.Find("Cosmo");
+        nyx = GameObject.Find("Nyx");
     }
 	
 	// Update is called once per frame
@@ -44,132 +41,66 @@ public class UnitSelection : MonoBehaviour
         SelectObjects();
 
         if(object_selected == null) //No object is currently selected
+        {
+            //Shortcuts selection (high priority over mouse selection) TODO:change keycode for editable input
+            if(Input.GetKeyUp(KeyCode.Alpha1)) //Barion
+            {
+                player_selected = barion;
+                return;
+            }
+
+            if (Input.GetKeyUp(KeyCode.Alpha2)) //Cosmo
+            {
+                player_selected = cosmo;
+                return;
+            }
+
+            if (Input.GetKeyUp(KeyCode.Alpha3)) //Nyx
+            {
+                player_selected = nyx;
+                return;
+            }
+
             UpdatePlayerSelection();
+        }
+           
         
 	}
 
-    void OnGUI()
-    {
-        if(is_selecting)
-        {
-            Vector3 origin = Camera.main.WorldToScreenPoint(mouse_position_begin);
 
-            Rect rect = DrawRect.GetScreenRect(origin, Input.mousePosition);
-            DrawRect.DrawScreenRect(rect, sel_rect_color);
-            DrawRect.DrawScreenRectBorder(rect, 2, sel_border_color);
-        }
-    }
-
-
-    private bool IsSelected(GameObject game_object)
-    {
-        if (!is_selecting)
-            return false;
-
-        Vector3 mouse_origin_position = Camera.main.WorldToScreenPoint(mouse_position_begin);
-        Bounds viewport_bounds = DrawRect.GetViewportBounds(Camera.main, mouse_origin_position, Input.mousePosition);
-
-        return viewport_bounds.Contains(Camera.main.WorldToViewportPoint(game_object.transform.position));
-    }
+   
     
     /// <summary>
     /// Returns true if a Player is currently selected.
     /// </summary>
     public bool IsPlayerSelected(GameObject game_object)
     {
-        return units_selected.Find(obj => obj.name == game_object.name);
+        if (player_selected == null) //Any player is selected
+            return false;
+
+
+        return (game_object.name == player_selected.name) ? true : false;
     }
 
-    /// <summary>
-    /// Returns the number of players selected at the moment.
-    /// </summary>
-    public int PlayersSelected()
-    {
-        return units_selected.Count;
-    }
+  
 
     private void UpdatePlayerSelection()
     {
-        //BUTTON_DOWN
-        if (Input.GetMouseButtonDown(0))
-        {
-            is_selecting = true;
-
-            //Remove previous selected units if key combination is not pressed
-            if (Input.GetAxis("MultipleSelection") == 0)
-            {
-                units_selected.Clear();
-            }
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            Physics.Raycast(ray, out hit, 100, floor_mask);
-            mouse_position_begin = hit.point;
-        }
-
         //BUTTON_UP
         if (Input.GetMouseButtonUp(0))
         {
-            if (is_dragging == false)
+            
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100, player_mask))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 100, player_mask))
-                {
-                    //Add and Normal
-                    if (Input.GetAxis("MultipleSelection") >= 0)
-                    {
-                        if (units_selected.Find(obj => obj.name == hit.transform.gameObject.name) == false)
-                            units_selected.Add(hit.transform.gameObject);
-                    }
-
-                    //Remove
-                    if (Input.GetAxis("MultipleSelection") < 0)
-                    {
-                        units_selected.Remove(hit.transform.gameObject);
-                    }
-
-                }
-            }
-
-            is_selecting = false;
-            is_dragging = false;
-        }
-
-
-        //Difference between click and drag(is_selecting)
-        if (is_selecting)
-        {
-            if (is_dragging)
-            {
-                foreach (GameObject obj in selectable_units)
-                {
-                    if (IsSelected(obj) == true)
-                    {
-                        if (Input.GetAxis("MultipleSelection") >= 0)
-                        {
-                            if (units_selected.Find(game_obj => game_obj.name == obj.transform.gameObject.name) == false)
-                            {
-                                units_selected.Add(obj);
-                            }
-                        }
-                        else
-                        {
-                            units_selected.Remove(obj);
-                        }
-                    }
-                }
+                player_selected = hit.transform.gameObject;
             }
             else
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                Physics.Raycast(ray, out hit, 100, floor_mask);
-                if (hit.point != mouse_position_begin)
-                    is_dragging = true;
+                player_selected = null;
             }
-
-        }
+        }      
     }
 
     private void SelectObjects()
@@ -204,8 +135,8 @@ public class UnitSelection : MonoBehaviour
     /// </summary>
     public void DeselectPlayer(GameObject player)
     {
-        if(player != null)
-        units_selected.Remove(player);
+        if (player.name == player_selected.name)
+            player_selected = null;
     }
 
     /// <summary>
@@ -215,8 +146,7 @@ public class UnitSelection : MonoBehaviour
     {
         if(player != null && player.tag == Tags.player) //Make sure the object given is a viable
         {
-            units_selected.Clear();
-            units_selected.Add(player);
+            player_selected = player;
         }
     }
 }

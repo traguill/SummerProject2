@@ -46,7 +46,7 @@ public class BoxController : MonoBehaviour
     public void Selected()
     {
         //Barion options
-        if(barion.is_selected && selection_sys.PlayersSelected() == 1)
+        if(barion.is_selected)
         {
             if(barion.GetState() != barion.moving_box_state || barion.moving_box_state.IsCarryingBox() == false && barion.is_hide) //Barion doesn't have the box yet and its not hided
             {
@@ -60,7 +60,7 @@ public class BoxController : MonoBehaviour
         }
 
         //Cosmo & Nyx options
-        if((nyx.is_selected || cosmo.is_selected) && selection_sys.PlayersSelected() == 1)
+        if((nyx.is_selected || cosmo.is_selected))
         {
             menus[ground_id].OnInteractableClicked(hide_options);
         }

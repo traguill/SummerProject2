@@ -67,14 +67,14 @@ public class NyxIdleState : INyxState
         }
 
         //To DASH
-        if(Input.GetKeyUp(KeyCode.Q) && nyx.selection_system.PlayersSelected() == 1 && nyx.cooldown_inst.AbilityIsReady(1)) //TODO: change getkeyup for ability 1 axis
+        if(Input.GetKeyUp(KeyCode.Q) && nyx.cooldown_inst.AbilityIsReady(1)) //TODO: change getkeyup for ability 1 axis
         {
             ToDashState();
             return;
         }
 
         //To DEATH_TRAP
-        if(Input.GetKeyUp(KeyCode.W) && nyx.selection_system.PlayersSelected() == 1 && nyx.cooldown_inst.AbilityIsReady(2)) //TODO: change getkeyup for ability2 and add cooldown
+        if(Input.GetKeyUp(KeyCode.W) && nyx.cooldown_inst.AbilityIsReady(2)) //TODO: change getkeyup for ability2 and add cooldown
         {
             ToDeathTrapState();
             return;

@@ -11,8 +11,6 @@ public class CameraMove : MonoBehaviour {
     private float z_correction;         // Z_correction is used for center the different players due to camera inclination.
     private bool smooth_transition;     // When true, a camera transition is occurring.
 
-    public GameObject Barion, Cosmo, Nyx;
-
     // Use this for initialization
     void Start ()
     {
@@ -60,10 +58,6 @@ public class CameraMove : MonoBehaviour {
         // Updating position
         transform.position = pos;
 
-        if (Input.GetKey(KeyCode.Alpha3))
-        {
-            MoveCameraTo(new Vector3(Barion.transform.position.x, pos.y, Barion.transform.position.z - z_correction));
-        }
     }
 
     public void MoveCameraTo(Vector3 new_pos)
