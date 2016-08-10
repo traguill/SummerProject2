@@ -103,6 +103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2469d39526614b14d85c0c3da81cf195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kill_radius: 3
+  enemy_layer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!135 &13596662
 SphereCollider:
   m_ObjectHideFlags: 1

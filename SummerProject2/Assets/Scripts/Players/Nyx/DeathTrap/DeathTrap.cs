@@ -11,10 +11,16 @@ public class DeathTrap : MonoBehaviour {
 
     [HideInInspector]public NyxDeathTrapState nyx_death_trap_state; //Reference to the nyx state
 
+    public float kill_radius = 3; //Radius of the zone that will kill every enemy inside
+    public LayerMask enemy_layer; //Layer mask of enemies
+
+    EnemyManager enemy_manager;
+
     void Awake()
     {
         mark = transform.FindChild("Mark").GetComponent<ParticleSystem>();
         explosion = transform.FindChild("Explosion").GetComponent<ParticleSystem>();
+        enemy_manager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
     }
 
 
@@ -36,7 +42,7 @@ public class DeathTrap : MonoBehaviour {
 
     void OnTriggerEnter(Collider coll)
     {
-        if(coll.tag == Tags.player && active == false) //Change for enemy
+        if(coll.tag == Tags.enemy && active == false) //Change for enemy
         {
             nyx_death_trap_state.trap = null; //Nyx has no control over the trap when it has been activated.
             active = true;
@@ -44,7 +50,13 @@ public class DeathTrap : MonoBehaviour {
             mark.Stop();
             explosion.Play();
 
-            //Kill the enemy and stop his movement
+            //Kill the enemy
+            Collider[] enemies = Physics.OverlapSphere(transform.position, kill_radius, enemy_layer);
+
+            foreach(Collider enemy in enemies)
+            {
+                enemy_manager.DestroyEnemy(enemy.gameObject);
+            }
         }
     }
 }

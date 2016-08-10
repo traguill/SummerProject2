@@ -48,7 +48,7 @@ public class NyxDashState : INyxState {
             {
                 if(hit_dash.transform.tag == Tags.enemy) //Enemy found in the way
                 {
-                    hit_dash.transform.tag = Tags.corpse; //Kill enemy in the way (for now only change tag) TODO.
+                    nyx.enemy_manager.DestroyEnemy(hit_dash.transform.gameObject); //Kill enemy in the way 
                 }
                 else
                 {
