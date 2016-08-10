@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RhandorController : MonoBehaviour {
+public class RhandorController : Enemies {
 
     public GameObject neutral_path, alert_path;
     [HideInInspector] public Transform[] neutral_patrol, alert_patrol;
@@ -35,6 +35,7 @@ public class RhandorController : MonoBehaviour {
         corpse_state = new RhandorCorpseState(this);
 
         render = GetComponent<SpriteRenderer>();
+        type = ENEMY_TYPES.RHANDOR;
     }
     
     void Start()
@@ -55,7 +56,10 @@ public class RhandorController : MonoBehaviour {
 
     public void Dead()
     {
-        ChangeStateTo(corpse_state);
+        if (current_state != corpse_state)
+            ChangeStateTo(corpse_state);
+        else
+            Debug.Log("The enemy is already dead!");
     }
 }
 

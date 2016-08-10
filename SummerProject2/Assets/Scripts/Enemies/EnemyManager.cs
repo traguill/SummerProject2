@@ -3,14 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class EnemyManager : MonoBehaviour
-{
+{ 
     [HideInInspector] public GameObject[] enemies;
     [HideInInspector] public GameObject[] players;
+
+    GameObject rhandor;
 
     void Awake()
     {
         enemies = GameObject.FindGameObjectsWithTag(Tags.enemy);
         players = GameObject.FindGameObjectsWithTag(Tags.player);
+
+        rhandor = GameObject.Find("Rhandor");
     }
 
 	// Use this for initialization
@@ -19,13 +23,26 @@ public class EnemyManager : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update ()
-    { }
+    {
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            DestroyEnemy(rhandor);
+        }
+    }
 
     /// <summary>
-    /// Kill an enemy.
+    /// Destroy an enemy.
     /// </summary>
-    public void KillEnemy(GameObject EnemyToKill)
+    public void DestroyEnemy(GameObject enemy_to_destroy)
     {
-        EnemyToKill.GetComponent<RhandorController>().Dead();
+        Enemies enemy = enemy_to_destroy.GetComponent<Enemies>();
+
+        switch(enemy.type)
+        {
+            case (ENEMY_TYPES.RHANDOR):
+                enemy_to_destroy.GetComponent<RhandorController>().Dead();
+                break;
+        }
+        
     }
 }

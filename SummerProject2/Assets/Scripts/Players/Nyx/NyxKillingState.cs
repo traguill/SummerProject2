@@ -34,10 +34,9 @@ public class NyxKillingState : INyxState
         }
         else //Killing the enemy
         {
-            nyx.enemy_manager.KillEnemy(enemy);
+            nyx.enemy_manager.DestroyEnemy(enemy);
             ToIdleState();
-        }
-        
+        }        
     }
 
     public void ToIdleState()

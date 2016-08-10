@@ -597,6 +597,154 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &416373188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 416373189}
+  - 65: {fileID: 416373195}
+  - 212: {fileID: 416373194}
+  - 195: {fileID: 416373193}
+  - 114: {fileID: 416373192}
+  - 114: {fileID: 416373191}
+  - 114: {fileID: 416373190}
+  m_Layer: 10
+  m_Name: Rhandor
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &416373189
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 416373188}
+  m_LocalRotation: {x: 0.50000006, y: 0, z: 0, w: 0.8660254}
+  m_LocalPosition: {x: 34.7, y: 0.7, z: 6.6}
+  m_LocalScale: {x: 0.19906504, y: 0.19906507, z: 0.19906507}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1795589376}
+  m_RootOrder: 1
+--- !u!114 &416373190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 416373188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecdb1355f45fbc743b50e1fac8043599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detected_material: {fileID: 2100000, guid: 0e567dd3309d5a944bbcfee341ff23da, type: 2}
+  normal_material: {fileID: 2100000, guid: 2ec584f46772f274f8b7fdd684288113, type: 2}
+  max_detection_time: 3
+--- !u!114 &416373191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 416373188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0965ef6a60bae204fa630559b4933a26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  neutral_path: {fileID: 1891547429}
+  alert_path: {fileID: 2019888205}
+  neutral_patrol: []
+  alert_patrol: []
+  current_position: 0
+  render: {fileID: 0}
+--- !u!114 &416373192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 416373188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b0dbf3c71d3a542abfb8d080a2fa61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  view_radius: 10
+  view_angle: 110
+  target_mask:
+    serializedVersion: 2
+    m_Bits: 1536
+  obstacle_mask:
+    serializedVersion: 2
+    m_Bits: 0
+  visible_targets: []
+--- !u!195 &416373193
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 416373188}
+  m_Enabled: 1
+  m_Radius: 6.825
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0.5
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 14.680001
+  m_BaseOffset: 7.3400006
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!212 &416373194
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 416373188}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300016, guid: 91a884cd094ef554aa5945239b7f260e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+--- !u!65 &416373195
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 416373188}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 13.65, y: 14.680001, z: 0.20000046}
+  m_Center: {x: 0, y: -0.00000011920929, z: 0.00000047683716}
 --- !u!1001 &424524259
 Prefab:
   m_ObjectHideFlags: 0
@@ -1436,6 +1584,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24980e784eeaab240b0cd41812e212d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  environment_collision_layer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &800448276
 GameObject:
   m_ObjectHideFlags: 0
@@ -3229,6 +3380,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1795589376}
+  - 114: {fileID: 1795589378}
   - 114: {fileID: 1795589377}
   m_Layer: 0
   m_Name: EnemyManager
@@ -3249,6 +3401,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1796184101}
+  - {fileID: 416373189}
   m_Father: {fileID: 0}
   m_RootOrder: 10
 --- !u!114 &1795589377
@@ -3264,6 +3417,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies: []
   players: []
+--- !u!114 &1795589378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1795589375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92beaa10ed0633649a1dc24e10ae8309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &1796184100
 GameObject:
   m_ObjectHideFlags: 0
@@ -3292,7 +3457,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1796184100}
   m_LocalRotation: {x: 0.50000006, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 11.9, y: 0.7, z: -7.7}
+  m_LocalPosition: {x: 23.2, y: 0.7, z: 6.6}
   m_LocalScale: {x: 0.19906504, y: 0.19906506, z: 0.19906506}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
   m_Children: []
@@ -3321,6 +3486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0965ef6a60bae204fa630559b4933a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   neutral_path: {fileID: 1891547429}
   alert_path: {fileID: 2019888205}
   neutral_patrol: []
