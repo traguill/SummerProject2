@@ -18,6 +18,7 @@ public class RhandorController : Enemies {
     [HideInInspector] public RhandorIdleState idle_state;
     [HideInInspector] public RhandorPatrolState patrol_state;
     [HideInInspector] public RhandorAlertState alert_state;
+    [HideInInspector] public RhandorSpottedState spotted_state;
     [HideInInspector] public RhandorCorpseState corpse_state;
 
     void Awake()
@@ -30,7 +31,9 @@ public class RhandorController : Enemies {
         neutral_patrol = patrol_state.AwakeState();  // It transforms the path GameObject to Transform[]
         // -- ALERT --
         alert_state = new RhandorAlertState(this);
-        alert_patrol = alert_state.AwakeState();     // It transforms the path GameObject to Transform[]    
+        alert_patrol = alert_state.AwakeState();     // It transforms the path GameObject to Transform[] 
+        // -- SPOTTED --
+        spotted_state = new RhandorSpottedState(this);
         // -- CORPSE --
         corpse_state = new RhandorCorpseState(this);
 
@@ -40,7 +43,7 @@ public class RhandorController : Enemies {
     
     void Start()
     {
-        ChangeStateTo(idle_state);
+        ChangeStateTo(patrol_state);
     }
 
     void Update()

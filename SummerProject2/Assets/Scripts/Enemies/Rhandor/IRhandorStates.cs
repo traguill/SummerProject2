@@ -10,7 +10,7 @@ public interface IRhandorStates
 
     void ToIdleState();
 
-    //void ToSpotState();
+    void ToSpottedState();
 
     void ToPatrolState();
 

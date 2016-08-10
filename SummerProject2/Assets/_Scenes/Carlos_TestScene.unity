@@ -385,9 +385,6 @@ MonoBehaviour:
   speed_camera: 1
   disable_camera_movement_mouse: 1
   zone_for_displacement: 0
-  Barion: {fileID: 1101146798}
-  Cosmo: {fileID: 0}
-  Nyx: {fileID: 0}
 --- !u!1 &249612461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,8 +1855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89dfdb1ea66d1d1468bda00b00954c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sel_rect_color: {r: 0.8, g: 0.8, b: 0.95, a: 0.25}
-  sel_border_color: {r: 0.8, g: 0.8, b: 0.95, a: 1}
 --- !u!114 &1082248021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2437,11 +2432,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0965ef6a60bae204fa630559b4933a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   neutral_path: {fileID: 2136321636}
   alert_path: {fileID: 1935016820}
   neutral_patrol: []
   alert_patrol: []
   current_position: 0
+  render: {fileID: 0}
 --- !u!65 &1753193548
 BoxCollider:
   m_ObjectHideFlags: 0

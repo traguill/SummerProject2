@@ -22,17 +22,22 @@ public class RhandorCorpseState : IRhandorStates {
 
     public void ToIdleState()
     {
-        enemy.ChangeStateTo(enemy.idle_state);
+        Debug.Log("The enemy is dead. Resurrection is still not possible...");
     }
 
     public void ToPatrolState()
     {
-        enemy.ChangeStateTo(enemy.patrol_state);
+        Debug.Log("The enemy is dead. Resurrection is still not possible...");
     }
 
     public void ToAlertState()
     {
-        enemy.ChangeStateTo(enemy.alert_state);
+        Debug.Log("The enemy is dead. Resurrection is still not possible...");
+    }
+
+    public void ToSpottedState()
+    {
+        Debug.Log("The enemy is dead. Resurrection is still not possible...");
     }
 
     public void ToCorpseState()

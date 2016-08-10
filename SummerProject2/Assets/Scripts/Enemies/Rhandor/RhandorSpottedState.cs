@@ -1,28 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RhandorIdleState : IRhandorStates
+public class RhandorSpottedState : IRhandorStates
 {
     private readonly RhandorController enemy;
 
-    public RhandorIdleState(RhandorController enemy_controller)
+    public RhandorSpottedState(RhandorController enemy_controller)
     {
         enemy = enemy_controller;
     }
 
     public void StartState()
     {
-       // Enemies don't have IDLE! For now...
+        
     }
 
     public void UpdateState()
     {
-        // Enemy doesn't have a IDLE state right now.
+        
     }
 
     public void ToIdleState()
     {
-        Debug.Log("Enemy" + enemy.name + "can't transition to same state IDLE");
+        enemy.ChangeStateTo(enemy.idle_state);
     }
 
     public void ToPatrolState()
@@ -37,12 +37,11 @@ public class RhandorIdleState : IRhandorStates
 
     public void ToSpottedState()
     {
-        enemy.ChangeStateTo(enemy.spotted_state);
+        Debug.Log("Enemy" + enemy.name + "can't transition to same state SPOTTED");
     }
 
     public void ToCorpseState()
     {
         enemy.ChangeStateTo(enemy.corpse_state);
     }
-
 }

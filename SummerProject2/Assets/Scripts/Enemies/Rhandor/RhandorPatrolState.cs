@@ -78,6 +78,11 @@ public class RhandorPatrolState : IRhandorStates
         enemy.ChangeStateTo(enemy.alert_state);
     }
 
+    public void ToSpottedState()
+    {
+        enemy.ChangeStateTo(enemy.spotted_state);
+    }
+
     public void ToCorpseState()
     {
         enemy.ChangeStateTo(enemy.corpse_state);

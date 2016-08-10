@@ -77,6 +77,11 @@ public class RhandorAlertState : IRhandorStates
         Debug.Log("Enemy" + enemy.name + "can't transition to same state ALERT");
     }
 
+    public void ToSpottedState()
+    {
+        enemy.ChangeStateTo(enemy.spotted_state);
+    }
+
     public void ToCorpseState()
     {
         enemy.ChangeStateTo(enemy.corpse_state);
