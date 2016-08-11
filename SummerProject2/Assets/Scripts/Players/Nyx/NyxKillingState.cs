@@ -13,6 +13,8 @@ public class NyxKillingState : INyxState
 
     float kill_stopping_distance = 3;
 
+    Vector3 destination = new Vector3(); //Pathfinding
+
     public NyxKillingState(NyxController nyx_controller)
     {
         nyx = nyx_controller;
@@ -33,7 +35,25 @@ public class NyxKillingState : INyxState
             {
                 enemy_near = true;
             }
+
+            if(nyx.is_selected) //Cancel action if selected & new path asigned
+            {
+                
+                if(nyx.KillEnemy())
+                {
+                    ToKillingState();
+                    return;
+                }
+
+                if (nyx.GetMovement(ref destination)) //Canceled by walking
+                {
+                    ToWalkingState();
+                    return;
+                }       
+            }
+
             nyx.agent.SetDestination(kill_point.position);
+
         }
         else //Killing the enemy
         {
@@ -49,12 +69,13 @@ public class NyxKillingState : INyxState
 
     public void ToKillingState()
     {
-        //For now this doesnt work
+        nyx.ChangeStateTo(nyx.killing_state);
     }
 
     public void ToWalkingState()
     {
-        //For now this doesnt work
+        nyx.agent.SetDestination(destination);
+        nyx.ChangeStateTo(nyx.walking_state);
     }
 
     public void ToHideState()
