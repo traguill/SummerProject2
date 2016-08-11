@@ -17,6 +17,10 @@ public class CameraController : MonoBehaviour
     [HideInInspector] public CameraAlertState alert_state;
     [HideInInspector] public CameraFollowingState following_state;
 
+    // Script references
+    [HideInInspector] public AlarmSystem alarm_system;
+    [HideInInspector] public LastSpottedPosition last_spotted_position;
+
     void Awake()
     {
         // State machine
@@ -29,6 +33,9 @@ public class CameraController : MonoBehaviour
 
         camera_lens = GameObject.Find("camera_lens").transform;
         initial_forward_direction = camera_lens.transform.forward;
+
+        alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
+        last_spotted_position = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<LastSpottedPosition>();
     }
 
     void Start()

@@ -5,7 +5,6 @@ public class CameraFollowingState : ICameraStates
 {
     private readonly CameraController camera;
     private float time_without_detection;
-    private AlarmSystem alarm_system;
 
     GameObject[] players;
 
@@ -18,7 +17,6 @@ public class CameraFollowingState : ICameraStates
     {
         players = GameObject.FindGameObjectsWithTag(Tags.player);
         time_without_detection = 0.0f;
-        alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
     }
 
     public void UpdateState()
@@ -79,15 +77,12 @@ public class CameraFollowingState : ICameraStates
 
     private void IsTimeExceeded()
     {
+        // CRZ TODO: Alert mode is not implemented!
         if (time_without_detection > camera.seconds_from_last_sight)
-            if (alarm_system.isAlarmActive())
-            {
+            if (camera.alarm_system.isAlarmActive())
                 camera.ChangeStateTo(camera.idle_state);
-            }
             else
-            {
                 camera.ChangeStateTo(camera.idle_state);
-            }
     }
 
 }
