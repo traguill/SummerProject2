@@ -11,6 +11,8 @@ public class NyxKillingState : INyxState
 
     bool enemy_near; //Is the enemy near enough to kill it?
 
+    float kill_stopping_distance = 3;
+
     public NyxKillingState(NyxController nyx_controller)
     {
         nyx = nyx_controller;
@@ -26,11 +28,12 @@ public class NyxKillingState : INyxState
     {
         if(enemy_near == false) //Moving to the enemy
         {
-            nyx.agent.SetDestination(kill_point.position);
-            if (nyx.DstArrived())
+            
+            if (Vector3.Distance(nyx.transform.position, kill_point.position) <= kill_stopping_distance)
             {
                 enemy_near = true;
             }
+            nyx.agent.SetDestination(kill_point.position);
         }
         else //Killing the enemy
         {

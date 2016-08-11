@@ -473,7 +473,8 @@ Prefab:
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6555936, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &424524259
@@ -607,6 +608,19 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 409059880}
   m_Script: {fileID: 11500000, guid: 0cb500b437d20eb43b7c147216db2a68, type: 3}
+--- !u!136 &434072691
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 434072684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.5599997
+  m_Height: 12.28
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &531445021
 Prefab:
   m_ObjectHideFlags: 0
@@ -1442,14 +1456,6 @@ Prefab:
     - target: {fileID: 428026, guid: 68f0529ea36ca1d4488a4d4949c6afa8, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11492218, guid: 68f0529ea36ca1d4488a4d4949c6afa8, type: 2}
-      propertyPath: view_angle
-      value: 360
-      objectReference: {fileID: 0}
-    - target: {fileID: 5449726, guid: 68f0529ea36ca1d4488a4d4949c6afa8, type: 2}
-      propertyPath: m_IsKinematic
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68f0529ea36ca1d4488a4d4949c6afa8, type: 2}
