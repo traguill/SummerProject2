@@ -78,7 +78,7 @@ public class EnemyFieldView : MonoBehaviour
     {
         foreach(Transform t in visible_targets)
         {
-            if (!t.GetComponentInParent<Invisible>().IsInvisible())
+            if (t.GetComponent<Invisible>().IsInvisible())
                 continue;
 
             // If enemy corpse is found, alert mode is activated

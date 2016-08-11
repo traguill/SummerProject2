@@ -6,6 +6,7 @@ public class RhandorPatrolState : IRhandorStates
     private NavMeshAgent agent;
     private float patrol_speed;
     private AlarmSystem alarm_system;
+    private LastSpottedPosition last_spotted_position;
 
     private readonly RhandorController enemy;
 
@@ -38,7 +39,9 @@ public class RhandorPatrolState : IRhandorStates
         enemy.current_position = 0;
         agent = enemy.GetComponent<NavMeshAgent>();     // Agent for NavMesh
         patrol_speed = 2.5f;
+
         alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
+        last_spotted_position = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<LastSpottedPosition>();
 
         return neutral_patrol;
     }
@@ -54,9 +57,7 @@ public class RhandorPatrolState : IRhandorStates
     {
         // If the alarm is active, the enemy change its current state to Alert
         if (alarm_system.isAlarmActive())
-        {
-            ToAlertState();
-        }             
+            ToSpottedState();                   
 
         // Choose the next destination point when the agent gets close to the current one.
         if (agent.hasPath && agent.remainingDistance < agent.stoppingDistance)
