@@ -16,7 +16,6 @@ public class EnemyFieldView : MonoBehaviour
 
     [HideInInspector] public List<Transform> visible_targets = new List<Transform>();
 
-
     // Awake
     void Awake()
     {

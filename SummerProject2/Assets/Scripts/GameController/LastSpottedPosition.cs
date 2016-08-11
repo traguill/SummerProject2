@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LastSpottedPosition : MonoBehaviour {
 
-    public Vector3 last_position;
+    private Vector3 last_position;
     private bool player_spotted;
 
 	// Use this for initialization
@@ -17,10 +17,19 @@ public class LastSpottedPosition : MonoBehaviour {
 	void Update ()
     { }
 
-    public void SetLastSpottedPosition(Vector3 new_position)
+    // Property
+    public Vector3 LastPosition
     {
-        last_position = new_position;
-        player_spotted = true;
+        set
+        {
+            last_position = value;
+            player_spotted = true;
+        }
+
+        get
+        {
+            return last_position;
+        }
     }
 
     public bool IsPlayerSpotted()

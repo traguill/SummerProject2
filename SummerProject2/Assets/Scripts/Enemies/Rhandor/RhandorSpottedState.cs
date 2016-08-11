@@ -3,21 +3,37 @@ using System.Collections;
 
 public class RhandorSpottedState : IRhandorStates
 {
-    private readonly RhandorController enemy;
+    
+    private readonly RhandorController enemy;   
+    private float time_searching, max_time_searching;
 
     public RhandorSpottedState(RhandorController enemy_controller)
     {
         enemy = enemy_controller;
+        max_time_searching = 5.0f;  
     }
 
     public void StartState()
     {
-        
+        time_searching = 0.0f;
+        enemy.agent.destination = enemy.last_spotted_position.LastPosition;
+        enemy.agent.speed = enemy.spotted_speed;
     }
 
     public void UpdateState()
     {
-        
+        if(enemy.agent.remainingDistance < enemy.agent.stoppingDistance)
+        {
+            if (time_searching > max_time_searching)
+            {
+                if (enemy.alarm_system.isAlarmActive())
+                    ToAlertState();
+                else
+                    ToPatrolState();
+            }
+            else
+                time_searching += Time.deltaTime;
+        }       
     }
 
     public void ToIdleState()

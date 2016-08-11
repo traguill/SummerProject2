@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEditor;
 
 [CustomEditor(typeof(RhandorController))]
+[CanEditMultipleObjects]
 public class EnemyPatrolEditor : Editor
 {
     private RhandorController item;

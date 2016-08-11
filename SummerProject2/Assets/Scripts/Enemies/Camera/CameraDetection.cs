@@ -10,6 +10,7 @@ public class CameraDetection : MonoBehaviour {
     void Awake()
     {
         alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
+        last_spotted_position = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<LastSpottedPosition>();
         camera = GetComponentInParent<CameraController>();
     }
 
@@ -19,7 +20,7 @@ public class CameraDetection : MonoBehaviour {
         {
             alarm_system.SetAlarm(ALARM_STATE.ALARM_ON);
             camera.ChangeStateTo(camera.following_state);
-            last_spotted_position.SetLastSpottedPosition(other.transform.position);
+            last_spotted_position.LastPosition = other.transform.position;
         }           
     }
 }

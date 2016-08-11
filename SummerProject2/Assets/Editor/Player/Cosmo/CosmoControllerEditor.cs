@@ -5,7 +5,7 @@ using UnityEditor;
 [CustomEditor (typeof(CosmoController))]
 public class CosmoControllerEditor : Editor 
 {
-    void OnSceneGUI()
+    public void OnSceneGUI()
     {
         CosmoController cosmo = (CosmoController)target;
 

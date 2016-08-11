@@ -2,11 +2,7 @@
 using System.Collections;
 
 public class RhandorAlertState : IRhandorStates
-{
-    private NavMeshAgent agent;
-    private float alert_speed;
-    private AlarmSystem alarm_system;
-
+{   
     private readonly RhandorController enemy;
 
     // Constructor
@@ -35,31 +31,27 @@ public class RhandorAlertState : IRhandorStates
             alert_patrol[0].position = new Vector3(999.9f, 999.9f, 999.9f);
         }
 
-        agent = enemy.GetComponent<NavMeshAgent>();     // Agent for NavMesh
-        alert_speed = 5.0f;
-        alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
-
         return alert_patrol;
     }
 
     public void StartState()
     {
-        agent.speed = alert_speed;
-        enemy.current_position = findClosestPoint(enemy.alert_patrol);
-        goToNextPoint();
+        enemy.agent.speed = enemy.alert_speed;
+        enemy.current_position = enemy.findClosestPoint(enemy.alert_patrol);
+        enemy.goToNextPoint(enemy.alert_patrol);
     }
 
     public void UpdateState()
     {
         // If the alarm is turned off, the enemy reverts its current state to Patrol
-        if (!alarm_system.isAlarmActive())
+        if (!enemy.alarm_system.isAlarmActive())
         {
             ToPatrolState();
         }
 
         // Choose the next destination point when the agent gets close to the current one.
-        if (agent.hasPath && agent.remainingDistance < agent.stoppingDistance)
-            goToNextPoint();
+        if (enemy.agent.hasPath && enemy.agent.remainingDistance < enemy.agent.stoppingDistance)
+            enemy.goToNextPoint(enemy.alert_patrol);
     }
 
     public void ToIdleState()
@@ -85,49 +77,5 @@ public class RhandorAlertState : IRhandorStates
     public void ToCorpseState()
     {
         enemy.ChangeStateTo(enemy.corpse_state);
-    }
-
-    private void goToNextPoint()
-    {
-        // Returns if no points have been set up
-        if (enemy.alert_patrol.Length == 0)
-            return;
-
-        // Set the agent to go to the currently selected destination.
-        agent.destination = enemy.alert_patrol[enemy.current_position].position;
-
-        // Choose the next point in the array as the destination,
-        // cycling to the start if necessary.
-        enemy.current_position = (enemy.current_position + 1) % enemy.alert_patrol.Length;
-    }
-
-    /// <summary>
-    /// findClosestPoint finds the nearest position from the current patrol path
-    /// assigned to this enemy. It is used when the game switches between alarm states.
-    /// </summary>
-    /// <returns> The index of the closest position on its Transform[] patrol </returns>
-    private int findClosestPoint(Transform[] path_to_search)
-    {
-        int index = -1;
-        NavMeshPath path = new NavMeshPath();
-        float minimum_distance = 1000000.0f;
-
-        for (int i = 0; i < path_to_search.Length; ++i)
-        {
-            agent.CalculatePath(path_to_search[i].position, path);
-            float distance = 0;
-            for (int j = 0; j < path.corners.Length - 1; ++j)
-            {
-                distance += Vector3.Distance(path.corners[j], path.corners[j + 1]);
-            }
-
-            if (distance < minimum_distance)
-            {
-                index = i;
-                minimum_distance = distance;
-            }
-        }
-
-        return index;
     }
 }

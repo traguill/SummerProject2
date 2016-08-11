@@ -12,7 +12,7 @@ public class RhandorCorpseState : IRhandorStates {
 
     public void StartState()
     {
-        
+        enemy.agent.Stop();
     }
 
     public void UpdateState()
