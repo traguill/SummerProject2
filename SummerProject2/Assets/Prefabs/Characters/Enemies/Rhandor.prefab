@@ -125,10 +125,16 @@ MonoBehaviour:
   type: 0
   neutral_path: {fileID: 0}
   alert_path: {fileID: 0}
+  patrol_speed: 2.5
+  alert_speed: 5
+  spotted_speed: 7.5
+  agent: {fileID: 0}
   neutral_patrol: []
   alert_patrol: []
   current_position: 0
   render: {fileID: 0}
+  alarm_system: {fileID: 0}
+  last_spotted_position: {fileID: 0}
 --- !u!114 &11469008
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -39,6 +39,5 @@ public class BarionControllerEditor : Editor
         {
             Handles.Label(barion.transform.position, "SHIELD");
         }
-    }
-	
+    }	
 }

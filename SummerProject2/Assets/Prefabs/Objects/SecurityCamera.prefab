@@ -130,7 +130,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 129784}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: 28.78, y: -2.41, z: -0.18}
+  m_LocalPosition: {x: 3.3, y: -2.64, z: 0.22}
   m_LocalScale: {x: 1.1382842, y: 1.1382843, z: 1.1382843}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -259,6 +259,8 @@ MonoBehaviour:
   camera_lens: {fileID: 0}
   initial_forward_direction: {x: 0, y: 0, z: 0}
   mid_angle: 0
+  alarm_system: {fileID: 0}
+  last_spotted_position: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
