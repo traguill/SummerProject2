@@ -23,12 +23,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 445160}
-  - 65: {fileID: 6558710}
   - 212: {fileID: 21259728}
   - 195: {fileID: 19570248}
   - 114: {fileID: 11405006}
   - 114: {fileID: 11459572}
   - 114: {fileID: 11469008}
+  - 136: {fileID: 13681142}
   m_Layer: 10
   m_Name: Rhandor
   m_TagString: Enemy
@@ -43,9 +43,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5.5}
+  m_LocalPosition: {x: 0, y: 0, z: -11.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 445160}
   m_RootOrder: 0
@@ -55,26 +54,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139990}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.2, y: 0.7, z: 6.6}
-  m_LocalScale: {x: 0.19906504, y: 0.19906506, z: 0.19906506}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071067}
+  m_LocalPosition: {x: 11.63, y: 0.7, z: 15.92}
+  m_LocalScale: {x: 0.19906503, y: 0.19906506, z: 0.19906504}
   m_Children:
   - {fileID: 433096}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!65 &6558710
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139990}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 13.65, y: 14.680001, z: 0.20000046}
-  m_Center: {x: 0, y: -0.00000011920929, z: 0.00000047683716}
 --- !u!114 &11405006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,7 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view_radius: 10
-  view_angle: 110
+  view_angle: 120
   target_mask:
     serializedVersion: 2
     m_Bits: 1536
@@ -127,6 +113,19 @@ MonoBehaviour:
   detected_material: {fileID: 2100000, guid: 0e567dd3309d5a944bbcfee341ff23da, type: 2}
   normal_material: {fileID: 2100000, guid: 2ec584f46772f274f8b7fdd684288113, type: 2}
   max_detection_time: 3
+--- !u!136 &13681142
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139990}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 6.824999
+  m_Height: 14.679999
+  m_Direction: 1
+  m_Center: {x: -0.0000076293945, y: 0, z: 0.0000038146973}
 --- !u!195 &19570248
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -141,7 +140,7 @@ NavMeshAgent:
   m_AngularSpeed: 120
   m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 14.680001
   m_BaseOffset: 7.3400006
