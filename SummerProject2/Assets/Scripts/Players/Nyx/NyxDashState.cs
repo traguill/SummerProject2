@@ -20,6 +20,8 @@ public class NyxDashState : INyxState {
 
         nyx.StopMovement(); //Stops the movement
 
+        nyx.agent.enabled = false; //Disable navmesh agent collisions
+        
         Ray ray_mouse = Camera.main.ScreenPointToRay(Input.mousePosition); //Ray to mouse position to set destination of the dash
         RaycastHit hit_mouse;
         if(Physics.Raycast(ray_mouse, out hit_mouse, 100, nyx.floor_layer))
@@ -91,6 +93,7 @@ public class NyxDashState : INyxState {
 
     public void ToIdleState()
     {
+        nyx.agent.enabled = true; //Enable navmesh agent collisions
         nyx.ChangeStateTo(nyx.idle_state);
     }
 

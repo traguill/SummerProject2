@@ -17,7 +17,7 @@ public class RhandorCorpseState : IRhandorStates {
 
     public void UpdateState()
     {
-        enemy.render.flipY = true;
+        enemy.render.flipY = false; //Due to the shader the sprite is already flipped.
     }
 
     public void ToIdleState()

@@ -42,13 +42,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 481172}
   - 212: {fileID: 21241318}
-  - 65: {fileID: 6555936}
   - 54: {fileID: 5446292}
   - 195: {fileID: 19566292}
   - 114: {fileID: 11469332}
   - 114: {fileID: 11486648}
   - 114: {fileID: 11425936}
   - 114: {fileID: 11416198}
+  - 136: {fileID: 13651952}
   m_Layer: 9
   m_Name: Cosmo
   m_TagString: Player
@@ -76,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.3, y: 1, z: -5.6}
+  m_LocalPosition: {x: 4.2, y: 1, z: -4.6}
   m_LocalScale: {x: 0.19171613, y: 0.19171607, z: 0.19171607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -91,7 +91,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -141,22 +141,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &6555936
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 195448}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 13.649999, y: 15.19, z: 9.44}
-  m_Center: {x: 0, y: -0.000000044703484, z: 0}
 --- !u!114 &11416198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,6 +254,19 @@ Projector:
   m_IgnoreLayers:
     serializedVersion: 2
     m_Bits: 4294967039
+--- !u!136 &13651952
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195448}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.5599997
+  m_Height: 12.28
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &19566292
 NavMeshAgent:
   m_ObjectHideFlags: 1
