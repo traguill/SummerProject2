@@ -14,7 +14,7 @@ public class ForwardDirection : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        transform.position = new Vector3(rhandor.transform.position.x, rhandor.transform.position.y, rhandor.transform.position.z) ;
+        transform.position = rhandor.transform.position;
         
 	}
 }

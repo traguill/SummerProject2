@@ -13,9 +13,11 @@ public class EnemyVisibility : MonoBehaviour
     public Material normal_material;
     public float max_detection_time = 3.0f;
 
-
     // EnemyManager
     private EnemyManager enemy_manager;
+
+    // DEBUG --> Arrow
+    MeshRenderer arrow;
 
     void Awake()
     {
@@ -26,6 +28,7 @@ public class EnemyVisibility : MonoBehaviour
         detected_time = 0.0f;
 
         enemy_manager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
+        arrow = transform.FindChild("Arrow3D").gameObject.GetComponent<MeshRenderer>();
     }
 	
 	// Update is called once per frame
@@ -71,7 +74,8 @@ public class EnemyVisibility : MonoBehaviour
     /// </summary>
     private void SetVisible()
     {
-        is_visible = false;        
+        is_visible = false;
+        arrow.enabled = false;       
 
         // Then, the spotted enemy turn to visible if some player is seeing him.
         foreach (GameObject player in enemy_manager.players)
@@ -81,6 +85,7 @@ public class EnemyVisibility : MonoBehaviour
                 if(spotted_enemy == transform)
                 {
                     is_visible = true;
+                    arrow.enabled = true;
                 }
             }
         }
