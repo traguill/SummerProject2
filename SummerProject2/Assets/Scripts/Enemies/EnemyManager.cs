@@ -9,6 +9,8 @@ public class EnemyManager : MonoBehaviour
 
     GameObject rhandor;
 
+    [HideInInspector] public bool fow_disabled = false; //If the fog of war is disabled the enemies are always visible
+
     void Awake()
     {
         enemies = GameObject.FindGameObjectsWithTag(Tags.enemy);

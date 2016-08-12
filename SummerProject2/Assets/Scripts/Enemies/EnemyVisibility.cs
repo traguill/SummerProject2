@@ -13,6 +13,7 @@ public class EnemyVisibility : MonoBehaviour
     public Material normal_material;
     public float max_detection_time = 3.0f;
 
+
     // EnemyManager
     private EnemyManager enemy_manager;
 
@@ -36,7 +37,7 @@ public class EnemyVisibility : MonoBehaviour
 
     private void Visualization()
     {
-        if (is_visible)
+        if (is_visible || enemy_manager.fow_disabled)
         {
             render.enabled = true; // Visible
             if (is_detected)
