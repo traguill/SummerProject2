@@ -159,7 +159,7 @@ MonoBehaviour:
     m_Bits: 1536
   obstacle_mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 34816
   visible_targets: []
 --- !u!114 &11422552
 MonoBehaviour:
