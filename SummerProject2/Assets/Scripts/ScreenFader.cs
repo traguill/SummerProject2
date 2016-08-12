@@ -61,6 +61,8 @@ public class ScreenFader : MonoBehaviour {
 
     public IEnumerator EndSceneRoutine(int SceneNumber)
     {
+        yield return new WaitForSeconds(2.0f); //Wait two seconds before fade to see what happened
+
         // Make sure the RawImage is enabled.
         fade_img.enabled = true;
         do

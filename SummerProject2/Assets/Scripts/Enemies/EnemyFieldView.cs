@@ -89,7 +89,14 @@ public class EnemyFieldView : MonoBehaviour
 
             // If player is found, the level resets.
             if (t.tag.Equals(Tags.player))
+            {
+                //Debug part
+                //---------------------------
+                GetComponent<SpriteRenderer>().material.SetColor("_Tint", new Color(1.0f, 1.0f, 0.0f, 0.0f)); //Tint yellow the enemy who discovered a character
+                //---------------------------
                 screen_fader.EndScene(0);
+            }
+               
         }        
     }
 

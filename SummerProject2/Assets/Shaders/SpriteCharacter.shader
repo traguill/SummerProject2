@@ -4,6 +4,7 @@
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_Color("Color", Color) = (1,1,1,1)
+		_Tint("Tint", Color) = (1,1,1,1)
 	}
 		SubShader
 	{
@@ -101,6 +102,8 @@
 
 			uniform sampler2D _MainTex;
 
+			uniform float4 _Tint;
+
 			struct vertexInput{
 				float4 vertex : POSITION;
 				float4 tex : TEXCOORD0;
@@ -138,6 +141,8 @@
 				col.rgb *= col.a;
 
 				col *= input.color_o.a;
+
+				col.rgb *= _Tint.rgb; //Apply tint
 
 				return col;
 			}
