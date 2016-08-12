@@ -2397,11 +2397,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417174, guid: 25ab6aa46bf217f499ad8de5925415a5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -6.2
+      value: 23.8
       objectReference: {fileID: 0}
     - target: {fileID: 417174, guid: 25ab6aa46bf217f499ad8de5925415a5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 24.4
+      value: 15.1
       objectReference: {fileID: 0}
     - target: {fileID: 182676, guid: 25ab6aa46bf217f499ad8de5925415a5, type: 2}
       propertyPath: m_IsActive
@@ -4525,6 +4525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies: []
   players: []
+  fow_disabled: 0
 --- !u!114 &1795589378
 MonoBehaviour:
   m_ObjectHideFlags: 0
