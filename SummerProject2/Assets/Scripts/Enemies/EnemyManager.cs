@@ -15,8 +15,6 @@ public class EnemyManager : MonoBehaviour
     {
         enemies = GameObject.FindGameObjectsWithTag(Tags.enemy);
         players = GameObject.FindGameObjectsWithTag(Tags.player);
-
-        rhandor = GameObject.Find("Rhandor");
     }
 
 	// Use this for initialization
@@ -26,10 +24,6 @@ public class EnemyManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            DestroyEnemy(rhandor);
-        }
     }
 
     /// <summary>

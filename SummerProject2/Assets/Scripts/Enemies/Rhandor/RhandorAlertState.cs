@@ -38,7 +38,9 @@ public class RhandorAlertState : IRhandorStates
     {
         enemy.agent.speed = enemy.alert_speed;
         enemy.current_position = enemy.findClosestPoint(enemy.alert_patrol);
-        enemy.goToNextPoint(enemy.alert_patrol);
+        enemy.agent.destination = enemy.alert_patrol[enemy.current_position].position;
+
+        enemy.time_waiting_on_position = 0.1f;
     }
 
     public void UpdateState()
@@ -49,9 +51,7 @@ public class RhandorAlertState : IRhandorStates
             ToPatrolState();
         }
 
-        // Choose the next destination point when the agent gets close to the current one.
-        if (enemy.agent.hasPath && enemy.agent.remainingDistance < enemy.agent.stoppingDistance)
-            enemy.goToNextPoint(enemy.alert_patrol);
+        enemy.CheckNextMovement(enemy.alert_patrol, enemy.stopping_time_alert_patrol);
     }
 
     public void ToIdleState()

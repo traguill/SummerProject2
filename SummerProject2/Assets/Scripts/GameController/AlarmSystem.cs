@@ -12,12 +12,15 @@ public class AlarmSystem : MonoBehaviour
     public float alarm_max_duration;      // Time (in seconds) that alarm is on
     private float alarm_timer;        
     private ALARM_STATE alarm_state;      // Alarm state: ON or OFF
+    public bool activate_alarm;           // Debug porpuses
 
     // Called before first start function
     void Awake()
     {
         alarm_state = ALARM_STATE.ALARM_OFF;
         alarm_max_duration = 5.0f; // Seconds
+
+        activate_alarm = false;
     }
 
 	// Use this for initialization
@@ -38,10 +41,16 @@ public class AlarmSystem : MonoBehaviour
             else
             {
                 alarm_state = ALARM_STATE.ALARM_OFF;
+                activate_alarm = false;
                 alarm_timer = 0.0f;
             }
-        }            
-	}
+        }  
+        
+        // Debug
+        if(activate_alarm)
+            alarm_state = ALARM_STATE.ALARM_ON;        
+
+    }
 
     public void SetAlarm(ALARM_STATE _alarm_state)
     {

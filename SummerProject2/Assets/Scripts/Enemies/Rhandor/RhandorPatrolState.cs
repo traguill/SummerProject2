@@ -4,7 +4,7 @@ using System.Collections;
 public class RhandorPatrolState : IRhandorStates
 {
     private readonly RhandorController enemy;
-
+    
     // Constructor
     public RhandorPatrolState(RhandorController enemy_controller)
     {
@@ -31,17 +31,20 @@ public class RhandorPatrolState : IRhandorStates
             neutral_patrol[0].position = new Vector3(999.9f, 999.9f, 999.9f);
         }
           
-        enemy.current_position = 0;
+        //enemy.current_position = 0;
         enemy.agent = enemy.GetComponent<NavMeshAgent>();     // Agent for NavMesh  
-
+        
         return neutral_patrol;
     }
 
     public void StartState()
     {
         enemy.agent.speed = enemy.patrol_speed;
+      
         enemy.current_position = enemy.findClosestPoint(enemy.neutral_patrol);
-        enemy.goToNextPoint(enemy.neutral_patrol);
+        enemy.agent.destination = enemy.neutral_patrol[enemy.current_position].position;
+
+        enemy.time_waiting_on_position = 0.1f;
     }
 
     public void UpdateState()
@@ -54,11 +57,10 @@ public class RhandorPatrolState : IRhandorStates
                 ToSpottedState();
             else
                 ToAlertState();
-        }                            
+        }
 
-        // Choose the next destination point when the agent gets close to the current one.
-        if (enemy.agent.hasPath && enemy.agent.remainingDistance < enemy.agent.stoppingDistance)
-            enemy.goToNextPoint(enemy.neutral_patrol);
+        enemy.CheckNextMovement(enemy.neutral_patrol, enemy.stopping_time_neutral_patrol);
+
     }
 
     public void ToIdleState()
@@ -84,5 +86,5 @@ public class RhandorPatrolState : IRhandorStates
     public void ToCorpseState()
     {
         enemy.ChangeStateTo(enemy.corpse_state);
-    }
+    }  
 }

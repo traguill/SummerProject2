@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RhandorController : Enemies {
 
     // NavMeshAgent variables and patrol routes
     public GameObject neutral_path, alert_path;
     public float patrol_speed, alert_speed, spotted_speed;
+    [HideInInspector] public float[] stopping_time_neutral_patrol = new float[1];
+    [HideInInspector] public float[] stopping_time_alert_patrol = new float[1];
+    [HideInInspector] public int num_neutral_waypoints = 0, num_alert_waypoints = 0;
+    [HideInInspector] public float time_waiting_on_position;
     [HideInInspector] public NavMeshAgent agent;   
-    [HideInInspector] public Transform[] neutral_patrol, alert_patrol;
-    [HideInInspector] public int current_position;    
+    [HideInInspector] public Transform[] neutral_patrol, alert_patrol;    
+    [HideInInspector] public int current_position;
 
     // For corpses representation
     [HideInInspector] public SpriteRenderer render;
@@ -90,12 +95,12 @@ public class RhandorController : Enemies {
         if (current_path.Length == 0)
             return;
 
-        // Set the agent to go to the currently selected destination.
-        agent.destination = current_path[current_position].position;
-
         // Choose the next point in the array as the destination,
         // cycling to the start if necessary.
         current_position = (current_position + 1) % current_path.Length;
+
+        // Set the agent to go to the currently selected destination.
+        agent.destination = current_path[current_position].position;        
     }
 
     /// <summary>
@@ -126,6 +131,31 @@ public class RhandorController : Enemies {
         }
 
         return index;
+    }
+
+    /// <summary>
+    ///  Check if the enemy has to change its destination or wait the number of seconds the user
+    ///  has introduced.
+    /// </summary>
+    public void CheckNextMovement(Transform[] current_path, float[] current_stopping_times)
+    {
+        //Choose the next destination point when the agent gets close to the current one.
+        // I have eliminated this snippet from the IF --> enemy.agent.hasPath &&
+        if (agent.remainingDistance < agent.stoppingDistance)
+        {
+            if (time_waiting_on_position > current_stopping_times[current_position])
+            {
+                goToNextPoint(current_path);
+                time_waiting_on_position = 0.1f;
+                agent.Resume();
+            }
+            else
+            {
+                time_waiting_on_position += Time.deltaTime;
+                agent.Stop();
+                agent.ResetPath();
+            }
+        }
     }
 }
 
