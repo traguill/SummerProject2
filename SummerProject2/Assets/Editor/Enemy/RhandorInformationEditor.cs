@@ -67,6 +67,12 @@ public class RhandorInformationEditor : Editor
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("Stop time", GUILayout.Width(75));
                 rhandor.stopping_time_neutral_patrol[i] = EditorGUILayout.FloatField(rhandor.stopping_time_neutral_patrol[i], GUILayout.Width(75));
+                if (GUILayout.Button("Reset", GUILayout.Width(55)))
+                {
+                    rhandor.stopping_time_neutral_patrol[i] = 0.0f;
+                    Debug.Log("Clicked!");
+                }
+                    
                 EditorGUILayout.EndHorizontal();
             }
         }

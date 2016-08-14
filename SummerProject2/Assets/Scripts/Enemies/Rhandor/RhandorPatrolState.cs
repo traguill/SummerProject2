@@ -60,7 +60,6 @@ public class RhandorPatrolState : IRhandorStates
         }
 
         enemy.CheckNextMovement(enemy.neutral_patrol, enemy.stopping_time_neutral_patrol);
-
     }
 
     public void ToIdleState()
