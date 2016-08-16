@@ -13,6 +13,7 @@ public class RhandorCorpseState : IRhandorStates {
     public void StartState()
     {
         enemy.agent.Stop();
+        enemy.enemy_field_view.StopCoroutine("FindTargetsWithDelay");
     }
 
     public void UpdateState()

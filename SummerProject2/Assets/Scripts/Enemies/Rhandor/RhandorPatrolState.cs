@@ -31,7 +31,6 @@ public class RhandorPatrolState : IRhandorStates
             neutral_patrol[0].position = new Vector3(999.9f, 999.9f, 999.9f);
         }
           
-        //enemy.current_position = 0;
         enemy.agent = enemy.GetComponent<NavMeshAgent>();     // Agent for NavMesh  
         
         return neutral_patrol;

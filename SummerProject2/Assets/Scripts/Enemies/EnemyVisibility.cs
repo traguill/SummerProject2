@@ -75,14 +75,14 @@ public class EnemyVisibility : MonoBehaviour
     private void SetVisible()
     {
         is_visible = false;
-        arrow.enabled = false;       
-
+        arrow.enabled = false;
+        
         // Then, the spotted enemy turn to visible if some player is seeing him.
         foreach (GameObject player in enemy_manager.players)
         {
-            foreach (Transform spotted_enemy in player.GetComponent<FieldOfView>().visible_targets)
+            foreach (Transform spotted_entity in player.GetComponent<FieldOfView>().visible_targets)
             {
-                if(spotted_enemy == transform)
+                if(spotted_entity == transform)
                 {
                     is_visible = true;
                     arrow.enabled = true;

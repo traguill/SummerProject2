@@ -13,6 +13,7 @@ public class EnemyFieldView : MonoBehaviour
 
     private AlarmSystem alarm_system;
     private ScreenFader screen_fader;
+    private EnemyManager enemy_manager;
 
     [HideInInspector] public List<Transform> visible_targets = new List<Transform>();
 
@@ -21,23 +22,24 @@ public class EnemyFieldView : MonoBehaviour
     {
         alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
         screen_fader = GameObject.FindGameObjectWithTag(Tags.screen_fader).GetComponent<ScreenFader>();
+
+        enemy_manager = GetComponentInParent<EnemyManager>();
     }
 
-    // Use this for initialization
     void Start()
     {
         StartCoroutine("FindTargetsWithDelay", 0.2f);
     }
 
-    IEnumerator FindTargetsWithDelay(float delay)
+     IEnumerator FindTargetsWithDelay(float delay)
     {
         while (true)
         {
             yield return new WaitForSeconds(delay);
-            if(FindVisibleTargets())
+            if (FindVisibleTargets())
             {
                 CheckVisibleTargets();
-            }            
+            }
         }
     }
 
@@ -46,7 +48,7 @@ public class EnemyFieldView : MonoBehaviour
     /// Visible_targets includes every player and/or enemy positions.
     /// </summary>
     /// <return> true whether some visible objects has been spotted. False otherwise. </return>
-    bool FindVisibleTargets()
+    public bool FindVisibleTargets()
     {
         visible_targets.Clear();
         Collider[] targets_in_view_radius = Physics.OverlapSphere(transform.position, view_radius, target_mask);
@@ -70,10 +72,10 @@ public class EnemyFieldView : MonoBehaviour
     }
 
     /// <summary>
-    /// CheckVisibleTargets() checks every Transform gameObject and checks its Tag. If player is found, the level resets. 
-    /// If enemy corpse is found, alert mode is activated
+    /// CheckVisibleTargets() checks every Transform gameObject returned by FindVisibleTargets() and checks its Tag.
+    /// If player is found, the level resets. If an enemy corpse is found, alert mode is activated.
     /// </summary>
-    void CheckVisibleTargets()
+    public void CheckVisibleTargets()
     {
         foreach(Transform t in visible_targets)
         {
@@ -95,11 +97,10 @@ public class EnemyFieldView : MonoBehaviour
                 GetComponent<SpriteRenderer>().material.SetColor("_Tint", new Color(1.0f, 1.0f, 0.0f, 0.0f)); //Tint yellow the enemy who discovered a character
                 //---------------------------
                 screen_fader.EndScene(0);
-            }
-               
+            }               
         }        
     }
-
+    
     public Vector3 DirectionFromAngle(float angle, bool angle_is_global)
     {
         if (!angle_is_global)

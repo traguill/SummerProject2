@@ -66,7 +66,7 @@ GameObject:
   - 114: {fileID: 11408062}
   - 114: {fileID: 11496492}
   - 114: {fileID: 11476052}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rhandor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.5, y: 0.7, z: 0}
+  m_LocalPosition: {x: 28.36, y: 0.7, z: 16.33}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -171,8 +171,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -205,6 +205,31 @@ MonoBehaviour:
   patrol_speed: 2.5
   alert_speed: 5
   spotted_speed: 7.5
+  stopping_time_neutral_patrol:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  stopping_time_alert_patrol:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  num_neutral_waypoints: 10
+  num_alert_waypoints: 10
+  time_waiting_on_position: 0
   agent: {fileID: 0}
   neutral_patrol: []
   alert_patrol: []
@@ -212,6 +237,7 @@ MonoBehaviour:
   render: {fileID: 0}
   alarm_system: {fileID: 0}
   last_spotted_position: {fileID: 0}
+  enemy_field_view: {fileID: 0}
 --- !u!114 &11413268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -260,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b0dbf3c71d3a542abfb8d080a2fa61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  view_radius: 60
+  view_radius: 7
   view_angle: 110
   target_mask:
     serializedVersion: 2

@@ -29,6 +29,7 @@ public class RhandorController : Enemies {
     // Scripts references
     [HideInInspector] public AlarmSystem alarm_system;
     [HideInInspector] public LastSpottedPosition last_spotted_position;
+    [HideInInspector] public EnemyFieldView enemy_field_view;
 
     void Awake()
     {
@@ -51,11 +52,12 @@ public class RhandorController : Enemies {
 
         alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
         last_spotted_position = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<LastSpottedPosition>();
+        enemy_field_view = GetComponent<EnemyFieldView>();
     }
     
     void Start()
     {
-        ChangeStateTo(patrol_state);
+        ChangeStateTo(patrol_state);        
     }
 
     void Update()
