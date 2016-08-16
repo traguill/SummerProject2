@@ -12,9 +12,25 @@ public class PortalController : MonoBehaviour
 
     PlayersManager players_manager;
 
+    bool destroy_portals = false; //The portals has to be destoryed
+
     void Awake()
     {
         players_manager = GameObject.Find("Players").GetComponent<PlayersManager>();
+    }
+
+    void Update()
+    {
+        if(destroy_portals)
+        {
+            if (portal_a != null)
+            {
+                if (portal_a.DestroyAnimFinished())
+                    Destroy(gameObject);
+            }
+            else
+                Destroy(gameObject);
+        }
     }
 
     /// <summary>
@@ -95,5 +111,7 @@ public class PortalController : MonoBehaviour
     public void DestroyPortals()
     {
         cosmo_portal_controller.DestroyPortals(); //Calls the state to actually destroy the portals.
+
+        destroy_portals = true;
     }
 }

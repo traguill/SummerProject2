@@ -180,7 +180,6 @@ public class CosmoPortalState : ICosmoState
     {
         if (portal_controller != null)
         {
-            GameObject.Destroy(portal_controller.gameObject);
 
             portal_controller = null;
 

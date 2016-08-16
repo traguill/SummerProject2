@@ -3,7 +3,10 @@ using System.Collections;
 
 public class Portal : MonoBehaviour
 {
-
+    //Animation
+    public GameObject portal_active_anim;
+    public ParticleSystem anim1;
+    public ParticleSystem anim2;
   
     public Transform second_portal = null; //The other portal
 
@@ -47,6 +50,33 @@ public class Portal : MonoBehaviour
     /// </summary>
     public void DestroyPortal(GameObject obj)
     {
+        PlayDestroyAnimation();
+
         controller.DestroyPortals(); //Calls the portal controller to destroy the portals
+
+        if(second_portal != null)
+        {
+            second_portal.GetComponent<Portal>().PlayDestroyAnimation();
+        }
+    }
+
+    public void PlayDestroyAnimation()
+    {
+        //Animation
+        portal_active_anim.SetActive(false);
+
+        anim1.Play();
+        anim2.Play();
+    }
+
+    /// <summary>
+    /// The destroy animation of the portal has finished?
+    /// </summary>
+    public bool DestroyAnimFinished()
+    {
+        if (anim2.IsAlive())
+            return false;
+        else
+            return true;
     }
 }
