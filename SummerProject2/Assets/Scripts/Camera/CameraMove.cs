@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraMove : MonoBehaviour {
 
     public float speed_camera;
-    public bool disable_camera_movement_mouse;
+    public bool enable_mouse_displacement;
     public float zone_for_displacement; // From 0 to 1. For instance, 0.25 means 25% of some length (width or height screen dimensions)
     private Vector2 edge_offset;        // Zone where camera moves will occur when active.
     private Vector3 position_target;
@@ -14,7 +14,6 @@ public class CameraMove : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        disable_camera_movement_mouse = true;
         smooth_transition = false;
         speed_camera = 10;
         zone_for_displacement = 0.1f;           // 10% of Width and Height Screen
@@ -35,7 +34,7 @@ public class CameraMove : MonoBehaviour {
         Vector3 mouse_position = Input.mousePosition;
         Vector3 pos = transform.position;
 
-        if(!disable_camera_movement_mouse)
+        if(enable_mouse_displacement)
         {
             if (mouse_position.x < edge_offset.x)
                 pos.Set(pos.x + (-speed_camera * Time.deltaTime), pos.y, pos.z);
@@ -57,7 +56,6 @@ public class CameraMove : MonoBehaviour {
 
         // Updating position
         transform.position = pos;
-
     }
 
     public void MoveCameraTo(Vector3 new_pos)
