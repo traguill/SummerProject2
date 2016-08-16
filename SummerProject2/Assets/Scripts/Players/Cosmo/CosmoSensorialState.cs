@@ -9,9 +9,7 @@ public class CosmoSensorialState : ICosmoState
 
     bool is_loading = false; //The ability is loading before actually casting.
     float load_time = 0.0f; //Current time loading the ability.
-    public float cast_time = 1.5f; //Loading time before casting the ability.
 
-    float detection_radius = 0.0f; //Current detection radius of the ability.
     public float detection_radius_speed = 10; //Speed to increase the detection radius.
     public float max_detection_radius = 20; //Detection range
 
@@ -31,7 +29,6 @@ public class CosmoSensorialState : ICosmoState
 
         is_loading = false;
         load_time = 0.0f;
-        detection_radius = 0.0f;
         detected_enemies.Clear();
     }
 
@@ -41,19 +38,19 @@ public class CosmoSensorialState : ICosmoState
         if(is_loading)
         {
             load_time += Time.deltaTime;
-            if (load_time >= cast_time)
+            if (load_time >= cosmo.sensorial_cast_time)
                 is_loading = false;
         }
         else //Actual ability effect
         {
-            detection_radius += Time.deltaTime * detection_radius_speed;
+            cosmo.sensorial_radius += Time.deltaTime * detection_radius_speed;
 
-            if (detection_radius >= max_detection_radius)
+            if (cosmo.sensorial_radius >= max_detection_radius)
             {
-                detection_radius = max_detection_radius;
+                cosmo.sensorial_radius = max_detection_radius;
             }
 
-            Collider[] enemies = Physics.OverlapSphere(cosmo.transform.position, detection_radius, detection_mask);
+            Collider[] enemies = Physics.OverlapSphere(cosmo.transform.position, cosmo.sensorial_radius, detection_mask);
 
             foreach (Collider enemy in enemies)
             {
@@ -69,7 +66,7 @@ public class CosmoSensorialState : ICosmoState
                 }
             }
 
-            if (detection_radius == max_detection_radius) //End ability
+            if (cosmo.sensorial_radius == max_detection_radius) //End ability
             {
                 ToIdleState();
             }

@@ -5,7 +5,7 @@ public class CosmoController : MonoBehaviour {
 
     //Selection
     public GameObject selection_circle;
-    public UnitSelection selection_system;
+    [HideInInspector]public UnitSelection selection_system;
     [HideInInspector] public bool is_selected = false;
 
     //Navigation
@@ -28,6 +28,9 @@ public class CosmoController : MonoBehaviour {
 
      //Abilities cooldown
     [HideInInspector] public Cooldown cooldown_inst; //Instance to cooldown script
+
+    public float sensorial_radius = 0.0f;
+    public float sensorial_cast_time = 1.0f;
 
     //Abilities utils
     //***************************************************************************************

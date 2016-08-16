@@ -812,6 +812,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11486648, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
+      propertyPath: sensorial_radius
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
   m_IsPrefabParent: 0
