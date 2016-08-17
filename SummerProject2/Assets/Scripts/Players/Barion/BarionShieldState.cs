@@ -42,6 +42,9 @@ public class BarionShieldState : IBarionState
 
         Quaternion rot_angle =  Quaternion.FromToRotation(Vector3.right, direction);
 
+        //Rotate 180º on Y the shield
+        rot_angle *= Quaternion.Euler(new Vector3(0, 180, 0));
+
         //Create SHIELD
         GameObject shield = GameObject.Instantiate(barion.shield_prefab, shield_position, rot_angle) as GameObject;
 

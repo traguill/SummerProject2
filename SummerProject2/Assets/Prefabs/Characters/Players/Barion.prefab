@@ -174,7 +174,7 @@ MonoBehaviour:
   floor_layer:
     serializedVersion: 2
     m_Bits: 256
-  shield_prefab: {fileID: 185220, guid: bb094b283c33bbc438b1fc75afe444bb, type: 2}
+  shield_prefab: {fileID: 107210, guid: 25c42c7e28afdf74baf0e59ae939bd62, type: 2}
 --- !u!114 &11443042
 MonoBehaviour:
   m_ObjectHideFlags: 1
