@@ -8,7 +8,6 @@ public class CameraMove : MonoBehaviour {
     public float zone_for_displacement; // From 0 to 1. For instance, 0.25 means 25% of some length (width or height screen dimensions)
     private Vector2 edge_offset;        // Zone where camera moves will occur when active.
     private Vector3 position_target;
-    private float z_correction;         // Z_correction is used for center the different players due to camera inclination.
     private bool smooth_transition;     // When true, a camera transition is occurring.
 
     // Use this for initialization
@@ -18,7 +17,7 @@ public class CameraMove : MonoBehaviour {
         speed_camera = 10;
         zone_for_displacement = 0.1f;           // 10% of Width and Height Screen
         edge_offset.Set(zone_for_displacement * Screen.width, zone_for_displacement * Screen.height);
-        z_correction = transform.position.y / Mathf.Tan(transform.eulerAngles.x * Mathf.PI / 180);
+        //z_correction = transform.position.y / Mathf.Tan(transform.eulerAngles.x * Mathf.PI / 180);
     }
 	
 	// Update is called once per frame
