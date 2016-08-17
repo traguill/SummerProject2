@@ -11,7 +11,8 @@ public class CosmoSensorialState : ICosmoState
     float load_time = 0.0f; //Current time loading the ability.
 
     public float detection_radius_speed = 10; //Speed to increase the detection radius.
-    public float max_detection_radius = 20; //Detection range
+    
+    private float sensorial_radius = 0.0f; //Current sensorial radius detection
 
     public List<Transform> detected_enemies = new List<Transform>(); //Enemies detected by the ability
 
@@ -27,6 +28,7 @@ public class CosmoSensorialState : ICosmoState
     {
         cosmo.cooldown_inst.StartCooldown(1); //Starts the cooldown of the ability
 
+        sensorial_radius = 0.0f;
         is_loading = false;
         load_time = 0.0f;
         detected_enemies.Clear();
@@ -43,14 +45,14 @@ public class CosmoSensorialState : ICosmoState
         }
         else //Actual ability effect
         {
-            cosmo.sensorial_radius += Time.deltaTime * detection_radius_speed;
+            sensorial_radius += Time.deltaTime * detection_radius_speed;
 
-            if (cosmo.sensorial_radius >= max_detection_radius)
+            if (sensorial_radius >= cosmo.max_detection_radius)
             {
-                cosmo.sensorial_radius = max_detection_radius;
+                sensorial_radius = cosmo.max_detection_radius;
             }
 
-            Collider[] enemies = Physics.OverlapSphere(cosmo.transform.position, cosmo.sensorial_radius, detection_mask);
+            Collider[] enemies = Physics.OverlapSphere(cosmo.transform.position, sensorial_radius, detection_mask);
 
             foreach (Collider enemy in enemies)
             {
@@ -66,7 +68,7 @@ public class CosmoSensorialState : ICosmoState
                 }
             }
 
-            if (cosmo.sensorial_radius == max_detection_radius) //End ability
+            if (sensorial_radius == cosmo.max_detection_radius) //End ability
             {
                 ToIdleState();
             }

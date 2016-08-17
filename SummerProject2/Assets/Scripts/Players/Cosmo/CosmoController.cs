@@ -29,9 +29,6 @@ public class CosmoController : MonoBehaviour {
      //Abilities cooldown
     [HideInInspector] public Cooldown cooldown_inst; //Instance to cooldown script
 
-    public float sensorial_radius = 0.0f;
-    public float sensorial_cast_time = 1.0f;
-
     //Abilities utils
     //***************************************************************************************
     //Portal
@@ -39,6 +36,10 @@ public class CosmoController : MonoBehaviour {
     public LayerMask portal_build_layers; //Layers to collide when raycasting for building portals. (Everithing except fog of war)
     public LayerMask floor_layer; //Floor layer
     public GameObject build_portal_prefab; //Portal image to show when building
+
+    //Sensorial
+    public float sensorial_cast_time = 1.0f;
+    public float max_detection_radius = 20.0f;
 
     void Awake()
     {
