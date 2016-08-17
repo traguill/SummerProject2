@@ -784,14 +784,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11486648, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
-      propertyPath: sensorial_radius
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 19566292, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
-      propertyPath: m_Speed
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
   m_IsPrefabParent: 0
@@ -1086,11 +1078,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: stopping_time_neutral_patrol.Array.data[0]
-      value: 0
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: stopping_time_neutral_patrol.Array.data[2]
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: stopping_time_neutral_patrol.Array.data[1]
@@ -1110,7 +1102,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11496492, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: view_radius
-      value: 7
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_path_loop
@@ -1248,7 +1240,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11496492, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: view_radius
-      value: 7
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: neutral_path_loop
@@ -1260,11 +1252,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: stopping_time_neutral_patrol.Array.data[3]
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 424680, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
+      propertyPath: stopping_time_neutral_patrol.Array.data[0]
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
@@ -1827,10 +1823,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11496492, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: view_radius
-      value: 7
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: neutral_path_loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
+      propertyPath: alert_path_loop
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1989,7 +1989,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11496492, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: view_radius
-      value: 7
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_path_loop
@@ -2761,6 +2761,14 @@ Prefab:
       propertyPath: m_Name
       value: Rhandor_1
       objectReference: {fileID: 0}
+    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
+      propertyPath: stopping_time_neutral_patrol.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
+      propertyPath: stopping_time_neutral_patrol.Array.data[5]
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
   m_IsPrefabParent: 0
@@ -3275,7 +3283,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11496492, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: view_radius
-      value: 7
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_path_loop
@@ -4086,10 +4094,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11496492, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: view_radius
-      value: 7
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: neutral_path_loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
+      propertyPath: alert_path_loop
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4370,7 +4382,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11496492, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: view_radius
-      value: 7
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: neutral_path_loop
@@ -4460,7 +4472,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11496492, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: view_radius
-      value: 7
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_path_loop
