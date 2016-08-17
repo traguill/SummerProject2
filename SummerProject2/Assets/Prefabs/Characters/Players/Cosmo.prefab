@@ -227,8 +227,6 @@ MonoBehaviour:
   is_hide: 0
   target_box: {fileID: 0}
   cooldown_inst: {fileID: 0}
-  sensorial_radius: 40
-  sensorial_cast_time: 1
   portal_controller_prefab: {fileID: 11469712, guid: 61b91c439bab61f48978660ad555bec5,
     type: 2}
   portal_build_layers:
@@ -238,6 +236,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   build_portal_prefab: {fileID: 160804, guid: 1de3c890849ba2045bb642ef8e3e68d8, type: 2}
+  sensorial_cast_time: 1
+  max_detection_radius: 40
 --- !u!119 &11909184
 Projector:
   m_ObjectHideFlags: 1
