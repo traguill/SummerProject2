@@ -5,8 +5,7 @@ public class CameraFollowingState : ICameraStates
 {
     private readonly CameraController camera;
     private float time_without_detection;
-
-    GameObject[] players;
+    private GameObject player_to_follow;
 
     public CameraFollowingState(CameraController camera_controller)
     {
@@ -15,8 +14,8 @@ public class CameraFollowingState : ICameraStates
 
     public void StartState()
     {
-        players = GameObject.FindGameObjectsWithTag(Tags.player);
         time_without_detection = 0.0f;
+        player_to_follow = NearPlayer();
     }
 
     public void UpdateState()
@@ -42,8 +41,6 @@ public class CameraFollowingState : ICameraStates
 
     private void FollowNearPlayer()
     {
-        GameObject player_to_follow = NearPlayer();
-
         float angle = Vector3.Angle(camera.initial_forward_direction, (player_to_follow.transform.position - camera.camera_lens.transform.position).normalized);
 
         if( angle < camera.mid_angle)
@@ -56,14 +53,16 @@ public class CameraFollowingState : ICameraStates
             time_without_detection += Time.deltaTime;
         }
 
+        Debug.DrawLine(camera.camera_lens.position, player_to_follow.transform.position);
+        Debug.Log(Vector3.Distance(camera.camera_lens.position, player_to_follow.transform.position));
     }
 
     private GameObject NearPlayer()
     {
         GameObject near_player = null;
-        float min_distance = 100000.0f;
+        float min_distance = 1000.0f;
 
-        foreach (GameObject p in players)
+        foreach (GameObject p in camera.players)
         {
             if (Vector3.Distance(camera.transform.position, p.transform.position) < min_distance)
             {
@@ -79,10 +78,12 @@ public class CameraFollowingState : ICameraStates
     {
         // CRZ TODO: Alert mode is not implemented!
         if (time_without_detection > camera.seconds_from_last_sight)
+        {
             if (camera.alarm_system.isAlarmActive())
                 camera.ChangeStateTo(camera.idle_state);
             else
                 camera.ChangeStateTo(camera.idle_state);
+        }            
     }
 
 }

@@ -16,7 +16,7 @@ public class CameraDetection : MonoBehaviour {
     {
         Invisible invisible = other.gameObject.GetComponent<Invisible>();
 
-        if (other.CompareTag(Tags.player) && !invisible.IsInvisible() && !camera.alarm_system.isAlarmActive())
+        if (other.CompareTag(Tags.player) && !invisible.IsInvisible())
         {
             camera.alarm_system.SetAlarm(ALARM_STATE.ALARM_ON);
             camera.last_spotted_position.LastPosition = other.transform.position;
