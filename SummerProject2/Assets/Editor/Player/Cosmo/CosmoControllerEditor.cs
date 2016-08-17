@@ -38,7 +38,7 @@ public class CosmoControllerEditor : Editor
 
         Handles.color = Color.blue;
 
-        //Handles.DrawWireArc(cosmo.transform.position, Vector3.up, Vector3.forward, 360, cosmo.sensorial_radius);
+        Handles.DrawWireArc(cosmo.transform.position, Vector3.up, Vector3.forward, 360, cosmo.max_detection_radius);
     }
 	
 }
