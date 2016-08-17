@@ -608,8 +608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6908b9dab2d6c4fb0af479a80b6526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_camera: 1
-  disable_camera_movement_mouse: 0
+  speed_camera: 2
+  enable_mouse_displacement: 1
   zone_for_displacement: 0.1
 --- !u!4 &222577980 stripped
 Transform:
@@ -815,6 +815,10 @@ Prefab:
     - target: {fileID: 11486648, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
       propertyPath: sensorial_radius
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 19566292, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
+      propertyPath: m_Speed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
@@ -2148,7 +2152,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417174, guid: 25ab6aa46bf217f499ad8de5925415a5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 23.8
+      value: 26.1
       objectReference: {fileID: 0}
     - target: {fileID: 417174, guid: 25ab6aa46bf217f499ad8de5925415a5, type: 2}
       propertyPath: m_LocalPosition.x
@@ -2585,6 +2589,10 @@ Prefab:
       propertyPath: invisible_time
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 19532706, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
+      propertyPath: m_Speed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f839def9a7ba4c9479df9c2e195847f0, type: 2}
   m_IsPrefabParent: 0
@@ -2626,6 +2634,10 @@ Prefab:
     - target: {fileID: 428026, guid: 68f0529ea36ca1d4488a4d4949c6afa8, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 19537628, guid: 68f0529ea36ca1d4488a4d4949c6afa8, type: 2}
+      propertyPath: m_Speed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68f0529ea36ca1d4488a4d4949c6afa8, type: 2}
@@ -2909,6 +2921,10 @@ Prefab:
     - target: {fileID: 163476, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: m_Name
       value: Rhandor_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 163476, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
