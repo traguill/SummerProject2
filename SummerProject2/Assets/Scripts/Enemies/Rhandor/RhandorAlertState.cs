@@ -51,7 +51,7 @@ public class RhandorAlertState : IRhandorStates
             ToPatrolState();
         }
 
-        enemy.CheckNextMovement(enemy.alert_patrol, enemy.stopping_time_alert_patrol);
+        enemy.CheckNextMovement(enemy.alert_patrol, enemy.stopping_time_alert_patrol, enemy.alert_path_loop);
     }
 
     public void ToIdleState()

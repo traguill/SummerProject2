@@ -6,12 +6,12 @@ public class RhandorController : Enemies {
 
     // NavMeshAgent variables and patrol routes
     public GameObject neutral_path, alert_path;
+    public bool neutral_path_loop, alert_path_loop, inverse_patrol;
     public float patrol_speed, alert_speed, spotted_speed;
     [HideInInspector] public float[] stopping_time_neutral_patrol = new float[1];
     [HideInInspector] public float[] stopping_time_alert_patrol = new float[1];
     [HideInInspector] public int num_neutral_waypoints = 0, num_alert_waypoints = 0;
-    [HideInInspector] public float time_waiting_on_position;
-    [HideInInspector] public NavMeshAgent agent;   
+    [HideInInspector] public float time_waiting_on_position;       
     [HideInInspector] public Transform[] neutral_patrol, alert_patrol;    
     [HideInInspector] public int current_position;
 
@@ -30,6 +30,7 @@ public class RhandorController : Enemies {
     [HideInInspector] public AlarmSystem alarm_system;
     [HideInInspector] public LastSpottedPosition last_spotted_position;
     [HideInInspector] public EnemyFieldView enemy_field_view;
+    [HideInInspector] public NavMeshAgent agent;
 
     void Awake()
     {
@@ -91,15 +92,39 @@ public class RhandorController : Enemies {
     /// goToNextPoint gives the index for the next position of the argument current path
     /// </summary>
     /// <returns> The index of the next position </returns>
-    public void goToNextPoint(Transform[] current_path)
+    public void goToNextPoint(Transform[] current_path, bool is_path_looped)
     {
         // Returns if no points have been set up
         if (current_path.Length == 0)
             return;
 
         // Choose the next point in the array as the destination,
-        // cycling to the start if necessary.
-        current_position = (current_position + 1) % current_path.Length;
+        // cycling to the start if necessary or returning if a loop is considered.
+        if(is_path_looped)
+        {
+            if(inverse_patrol)
+            {
+                if (current_position == 0)
+                {
+                    current_position += 1;
+                    inverse_patrol = false;
+                }
+                else
+                    current_position -= 1;                
+            }
+            else
+            {
+                if (current_position == current_path.Length - 1)
+                {
+                    current_position -= 1;
+                    inverse_patrol = true;
+                }
+                else
+                    current_position += 1;                
+            }
+        }            
+        else        
+            current_position = (current_position + 1) % current_path.Length;
 
         // Set the agent to go to the currently selected destination.
         agent.destination = current_path[current_position].position;        
@@ -136,18 +161,17 @@ public class RhandorController : Enemies {
     }
 
     /// <summary>
-    ///  Check if the enemy has to change its destination or wait the number of seconds the user
-    ///  has introduced.
+    ///  Check if the enemy has to change its destination or has to wait the number of seconds the user
+    ///  has introduced on the current position.
     /// </summary>
-    public void CheckNextMovement(Transform[] current_path, float[] current_stopping_times)
+    public void CheckNextMovement(Transform[] current_path, float[] current_stopping_times, bool is_path_looped)
     {
         //Choose the next destination point when the agent gets close to the current one.
-        // I have eliminated this snippet from the IF --> enemy.agent.hasPath &&
         if (agent.remainingDistance < agent.stoppingDistance)
         {
             if (time_waiting_on_position > current_stopping_times[current_position])
             {
-                goToNextPoint(current_path);
+                goToNextPoint(current_path, is_path_looped);
                 time_waiting_on_position = 0.1f;
                 agent.Resume();
             }
@@ -155,7 +179,6 @@ public class RhandorController : Enemies {
             {
                 time_waiting_on_position += Time.deltaTime;
                 agent.Stop();
-                agent.ResetPath();
             }
         }
     }
