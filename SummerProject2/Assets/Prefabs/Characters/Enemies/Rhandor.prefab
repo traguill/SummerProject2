@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecdb1355f45fbc743b50e1fac8043599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detected_material: {fileID: 2100000, guid: 0e567dd3309d5a944bbcfee341ff23da, type: 2}
+  detected_material: {fileID: 2100000, guid: 6a6b7ff69d7bbf74e84ad8e219057fde, type: 2}
   normal_material: {fileID: 2100000, guid: 390aa611ef2305a45a14a153aafbd382, type: 2}
   max_detection_time: 3
 --- !u!114 &11496492
