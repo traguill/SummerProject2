@@ -79,10 +79,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163476}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.36, y: 0.7, z: -14.02}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071067}
+  m_LocalPosition: {x: -0.02, y: 0.7, z: 3.79}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_Children:
   - {fileID: 465218}
   - {fileID: 471058}
@@ -202,10 +202,15 @@ MonoBehaviour:
   type: 0
   neutral_path: {fileID: 0}
   alert_path: {fileID: 0}
+  neutral_path_loop: 1
+  alert_path_loop: 1
+  inverse_patrol: 0
   patrol_speed: 2.5
   alert_speed: 5
   spotted_speed: 7.5
   stopping_time_neutral_patrol:
+  - 0
+  - 0
   - 0
   - 0
   - 0
@@ -215,10 +220,11 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  num_neutral_waypoints: 4
-  num_alert_waypoints: 4
+  - 0
+  - 0
+  num_neutral_waypoints: 6
+  num_alert_waypoints: 6
   time_waiting_on_position: 0
-  agent: {fileID: 0}
   neutral_patrol: []
   alert_patrol: []
   current_position: 0
@@ -226,6 +232,7 @@ MonoBehaviour:
   alarm_system: {fileID: 0}
   last_spotted_position: {fileID: 0}
   enemy_field_view: {fileID: 0}
+  agent: {fileID: 0}
 --- !u!114 &11413268
 MonoBehaviour:
   m_ObjectHideFlags: 1

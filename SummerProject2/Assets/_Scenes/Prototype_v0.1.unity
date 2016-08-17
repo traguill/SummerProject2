@@ -1086,11 +1086,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: stopping_time_neutral_patrol.Array.data[0]
-      value: 26
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: stopping_time_neutral_patrol.Array.data[2]
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: stopping_time_neutral_patrol.Array.data[1]
@@ -1119,6 +1119,7 @@ Prefab:
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: neutral_path_loop
       value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 424680, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
@@ -1256,12 +1257,10 @@ Prefab:
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_path_loop
       value: 1
-      propertyPath: stopping_time_neutral_patrol.Array.data[0]
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: stopping_time_neutral_patrol.Array.data[3]
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 424680, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -1982,7 +1981,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: stopping_time_neutral_patrol.Array.data[1]
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 163476, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: m_IsActive
@@ -2718,14 +2717,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1795589376}
     m_Modifications:
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: stopping_time_alert_patrol.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: stopping_time_neutral_patrol.Array.size
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 424680, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.02
@@ -2769,37 +2760,6 @@ Prefab:
     - target: {fileID: 163476, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: m_Name
       value: Rhandor_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: stopping_time_neutral_patrol.Array.data[0]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: stopping_time_neutral_patrol.Array.data[5]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 424680, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-    - target: {fileID: 163476, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: num_neutral_waypoints
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: num_alert_waypoints
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: alert_path_loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: neutral_path_loop
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
