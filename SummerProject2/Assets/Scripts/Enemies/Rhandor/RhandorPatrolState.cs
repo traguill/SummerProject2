@@ -13,8 +13,9 @@ public class RhandorPatrolState : IRhandorStates
 
     public Transform[] AwakeState()
     {
-        // For the neutral path as an enemy child, we create its corresponding patrol_path that 
-        // the enemy will use.
+        // For the neutral path gameobject attach to this enemy, we create its corresponding patrol_path that 
+        // the enemy will use, considering or not a loop patrol.
+
         Transform[] neutral_patrol;
         if (enemy.neutral_path != null)
         {
@@ -22,7 +23,7 @@ public class RhandorPatrolState : IRhandorStates
 
             int i = 0;
             foreach (Transform path_unit in enemy.neutral_path.transform.GetComponentInChildren<Transform>())
-                neutral_patrol[i++] = path_unit;           
+                neutral_patrol[i++] = path_unit;                       
         }            
         else
         {
@@ -58,7 +59,7 @@ public class RhandorPatrolState : IRhandorStates
                 ToAlertState();
         }
 
-        enemy.CheckNextMovement(enemy.neutral_patrol, enemy.stopping_time_neutral_patrol);
+        enemy.CheckNextMovement(enemy.neutral_patrol, enemy.stopping_time_neutral_patrol, enemy.neutral_path_loop);
     }
 
     public void ToIdleState()
