@@ -8,36 +8,51 @@ public class RhandorInformationEditor : Editor
     private RhandorController rhandor;
     private IRhandorStates state;
     private Vector3[] path_neutral_positions, path_alert_positions;
+    private bool paths_attached = false;
 
     private bool neutral_expanded = false, alert_expanded = false;
+    
 
     void OnEnable()
     {
         rhandor = target as RhandorController;
 
-        // ---- Neutral patrol initialization for editor ----
+        // Patrols initialization
+        if(rhandor.neutral_path != null && rhandor.alert_path != null)
+        {
+            // ---- Neutral patrol initialization for editor ----
 
-        Transform[] path = rhandor.neutral_path.transform.getChilds();
-        path_neutral_positions = new Vector3[path.Length];
+            Transform[] path = rhandor.neutral_path.transform.getChilds();
+            path_neutral_positions = new Vector3[path.Length];
+
+            for (int i = 0; i < path.Length; ++i)
+            {
+                path_neutral_positions[i] = path[i].transform.position;
+            }
+
+            rhandor.num_neutral_waypoints = path_neutral_positions.Length;
+
+            // ---- Neutral patrol initialization for editor ----
+
+            path = rhandor.alert_path.transform.getChilds();
+            path_alert_positions = new Vector3[path.Length];
+
+            for (int i = 0; i < path.Length; ++i)
+            {
+                path_alert_positions[i] = path[i].transform.position;
+            }
+
+            rhandor.num_alert_waypoints = path_alert_positions.Length;
+
+            paths_attached = true;
+        }
+        else
+        {
+            path_neutral_positions = new Vector3[0];
+            path_alert_positions = new Vector3[0];
+            paths_attached = false;
+        }
         
-        for (int i = 0; i < path.Length; ++i)
-        {
-            path_neutral_positions[i] = path[i].transform.position;
-        }
-
-        rhandor.num_neutral_waypoints = path_neutral_positions.Length;
-
-        // ---- Neutral patrol initialization for editor ----
-
-        path = rhandor.alert_path.transform.getChilds();
-        path_alert_positions = new Vector3[path.Length];
-
-        for (int i = 0; i < path.Length; ++i)
-        {
-            path_alert_positions[i] = path[i].transform.position;
-        }
-
-        rhandor.num_alert_waypoints = path_alert_positions.Length;
     }
 
     // CRZ -> I don't like the layout!
@@ -51,14 +66,14 @@ public class RhandorInformationEditor : Editor
     void OnSceneGUI()
     {
         ShowState();
-        ShowPatrols();
+        if(paths_attached)
+            ShowPatrols();
     }
 
     /// <summary>
     /// Adapts the two arrays that control the stopping times of the enemies to allocate 
     /// the different points that the neutral and the alert paths contain.
     /// </summary>
-
     private void CheckArrayChanges()
     {
         rhandor.num_neutral_waypoints = path_neutral_positions.Length;
@@ -196,7 +211,7 @@ public class RhandorInformationEditor : Editor
 
             EditorGUILayout.BeginHorizontal();
             rhandor.patrol_speed = EditorGUILayout.FloatField("Patrol speed", rhandor.patrol_speed, GUILayout.Width(160));
-            rhandor.neutral_path_loop = EditorGUILayout.Toggle("Loop", rhandor.neutral_path_loop);
+            if(paths_attached) rhandor.neutral_path_loop = EditorGUILayout.Toggle("Loop", rhandor.neutral_path_loop);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.Space();
@@ -254,7 +269,7 @@ public class RhandorInformationEditor : Editor
             rhandor.alert_speed = EditorGUILayout.FloatField("Alert speed", rhandor.alert_speed, GUILayout.Width(160));
             rhandor.spotted_speed = EditorGUILayout.FloatField("Spotted speed", rhandor.spotted_speed, GUILayout.Width(160));
             EditorGUILayout.EndHorizontal();
-            rhandor.alert_path_loop = EditorGUILayout.Toggle("Loop", rhandor.alert_path_loop);
+            if (paths_attached) rhandor.alert_path_loop = EditorGUILayout.Toggle("Loop", rhandor.alert_path_loop);
 
             EditorGUILayout.Space();
 
