@@ -10,7 +10,8 @@ public class CosmoSensorialState : ICosmoState
     bool is_loading = false; //The ability is loading before actually casting.
     float load_time = 0.0f; //Current time loading the ability.
 
-    public float detection_radius_speed = 10; //Speed to increase the detection radius.
+    public float detection_cirlce_duration = 0.75f; //Duration of the expansion of the circle
+    float current_expansion_time = 0.0f; 
     
     private float sensorial_radius = 0.0f; //Current sensorial radius detection
 
@@ -29,8 +30,9 @@ public class CosmoSensorialState : ICosmoState
         cosmo.cooldown_inst.StartCooldown(1); //Starts the cooldown of the ability
 
         sensorial_radius = 0.0f;
-        is_loading = false;
+        is_loading = true;
         load_time = 0.0f;
+        current_expansion_time = 0.0f;
         detected_enemies.Clear();
     }
 
@@ -41,11 +43,17 @@ public class CosmoSensorialState : ICosmoState
         {
             load_time += Time.deltaTime;
             if (load_time >= cosmo.sensorial_cast_time)
+            {
                 is_loading = false;
+                Vector3 cosmo_pos = cosmo.transform.position;
+                GameObject.Instantiate(cosmo.sensorial_anim_prefab, new Vector3(cosmo_pos.x, cosmo_pos.y + 3, cosmo_pos.z), Quaternion.Euler(new Vector3(90, 0, 0))); //The +3 of the position is to be at the top of everything
+            }
+               
         }
         else //Actual ability effect
         {
-            sensorial_radius += Time.deltaTime * detection_radius_speed;
+            current_expansion_time += Time.deltaTime;
+            sensorial_radius = (cosmo.max_detection_radius * current_expansion_time) / detection_cirlce_duration;
 
             if (sensorial_radius >= cosmo.max_detection_radius)
             {

@@ -40,6 +40,7 @@ public class CosmoController : MonoBehaviour {
     //Sensorial
     public float sensorial_cast_time = 1.0f;
     public float max_detection_radius = 20.0f;
+    public GameObject sensorial_anim_prefab;
 
     void Awake()
     {

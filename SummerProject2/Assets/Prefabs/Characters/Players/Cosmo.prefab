@@ -238,6 +238,8 @@ MonoBehaviour:
   build_portal_prefab: {fileID: 160804, guid: 1de3c890849ba2045bb642ef8e3e68d8, type: 2}
   sensorial_cast_time: 1
   max_detection_radius: 50
+  sensorial_anim_prefab: {fileID: 131836, guid: 520ee8d9b7aae5144876b27e51c0b602,
+    type: 2}
 --- !u!119 &11909184
 Projector:
   m_ObjectHideFlags: 1
