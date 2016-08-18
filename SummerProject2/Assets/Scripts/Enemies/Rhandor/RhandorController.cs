@@ -58,8 +58,15 @@ public class RhandorController : Enemies {
     
     void Start()
     {
-
-       ChangeStateTo(patrol_state); 
+        if (neutral_path != null || alert_path != null)
+        {
+            ChangeStateTo(patrol_state);
+        }
+        else
+        {
+            Debug.Log("Enemey " + name + "hasn't any neutral and alert patrol attached!");
+            ChangeStateTo(idle_state);
+        }            
     }
 
     void Update()
