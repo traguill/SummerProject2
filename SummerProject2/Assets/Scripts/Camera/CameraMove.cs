@@ -9,6 +9,7 @@ public class CameraMove : MonoBehaviour {
     private Vector2 edge_offset;        // Zone where camera moves will occur when active.
     private Vector3 position_target;
     private bool smooth_transition;     // When true, a camera transition is occurring.
+    private float z_correction;
 
     // Use this for initialization
     void Start ()
@@ -17,7 +18,7 @@ public class CameraMove : MonoBehaviour {
         speed_camera = 10;
         zone_for_displacement = 0.1f;           // 10% of Width and Height Screen
         edge_offset.Set(zone_for_displacement * Screen.width, zone_for_displacement * Screen.height);
-        //z_correction = transform.position.y / Mathf.Tan(transform.eulerAngles.x * Mathf.PI / 180);
+        z_correction = transform.position.y / Mathf.Tan(transform.eulerAngles.x * Mathf.PI / 180);
     }
 	
 	// Update is called once per frame
@@ -59,7 +60,7 @@ public class CameraMove : MonoBehaviour {
 
     public void MoveCameraTo(Vector3 new_pos)
     {
-        position_target = new_pos;
+        position_target = new Vector3(new_pos.x, transform.position.y, new_pos.z - z_correction);
         smooth_transition = true;        
     }
 

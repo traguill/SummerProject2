@@ -7,14 +7,12 @@ public class EnemyManager : MonoBehaviour
     [HideInInspector] public GameObject[] enemies;
     [HideInInspector] public GameObject[] players;
 
-    GameObject rhandor;
-
     [HideInInspector] public bool fow_disabled = false; //If the fog of war is disabled the enemies are always visible
 
     void Awake()
     {
         enemies = GameObject.FindGameObjectsWithTag(Tags.enemy);
-        players = GameObject.FindGameObjectsWithTag(Tags.player);
+        players = GameObject.FindGameObjectsWithTag(Tags.player);            
     }
 
 	// Use this for initialization
@@ -23,8 +21,7 @@ public class EnemyManager : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update ()
-    {
-    }
+    { }
 
     /// <summary>
     /// Destroy an enemy.
