@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb191e1975b05304aac10c5b0184f977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 7
+  life: 14
   barion: {fileID: 0}
   delay_pos: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000

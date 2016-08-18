@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53a66fb32908484e880f482e54a2937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invisible_time: 10
+  invisible_time: 7
 --- !u!114 &11425936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - timer: 0
-    cooldown_seconds: 3
+    cooldown_seconds: 8
     in_use: 0
   - timer: 0
     cooldown_seconds: 10
@@ -237,7 +237,7 @@ MonoBehaviour:
     m_Bits: 256
   build_portal_prefab: {fileID: 160804, guid: 1de3c890849ba2045bb642ef8e3e68d8, type: 2}
   sensorial_cast_time: 1
-  max_detection_radius: 40
+  max_detection_radius: 50
 --- !u!119 &11909184
 Projector:
   m_ObjectHideFlags: 1
