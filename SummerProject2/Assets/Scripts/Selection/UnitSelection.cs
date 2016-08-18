@@ -22,8 +22,11 @@ public class UnitSelection : MonoBehaviour
     GameObject nyx;
     GameObject cosmo;
 
+    CameraMove cam;
+
     void Awake()
     {
+        cam = Camera.main.GetComponent<CameraMove>();
         floor_mask = LayerMask.GetMask("Floor");
         player_mask = LayerMask.GetMask("Player");
         selectable_object_mask = LayerMask.GetMask("SelectableObject");
@@ -39,6 +42,11 @@ public class UnitSelection : MonoBehaviour
 	void Update ()
     {
         SelectObjects();
+
+        if(Input.GetKeyUp(KeyCode.Space) && player_selected != null)
+        {
+            cam.MoveCameraTo(player_selected.transform.position);
+        }
 
         if(object_selected == null) //No object is currently selected
         {
