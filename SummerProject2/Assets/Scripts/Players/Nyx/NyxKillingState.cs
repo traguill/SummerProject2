@@ -31,7 +31,7 @@ public class NyxKillingState : INyxState
         if(enemy_near == false) //Moving to the enemy
         {
             
-            if (Vector3.Distance(nyx.transform.position, kill_point.position) <= kill_stopping_distance)
+            if (Vector3.Distance(nyx.transform.position, enemy.transform.position) <= kill_stopping_distance)
             {
                 enemy_near = true;
             }
@@ -52,7 +52,7 @@ public class NyxKillingState : INyxState
                 }       
             }
 
-            nyx.agent.SetDestination(kill_point.position);
+            nyx.agent.SetDestination(enemy.transform.position);
 
         }
         else //Killing the enemy
@@ -64,6 +64,7 @@ public class NyxKillingState : INyxState
 
     public void ToIdleState()
     {
+        nyx.StopMovement();
         nyx.ChangeStateTo(nyx.idle_state);
     }
 

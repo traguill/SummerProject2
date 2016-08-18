@@ -58,7 +58,8 @@ public class RhandorController : Enemies {
     
     void Start()
     {
-        ChangeStateTo(patrol_state);        
+
+       ChangeStateTo(patrol_state); 
     }
 
     void Update()
