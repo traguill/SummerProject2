@@ -76,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.5, y: 1, z: 23.4}
+  m_LocalPosition: {x: -20.4, y: 1, z: 23.4}
   m_LocalScale: {x: 0.19171613, y: 0.19171607, z: 0.19171607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -237,7 +237,7 @@ MonoBehaviour:
     m_Bits: 256
   build_portal_prefab: {fileID: 160804, guid: 1de3c890849ba2045bb642ef8e3e68d8, type: 2}
   sensorial_cast_time: 1
-  max_detection_radius: 50
+  max_detection_radius: 55
   sensorial_anim_prefab: {fileID: 131836, guid: 520ee8d9b7aae5144876b27e51c0b602,
     type: 2}
 --- !u!119 &11909184
