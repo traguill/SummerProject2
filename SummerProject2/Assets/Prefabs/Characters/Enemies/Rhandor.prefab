@@ -208,18 +208,10 @@ MonoBehaviour:
   patrol_speed: 2.5
   alert_speed: 5
   spotted_speed: 7.5
-  stopping_time_neutral_patrol:
-  - 10
-  - 0
-  - 0
-  - 0
-  stopping_time_alert_patrol:
-  - 0
-  - 0
-  - 0
-  - 0
-  num_neutral_waypoints: 4
-  num_alert_waypoints: 4
+  stopping_time_neutral_patrol: []
+  stopping_time_alert_patrol: []
+  num_neutral_waypoints: 0
+  num_alert_waypoints: 0
   time_waiting_on_position: 0
   neutral_patrol: []
   alert_patrol: []
@@ -278,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view_radius: 60
-  view_angle: 110
+  view_angle: 75
   target_mask:
     serializedVersion: 2
     m_Bits: 1536
