@@ -3,6 +3,8 @@ using System.Collections;
 
 public class InvisibleShield : MonoBehaviour
 {
+    [HideInInspector]public HUD_Controller hud;
+    [HideInInspector] public int hud_id; //Id to the effect in the HUD
     public float life = 5; //Active time
 
     float timer = 0;
@@ -23,6 +25,7 @@ public class InvisibleShield : MonoBehaviour
         }
         else
         {
+            hud.EffectFinished(Enums.Characters.BARION, hud_id);
             Destroy(gameObject);
         }
 

@@ -40,7 +40,7 @@ public class HUD_Controller : MonoBehaviour
 
 
 
-    public void CreateEffect(Enums.CharactersEffects effect, Enums.Characters character, float duration)
+    public int CreateEffect(Enums.CharactersEffects effect, Enums.Characters character, float duration)
     {
         Vector3 position = new Vector3();
         Vector3 delay_position;
@@ -86,6 +86,8 @@ public class HUD_Controller : MonoBehaviour
         }
 
         effect_controller.Initialize(image, position, duration, this, character, id);
+
+        return id;
         
     }
 

@@ -13,6 +13,9 @@ public class BarionController : MonoBehaviour {
     public LayerMask raycast_layers; //Available layers for raycasting (ingore fog of war).
     public LayerMask movement_layers; //Layers that the raycast must hit to start movement.
 
+    //HUD
+    [HideInInspector]public HUD_Controller hud;
+
     //State machine
     [HideInInspector] private IBarionState current_state;
     [HideInInspector] public BarionWalkingState walking_state;
@@ -40,6 +43,7 @@ public class BarionController : MonoBehaviour {
 
     void Awake()
     {
+        hud = GameObject.Find(Objects.HUD).GetComponent<HUD_Controller>();
         selection_system = GameObject.Find("SelectionSystem").GetComponent<UnitSelection>();
         cooldown_inst = GetComponent<Cooldown>();
         agent = GetComponent<NavMeshAgent>();

@@ -47,9 +47,13 @@ public class BarionShieldState : IBarionState
 
         //Create SHIELD
         GameObject shield = GameObject.Instantiate(barion.shield_prefab, shield_position, rot_angle) as GameObject;
+        InvisibleShield invisible_shield = shield.GetComponent<InvisibleShield>();
+        invisible_shield.barion = barion;
+        invisible_shield.delay_pos = shield_position - barion.transform.position;
 
-        shield.GetComponent<InvisibleShield>().barion = barion;
-        shield.GetComponent<InvisibleShield>().delay_pos = shield_position - barion.transform.position;
+        //Show HUD shield effect
+        invisible_shield.hud = barion.hud;
+        invisible_shield.hud_id = barion.hud.CreateEffect(Enums.CharactersEffects.SHIELD, Enums.Characters.BARION, invisible_shield.life);
 
         if(barion.agent.hasPath)
         {

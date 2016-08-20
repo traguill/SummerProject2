@@ -1940,7 +1940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   environment_collision_layer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
 --- !u!4 &788564931 stripped
 Transform:
   m_PrefabParentObject: {fileID: 433644, guid: ebd81c830588a5743b5a94b77464ca00, type: 2}
