@@ -212,7 +212,7 @@ MonoBehaviour:
     m_Bits: 4294955007
   movement_layers:
     serializedVersion: 2
-    m_Bits: 3328
+    m_Bits: 3840
   target_to_kill: {fileID: 0}
   death_trap_range: 5
   floor_layer:
