@@ -27,7 +27,8 @@ GameObject:
   - 4: {fileID: 480444}
   - 135: {fileID: 13596662}
   - 114: {fileID: 11454804}
-  m_Layer: 0
+  - 114: {fileID: 11411608}
+  m_Layer: 14
   m_Name: DeathTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,6 +93,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 480444}
   m_RootOrder: 0
+--- !u!114 &11411608
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c723bf65f75ea364bab4f46cb4e747b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: DeathTrap
+  options:
+  - color: {r: 0, g: 0.99264705, b: 0.9515719, a: 1}
+    sprite: {fileID: 21300000, guid: cae724308b4102d4ea320e7b64b738a8, type: 3}
+    title: 
+    function:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11454804}
+          m_MethodName: DestroyDeathTrap
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: OnEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11454804
 MonoBehaviour:
   m_ObjectHideFlags: 1

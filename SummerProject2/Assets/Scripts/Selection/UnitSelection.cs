@@ -125,10 +125,8 @@ public class UnitSelection : MonoBehaviour
                 //Tell object that is being selected (all types of objects here)
                 if (object_selected.tag == Tags.box)
                     object_selected.GetComponent<BoxController>().Selected();
-
-                if (object_selected.tag == Tags.portal)
-                    object_selected.GetComponent<Portal>().Selected();
-     
+                else
+                    object_selected.GetComponent<RadialMenu_ObjectInteractable>().OnInteractableClicked();
             }
             else
             {

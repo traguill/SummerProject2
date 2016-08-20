@@ -33,12 +33,20 @@ public class DeathTrap : MonoBehaviour {
         {
             if (explosion.IsAlive() == false)
             {
-                nyx_death_trap_state.trap = null;
-                Destroy(gameObject);
+                DestroyDeathTrap(null);
             }
                
         }
 	}
+
+    /// <summary>
+    /// Destroys the death trap. The parameter is necesary for the HUD, if it's not called from there pass null.
+    /// </summary>
+    public void DestroyDeathTrap(GameObject obj)
+    {
+        nyx_death_trap_state.trap = null;
+        Destroy(gameObject);
+    }
 
     void OnTriggerEnter(Collider coll)
     {
