@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2386102}
   - 114: {fileID: 11461126}
   m_Layer: 15
-  m_Name: InvisibleShield_OLD
+  m_Name: InvisibleShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

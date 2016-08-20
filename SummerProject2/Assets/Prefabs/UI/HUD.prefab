@@ -332,6 +332,7 @@ GameObject:
   - 224: {fileID: 22406170}
   - 222: {fileID: 22204970}
   - 114: {fileID: 11424904}
+  - 114: {fileID: 11473290}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -982,6 +983,25 @@ MonoBehaviour:
   character: {fileID: 11462032}
   selected_sprite: {fileID: 21300070, guid: 6f1b36bd6e28e864c90c9d9acdd2ef42, type: 3}
   unselected_sprite: {fileID: 21300076, guid: 6f1b36bd6e28e864c90c9d9acdd2ef42, type: 3}
+--- !u!114 &11473290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c07d49434bebfd4b916f082f7a627b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  barion_effect_position: {x: -130, y: -156, z: 0}
+  cosmo_effect_position: {x: -33, y: -156, z: 0}
+  nyx_effect_position: {x: 70, y: -156, z: 0}
+  effect_position_distance: 10
+  effect_prefab: {fileID: 174390, guid: c9e9a5b46feaee84f91cb67f453c5343, type: 2}
+  invisible_image: {fileID: 21300036, guid: aea26918748ff264eb69ba8565854616, type: 3}
+  shield_image: {fileID: 21300050, guid: aea26918748ff264eb69ba8565854616, type: 3}
 --- !u!114 &11478924
 MonoBehaviour:
   m_ObjectHideFlags: 1

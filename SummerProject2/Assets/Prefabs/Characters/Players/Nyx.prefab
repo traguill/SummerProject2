@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invisible_time: 10
+  character: 2
 --- !u!119 &11980368
 Projector:
   m_ObjectHideFlags: 1

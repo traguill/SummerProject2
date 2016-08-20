@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invisible_time: 10
+  character: 1
 --- !u!114 &11425936
 MonoBehaviour:
   m_ObjectHideFlags: 1

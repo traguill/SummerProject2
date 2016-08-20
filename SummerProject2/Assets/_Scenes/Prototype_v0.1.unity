@@ -3014,10 +3014,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 179368, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: m_Name
-      value: HUD
-      objectReference: {fileID: 0}
+    - target: {fileID: 11473290, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1402751563}
     - target: {fileID: 11410346, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
       propertyPath: character
       value: 

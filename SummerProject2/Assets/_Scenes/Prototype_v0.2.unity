@@ -1696,46 +1696,46 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 179368, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: m_Name
-      value: HUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 11410346, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: character
+    - target: {fileID: 11473290, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: canvas
       value: 
-      objectReference: {fileID: 1197501159}
-    - target: {fileID: 11410596, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 1197501161}
-    - target: {fileID: 11408066, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 1197501161}
-    - target: {fileID: 11423454, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 434072684}
-    - target: {fileID: 11465722, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 434072686}
-    - target: {fileID: 11490182, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 434072686}
-    - target: {fileID: 11462032, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 1576264769}
-    - target: {fileID: 11472972, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 1576264771}
+      objectReference: {fileID: 1402751563}
     - target: {fileID: 11413350, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
       propertyPath: controller
       value: 
       objectReference: {fileID: 1576264771}
+    - target: {fileID: 11472972, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1576264771}
+    - target: {fileID: 11462032, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1576264769}
+    - target: {fileID: 11490182, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 434072686}
+    - target: {fileID: 11465722, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 434072686}
+    - target: {fileID: 11423454, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 434072684}
+    - target: {fileID: 11408066, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1197501161}
+    - target: {fileID: 11410596, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1197501161}
+    - target: {fileID: 11410346, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1197501159}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
   m_IsPrefabParent: 0
@@ -3524,9 +3524,9 @@ Transform:
   - {fileID: 85916241}
   - {fileID: 1870960838}
   - {fileID: 1424556761}
+  - {fileID: 823744351}
   - {fileID: 1381542386}
   - {fileID: 780811518}
-  - {fileID: 823744351}
   - {fileID: 367596514}
   - {fileID: 605782626}
   - {fileID: 1894631529}
