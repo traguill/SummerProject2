@@ -38,6 +38,13 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _ShadowTex
+        second:
+          m_Texture: {fileID: 2800000, guid: dbb940ba11aa0ba45b0bb24e22f45797, type: 3}
+          m_Scale: {x: 0.33333334, y: 0.33333334}
+          m_Offset: {x: 0.33333334, y: 0}
+      data:
+        first:
           name: _ParallaxMap
         second:
           m_Texture: {fileID: 0}
@@ -80,13 +87,6 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _ShadowTex
-        second:
-          m_Texture: {fileID: 2800000, guid: dbb940ba11aa0ba45b0bb24e22f45797, type: 3}
-          m_Scale: {x: 0.33333334, y: 0.33333334}
-          m_Offset: {x: 0.33333334, y: 0}
-      data:
-        first:
           name: _FalloffTex
         second:
           m_Texture: {fileID: 0}
@@ -105,6 +105,10 @@ Material:
         first:
           name: _Cutoff
         second: 0.5
+      data:
+        first:
+          name: _Attenuation
+        second: 1
       data:
         first:
           name: _Parallax
@@ -141,10 +145,6 @@ Material:
         first:
           name: _Metallic
         second: 0
-      data:
-        first:
-          name: _Attenuation
-        second: 1
     m_Colors:
       data:
         first:

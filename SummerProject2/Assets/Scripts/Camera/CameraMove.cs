@@ -14,9 +14,7 @@ public class CameraMove : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        smooth_transition = false;
-        speed_camera = 10;
-        zone_for_displacement = 0.1f;           // 10% of Width and Height Screen
+        smooth_transition = false;     
         edge_offset.Set(zone_for_displacement * Screen.width, zone_for_displacement * Screen.height);
         z_correction = transform.position.y / Mathf.Tan(transform.eulerAngles.x * Mathf.PI / 180);
     }

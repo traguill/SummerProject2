@@ -27,9 +27,7 @@ public class RhandorPatrolState : IRhandorStates
         }            
         else
         {
-            Debug.Log("There is no patrol route for " + enemy.name);
-            neutral_patrol = new Transform[1];
-            neutral_patrol[0].position = new Vector3(999.9f, 999.9f, 999.9f);
+            neutral_patrol = null;
         }
           
         enemy.agent = enemy.GetComponent<NavMeshAgent>();     // Agent for NavMesh  

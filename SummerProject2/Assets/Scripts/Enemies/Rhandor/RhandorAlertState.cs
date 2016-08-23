@@ -26,9 +26,7 @@ public class RhandorAlertState : IRhandorStates
         }
         else
         {
-            Debug.Log("There is no alert route for " + enemy.name);
-            alert_patrol = new Transform[1];
-            alert_patrol[0].position = new Vector3(999.9f, 999.9f, 999.9f);
+            alert_patrol = null;
         }
 
         return alert_patrol;
@@ -36,11 +34,14 @@ public class RhandorAlertState : IRhandorStates
 
     public void StartState()
     {
-        enemy.agent.speed = enemy.alert_speed;
-        enemy.current_position = enemy.findClosestPoint(enemy.alert_patrol);
-        enemy.agent.destination = enemy.alert_patrol[enemy.current_position].position;
+        if(!enemy.static_alert_path)
+        {
+            enemy.agent.speed = enemy.alert_speed;
+            enemy.current_position = enemy.findClosestPoint(enemy.alert_patrol);
+            enemy.agent.destination = enemy.alert_patrol[enemy.current_position].position;
 
-        enemy.time_waiting_on_position = 0.1f;
+            enemy.time_waiting_on_position = 0.1f;
+        }       
     }
 
     public void UpdateState()
@@ -48,10 +49,14 @@ public class RhandorAlertState : IRhandorStates
         // If the alarm is turned off, the enemy reverts its current state to Patrol
         if (!enemy.alarm_system.isAlarmActive())
         {
-            ToPatrolState();
+            if (enemy.static_neutral_path)
+                ToIdleState();
+            else
+                ToPatrolState();
         }
 
-        enemy.CheckNextMovement(enemy.alert_patrol, enemy.stopping_time_alert_patrol, enemy.alert_path_loop);
+        if(!enemy.static_alert_path)
+            enemy.CheckNextMovement(enemy.alert_patrol, enemy.stopping_time_alert_patrol, enemy.alert_path_loop);
     }
 
     public void ToIdleState()

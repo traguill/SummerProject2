@@ -6,14 +6,19 @@ public class RhandorController : Enemies {
 
     // NavMeshAgent variables and patrol routes
     public GameObject neutral_path, alert_path;
-    public bool neutral_path_loop, alert_path_loop, inverse_patrol;
+    public bool neutral_path_loop, alert_path_loop;
+    public bool static_neutral_path, static_alert_path;    
     public float patrol_speed, alert_speed, spotted_speed;
+
+    private bool inverse_patrol;
+
+    [HideInInspector] public Transform[] neutral_patrol, alert_patrol;
     [HideInInspector] public float[] stopping_time_neutral_patrol = new float[1];
     [HideInInspector] public float[] stopping_time_alert_patrol = new float[1];
     [HideInInspector] public int num_neutral_waypoints = 0, num_alert_waypoints = 0;
-    [HideInInspector] public float time_waiting_on_position;       
-    [HideInInspector] public Transform[] neutral_patrol, alert_patrol;    
+    [HideInInspector] public float time_waiting_on_position;      
     [HideInInspector] public int current_position;
+    [HideInInspector] public Vector3 initial_position, initial_forward_direction;
 
     // For corpses representation
     [HideInInspector] public SpriteRenderer render;
@@ -51,6 +56,9 @@ public class RhandorController : Enemies {
         render = GetComponent<SpriteRenderer>();
         type = ENEMY_TYPES.RHANDOR;
 
+        initial_position = transform.position;
+        initial_forward_direction = transform.forward;
+
         alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
         last_spotted_position = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<LastSpottedPosition>();
         enemy_field_view = GetComponent<EnemyFieldView>();
@@ -58,15 +66,18 @@ public class RhandorController : Enemies {
     
     void Start()
     {
-        if (neutral_path != null || alert_path != null)
-        {
-            ChangeStateTo(patrol_state);
-        }
+        if (static_neutral_path)
+            ChangeStateTo(idle_state);
         else
         {
-            Debug.Log("Enemey " + name + "hasn't any neutral and alert patrol attached!");
-            ChangeStateTo(idle_state);
-        }            
+            if (neutral_patrol != null && neutral_patrol.Length > 1)
+                ChangeStateTo(patrol_state);
+            else
+                Debug.Log("Enemy " + name + " hasn't a proper PATROL PATH associated or has only one waypoint (use Static toggle instead).");
+        }
+
+        if (!static_alert_path && ( alert_patrol == null || alert_patrol.Length <= 1 ))
+            Debug.Log("Enemy " + name + " hasn't a proper ALERT PATH associated or has only one waypoint (use Static toggle instead).");
     }
 
     void Update()
@@ -189,6 +200,13 @@ public class RhandorController : Enemies {
                 agent.Stop();
             }
         }
+    }
+
+    public void RotateTowards(Vector3 target)
+    {
+        Vector3 direction = (target - transform.position).normalized;
+        Quaternion look_rotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, look_rotation, Time.deltaTime * 2.0f);
     }
 }
 

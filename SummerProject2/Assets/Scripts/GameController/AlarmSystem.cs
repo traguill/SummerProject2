@@ -18,8 +18,6 @@ public class AlarmSystem : MonoBehaviour
     void Awake()
     {
         alarm_state = ALARM_STATE.ALARM_OFF;
-        alarm_max_duration = 5.0f; // Seconds
-
         activate_alarm = false;
     }
 
@@ -44,9 +42,12 @@ public class AlarmSystem : MonoBehaviour
                 activate_alarm = false;
                 alarm_timer = 0.0f;
             }
-        }  
-        
+        }
+
         // Debug
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+            activate_alarm = !activate_alarm;
+
         if(activate_alarm)
             alarm_state = ALARM_STATE.ALARM_ON;        
 
