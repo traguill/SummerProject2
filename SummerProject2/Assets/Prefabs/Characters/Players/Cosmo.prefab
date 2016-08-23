@@ -76,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.3, y: 1, z: -5.6}
+  m_LocalPosition: {x: -17.5, y: 1, z: 23.4}
   m_LocalScale: {x: 0.19171613, y: 0.19171607, z: 0.19171607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53a66fb32908484e880f482e54a2937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invisible_time: 10
+  invisible_time: 8
   character: 1
 --- !u!114 &11425936
 MonoBehaviour:
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - timer: 0
-    cooldown_seconds: 8
+    cooldown_seconds: 10
     in_use: 0
   - timer: 0
     cooldown_seconds: 10
