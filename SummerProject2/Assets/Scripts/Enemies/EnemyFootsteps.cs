@@ -21,6 +21,15 @@ public class EnemyFootsteps : MonoBehaviour
 	
 	void Update ()
     {
+        //Check if enemy is death
+        if(enemy.tag == Tags.corpse)
+        {
+            if (footsteps.isPlaying)
+                footsteps.Stop();
+
+            return;
+        }
+
         //Check if enemy is visible
         if(enemy.GetComponent<SpriteRenderer>().enabled == true)
         {
