@@ -8,8 +8,7 @@ public class RhandorInformationEditor : Editor
     private RhandorController rhandor;
     private IRhandorStates state;
     private Vector3[] path_neutral_positions, path_alert_positions;
-    //private bool paths_attached = false;
-
+    
     private bool neutral_expanded = false, alert_expanded = false;
     
 
@@ -18,7 +17,6 @@ public class RhandorInformationEditor : Editor
         rhandor = target as RhandorController;
 
         // Patrols initialization
-
         if(!rhandor.static_neutral_path)
         {
             // ---- Neutral patrol initialization for editor ----
@@ -26,9 +24,7 @@ public class RhandorInformationEditor : Editor
             path_neutral_positions = new Vector3[path.Length];
 
             for (int i = 0; i < path.Length; ++i)
-            {
                 path_neutral_positions[i] = path[i].transform.position;
-            }
 
             rhandor.num_neutral_waypoints = path_neutral_positions.Length;
         }
@@ -40,9 +36,7 @@ public class RhandorInformationEditor : Editor
             path_alert_positions = new Vector3[path.Length];
 
             for (int i = 0; i < path.Length; ++i)
-            {
                 path_alert_positions[i] = path[i].transform.position;
-            }
 
             rhandor.num_alert_waypoints = path_alert_positions.Length;
         }       

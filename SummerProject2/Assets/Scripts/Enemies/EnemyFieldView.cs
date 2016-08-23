@@ -14,6 +14,9 @@ public class EnemyFieldView : MonoBehaviour
     private AlarmSystem alarm_system;
     private ScreenFader screen_fader;
     private EnemyManager enemy_manager;
+    private CameraMove main_camera;
+
+    private bool player_found;
 
     [HideInInspector] public List<Transform> visible_targets = new List<Transform>();
 
@@ -22,13 +25,14 @@ public class EnemyFieldView : MonoBehaviour
     {
         alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
         screen_fader = GameObject.FindGameObjectWithTag(Tags.screen_fader).GetComponent<ScreenFader>();
-
         enemy_manager = GetComponentInParent<EnemyManager>();
+        main_camera = GameObject.FindGameObjectWithTag(Tags.main_camera).GetComponent<CameraMove>();
     }
 
     void Start()
     {
         StartCoroutine("FindTargetsWithDelay", 0.2f);
+        player_found = false;
     }
 
      IEnumerator FindTargetsWithDelay(float delay)
@@ -79,25 +83,25 @@ public class EnemyFieldView : MonoBehaviour
     {
         foreach(Transform t in visible_targets)
         {
-            if(t.tag == Tags.player)
-            {
-                if (t.GetComponent<Invisible>().IsInvisible())
-                    continue;
-            }
-
+            if (t.tag == Tags.player && t.GetComponent<Invisible>().IsInvisible())
+                continue;
+             
             // If enemy corpse is found, alert mode is activated
             if (t.tag.Equals(Tags.corpse))
                 alarm_system.SetAlarm(ALARM_STATE.ALARM_ON);
 
             // If player is found, the level resets.
-            if (t.tag.Equals(Tags.player))
+            if (t.tag.Equals(Tags.player) && !player_found)
             {
+                player_found = true;
+                main_camera.MoveCameraTo(transform.position);
+                screen_fader.EndScene(0);
+
                 //Debug part
                 //---------------------------
                 GetComponent<SpriteRenderer>().material.SetColor("_Tint", new Color(1.0f, 1.0f, 0.0f, 0.0f)); //Tint yellow the enemy who discovered a character
                 //---------------------------
-                screen_fader.EndScene(0);
-            }               
+            }
         }        
     }
     

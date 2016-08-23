@@ -1881,6 +1881,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89dfdb1ea66d1d1468bda00b00954c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectable_object_mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &1041860618 stripped
 Transform:
   m_PrefabParentObject: {fileID: 433644, guid: ebd81c830588a5743b5a94b77464ca00, type: 2}
@@ -2906,7 +2909,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 424680, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -11.1
+      value: -38.8
       objectReference: {fileID: 0}
     - target: {fileID: 424680, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2914,7 +2917,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 424680, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 28.1
+      value: 17.5
       objectReference: {fileID: 0}
     - target: {fileID: 424680, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: m_LocalRotation.x
