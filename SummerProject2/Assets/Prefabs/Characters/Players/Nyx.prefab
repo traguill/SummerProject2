@@ -76,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 199248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13, y: 0.59, z: 35.39}
+  m_LocalPosition: {x: -46, y: 0.59, z: 44.4}
   m_LocalScale: {x: 0.19171613, y: 0.1917161, z: 0.1917161}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -181,7 +181,7 @@ MonoBehaviour:
   view_angle: 360
   target_mask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 66560
   obstacle_mask:
     serializedVersion: 2
     m_Bits: 2048

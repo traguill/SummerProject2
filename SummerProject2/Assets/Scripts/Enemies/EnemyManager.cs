@@ -34,6 +34,7 @@ public class EnemyManager : MonoBehaviour
         {
             case (ENEMY_TYPES.RHANDOR):
                 enemy_to_destroy.tag = Tags.corpse;
+                enemy_to_destroy.layer = LayerMask.NameToLayer(Layers.corpse);
                 enemy_to_destroy.GetComponent<RhandorController>().Dead();
                 break;
         }        
