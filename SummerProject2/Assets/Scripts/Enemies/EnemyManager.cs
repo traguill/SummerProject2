@@ -5,14 +5,18 @@ using System.Collections.Generic;
 public class EnemyManager : MonoBehaviour
 { 
     [HideInInspector] public GameObject[] enemies;
-    [HideInInspector] public GameObject[] players;
+    [HideInInspector] public GameObject[] players; //For enemy view
 
     [HideInInspector] public bool fow_disabled = false; //If the fog of war is disabled the enemies are always visible
+
+    [HideInInspector]public BarionController barion; //Specific reference to barion, for interaction with corpses
 
     void Awake()
     {
         enemies = GameObject.FindGameObjectsWithTag(Tags.enemy);
-        players = GameObject.FindGameObjectsWithTag(Tags.player);            
+        players = GameObject.FindGameObjectsWithTag(Tags.player);
+
+        barion = GameObject.Find("Barion").GetComponent<BarionController>();
     }
 
 	// Use this for initialization

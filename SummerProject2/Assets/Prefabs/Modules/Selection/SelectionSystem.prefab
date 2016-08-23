@@ -40,8 +40,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89dfdb1ea66d1d1468bda00b00954c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sel_rect_color: {r: 0.8, g: 0.8, b: 0.95, a: 0.25}
-  sel_border_color: {r: 0.8, g: 0.8, b: 0.95, a: 1}
+  selectable_object_mask:
+    serializedVersion: 2
+    m_Bits: 81920
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

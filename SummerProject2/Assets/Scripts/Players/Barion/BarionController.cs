@@ -24,11 +24,15 @@ public class BarionController : MonoBehaviour {
     [HideInInspector] public BarionHidingState hiding_state;
     [HideInInspector] public BarionInvisibleSphereState invisible_sphere_state;
     [HideInInspector] public BarionShieldState shield_state;
+    [HideInInspector] public BarionCarryCorpseState carry_corpse_state;
 
     [HideInInspector] public bool is_hide; 
 
     //Box interaction
    [HideInInspector] public GameObject target_box = null; //Box to interact with
+
+    //Corpses interaction
+    [HideInInspector] public GameObject target_corpse = null;
 
      //Abilities cooldown
     [HideInInspector] public Cooldown cooldown_inst; //Instance to cooldown script
@@ -56,6 +60,7 @@ public class BarionController : MonoBehaviour {
         hiding_state = new BarionHidingState(this);
         invisible_sphere_state = new BarionInvisibleSphereState(this);
         shield_state = new BarionShieldState(this);
+        carry_corpse_state = new BarionCarryCorpseState(this);
     }
 
     void Start()
@@ -152,9 +157,10 @@ public class BarionController : MonoBehaviour {
         target_box = box;
     }
 
-    public void HideCorpse(GameObject box)
+    //CORPSE INTERACTION---------------------------------------------------------
+    public void CarryCorpse(GameObject corpse)
     {
-        //Code to hide a corpse inside a selected box
+        target_corpse = corpse;
     }
 
     /// <summary>
@@ -174,6 +180,10 @@ public class BarionController : MonoBehaviour {
         moving_box_state.drop_box = true;
     }
 
+    public void DropCorpse()
+    {
+        carry_corpse_state.drop_corpse = true;
+    }
 
     /// <summary>
     /// This method is called when Barion is selected and hided in a box.
