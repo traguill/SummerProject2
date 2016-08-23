@@ -19,4 +19,6 @@ public interface IBarionState
 
     void ToShieldState();
 
+    void ToCarryCorpseState();
+
 }

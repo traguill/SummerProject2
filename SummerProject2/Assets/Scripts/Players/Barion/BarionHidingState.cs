@@ -91,6 +91,11 @@ public class BarionHidingState : IBarionState
         Debug.Log("Barion can't transition from HIDING to SHIELD");
     }
 
+    public void ToCarryCorpseState()
+    {
+        Debug.Log("Barion can't transition from HIDING to CARRY_CORPSE");
+    }
+
     void Hide()
     {
         hiding = true;

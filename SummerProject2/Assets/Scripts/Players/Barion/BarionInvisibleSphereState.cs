@@ -77,5 +77,8 @@ public class BarionInvisibleSphereState : IBarionState
         Debug.Log("Barion can't transition from INVISIBLE_SPHERE to SHIELD");
     }
 
-
+    public void ToCarryCorpseState()
+    {
+        Debug.Log("Barion can't transition from INVISIBLE SHPERE to CARRY_CORPSE");
+    }
 }

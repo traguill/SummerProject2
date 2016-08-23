@@ -79,6 +79,9 @@ public class BarionIdleState : IBarionState {
         barion.ChangeStateTo(barion.shield_state);
     }
 
-
+    public void ToCarryCorpseState()
+    {
+        //TODO
+    }
 
 }

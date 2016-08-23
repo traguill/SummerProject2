@@ -170,6 +170,9 @@ public class BarionMovingBoxState : IBarionState {
         ToIdleState();
     }
 
-
+    public void ToCarryCorpseState()
+    {
+        Debug.Log("Barion can't transition from CARRY_BOX to CARRY_CORPSE");
+    }
 
 }

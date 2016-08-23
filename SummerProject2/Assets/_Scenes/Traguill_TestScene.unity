@@ -294,6 +294,10 @@ MonoBehaviour:
   speed_camera: 2
   enable_mouse_displacement: 1
   zone_for_displacement: 0.05
+  edge_offset: {x: 0, y: 0}
+  position_target: {x: 0, y: 0, z: 0}
+  smooth_transition: 0
+  z_correction: 0
 --- !u!4 &222577980 stripped
 Transform:
   m_PrefabParentObject: {fileID: 481172, guid: fd46adea13c164645b3d6c9abd0501b0, type: 2}
@@ -1189,9 +1193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24980e784eeaab240b0cd41812e212d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  environment_collision_layer:
-    serializedVersion: 2
-    m_Bits: 0
+  environment_collision_layer: {}
+  cosmo: {fileID: 0}
+  nyx: {fileID: 0}
+  barion: {fileID: 0}
 --- !u!4 &780811518 stripped
 Transform:
   m_PrefabParentObject: {fileID: 433644, guid: ebd81c830588a5743b5a94b77464ca00, type: 2}
@@ -1957,9 +1962,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89dfdb1ea66d1d1468bda00b00954c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectable_object_mask:
-    serializedVersion: 2
-    m_Bits: 81920
+  floor_mask: 0
+  player_mask: 0
+  selectable_object_mask: {}
+  player_selected: {fileID: 0}
+  object_selected: {fileID: 0}
+  barion: {fileID: 0}
+  nyx: {fileID: 0}
+  cosmo: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!4 &1167627309 stripped
 Transform:
   m_PrefabParentObject: {fileID: 433644, guid: ebd81c830588a5743b5a94b77464ca00, type: 2}
@@ -2840,6 +2851,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d915ad8075eec41b5f6ca121851e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  last_position: {x: 0, y: 0, z: 0}
+  player_spotted: 0
+  time_for_new_last_position: 0
+  max_time: 0
 --- !u!1001 &1534824568
 Prefab:
   m_ObjectHideFlags: 0
@@ -3233,7 +3248,7 @@ Transform:
   - {fileID: 1446484300}
   - {fileID: 1387208989}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!114 &1795589377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3484,7 +3499,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
 --- !u!4 &1994205787
 Transform:
   m_ObjectHideFlags: 0
