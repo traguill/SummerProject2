@@ -11,7 +11,7 @@ public class UnitSelection : MonoBehaviour
     //Masks
     int floor_mask;
     int player_mask;
-    int selectable_object_mask;
+    public LayerMask selectable_object_mask;
 
     GameObject player_selected; //Current player selected
 
@@ -29,7 +29,6 @@ public class UnitSelection : MonoBehaviour
         cam = Camera.main.GetComponent<CameraMove>();
         floor_mask = LayerMask.GetMask("Floor");
         player_mask = LayerMask.GetMask("Player");
-        selectable_object_mask = LayerMask.GetMask("SelectableObject");
 
         player_selected = null;
 
