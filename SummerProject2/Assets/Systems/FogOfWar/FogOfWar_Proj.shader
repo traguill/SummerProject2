@@ -44,11 +44,19 @@
 				fixed4 texCookie = tex2D(_ShadowTex, UNITY_PROJ_COORD(i.uvShadow));
 				
 				if (texCookie.g == 1)
-					texCookie = fixed4(0.0, 0.0, 0.0, 0.0);
+				{
+						texCookie = fixed4(0.0, 0.0, 0.0, 0.0); //Transparent
+				}	
 				else
-					texCookie = _Color;
+				{
+					if (texCookie.g == 0)
+						texCookie = _Color; //Full fog
+					else
+						texCookie = fixed4(_Color.r, _Color.g, _Color.b, (texCookie.b) * _Color.a);
+				}
+					
 
-				//outColor *= clamp(1.0, 0.0, 1.0);
+				
 
 				return texCookie;
 
