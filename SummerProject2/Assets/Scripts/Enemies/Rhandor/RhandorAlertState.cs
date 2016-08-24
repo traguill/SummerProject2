@@ -34,7 +34,7 @@ public class RhandorAlertState : IRhandorStates
 
     public void StartState()
     {
-        if(!enemy.static_alert_path)
+        if(!enemy.static_alert)
         {
             enemy.agent.speed = enemy.alert_speed;
             enemy.current_position = enemy.findClosestPoint(enemy.alert_patrol);
@@ -49,13 +49,13 @@ public class RhandorAlertState : IRhandorStates
         // If the alarm is turned off, the enemy reverts its current state to Patrol
         if (!enemy.alarm_system.isAlarmActive())
         {
-            if (enemy.static_neutral_path)
+            if (enemy.static_neutral)
                 ToIdleState();
             else
                 ToPatrolState();
         }
 
-        if(!enemy.static_alert_path)
+        if(!enemy.static_alert)
             enemy.CheckNextMovement(enemy.alert_patrol, enemy.stopping_time_alert_patrol, enemy.alert_path_loop);
     }
 

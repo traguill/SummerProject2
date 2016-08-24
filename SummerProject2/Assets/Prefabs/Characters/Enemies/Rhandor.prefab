@@ -193,10 +193,13 @@ MonoBehaviour:
   alert_path: {fileID: 0}
   neutral_path_loop: 1
   alert_path_loop: 1
-  inverse_patrol: 0
+  static_neutral: 1
+  static_alert: 1
   patrol_speed: 2.5
   alert_speed: 5
   spotted_speed: 7.5
+  neutral_patrol: []
+  alert_patrol: []
   stopping_time_neutral_patrol:
   - 0
   stopping_time_alert_patrol:
@@ -204,9 +207,9 @@ MonoBehaviour:
   num_neutral_waypoints: 1
   num_alert_waypoints: 1
   time_waiting_on_position: 0
-  neutral_patrol: []
-  alert_patrol: []
   current_position: 0
+  initial_position: {x: 0, y: 0, z: 0}
+  initial_forward_direction: {x: 0, y: 0, z: 0}
   render: {fileID: 0}
   alarm_system: {fileID: 0}
   last_spotted_position: {fileID: 0}

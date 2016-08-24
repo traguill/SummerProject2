@@ -7,46 +7,23 @@ public class RhandorInformationEditor : Editor
 {
     private RhandorController rhandor;
     private IRhandorStates state;
-    private Vector3[] path_neutral_positions, path_alert_positions;
-    
+    private Vector3[] path_neutral_positions, path_alert_positions;    
     private bool neutral_expanded = false, alert_expanded = false;
+
+    private GameObject old_neutral_path, old_alert_path;
     
 
     void OnEnable()
     {
         rhandor = target as RhandorController;
-
-        // Patrols initialization
-        if(!rhandor.static_neutral_path)
-        {
-            // ---- Neutral patrol initialization for editor ----
-            Transform[] path = rhandor.neutral_path.transform.getChilds();
-            path_neutral_positions = new Vector3[path.Length];
-
-            for (int i = 0; i < path.Length; ++i)
-                path_neutral_positions[i] = path[i].transform.position;
-
-            rhandor.num_neutral_waypoints = path_neutral_positions.Length;
-        }
-
-        if (!rhandor.static_alert_path)
-        {
-            // ---- Alert patrol initialization for editor ----
-            Transform[] path = rhandor.alert_path.transform.getChilds();
-            path_alert_positions = new Vector3[path.Length];
-
-            for (int i = 0; i < path.Length; ++i)
-                path_alert_positions[i] = path[i].transform.position;
-
-            rhandor.num_alert_waypoints = path_alert_positions.Length;
-        }       
+        LoadNeutralPatrol();
+        LoadAlertPatrol();
     }
 
-    // CRZ -> I don't like the layout!
     override public void OnInspectorGUI()
     {
-        CheckArrayChanges();
-        ShowInspectorPatrols();
+        //CheckArrayChanges();
+        ShowInspectorPatrolControls();
     }
 
     [ExecuteInEditMode]
@@ -62,7 +39,7 @@ public class RhandorInformationEditor : Editor
     /// </summary>
     private void CheckArrayChanges()
     {
-        if(!rhandor.static_neutral_path)
+        if(!rhandor.static_neutral)
         {
             rhandor.num_neutral_waypoints = path_neutral_positions.Length;
             if (rhandor.stopping_time_neutral_patrol.Length != rhandor.num_neutral_waypoints)
@@ -79,7 +56,7 @@ public class RhandorInformationEditor : Editor
             }
         }
 
-        if (!rhandor.static_alert_path)
+        if (!rhandor.static_alert)
         {
             rhandor.num_alert_waypoints = path_alert_positions.Length;
             if (rhandor.stopping_time_alert_patrol.Length != rhandor.num_alert_waypoints)
@@ -118,7 +95,7 @@ public class RhandorInformationEditor : Editor
     private void ShowPatrols()
     {
         // ---------------- For neutral patrols ----------------
-        if(rhandor.static_neutral_path)
+        if(rhandor.static_neutral)
         {
             // Label indicating the Waypoint number
             Handles.BeginGUI();
@@ -166,9 +143,8 @@ public class RhandorInformationEditor : Editor
             }
         }
 
-
         // ---------------- For alert patrols ----------------
-        if (rhandor.static_alert_path)
+        if (rhandor.static_alert)
         {
             // Label indicating the Waypoint number
             Handles.BeginGUI();
@@ -183,7 +159,7 @@ public class RhandorInformationEditor : Editor
         }
         else
         {
-            Handles.color = Color.red;
+            Handles.color = Color.red;            
             Vector3[] line_segments = new Vector3[path_alert_positions.Length * 2];
             int point_index = 0;
 
@@ -218,15 +194,15 @@ public class RhandorInformationEditor : Editor
         }            
     }
 
-    private void ShowInspectorPatrols()
+    private void ShowInspectorPatrolControls()
     {
         // ---- Neutral patrol editor information ---
         neutral_expanded = EditorGUILayout.Foldout(neutral_expanded, "Neutral patrol");
         if (neutral_expanded)
         {
             // Patrols attached as GameObjects and number of waypoints
-            rhandor.static_neutral_path = EditorGUILayout.Toggle("Static", rhandor.static_neutral_path);
-            if (rhandor.static_neutral_path)
+            rhandor.static_neutral = EditorGUILayout.Toggle("Static", rhandor.static_neutral);
+            if (rhandor.static_neutral)
             {
                 EditorGUILayout.LabelField("Waypoints: 1");
                 rhandor.patrol_speed = EditorGUILayout.FloatField("Patrol speed", rhandor.patrol_speed, GUILayout.Width(160));
@@ -235,6 +211,11 @@ public class RhandorInformationEditor : Editor
             {
                 EditorGUILayout.BeginHorizontal();
                 rhandor.neutral_path = EditorGUILayout.ObjectField("Path", rhandor.neutral_path, typeof(GameObject), true) as GameObject;
+                if(rhandor.neutral_path != old_neutral_path)
+                {
+                    LoadNeutralPatrol();
+                    old_neutral_path = rhandor.neutral_path;
+                }
 
                 if (rhandor.neutral_path_loop)
                     EditorGUILayout.LabelField("Waypoints: " + ((2 * path_neutral_positions.Length) - 2));
@@ -254,7 +235,7 @@ public class RhandorInformationEditor : Editor
 
             EditorGUILayout.Space();
 
-            if (rhandor.static_neutral_path)
+            if (rhandor.static_neutral)
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("Waypoint 1:", GUILayout.Width(80));
@@ -304,8 +285,8 @@ public class RhandorInformationEditor : Editor
         alert_expanded = EditorGUILayout.Foldout(alert_expanded, "Alert patrol");
         if (alert_expanded)
         {
-            rhandor.static_alert_path = EditorGUILayout.Toggle("Static", rhandor.static_alert_path);
-            if (rhandor.static_alert_path)
+            rhandor.static_alert = EditorGUILayout.Toggle("Static", rhandor.static_alert);
+            if (rhandor.static_alert)
             {
                 EditorGUILayout.LabelField("Waypoints: 1");
                 EditorGUILayout.BeginHorizontal();
@@ -317,6 +298,11 @@ public class RhandorInformationEditor : Editor
             {
                 EditorGUILayout.BeginHorizontal();
                 rhandor.alert_path = EditorGUILayout.ObjectField("Path", rhandor.alert_path, typeof(GameObject), true) as GameObject;
+                if (rhandor.alert_path != old_alert_path)
+                {
+                    LoadAlertPatrol();
+                    old_alert_path = rhandor.alert_path;
+                }
 
                 if (rhandor.alert_path_loop)
                     EditorGUILayout.LabelField("Waypoints: " + ((2 * path_alert_positions.Length) - 2));
@@ -337,7 +323,7 @@ public class RhandorInformationEditor : Editor
             EditorGUILayout.Space();
 
 
-            if (rhandor.static_neutral_path)
+            if (rhandor.static_alert)
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("Waypoint 1:", GUILayout.Width(80));
@@ -383,5 +369,81 @@ public class RhandorInformationEditor : Editor
         }
 
         EditorUtility.SetDirty(rhandor);
+    }
+
+    private void LoadNeutralPatrol()
+    {
+        // Patrols initialization
+        if (!rhandor.static_neutral)
+        {
+            if(rhandor.neutral_path != null)
+            {
+                // ---- Neutral patrol initialization for editor ----
+                Transform[] path = rhandor.neutral_path.transform.getChilds();
+                if(path.Length > 1)
+                {
+                    path_neutral_positions = new Vector3[path.Length];
+
+                    for (int i = 0; i < path.Length; ++i)
+                        path_neutral_positions[i] = path[i].transform.position;
+
+                    rhandor.num_neutral_waypoints = path_neutral_positions.Length;
+                    if (rhandor.stopping_time_neutral_patrol.Length != rhandor.num_neutral_waypoints)
+                    {
+                        float[] new_array = new float[rhandor.num_neutral_waypoints];
+                        for (int x = 0; x < rhandor.num_neutral_waypoints; ++x)
+                        {
+                            if (rhandor.stopping_time_neutral_patrol.Length > x)
+                            {
+                                new_array[x] = rhandor.stopping_time_neutral_patrol[x];
+                            }
+                        }
+                        rhandor.stopping_time_neutral_patrol = new_array;
+                    }
+                }
+                else
+                    Debug.Log("Error loading NEUTRAL PATROL: The patrol must contain more than one waypoint.");               
+            }
+            else
+                Debug.Log("Error loading NEUTRAL PATROL: There is no GameObject attached!");
+        }
+    }
+
+    private void LoadAlertPatrol()
+    {
+        // Patrols initialization        
+        if (!rhandor.static_alert)
+        {
+            if (rhandor.alert_path != null)
+            {
+                // ---- Alert patrol initialization for editor ----
+                Transform[] path = rhandor.alert_path.transform.getChilds();
+                if (path.Length > 1)
+                {
+                    path_alert_positions = new Vector3[path.Length];
+
+                    for (int i = 0; i < path.Length; ++i)
+                        path_alert_positions[i] = path[i].transform.position;
+
+                    rhandor.num_alert_waypoints = path_alert_positions.Length;
+                    if (rhandor.stopping_time_alert_patrol.Length != rhandor.num_alert_waypoints)
+                    {
+                        float[] new_array = new float[rhandor.num_alert_waypoints];
+                        for (int x = 0; x < rhandor.num_alert_waypoints; ++x)
+                        {
+                            if (rhandor.stopping_time_alert_patrol.Length > x)
+                            {
+                                new_array[x] = rhandor.stopping_time_alert_patrol[x];
+                            }
+                        }
+                        rhandor.stopping_time_alert_patrol = new_array;
+                    }
+                }
+                else
+                    Debug.Log("Error loading ALERT PATROL: The patrol must contain more than one waypoint.");
+            }
+            else
+                Debug.Log("Error loading ALERT PATROL: There is no GameObject attached!");
+        }
     }
 }

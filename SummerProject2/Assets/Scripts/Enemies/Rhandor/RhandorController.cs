@@ -7,7 +7,7 @@ public class RhandorController : Enemies {
     // NavMeshAgent variables and patrol routes
     public GameObject neutral_path, alert_path;
     public bool neutral_path_loop, alert_path_loop;
-    public bool static_neutral_path = true, static_alert_path = true;    
+    public bool static_neutral = true, static_alert = true;    
     public float patrol_speed, alert_speed, spotted_speed;
 
     private bool inverse_patrol;
@@ -66,7 +66,7 @@ public class RhandorController : Enemies {
     
     void Start()
     {
-        if (static_neutral_path)
+        if (static_neutral)
             ChangeStateTo(idle_state);
         else
         {
@@ -76,7 +76,7 @@ public class RhandorController : Enemies {
                 Debug.Log("Enemy " + name + " hasn't a proper PATROL PATH associated or has only one waypoint (use Static toggle instead).");
         }
 
-        if (!static_alert_path && ( alert_patrol == null || alert_patrol.Length <= 1 ))
+        if (!static_alert && ( alert_patrol == null || alert_patrol.Length <= 1 ))
             Debug.Log("Enemy " + name + " hasn't a proper ALERT PATH associated or has only one waypoint (use Static toggle instead).");
     }
 
