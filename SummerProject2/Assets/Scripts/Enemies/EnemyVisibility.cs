@@ -104,5 +104,19 @@ public class EnemyVisibility : MonoBehaviour
             //Show new visualization
             render.material = detected_material;
         }
-    }    
+    } 
+   
+    /// <summary>
+    /// Is the enemy visible at any way for the player.
+    /// </summary>
+    /// <returns></returns>
+    public bool IsVisible()
+    {
+        bool ret = false;
+
+        if (is_detected || is_visible)
+            ret = true;
+
+        return ret;
+    }
 }

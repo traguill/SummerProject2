@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &181604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 433386}
+  - 114: {fileID: 11416614}
+  m_Layer: 0
+  m_Name: Cursor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &433386
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181604}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11416614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e9b74ecd47f8e84cbad704494c94a7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idle_i: {fileID: 2800000, guid: 32047d4573fc13a40a4f03a1350fa9d5, type: 3}
+  idle_p: {fileID: 2800000, guid: 4abc5b7cbff0d594aa8ceb364b908267, type: 3}
+  attack: {fileID: 2800000, guid: d7518bf2d31675542956b29cd7934827, type: 3}
+  ally_i: {fileID: 2800000, guid: 6204b0e7748e0534da0bb393006254f9, type: 3}
+  ally_p: {fileID: 2800000, guid: 160ef3a024c19784ba148ea6a03b307f, type: 3}
+  interact_i: {fileID: 2800000, guid: 704164f3ff7eeec46bb6b5b59dcfb820, type: 3}
+  interact_p: {fileID: 2800000, guid: 7326276143e90f34c99bde9c6323f0ef, type: 3}
+  interact_layers:
+    serializedVersion: 2
+    m_Bits: 83712
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 181604}
+  m_IsPrefabParent: 1

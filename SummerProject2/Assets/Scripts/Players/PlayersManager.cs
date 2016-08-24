@@ -84,4 +84,20 @@ public class PlayersManager : MonoBehaviour
             agent.SetDestination(hit.point); //Something between the desired destination;
         }
     }
+
+    //Characters selection
+    public bool IsBarionSelected()
+    {
+        return barion.is_selected;
+    }
+
+    public bool IsCosmoSelected()
+    {
+        return cosmo.is_selected;
+    }
+
+    public bool IsNyxSelected()
+    {
+        return nyx.is_selected;
+    }
 }
