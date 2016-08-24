@@ -4,6 +4,7 @@ using System.Collections;
 public class RhandorAlertState : IRhandorStates
 {   
     private readonly RhandorController enemy;
+    private bool initial_position_achieved;
 
     // Constructor
     public RhandorAlertState(RhandorController enemy_controller)
@@ -41,11 +42,20 @@ public class RhandorAlertState : IRhandorStates
             enemy.agent.destination = enemy.alert_patrol[enemy.current_position].position;
 
             enemy.time_waiting_on_position = 0.1f;
-        }       
+        }  
+        else
+        {
+            enemy.agent.destination = enemy.initial_position;
+            initial_position_achieved = false;
+        }     
     }
 
     public void UpdateState()
     {
+        // Returning to the unique position
+        if (!initial_position_achieved)
+            ReturningInitialPosition();
+
         // If the alarm is turned off, the enemy reverts its current state to Patrol
         if (!enemy.alarm_system.isAlarmActive())
         {
@@ -82,5 +92,22 @@ public class RhandorAlertState : IRhandorStates
     public void ToCorpseState()
     {
         enemy.ChangeStateTo(enemy.corpse_state);
+    }
+
+    private void ReturningInitialPosition()
+    {
+        if (enemy.agent.hasPath && enemy.agent.remainingDistance < enemy.agent.stoppingDistance)
+        {
+            enemy.agent.ResetPath();
+            enemy.agent.Stop();
+        }
+
+        if (!enemy.agent.hasPath && !initial_position_achieved)
+        {
+            if (enemy.transform.forward.IsCloseTo(enemy.initial_forward_direction, 0.01f))
+                initial_position_achieved = true;
+            else
+                enemy.RotateTowards(enemy.initial_forward_direction);
+        }
     }
 }
