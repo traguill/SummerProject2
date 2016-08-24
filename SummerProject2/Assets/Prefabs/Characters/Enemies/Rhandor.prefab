@@ -62,11 +62,11 @@ GameObject:
   - 212: {fileID: 21202244}
   - 54: {fileID: 5471378}
   - 195: {fileID: 19560918}
+  - 136: {fileID: 13635558}
   - 114: {fileID: 11408062}
   - 114: {fileID: 11496492}
   - 114: {fileID: 11476052}
   - 114: {fileID: 11491936}
-  - 136: {fileID: 13635558}
   - 114: {fileID: 11400928}
   m_Layer: 10
   m_Name: Rhandor
@@ -226,7 +226,7 @@ MonoBehaviour:
   alert_path: {fileID: 0}
   neutral_path_loop: 0
   alert_path_loop: 0
-  static_neutral: 1
+  static_neutral: 0
   static_alert: 1
   patrol_speed: 2.5
   alert_speed: 5
@@ -243,6 +243,7 @@ MonoBehaviour:
   current_position: 0
   initial_position: {x: 0, y: 0, z: 0}
   initial_forward_direction: {x: 0, y: 0, z: 0}
+  forward_angle: 0
   render: {fileID: 0}
   alarm_system: {fileID: 0}
   last_spotted_position: {fileID: 0}

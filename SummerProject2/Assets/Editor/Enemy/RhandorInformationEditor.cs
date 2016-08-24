@@ -18,6 +18,7 @@ public class RhandorInformationEditor : Editor
         rhandor = target as RhandorController;
         LoadNeutralPatrol();
         LoadAlertPatrol();
+        Undo.RecordObject(rhandor, "ShowInspectorPatrolControls");
     }
 
     override public void OnInspectorGUI()
@@ -196,6 +197,9 @@ public class RhandorInformationEditor : Editor
 
     private void ShowInspectorPatrolControls()
     {
+        //EditorUtility.SetDirty(rhandor);   
+        Undo.RecordObject(rhandor, "ShowInspectorPatrolControls");
+
         // ---- Neutral patrol editor information ---
         neutral_expanded = EditorGUILayout.Foldout(neutral_expanded, "Neutral patrol");
         if (neutral_expanded)
@@ -367,8 +371,6 @@ public class RhandorInformationEditor : Editor
                 }
             }
         }
-
-        EditorUtility.SetDirty(rhandor);
     }
 
     private void LoadNeutralPatrol()
