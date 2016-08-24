@@ -130,7 +130,7 @@ public class UnitSelection : MonoBehaviour
 
                 if(object_selected.tag == Tags.corpse)
                 {
-                    object_selected.GetComponent<RadialMenu_ObjectInteractable>().OnInteractableClicked(); //Corpse
+                    object_selected.GetComponent<RhandorController>().CorpseSelected(); //TODO: Adapt this for different type of enemies
                     return;
                 }
                 object_selected.GetComponent<RadialMenu_ObjectInteractable>().OnInteractableClicked(); //Others

@@ -67,6 +67,7 @@ GameObject:
   - 114: {fileID: 11476052}
   - 114: {fileID: 11491936}
   - 136: {fileID: 13635558}
+  - 114: {fileID: 11400928}
   m_Layer: 10
   m_Name: Rhandor
   m_TagString: Enemy
@@ -177,6 +178,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &11400928
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 163476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c723bf65f75ea364bab4f46cb4e747b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Drop
+  options:
+  - color: {r: 0, g: 0.41176468, b: 0.10507092, a: 1}
+    sprite: {fileID: 21300000, guid: cae724308b4102d4ea320e7b64b738a8, type: 3}
+    title: 
+    function:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11408062}
+          m_MethodName: DropCorpse
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: OnEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11408062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -263,14 +295,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c723bf65f75ea364bab4f46cb4e747b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Enemy
+  id: Carry
   options:
   - color: {r: 0, g: 1, b: 0.54482746, a: 1}
     sprite: {fileID: 21300000, guid: b6884be38f25a3b42bc9efb11525e539, type: 3}
     title: 
     function:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 11408062}
+          m_MethodName: CarryCorpse
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: OnEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11496492
 MonoBehaviour:

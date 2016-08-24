@@ -123,19 +123,6 @@ public class BarionMovingBoxState : IBarionState {
         Debug.Log("Barion can't transition from MOVING_BOX to SHIELD");
     }
 
-    /// <summary>
-    /// Updates the state depending on the current conditions of each state.
-    /// </summary>
-    void Transitions()
-    {
-        //Can transition to walking
-        if (barion.GetMovement(ref destination))
-        {
-            ToWalkingState();
-        }
-
-        //Multiple box or diferent box option (TODO)
-    }
 
     /// <summary>
     /// Handles all the logic and animation to the action to pick up the box.
@@ -170,6 +157,9 @@ public class BarionMovingBoxState : IBarionState {
         ToIdleState();
     }
 
-
+    public void ToCarryCorpseState()
+    {
+        Debug.Log("Barion can't transition from CARRY_BOX to CARRY_CORPSE");
+    }
 
 }

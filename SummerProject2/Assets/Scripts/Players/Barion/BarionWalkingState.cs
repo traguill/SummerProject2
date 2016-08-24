@@ -83,6 +83,9 @@ public class BarionWalkingState : IBarionState {
         barion.ChangeStateTo(barion.shield_state);
     }
 
-
+    public void ToCarryCorpseState()
+    {
+        //TODO
+    }
 
 }

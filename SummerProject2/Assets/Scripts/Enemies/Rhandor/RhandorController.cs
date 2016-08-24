@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class RhandorController : Enemies {
 
+    //Reference to the enemy manager
+    EnemyManager enemy_manager;
+
     // NavMeshAgent variables and patrol routes
     public GameObject neutral_path, alert_path;
     public bool neutral_path_loop, alert_path_loop;
@@ -37,8 +40,15 @@ public class RhandorController : Enemies {
     [HideInInspector] public EnemyFieldView enemy_field_view;
     [HideInInspector] public NavMeshAgent agent;
 
+    //Menus
+    Dictionary<string, RadialMenu_ObjectInteractable> menus = new Dictionary<string, RadialMenu_ObjectInteractable>(); //List of menus that enemy will display with different interactions.
+    private string carry_id = "Carry";
+    private string drop_id = "Drop";
+
     void Awake()
     {
+        enemy_manager = GetComponentInParent<EnemyManager>(); //Every enemy should be child of the enemy manager
+
         // State machine
         // -- IDLE --
         idle_state = new RhandorIdleState(this);
@@ -62,6 +72,13 @@ public class RhandorController : Enemies {
         alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
         last_spotted_position = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<LastSpottedPosition>();
         enemy_field_view = GetComponent<EnemyFieldView>();
+
+        //Insert all menus in the dictionary
+        RadialMenu_ObjectInteractable[] menus_scripts = GetComponents<RadialMenu_ObjectInteractable>();
+        foreach (RadialMenu_ObjectInteractable menu_script in menus_scripts)
+        {
+            menus.Add(menu_script.id, menu_script);
+        }
     }
     
     void Start()
@@ -207,6 +224,51 @@ public class RhandorController : Enemies {
         Vector3 direction = (target - transform.position).normalized;
         Quaternion look_rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, look_rotation, Time.deltaTime * 2.0f);
+    }
+
+    /// <summary>
+    /// This method is called when the carry corpses option has been selected.
+    /// </summary>
+    public void CarryCorpse(GameObject obj)
+    {
+        if(tag == Tags.corpse)
+        {
+            enemy_manager.barion.CarryCorpse(gameObject);
+        }
+        else
+        {
+            Debug.Log(name + " : Can't carry this corpse because the enemy is not dead");
+        }
+    }
+
+    public void DropCorpse(GameObject obj)
+    {
+        if (tag == Tags.corpse)
+        {
+            enemy_manager.barion.DropCorpse();
+        }
+        else
+        {
+            Debug.Log(name + " : Can't drop this corpse because the enemy is not dead");
+        }
+    }
+
+    /// <summary>
+    /// This method is called when this enemy is a corpse and has been selected to carry.
+    /// </summary>
+    public void CorpseSelected()
+    {
+        if(enemy_manager.barion.is_selected)
+        {
+            if(enemy_manager.barion.GetState() != enemy_manager.barion.carry_corpse_state)
+            {
+                menus[carry_id].OnInteractableClicked(); //Carry
+            }
+            else
+            {
+                menus[drop_id].OnInteractableClicked(); //Drop
+            }
+        }
     }
 }
 

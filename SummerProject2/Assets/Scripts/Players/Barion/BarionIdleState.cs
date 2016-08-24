@@ -33,6 +33,11 @@ public class BarionIdleState : IBarionState {
             ToMoveBoxState();
         }
 
+        if(barion.target_corpse != null)
+        {
+            ToCarryCorpseState();
+        }
+
         //Invisible sphere ability (ability1)
         if(Input.GetAxis("Ability1") != 0 && barion.cooldown_inst.AbilityIsReady(1))
         {
@@ -79,6 +84,9 @@ public class BarionIdleState : IBarionState {
         barion.ChangeStateTo(barion.shield_state);
     }
 
-
+    public void ToCarryCorpseState()
+    {
+        barion.ChangeStateTo(barion.carry_corpse_state);
+    }
 
 }

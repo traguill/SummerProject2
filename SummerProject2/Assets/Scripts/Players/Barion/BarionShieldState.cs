@@ -100,5 +100,8 @@ public class BarionShieldState : IBarionState
         barion.ChangeStateTo(barion.walking_state);
     }
 
-    
+    public void ToCarryCorpseState()
+    {
+        Debug.Log("Barion can't transition from SHIELD to CARRY_CORPSE");
+    }
 }
