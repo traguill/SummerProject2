@@ -10,7 +10,7 @@ public class RhandorController : Enemies {
     // NavMeshAgent variables and patrol routes
     public GameObject neutral_path, alert_path;
     public bool neutral_path_loop, alert_path_loop;
-    public bool static_neutral = true, static_alert = true;    
+    public bool static_neutral, static_alert;    
     public float patrol_speed, alert_speed, spotted_speed;
 
     private bool inverse_patrol;

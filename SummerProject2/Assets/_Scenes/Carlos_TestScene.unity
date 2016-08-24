@@ -1255,14 +1255,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 755043536}
     m_Modifications:
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: stopping_time_alert_patrol.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: stopping_time_neutral_patrol.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 424680, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: m_LocalPosition.x
       value: -38.9
@@ -1306,46 +1298,6 @@ Prefab:
     - target: {fileID: 163476, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: m_Name
       value: Rhandor_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: num_neutral_waypoints
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: num_alert_waypoints
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: stopping_time_neutral_patrol.Array.data[0]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: stopping_time_neutral_patrol.Array.data[5]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 424680, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: neutral_path_loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: static_neutral_path
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: alert_path_loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: static_alert_path
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 163476, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
@@ -1719,6 +1671,7 @@ MonoBehaviour:
   players: []
   fow_disabled: 0
   barion: {fileID: 0}
+  list_of_corpses: []
 --- !u!114 &755043535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2169,7 +2122,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: stopping_time_neutral_patrol.Array.data[2]
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 163476, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: m_IsActive
@@ -2185,6 +2138,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: neutral_path_loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19560918, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
+      propertyPath: m_AutoBraking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
+      propertyPath: alert_path_loop
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
