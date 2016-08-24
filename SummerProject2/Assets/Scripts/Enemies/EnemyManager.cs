@@ -7,9 +7,10 @@ public class EnemyManager : MonoBehaviour
     [HideInInspector] public GameObject[] enemies;
     [HideInInspector] public GameObject[] players; //For enemy view
 
-    [HideInInspector] public bool fow_disabled = false; //If the fog of war is disabled the enemies are always visible
+    public bool fow_disabled = false; //If the fog of war is disabled the enemies are always visible
 
-    [HideInInspector]public BarionController barion; //Specific reference to barion, for interaction with corpses
+    [HideInInspector] public BarionController barion; //Specific reference to barion, for interaction with corpses
+    public List<GameObject> list_of_corpses;
 
     void Awake()
     {
@@ -42,5 +43,26 @@ public class EnemyManager : MonoBehaviour
                 enemy_to_destroy.GetComponent<RhandorController>().Dead();
                 break;
         }        
+    }
+
+    /// <summary>
+    /// Is that corpse already identified? Enemies won't activate the alarm if the corpse has already been checked.
+    /// </summary>
+    /// <param name="corpse_to_check">The corpse to check</param>
+    /// <returns>True if the corpse has been already identified. False, otherwise</returns>
+    public bool IsCorpseAlreadyIdentify(GameObject corpse_to_check)
+    {
+        if(corpse_to_check.tag.Equals(Tags.corpse))
+        {
+            foreach(GameObject corpse in list_of_corpses)
+            {
+                if (corpse_to_check == corpse)
+                    return true;
+            }
+        }
+        else
+            Debug.Log("Enemy " + corpse_to_check.name + " is not dead!");
+            
+        return false;
     }
 }

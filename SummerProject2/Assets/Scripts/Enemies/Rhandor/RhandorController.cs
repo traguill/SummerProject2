@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class RhandorController : Enemies {
 
     //Reference to the enemy manager
-    EnemyManager enemy_manager;
+    [HideInInspector] public EnemyManager enemy_manager;
 
     // NavMeshAgent variables and patrol routes
     public GameObject neutral_path, alert_path;
@@ -40,15 +40,14 @@ public class RhandorController : Enemies {
     [HideInInspector] public EnemyFieldView enemy_field_view;
     [HideInInspector] public NavMeshAgent agent;
 
-    //Menus
-    Dictionary<string, RadialMenu_ObjectInteractable> menus = new Dictionary<string, RadialMenu_ObjectInteractable>(); //List of menus that enemy will display with different interactions.
+    // --- Menus ---
+    //List of menus that enemy will display with different interactions.
+    Dictionary<string, RadialMenu_ObjectInteractable> menus = new Dictionary<string, RadialMenu_ObjectInteractable>(); 
     private string carry_id = "Carry";
     private string drop_id = "Drop";
 
     void Awake()
     {
-        enemy_manager = GetComponentInParent<EnemyManager>(); //Every enemy should be child of the enemy manager
-
         // State machine
         // -- IDLE --
         idle_state = new RhandorIdleState(this);
@@ -72,6 +71,7 @@ public class RhandorController : Enemies {
         alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
         last_spotted_position = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<LastSpottedPosition>();
         enemy_field_view = GetComponent<EnemyFieldView>();
+        enemy_manager = GetComponentInParent<EnemyManager>(); //Every enemy should be child of the enemy manager
 
         //Insert all menus in the dictionary
         RadialMenu_ObjectInteractable[] menus_scripts = GetComponents<RadialMenu_ObjectInteractable>();
@@ -95,6 +95,10 @@ public class RhandorController : Enemies {
 
         if (!static_alert && ( alert_patrol == null || alert_patrol.Length <= 1 ))
             Debug.Log("Enemy " + name + " hasn't a proper ALERT PATH associated or has only one waypoint (use Static toggle instead).");
+
+        // DEBUG
+        if (tag.Equals(Tags.corpse))
+            ChangeStateTo(corpse_state);
     }
 
     void Update()

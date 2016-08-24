@@ -15,6 +15,7 @@ public class EnemyFieldView : MonoBehaviour
     private ScreenFader screen_fader;
     private EnemyManager enemy_manager;
     private CameraMove main_camera;
+    private LastSpottedPosition last_spotted_position;
 
     private bool player_found;
 
@@ -23,10 +24,11 @@ public class EnemyFieldView : MonoBehaviour
     // Awake
     void Awake()
     {
-        alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
+        alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();        
         screen_fader = GameObject.FindGameObjectWithTag(Tags.screen_fader).GetComponent<ScreenFader>();
         enemy_manager = GetComponentInParent<EnemyManager>();
         main_camera = GameObject.FindGameObjectWithTag(Tags.main_camera).GetComponent<CameraMove>();
+        last_spotted_position = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<LastSpottedPosition>();
     }
 
     void Start()
@@ -83,24 +85,30 @@ public class EnemyFieldView : MonoBehaviour
     {
         foreach(Transform t in visible_targets)
         {
-            if (t.tag == Tags.player && t.GetComponent<Invisible>().IsInvisible())
-                continue;
-             
-            // If enemy corpse is found, alert mode is activated
-            if (t.tag.Equals(Tags.corpse))
-                alarm_system.SetAlarm(ALARM_STATE.ALARM_ON);
-
-            // If player is found, the level resets.
-            if (t.tag.Equals(Tags.player) && !player_found)
+            if (t.tag.Equals(Tags.player))
             {
-                player_found = true;
-                main_camera.MoveCameraTo(transform.position);
-                screen_fader.EndScene(0);
+                if (t.GetComponent<Invisible>().IsInvisible())
+                    continue;
+                if(!player_found)
+                {
+                    player_found = true;
+                    main_camera.MoveCameraTo(transform.position);
+                    screen_fader.EndScene(0);
 
-                //Debug part
-                //---------------------------
-                GetComponent<SpriteRenderer>().material.SetColor("_Tint", new Color(1.0f, 1.0f, 0.0f, 0.0f)); //Tint yellow the enemy who discovered a character
-                //---------------------------
+                    // Debug part
+                    //---------------------------
+                    // Tint yellow the enemy who discovered a character
+                    GetComponent<SpriteRenderer>().material.SetColor("_Tint", new Color(1.0f, 1.0f, 0.0f, 0.0f));
+                    //---------------------------
+                }
+            }
+
+            // If enemy corpse is found, the enemy will move to a near position to cleary identify the corpse
+            if (t.tag.Equals(Tags.corpse) && !enemy_manager.IsCorpseAlreadyIdentify(t.gameObject))
+            {
+                RhandorController rhandor = GetComponent<RhandorController>();
+                last_spotted_position.LastPosition = t.transform.position;
+                rhandor.ChangeStateTo(rhandor.spotted_state);
             }
         }        
     }
