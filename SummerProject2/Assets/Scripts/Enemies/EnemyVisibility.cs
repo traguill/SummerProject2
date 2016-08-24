@@ -8,7 +8,7 @@ public class EnemyVisibility : MonoBehaviour
     private bool is_visible;
     private bool is_detected;
     private float detected_time;
-    private SpriteRenderer render;
+    private MeshRenderer render;
     public Material detected_material;
     public Material normal_material;
     public float max_detection_time = 3.0f;
@@ -21,7 +21,7 @@ public class EnemyVisibility : MonoBehaviour
 
     void Awake()
     {
-        render = GetComponent<SpriteRenderer>();
+        render = GetComponent<MeshRenderer>();
         render.enabled = false; //Set to invisible by default
         is_detected = false;
         is_visible = false;

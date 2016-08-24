@@ -30,8 +30,8 @@ public class EnemyFootsteps : MonoBehaviour
             return;
         }
 
-        //Check if enemy is visible
-        if(enemy.GetComponent<SpriteRenderer>().enabled == true)
+        //Check if enemy is visible TODO: change this implementation
+        if(enemy.GetComponent<MeshRenderer>().enabled == true)
         {
             if (footsteps.isPlaying)
                 footsteps.Stop();

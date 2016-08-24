@@ -15,11 +15,14 @@ public class RhandorCorpseState : IRhandorStates {
         enemy.agent.Stop();
         enemy.agent.enabled = false;
         enemy.enemy_field_view.StopCoroutine("FindTargetsWithDelay");
+
+        //Tint black the enemy if it's dead
+        enemy.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 1);
     }
 
     public void UpdateState()
     {
-        enemy.render.flipY = false; //Due to the shader the sprite is already flipped.
+        
     }
 
     public void ToIdleState()

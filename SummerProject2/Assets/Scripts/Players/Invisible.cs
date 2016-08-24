@@ -61,9 +61,9 @@ public class Invisible : MonoBehaviour
     /// </summary>
     void TurnVisibleAnim()
     {
-        Color new_color = GetComponent<SpriteRenderer>().color; //TODO: for now only change the alpha color of the sprite. Make an awesome animation for this and replace it.
+        Color new_color = GetComponent<MeshRenderer>().material.color; //TODO: for now only change the alpha color of the sprite. Make an awesome animation for this and replace it.
         new_color.a = 1.0f;
-        GetComponent<SpriteRenderer>().color = new_color;
+        GetComponent<MeshRenderer>().material.color = new_color;
     }
 
     /// <summary>
@@ -71,8 +71,8 @@ public class Invisible : MonoBehaviour
     /// </summary>
     void TurnInvisibleAnim()
     {
-        Color new_color = GetComponent<SpriteRenderer>().color; //TODO: for now only change the alpha color of the sprite. Make an awesome animation for this and replace it.
+        Color new_color = GetComponent<MeshRenderer>().material.color; //TODO: for now only change the alpha color of the sprite. Make an awesome animation for this and replace it.
         new_color.a = 0.4f;
-        GetComponent<SpriteRenderer>().color = new_color;
+        GetComponent<MeshRenderer>().material.color = new_color;
     }
 }

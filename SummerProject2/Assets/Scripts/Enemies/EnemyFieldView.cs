@@ -98,7 +98,7 @@ public class EnemyFieldView : MonoBehaviour
                     // Debug part
                     //---------------------------
                     // Tint yellow the enemy who discovered a character
-                    GetComponent<SpriteRenderer>().material.SetColor("_Tint", new Color(1.0f, 1.0f, 0.0f, 0.0f));
+                    GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(1.0f, 1.0f, 0.0f, 0.0f));
                     //---------------------------
                 }
             }

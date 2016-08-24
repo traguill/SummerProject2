@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Rhandor_mat_detected
-  m_Shader: {fileID: 4800000, guid: 93b9abb097aa12e4c98d9d53d042943b, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -135,7 +135,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.034482475, g: 0, b: 1, a: 1}
+        second: {r: 1, g: 0.47586206, b: 0, a: 1}
       data:
         first:
           name: _Tint
