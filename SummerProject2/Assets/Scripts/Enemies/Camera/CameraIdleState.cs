@@ -8,8 +8,6 @@ public class CameraIdleState : ICameraStates {
     public CameraIdleState(CameraController camera_controller)
     {
         camera = camera_controller;
-        camera.mid_angle = camera.angle_range / 2.0f;
-        camera.current_speed = camera.max_rotation_speed;
     }
 
     public void StartState()

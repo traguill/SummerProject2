@@ -4,10 +4,9 @@ using System.Collections;
 public static class ExtensionMethods
 {
     /// <summary>
-    /// getChilds: Own script to get all the direct childs
-    /// Complaints to CRZ
+    /// getChilds: Own script to get all the direct childs.
+    /// Complaints to CRZ!
     /// </summary>
-
     public static Transform[] getChilds(this Transform trans)
     {
         Transform[] ret;
