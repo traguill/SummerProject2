@@ -10,11 +10,18 @@ public class EnemyFootsteps : MonoBehaviour
 
     public float sound_radius;
 
-	void Start ()
+    MeshRenderer render; //If the render is enabled the enemy is visible.
+
+    float time_detection = 0.5f; //Check players every 0.5s to optimize the physics
+    float timer = 0.0f;
+
+	void Awake ()
     {
         player_mask = LayerMask.GetMask("Player");
         enemy = transform.parent.gameObject;
         footsteps = GetComponent<ParticleSystem>();
+
+        render = enemy.GetComponent<MeshRenderer>();
 
         footsteps.Stop();
 	}
@@ -30,19 +37,27 @@ public class EnemyFootsteps : MonoBehaviour
             return;
         }
 
-        //Check if enemy is visible TODO: change this implementation
-        if(enemy.GetComponent<MeshRenderer>().enabled == true)
+        //Check if enemy is visible TODO: if the enemy is stopped don't play footsteps
+        if(render.enabled == true)
         {
             if (footsteps.isPlaying)
                 footsteps.Stop();
         }
         else
         {
-            Collider[] players_in_sound_radius = Physics.OverlapSphere(transform.position, sound_radius, player_mask);
+            timer += Time.deltaTime;
 
-            if(players_in_sound_radius.Length > 0)
-                if (footsteps.isPlaying == false)
-                     footsteps.Play();
+            if(timer >= time_detection)
+            {
+                Collider[] players_in_sound_radius = Physics.OverlapSphere(transform.position, sound_radius, player_mask);
+
+                if (players_in_sound_radius.Length > 0)
+                    if (footsteps.isPlaying == false)
+                        footsteps.Play();
+
+                timer = 0.0f;
+            }
+          
         }
 	
 	}
