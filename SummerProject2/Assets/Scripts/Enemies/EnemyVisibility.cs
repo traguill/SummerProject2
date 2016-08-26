@@ -43,6 +43,7 @@ public class EnemyVisibility : MonoBehaviour
         if (is_visible || enemy_manager.fow_disabled)
         {
             render.enabled = true; // Visible
+            arrow.enabled = true;
             if (is_detected)
             {
                 is_detected = false;
@@ -53,7 +54,7 @@ public class EnemyVisibility : MonoBehaviour
         {
             if (is_detected)
             {
-                render.enabled = true;
+
                 detected_time += Time.deltaTime;
 
                 if (detected_time > max_detection_time)
@@ -65,6 +66,7 @@ public class EnemyVisibility : MonoBehaviour
             else
             {
                 render.enabled = false; //Inside the fow
+                arrow.enabled = false;
             }
         }         
     }
@@ -75,7 +77,6 @@ public class EnemyVisibility : MonoBehaviour
     private void SetVisible()
     {
         is_visible = false;
-        arrow.enabled = false;
         
         // Then, the spotted enemy turn to visible if some player is seeing him.
         foreach (GameObject player in enemy_manager.players)
@@ -85,7 +86,6 @@ public class EnemyVisibility : MonoBehaviour
                 if(spotted_entity == transform)
                 {
                     is_visible = true;
-                    arrow.enabled = true;
                 }
             }
         }
@@ -103,6 +103,9 @@ public class EnemyVisibility : MonoBehaviour
 
             //Show new visualization
             render.material = detected_material;
+
+            render.enabled = true;
+            arrow.enabled = true;
         }
     } 
    
