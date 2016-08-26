@@ -32,8 +32,10 @@ public class EnemyFootsteps : MonoBehaviour
         if(enemy.tag == Tags.corpse)
         {
             if (footsteps.isPlaying)
+            {
                 footsteps.Stop();
-
+                footsteps.Clear();
+            }
             return;
         }
 
@@ -41,7 +43,10 @@ public class EnemyFootsteps : MonoBehaviour
         if(render.enabled == true)
         {
             if (footsteps.isPlaying)
+            {
                 footsteps.Stop();
+                footsteps.Clear();
+            }
         }
         else
         {
@@ -52,8 +57,16 @@ public class EnemyFootsteps : MonoBehaviour
                 Collider[] players_in_sound_radius = Physics.OverlapSphere(transform.position, sound_radius, player_mask);
 
                 if (players_in_sound_radius.Length > 0)
+                {
                     if (footsteps.isPlaying == false)
                         footsteps.Play();
+                }
+                else
+                {
+                    footsteps.Stop();
+                    footsteps.Clear();
+                }
+                    
 
                 timer = 0.0f;
             }
