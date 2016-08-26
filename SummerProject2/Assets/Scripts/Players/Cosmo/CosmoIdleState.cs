@@ -37,8 +37,8 @@ public class CosmoIdleState : ICosmoState
 
     public void ToWalkingState()
     {
-        cosmo.ChangeStateTo(cosmo.walking_state);
         cosmo.agent.SetDestination(destination);
+        cosmo.ChangeStateTo(cosmo.walking_state);   
     }
 
     public void ToHideState()

@@ -3,6 +3,9 @@ using System.Collections;
 
 public class CosmoController : MonoBehaviour {
 
+    //Players manager
+    [HideInInspector] public PlayersManager players_manager;
+
     //Selection
     public GameObject selection_circle;
     [HideInInspector]public UnitSelection selection_system;
@@ -44,6 +47,7 @@ public class CosmoController : MonoBehaviour {
 
     void Awake()
     {
+        players_manager = GetComponentInParent<PlayersManager>();
         selection_system = GameObject.Find("SelectionSystem").GetComponent<UnitSelection>();
         cooldown_inst = GetComponent<Cooldown>();
         agent = GetComponent<NavMeshAgent>();

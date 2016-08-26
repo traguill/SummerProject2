@@ -14,7 +14,9 @@ public class CosmoWalkingState : ICosmoState
     }
 
     public void StartState()
-    {}
+    {
+        cosmo.players_manager.cursor.CosmoMoveTo(cosmo.agent.destination);
+    }
 
     public void UpdateState()
     {
@@ -37,6 +39,7 @@ public class CosmoWalkingState : ICosmoState
     public void ToWalkingState()
     {
         cosmo.agent.SetDestination(destination); //Change destination to new one.
+        cosmo.players_manager.cursor.CosmoMoveTo(cosmo.agent.destination);
     }
 
     /// <summary>

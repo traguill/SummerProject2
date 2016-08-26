@@ -104,8 +104,8 @@ public class BarionMovingBoxState : IBarionState {
 
     public void ToWalkingState()
     {
-        barion.ChangeStateTo(barion.walking_state);
         barion.agent.SetDestination(destination);
+        barion.ChangeStateTo(barion.walking_state);
     }
 
     public void ToHideState()

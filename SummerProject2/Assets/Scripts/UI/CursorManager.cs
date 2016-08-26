@@ -12,6 +12,11 @@ public class CursorManager : MonoBehaviour
     public Texture2D interact_i; 
     public Texture2D interact_p;
 
+    //Movement mark particles (mm == movement mark)
+    public ParticleSystem mm_nyx;
+    public ParticleSystem mm_barion;
+    public ParticleSystem mm_cosmo; 
+
     Vector2 hot_spot = Vector2.zero;
 
     public LayerMask interact_layers;
@@ -120,5 +125,41 @@ public class CursorManager : MonoBehaviour
             Cursor.SetCursor(idle_p, hot_spot, CursorMode.Auto);
         else
             Cursor.SetCursor(idle_i, hot_spot, CursorMode.Auto);
+    }
+
+    /// <summary>
+    /// Creates a mark at the destination
+    /// </summary>
+    public void NyxMoveTo(Vector3 destination)
+    {
+        destination.y = 0;
+
+        mm_nyx.transform.position = destination;
+        mm_nyx.Clear();
+        mm_nyx.Play();
+    }
+
+    /// <summary>
+    /// Creates a mark at the destination
+    /// </summary>
+    public void CosmoMoveTo(Vector3 destination)
+    {
+        destination.y = 0;
+
+        mm_cosmo.transform.position = destination;
+        mm_cosmo.Clear();
+        mm_cosmo.Play();
+    }
+
+    /// <summary>
+    /// Creates a mark at the destination
+    /// </summary>
+    public void BarionMoveTo(Vector3 destination)
+    {
+        destination.y = 0;
+
+        mm_barion.transform.position = destination;
+        mm_barion.Clear();
+        mm_barion.Play();
     }
 }

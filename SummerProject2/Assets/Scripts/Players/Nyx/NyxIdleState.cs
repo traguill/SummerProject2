@@ -38,8 +38,8 @@ public class NyxIdleState : INyxState
 
     public void ToWalkingState()
     {
-        nyx.ChangeStateTo(nyx.walking_state);
         nyx.agent.SetDestination(destination);
+        nyx.ChangeStateTo(nyx.walking_state);
     }
 
     public void ToHideState()

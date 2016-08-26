@@ -3,6 +3,9 @@ using System.Collections;
 
 public class BarionController : MonoBehaviour {
 
+    //Players manager
+    [HideInInspector] public PlayersManager players_manager;
+
     //Selection
     public GameObject selection_circle;
     [HideInInspector]public UnitSelection selection_system;
@@ -47,6 +50,7 @@ public class BarionController : MonoBehaviour {
 
     void Awake()
     {
+        players_manager = GetComponentInParent<PlayersManager>();
         hud = GameObject.Find(Objects.HUD).GetComponent<HUD_Controller>();
         selection_system = GameObject.Find("SelectionSystem").GetComponent<UnitSelection>();
         cooldown_inst = GetComponent<Cooldown>();

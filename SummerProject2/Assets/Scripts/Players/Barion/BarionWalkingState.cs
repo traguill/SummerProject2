@@ -14,7 +14,9 @@ public class BarionWalkingState : IBarionState {
     }
 
     public void StartState()
-    { }
+    {
+        barion.players_manager.cursor.BarionMoveTo(barion.agent.destination);
+    }
 
     public void UpdateState()
     {
@@ -65,6 +67,7 @@ public class BarionWalkingState : IBarionState {
     {
         //Resets destination to a new one
         barion.agent.SetDestination(destination);
+        barion.players_manager.cursor.BarionMoveTo(barion.agent.destination);
     }
 
     public void ToHideState()

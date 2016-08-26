@@ -3,6 +3,9 @@ using System.Collections;
 
 public class NyxController : MonoBehaviour {
 
+    //Players manager
+    [HideInInspector] public PlayersManager players_manager;
+
     //Selection
     public GameObject selection_circle;
     [HideInInspector] public UnitSelection selection_system;
@@ -52,6 +55,8 @@ public class NyxController : MonoBehaviour {
 
     void Awake()
     {
+        players_manager = GetComponentInParent<PlayersManager>();
+
         selection_system = GameObject.Find("SelectionSystem").GetComponent<UnitSelection>();
         enemy_manager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         cooldown_inst = GetComponent<Cooldown>();

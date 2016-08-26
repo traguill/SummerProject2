@@ -10,11 +10,16 @@ public class PlayersManager : MonoBehaviour
     NyxController nyx;
     BarionController barion;
 
+    //Reference to other scripts
+    [HideInInspector]public CursorManager cursor; 
+
     void Awake()
     {
         cosmo = GameObject.Find("Cosmo").GetComponent<CosmoController>();
         nyx = GameObject.Find("Nyx").GetComponent<NyxController>();
         barion = GameObject.Find("Barion").GetComponent<BarionController>();
+
+        cursor = GameObject.Find("Cursor").GetComponent<CursorManager>();
     }
 
 	

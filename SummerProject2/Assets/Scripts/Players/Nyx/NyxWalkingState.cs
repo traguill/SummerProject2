@@ -15,7 +15,9 @@ public class NyxWalkingState : INyxState
 
     
     public void StartState()
-    {}
+    {
+        nyx.players_manager.cursor.NyxMoveTo(nyx.agent.destination);
+    }
 
     public void UpdateState()
     {
@@ -71,6 +73,7 @@ public class NyxWalkingState : INyxState
     {
         //Resets destination to a new one
         nyx.agent.SetDestination(destination);
+        nyx.players_manager.cursor.NyxMoveTo(nyx.agent.destination);
     }
 
     public void ToHideState()

@@ -405,6 +405,11 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 433644, guid: ebd81c830588a5743b5a94b77464ca00, type: 2}
   m_PrefabInternal: {fileID: 375800241}
+--- !u!198 &339231035 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19881646, guid: b578570af48f40142b9e1566b1d463f4,
+    type: 2}
+  m_PrefabInternal: {fileID: 548406273}
 --- !u!1 &341295200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1064,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11416614, guid: b578570af48f40142b9e1566b1d463f4, type: 2}
+      propertyPath: mm_nyx
+      value: 
+      objectReference: {fileID: 339231035}
+    - target: {fileID: 11416614, guid: b578570af48f40142b9e1566b1d463f4, type: 2}
+      propertyPath: mm_barion
+      value: 
+      objectReference: {fileID: 733997418}
+    - target: {fileID: 11416614, guid: b578570af48f40142b9e1566b1d463f4, type: 2}
+      propertyPath: mm_cosmo
+      value: 
+      objectReference: {fileID: 1473069078}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b578570af48f40142b9e1566b1d463f4, type: 2}
   m_IsPrefabParent: 0
@@ -1185,6 +1202,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebd81c830588a5743b5a94b77464ca00, type: 2}
   m_IsPrefabParent: 0
+--- !u!198 &733997418 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19831818, guid: b578570af48f40142b9e1566b1d463f4,
+    type: 2}
+  m_PrefabInternal: {fileID: 548406273}
 --- !u!1 &778281888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,6 +1253,7 @@ MonoBehaviour:
   environment_collision_layer:
     serializedVersion: 2
     m_Bits: 0
+  cursor: {fileID: 0}
 --- !u!4 &780811518 stripped
 Transform:
   m_PrefabParentObject: {fileID: 433644, guid: ebd81c830588a5743b5a94b77464ca00, type: 2}
@@ -2764,6 +2787,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebd81c830588a5743b5a94b77464ca00, type: 2}
   m_IsPrefabParent: 0
+--- !u!198 &1473069078 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19848434, guid: b578570af48f40142b9e1566b1d463f4,
+    type: 2}
+  m_PrefabInternal: {fileID: 548406273}
 --- !u!1001 &1477799006
 Prefab:
   m_ObjectHideFlags: 0
