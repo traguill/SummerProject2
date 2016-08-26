@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6300a9cc9370c1c48bb903e5b96579ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  players_manager: {fileID: 0}
   selection_circle: {fileID: 129804}
   selection_system: {fileID: 0}
   is_selected: 0
@@ -237,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - timer: 0
-    cooldown_seconds: 3
+    cooldown_seconds: 6
     in_use: 0
   - timer: 0
     cooldown_seconds: 20
