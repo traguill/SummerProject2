@@ -140,6 +140,9 @@ MonoBehaviour:
   ally_p: {fileID: 2800000, guid: 160ef3a024c19784ba148ea6a03b307f, type: 3}
   interact_i: {fileID: 2800000, guid: 704164f3ff7eeec46bb6b5b59dcfb820, type: 3}
   interact_p: {fileID: 2800000, guid: 7326276143e90f34c99bde9c6323f0ef, type: 3}
+  mm_nyx: {fileID: 19881646}
+  mm_barion: {fileID: 19831818}
+  mm_cosmo: {fileID: 19848434}
   interact_layers:
     serializedVersion: 2
     m_Bits: 83712
