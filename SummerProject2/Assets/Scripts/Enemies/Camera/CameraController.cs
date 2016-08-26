@@ -22,10 +22,11 @@ public class CameraController : MonoBehaviour
     private bool returning = false;                          // Useful to separate each camera direction
     [HideInInspector] public float current_angle, current_speed;
     [HideInInspector] public Vector3 initial_forward_direction;
+    [HideInInspector] public Quaternion initial_rotation;
     [HideInInspector] public float mid_angle;
     private bool stopping_phase;
     private float timer = 0.0f;
-    private float left_zone, right_zone;
+    private float left_zone, right_zone;    
 
     //State machine
     [HideInInspector] public ICameraStates current_state;
@@ -54,7 +55,9 @@ public class CameraController : MonoBehaviour
             if (childs.gameObject.name == "camera_lens")
                 camera_lens = childs;
         }
+
         initial_forward_direction = camera_lens.transform.forward;
+        initial_rotation = camera_lens.rotation;
 
         alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
         last_spotted_position = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<LastSpottedPosition>();
@@ -69,7 +72,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        ChangeStateTo(idle_state);
+        ChangeStateTo(following_state);
     }
 
     void Update()

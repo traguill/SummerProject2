@@ -54,7 +54,7 @@ public class CameraFollowingState : ICameraStates
         }
 
         Debug.DrawLine(camera.camera_lens.position, player_to_follow.transform.position);
-        Debug.Log(Vector3.Distance(camera.camera_lens.position, player_to_follow.transform.position));
+        //Debug.Log(Vector3.Distance(camera.camera_lens.position, player_to_follow.transform.position));
     }
 
     private GameObject NearPlayer()
