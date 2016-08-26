@@ -10,7 +10,7 @@ public class EnemyManager : MonoBehaviour
     public bool fow_disabled = false; //If the fog of war is disabled the enemies are always visible
 
     [HideInInspector] public BarionController barion; //Specific reference to barion, for interaction with corpses
-    public List<GameObject> list_of_corpses;
+    public List<GameObject> list_of_corpses, list_of_portals;
 
     void Awake()
     {
@@ -46,22 +46,17 @@ public class EnemyManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Is that corpse already identified? Enemies won't activate the alarm if the corpse has already been checked.
+    /// Is that element already identified? Enemies won't activate the alarm if the element has already been checked.
     /// </summary>
-    /// <param name="corpse_to_check">The corpse to check</param>
-    /// <returns>True if the corpse has been already identified. False, otherwise</returns>
-    public bool IsCorpseAlreadyIdentify(GameObject corpse_to_check)
+    /// <param name="element_to_check">The corpse to check</param>
+    /// <returns>True if the elmenet has been already identified. False, otherwise</returns>
+    public bool IsElementAlreadyIdentify(GameObject element_to_check, List<GameObject> list_to_check)
     {
-        if(corpse_to_check.tag.Equals(Tags.corpse))
+        foreach(GameObject element in list_to_check)
         {
-            foreach(GameObject corpse in list_of_corpses)
-            {
-                if (corpse_to_check == corpse)
-                    return true;
-            }
-        }
-        else
-            Debug.Log("Enemy " + corpse_to_check.name + " is not dead!");
+            if (element_to_check == element)
+                return true;
+        }      
             
         return false;
     }

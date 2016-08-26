@@ -4,9 +4,6 @@ using System.Collections.Generic;
 
 public class RhandorController : Enemies {
 
-    //Reference to the enemy manager
-    [HideInInspector] public EnemyManager enemy_manager;
-
     // NavMeshAgent variables and patrol routes
     public GameObject neutral_path, alert_path;
     public bool neutral_path_loop, alert_path_loop;
@@ -39,6 +36,10 @@ public class RhandorController : Enemies {
     [HideInInspector] public LastSpottedPosition last_spotted_position;
     [HideInInspector] public EnemyFieldView enemy_field_view;
     [HideInInspector] public NavMeshAgent agent;
+    [HideInInspector] public EnemyManager enemy_manager;
+
+    // Element spotted. Use in spotted_state state
+    [HideInInspector] public GameObject spotted_element;
 
     // --- Menus ---
     //List of menus that enemy will display with different interactions.

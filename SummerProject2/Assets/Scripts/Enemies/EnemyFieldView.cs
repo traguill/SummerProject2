@@ -33,7 +33,7 @@ public class EnemyFieldView : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine("FindTargetsWithDelay", 0.2f);
+        StartCoroutine("FindTargetsWithDelay", 0.5f);
         player_found = false;
     }
 
@@ -85,6 +85,7 @@ public class EnemyFieldView : MonoBehaviour
     {
         foreach(Transform t in visible_targets)
         {
+            // Response for players!
             if (t.tag.Equals(Tags.player))
             {
                 if (t.GetComponent<Invisible>().IsInvisible())
@@ -103,12 +104,26 @@ public class EnemyFieldView : MonoBehaviour
                 }
             }
 
-            // If enemy corpse is found, the enemy will move to a near position to cleary identify the corpse
-            if (t.tag.Equals(Tags.corpse) && !enemy_manager.IsCorpseAlreadyIdentify(t.gameObject))
+            // Response for corpses: If enemy corpse is found, the enemy will move
+            // to a near position to cleary identify the corpse
+            if (t.tag.Equals(Tags.corpse) && !enemy_manager.IsElementAlreadyIdentify(t.gameObject, enemy_manager.list_of_corpses))
             {
                 RhandorController rhandor = GetComponent<RhandorController>();
                 last_spotted_position.LastPosition = t.transform.position;
+                rhandor.spotted_element = t.gameObject;
                 rhandor.ChangeStateTo(rhandor.spotted_state);
+                enemy_manager.list_of_corpses.Add(rhandor.spotted_element);
+            }
+
+            // Response for portals:
+            if (t.tag.Equals(Tags.portal) && !enemy_manager.IsElementAlreadyIdentify(t.gameObject, enemy_manager.list_of_portals))
+            {
+                RhandorController rhandor = GetComponent<RhandorController>();
+                last_spotted_position.LastPosition = t.transform.position;
+                rhandor.spotted_element = t.gameObject;
+                rhandor.ChangeStateTo(rhandor.spotted_state);
+                enemy_manager.list_of_portals.Add(rhandor.spotted_element);
+
             }
         }        
     }
