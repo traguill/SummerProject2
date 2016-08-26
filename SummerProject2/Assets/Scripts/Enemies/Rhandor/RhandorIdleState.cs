@@ -5,6 +5,7 @@ public class RhandorIdleState : IRhandorStates
 {
     private readonly RhandorController rhandor;
     private bool initial_position_achieved;
+    
 
     public RhandorIdleState(RhandorController enemy_controller)
     {
@@ -14,7 +15,7 @@ public class RhandorIdleState : IRhandorStates
     public void StartState()
     {
         rhandor.agent.destination = rhandor.initial_position;
-        initial_position_achieved = false;
+        initial_position_achieved = false;        
     }
 
     public void UpdateState()
@@ -69,11 +70,7 @@ public class RhandorIdleState : IRhandorStates
 
         if (!rhandor.agent.hasPath && !initial_position_achieved)
         {
-            if (rhandor.transform.forward.IsCloseTo(rhandor.initial_forward_direction, 0.01f))
-                initial_position_achieved = true;
-            else
-                rhandor.RotateTowards(rhandor.initial_forward_direction);                
+            initial_position_achieved = rhandor.RecoveringInitialPosition();                
         }       
     }
-
 }

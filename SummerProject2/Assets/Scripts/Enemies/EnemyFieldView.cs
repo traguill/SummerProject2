@@ -115,7 +115,8 @@ public class EnemyFieldView : MonoBehaviour
                 enemy_manager.list_of_corpses.Add(rhandor.spotted_element);
             }
 
-            // Response for portals:
+            // Response for portals: If portal is found, the enemy will move
+            // to a near position to cleary identify the portal
             if (t.tag.Equals(Tags.portal) && !enemy_manager.IsElementAlreadyIdentify(t.gameObject, enemy_manager.list_of_portals))
             {
                 RhandorController rhandor = GetComponent<RhandorController>();
@@ -123,7 +124,6 @@ public class EnemyFieldView : MonoBehaviour
                 rhandor.spotted_element = t.gameObject;
                 rhandor.ChangeStateTo(rhandor.spotted_state);
                 enemy_manager.list_of_portals.Add(rhandor.spotted_element);
-
             }
         }        
     }

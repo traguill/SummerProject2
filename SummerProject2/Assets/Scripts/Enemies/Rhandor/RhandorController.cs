@@ -19,6 +19,9 @@ public class RhandorController : Enemies {
     [HideInInspector] public float time_waiting_on_position;      
     [HideInInspector] public int current_position;
     [HideInInspector] public Vector3 initial_position, initial_forward_direction;
+    [HideInInspector] public Quaternion initial_orientation;
+
+    private float time_recovering_timer, max_time_recovering;
 
     // For corpses representation
     [HideInInspector] public SpriteRenderer render;
@@ -67,7 +70,9 @@ public class RhandorController : Enemies {
         type = ENEMY_TYPES.RHANDOR;
 
         initial_position = transform.position;
+        initial_orientation = transform.rotation;
         initial_forward_direction = transform.forward;
+        time_recovering_timer = max_time_recovering = 2.0f;
 
         alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
         last_spotted_position = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<LastSpottedPosition>();
@@ -224,11 +229,26 @@ public class RhandorController : Enemies {
         }
     }
 
-    public void RotateTowards(Vector3 target)
+    public bool RecoveringInitialPosition()
     {
-        Vector3 direction = (target - transform.position).normalized;
-        Quaternion look_rotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, look_rotation, Time.deltaTime * 2.0f);
+        float initial_dir = initial_orientation.eulerAngles.y;
+        float current_dir = transform.rotation.eulerAngles.y;
+
+        float speed_y = (initial_dir - current_dir) / time_recovering_timer;
+
+        transform.eulerAngles += new Vector3(0.0f, speed_y * Time.deltaTime, 0.0f);
+        time_recovering_timer -= Time.deltaTime;
+
+        current_dir = transform.rotation.eulerAngles.y; // Updating values
+
+        if (Mathf.Abs(initial_dir - current_dir) < 0.1f)
+        {
+            time_recovering_timer = max_time_recovering;
+            return true;
+        }
+        else
+            return false;
+
     }
 
     /// <summary>

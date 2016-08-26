@@ -104,10 +104,7 @@ public class RhandorAlertState : IRhandorStates
 
         if (!rhandor.agent.hasPath && !initial_position_achieved)
         {
-            if (rhandor.transform.forward.IsCloseTo(rhandor.initial_forward_direction, 0.01f))
-                initial_position_achieved = true;
-            else
-                rhandor.RotateTowards(rhandor.initial_forward_direction);
+            initial_position_achieved = rhandor.RecoveringInitialPosition();
         }
     }
 }
