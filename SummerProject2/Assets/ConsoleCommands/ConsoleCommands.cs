@@ -24,9 +24,13 @@ public class ConsoleCommands : MonoBehaviour {
     private void AddCommands()
     {
         console.RegisterCommand("fow", FogOfWar);
+        console.RegisterCommand("time", TimeScale);
     }
 
 
+    /// <summary>
+    /// Shows or hides the enemies inside the fog of war
+    /// </summary>
     private string FogOfWar(params string[] args)
     {
         bool enabled = bool.Parse(args[0]);
@@ -40,5 +44,17 @@ public class ConsoleCommands : MonoBehaviour {
         else
             ret = "Fog of war is now disabled";
         return ret;
+    }
+
+    /// <summary>
+    /// Sets the time scale to a new value (1 - real time / 0 - no time)
+    /// </summary>
+    private string TimeScale(params string[] args)
+    {
+        float value = float.Parse(args[0]);
+
+        Time.timeScale = value;
+
+        return "Time now is " + value * 100 + "%";
     }
 }
