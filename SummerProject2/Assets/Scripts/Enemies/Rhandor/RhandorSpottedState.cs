@@ -3,16 +3,15 @@ using System.Collections;
 
 public class RhandorSpottedState : IRhandorStates
 {
-    
     private readonly RhandorController rhandor;   
     private float time_searching, max_time_searching;
-    private bool element_identification = false;        // When Rhandor is close enought, it will trigger the alarm upon element
+    private bool element_identification = false;        // When Rhandor is close enough, it will trigger the alarm upon element
                                                         // (portal, corpse,...) identification.
 
     public RhandorSpottedState(RhandorController enemy_controller)
     {
         rhandor = enemy_controller;
-        max_time_searching = 2.5f;  
+        max_time_searching = 4.0f;  
     }
 
     public void StartState()
@@ -25,12 +24,10 @@ public class RhandorSpottedState : IRhandorStates
 
     public void UpdateState()
     {
-        // Rhandor checks distance to recalculate the final destination, to not stop over the corpse.
+        // Rhandor checks distance to recalculate the final destination, to not stop over the element to identify.
         // The alarm could be activated in the same moment that is approaching.
         if (!element_identification)
-        {
             ElementSpotted();
-        }
 
         if(rhandor.agent.remainingDistance < rhandor.agent.stoppingDistance)
         {
@@ -78,60 +75,28 @@ public class RhandorSpottedState : IRhandorStates
 
     private void ElementSpotted()
     {
-        float min_dist = 8.0f;
+        float min_dist = 6.0f;
         if (Vector3.Distance(rhandor.agent.destination, rhandor.transform.position) < min_dist)
         {
-            Vector3 direction = (rhandor.spotted_element.transform.position - rhandor.transform.position).normalized;
+            GameObject element_spotted = rhandor.last_spotted_position.spotted_element;
+            string tag = element_spotted.tag;
+
+            Vector3 direction = (element_spotted.transform.position - rhandor.transform.position).normalized;
             if (Vector3.Angle(rhandor.transform.forward, direction) < rhandor.enemy_field_view.view_angle / 2)
             {
-                float distance_to_target = Vector3.Distance(rhandor.transform.position, rhandor.spotted_element.transform.position);
-                if (!Physics.Raycast(rhandor.transform.position, direction, distance_to_target, LayerMask.GetMask("Environment", "InvisibleShield")))
+                float distance_to_target = Vector3.Distance(rhandor.transform.position, element_spotted.transform.position);
+                if(Physics.Raycast(rhandor.transform.position, direction, distance_to_target, LayerMask.GetMask(tag)))
                 {
-                    if (rhandor.spotted_element.tag.Equals(Tags.corpse))
-                    {
-                        Vector3 dir = (rhandor.transform.position - rhandor.last_spotted_position.LastPosition).normalized;
-                        rhandor.agent.destination = rhandor.agent.destination + (dir * 4.0f);
-                        rhandor.alarm_system.SetAlarm(ALARM_STATE.ALARM_ON);
-                        element_identification = true;
-                        rhandor.enemy_manager.list_of_corpses.Add(rhandor.spotted_element);
-                    }
+                    Vector3 dir = (rhandor.transform.position - rhandor.last_spotted_position.LastPosition).normalized;
+                    rhandor.agent.destination = rhandor.agent.destination + (dir * 4.0f);
+                    rhandor.alarm_system.SetAlarm(ALARM_STATE.ALARM_ON);
+                    element_identification = true;
 
-                    if (rhandor.spotted_element.tag.Equals(Tags.portal))
-                    {
-                        Vector3 dir = (rhandor.transform.position - rhandor.last_spotted_position.LastPosition).normalized;
-                        rhandor.agent.destination = rhandor.agent.destination + (dir * 4.0f);
-                        rhandor.alarm_system.SetAlarm(ALARM_STATE.ALARM_ON);
-                        element_identification = true;
-                        //rhandor.enemy_manager.list_of_corpses.Add(rhandor.spotted_element);
-                    }
+                    if (element_spotted.tag.Equals(Tags.corpse) && !rhandor.enemy_manager.list_of_corpses.Contains(element_spotted))                      
+                        rhandor.enemy_manager.list_of_corpses.Add(element_spotted);
+                    else if(element_spotted.tag.Equals(Tags.portal) && !rhandor.enemy_manager.list_of_portals.Contains(element_spotted))
+                        rhandor.enemy_manager.list_of_corpses.Add(element_spotted);                    
                 }
-
-
-                //        Collider[] targets_in_view_radius = Physics.OverlapSphere(rhandor.transform.position, rhandor.enemy_field_view.view_radius, LayerMask.GetMask("Enemy", "Corpses", "SelectableObject"));
-
-                //    for (int i = 0; i < targets_in_view_radius.Length; i++)
-                //    {
-                //        Transform target = targets_in_view_radius[i].transform;
-                //        Vector3 direction = (target.position - rhandor.transform.position).normalized;
-                //        if (Vector3.Angle(rhandor.transform.forward, direction) < rhandor.enemy_field_view.view_angle / 2)
-                //        {
-                //            float distance_to_target = Vector3.Distance(rhandor.transform.position, target.position);
-
-                //            if (!Physics.Raycast(rhandor.transform.position, direction, distance_to_target, LayerMask.NameToLayer("Environment")))
-                //            {
-                //                if(targets_in_view_radius[i].tag.Equals(Tags.corpse))
-                //                {
-                //                    Vector3 dir = (rhandor.transform.position - rhandor.last_spotted_position.LastPosition).normalized;
-                //                    rhandor.agent.destination = rhandor.agent.destination + (dir * 4.0f);
-                //                    rhandor.alarm_system.SetAlarm(ALARM_STATE.ALARM_ON);
-                //                    element_identification = true;
-                //                    rhandor.enemy_manager.list_of_corpses.Add(targets_in_view_radius[i].gameObject);
-                //                    break;
-                //                }                            
-                //            }
-                //        }
-                //    }           
-                //}
             }
         }
     }

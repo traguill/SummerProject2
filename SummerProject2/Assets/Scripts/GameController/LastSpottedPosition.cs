@@ -4,26 +4,28 @@ using System.Collections;
 public class LastSpottedPosition : MonoBehaviour {
 
     private Vector3 last_position;
-    private bool player_spotted;
+    public GameObject spotted_element; // Element spotted. Use in spotted_state state
+    private bool something_spotted;
     private float time_for_new_last_position, max_time;
 
 	// Use this for initialization
 	void Start ()
     {
         last_position = new Vector3(0, 0, 0);
+        spotted_element = null;
         time_for_new_last_position = 0.0f;
         max_time = 5.0f;
-        player_spotted = false;
+        something_spotted = false;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if(player_spotted)
+        if(something_spotted)
         {
             if (time_for_new_last_position > max_time)
             {
-                player_spotted = false;
+                something_spotted = false;
                 time_for_new_last_position = 0.0f;
             }
             else
@@ -40,7 +42,7 @@ public class LastSpottedPosition : MonoBehaviour {
         {
             last_position = value;
             time_for_new_last_position = 0.0f;
-            player_spotted = true;
+            something_spotted = true;
         }
 
         get
@@ -49,8 +51,8 @@ public class LastSpottedPosition : MonoBehaviour {
         }
     }
 
-    public bool IsPlayerSpotted()
+    public bool IsSomethingSpotted()
     {
-        return player_spotted;
+        return something_spotted;
     }
 }

@@ -110,9 +110,8 @@ public class EnemyFieldView : MonoBehaviour
             {
                 RhandorController rhandor = GetComponent<RhandorController>();
                 last_spotted_position.LastPosition = t.transform.position;
-                rhandor.spotted_element = t.gameObject;
+                last_spotted_position.spotted_element = t.gameObject;
                 rhandor.ChangeStateTo(rhandor.spotted_state);
-                enemy_manager.list_of_corpses.Add(rhandor.spotted_element);
             }
 
             // Response for portals: If portal is found, the enemy will move
@@ -121,9 +120,8 @@ public class EnemyFieldView : MonoBehaviour
             {
                 RhandorController rhandor = GetComponent<RhandorController>();
                 last_spotted_position.LastPosition = t.transform.position;
-                rhandor.spotted_element = t.gameObject;
+                last_spotted_position.spotted_element = t.gameObject;
                 rhandor.ChangeStateTo(rhandor.spotted_state);
-                enemy_manager.list_of_portals.Add(rhandor.spotted_element);
             }
         }        
     }

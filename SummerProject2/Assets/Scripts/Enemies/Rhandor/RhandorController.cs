@@ -41,9 +41,6 @@ public class RhandorController : Enemies {
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public EnemyManager enemy_manager;
 
-    // Element spotted. Use in spotted_state state
-    [HideInInspector] public GameObject spotted_element;
-
     // --- Menus ---
     //List of menus that enemy will display with different interactions.
     Dictionary<string, RadialMenu_ObjectInteractable> menus = new Dictionary<string, RadialMenu_ObjectInteractable>(); 
