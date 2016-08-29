@@ -16,6 +16,8 @@ public class EnemyFieldView : MonoBehaviour
     private EnemyManager enemy_manager;
     private CameraMove main_camera;
     private LastSpottedPosition last_spotted_position;
+    public List<GameObject> list_of_spotted_elements;
+    public Queue<GameObject> queue_of_spotted_elements;
 
     private bool player_found;
 
@@ -33,8 +35,10 @@ public class EnemyFieldView : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine("FindTargetsWithDelay", 0.5f);
+        StartCoroutine("FindTargetsWithDelay", 0.25f);
         player_found = false;
+        list_of_spotted_elements = new List<GameObject>();
+        queue_of_spotted_elements = new Queue<GameObject>();
     }
 
      IEnumerator FindTargetsWithDelay(float delay)
@@ -106,30 +110,33 @@ public class EnemyFieldView : MonoBehaviour
                     GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(1.0f, 1.0f, 0.0f, 0.0f));
                     //---------------------------
                 }
-            }
+            }         
 
-            // Response for corpses: If enemy corpse is found, the enemy will move
-            // to a near position to cleary identify the corpse
-            if (t.tag.Equals(Tags.corpse) && !enemy_manager.IsElementAlreadyIdentify(t.gameObject, enemy_manager.list_of_corpses))
+            if(!IsElementAlreadyIdentify(t.gameObject))
             {
-                RhandorController rhandor = GetComponent<RhandorController>();
-                last_spotted_position.LastPosition = t.transform.position;
-                last_spotted_position.spotted_element = t.gameObject;
-                rhandor.ChangeStateTo(rhandor.spotted_state);
-            }
-
-            // Response for portals: If portal is found, the enemy will move
-            // to a near position to cleary identify the portal
-            if (t.tag.Equals(Tags.portal) && !enemy_manager.IsElementAlreadyIdentify(t.gameObject, enemy_manager.list_of_portals))
-            {
-                RhandorController rhandor = GetComponent<RhandorController>();
-                last_spotted_position.LastPosition = t.transform.position;
-                last_spotted_position.spotted_element = t.gameObject;
-                rhandor.ChangeStateTo(rhandor.spotted_state);
+                // Response for corpses: If enemy corpse is found, the enemy will move
+                // to a near position to cleary identify the corpse
+                if ((t.tag.Equals(Tags.corpse) || t.tag.Equals(Tags.portal)) && !IsElementIdentificationPending(t.gameObject) )
+                {
+                    queue_of_spotted_elements.Enqueue(t.gameObject);
+                    RhandorController rhandor = GetComponent<RhandorController>();
+                    last_spotted_position.LastPosition = t.transform.position;                
+                    rhandor.ChangeStateTo(rhandor.spotted_state);              
+                }                
             }
         }        
     }
-    
+
+    private bool IsElementIdentificationPending(GameObject element_to_check)
+    {
+        return queue_of_spotted_elements.Contains(element_to_check);
+    }
+
+    private bool IsElementAlreadyIdentify(GameObject element_to_check)
+    {
+        return list_of_spotted_elements.Contains(element_to_check);
+    }
+
     public Vector3 DirectionFromAngle(float angle, bool angle_is_global)
     {
         if (!angle_is_global)

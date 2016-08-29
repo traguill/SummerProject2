@@ -7,7 +7,9 @@ public class RhandorInformationEditor : Editor
 {
     private RhandorController rhandor;
     private IRhandorStates state;
-    private Vector3[] path_neutral_positions, path_alert_positions;    
+    private float ground_level;     // ground correction for proper visualization of patrols
+    private Vector3[] path_neutral_positions, path_alert_positions;
+    private Vector3 initial_position;  
     private bool neutral_expanded = false, alert_expanded = false;
 
     private GameObject old_neutral_path, old_alert_path;
@@ -16,6 +18,10 @@ public class RhandorInformationEditor : Editor
     void OnEnable()
     {
         rhandor = target as RhandorController;
+
+        ground_level = rhandor.transform.position.y - (rhandor.transform.localScale.y / 2);
+        initial_position = new Vector3(rhandor.initial_position.x, ground_level, rhandor.initial_position.z);
+
         LoadNeutralPatrol();
         LoadAlertPatrol();
         Undo.RecordObject(rhandor, "ShowInspectorPatrolControls");
@@ -23,7 +29,6 @@ public class RhandorInformationEditor : Editor
 
     override public void OnInspectorGUI()
     {
-        //CheckArrayChanges();
         ShowInspectorPatrolControls();
     }
 
@@ -31,7 +36,7 @@ public class RhandorInformationEditor : Editor
     void OnSceneGUI()
     {
         ShowState();
-        ShowPatrols();
+        ShowPatrols();      
     }
 
     /// <summary>
@@ -101,13 +106,13 @@ public class RhandorInformationEditor : Editor
             // Label indicating the Waypoint number
             Handles.BeginGUI();
             GUI.color = new Color(1, 1, 1, 0.75f);
-            Vector2 gui_point = HandleUtility.WorldToGUIPoint(rhandor.initial_position);
+            Vector2 gui_point = HandleUtility.WorldToGUIPoint(initial_position);
             Rect rect = new Rect(gui_point.x - 40.0f, gui_point.y - 40.0f, 80.0f, 20.0f);
             GUI.Box(rect, "Waypoint");
             Handles.EndGUI();
             // Cones to indicate positions
-            GUI.color = Color.white;
-            Handles.ConeCap(0, rhandor.initial_position, Quaternion.Euler(-90, 0, 0), 1);
+            Handles.color = Color.white;
+            Handles.ConeCap(0, initial_position, Quaternion.Euler(-90, 0, 0), 1);
         }
         else
         {
@@ -127,6 +132,7 @@ public class RhandorInformationEditor : Editor
                 line_segments[point_index] = path_neutral_positions[0];
             }
 
+            Handles.color = Color.white;
             Handles.DrawDottedLines(line_segments, 1.5f);
 
             for (int i = 0; i < path_neutral_positions.Length; i++)
@@ -139,28 +145,28 @@ public class RhandorInformationEditor : Editor
                 GUI.Box(rect, "Waypoint: " + (i + 1));
                 Handles.EndGUI();
                 // Cones to indicate positions
-                GUI.color = Color.white;
+                Handles.color = Color.white;
                 Handles.ConeCap(0, path_neutral_positions[i], Quaternion.Euler(-90, 0, 0), 1);
             }
         }
 
         // ---------------- For alert patrols ----------------
         if (rhandor.static_alert)
-        {
+        {    
             // Label indicating the Waypoint number
             Handles.BeginGUI();
             GUI.color = new Color(1, 0, 0, 0.75f);
-            Vector2 gui_point = HandleUtility.WorldToGUIPoint(rhandor.initial_position);
+            Vector2 gui_point = HandleUtility.WorldToGUIPoint(initial_position);
             Rect rect = new Rect(gui_point.x - 40.0f, gui_point.y - 40.0f, 80.0f, 20.0f);
-            GUI.Box(rect, "Waypoint");
+            GUI.Box(rect, "Waypoint");            
             Handles.EndGUI();
+
             // Cones to indicate positions
-            GUI.color = Color.red;
-            Handles.ConeCap(0, rhandor.initial_position, Quaternion.Euler(-90, 0, 0), 1);
+            Handles.color = Color.red;
+            Handles.ConeCap(0, initial_position, Quaternion.Euler(-90, 0, 0), 1);
         }
         else
         {
-            Handles.color = Color.red;            
             Vector3[] line_segments = new Vector3[path_alert_positions.Length * 2];
             int point_index = 0;
 
@@ -170,13 +176,14 @@ public class RhandorInformationEditor : Editor
                 line_segments[point_index++] = path_alert_positions[i + 1];
             }
 
-            // We close the patrol loop
+            // We close the alert patrol loop
             if (!rhandor.alert_path_loop)
             {
                 line_segments[point_index++] = path_alert_positions[path_alert_positions.Length - 1];
                 line_segments[point_index] = path_alert_positions[0];
             }
 
+            Handles.color = Color.red;
             Handles.DrawDottedLines(line_segments, 1.5f);
 
             for (int i = 0; i < path_alert_positions.Length; i++)
@@ -189,8 +196,8 @@ public class RhandorInformationEditor : Editor
                 GUI.Box(rect, "Waypoint: " + (i + 1));
                 Handles.EndGUI();
                 // Cones to indicate positions
-                GUI.color = Color.red;
-                Handles.ConeCap(0, path_alert_positions[i], Quaternion.Euler(-90, 0, 0), 1);
+                Handles.color = Color.red;
+                Handles.ConeCap(1, path_alert_positions[i], Quaternion.Euler(-90, 0, 0), 1);
             }
         }            
     }
@@ -387,7 +394,11 @@ public class RhandorInformationEditor : Editor
                     path_neutral_positions = new Vector3[path.Length];
 
                     for (int i = 0; i < path.Length; ++i)
+                    {
                         path_neutral_positions[i] = path[i].transform.position;
+                        path_neutral_positions[i].y = ground_level;
+                    }
+                        
 
                     rhandor.num_neutral_waypoints = path_neutral_positions.Length;
                     if (rhandor.stopping_time_neutral_patrol.Length != rhandor.num_neutral_waypoints)
@@ -425,7 +436,10 @@ public class RhandorInformationEditor : Editor
                     path_alert_positions = new Vector3[path.Length];
 
                     for (int i = 0; i < path.Length; ++i)
+                    {
                         path_alert_positions[i] = path[i].transform.position;
+                        path_alert_positions[i].y = ground_level;
+                    }                        
 
                     rhandor.num_alert_waypoints = path_alert_positions.Length;
                     if (rhandor.stopping_time_alert_patrol.Length != rhandor.num_alert_waypoints)

@@ -41,6 +41,7 @@ public class RhandorPatrolState : IRhandorStates
       
         rhandor.current_position = rhandor.findClosestPoint(rhandor.neutral_patrol);
         rhandor.agent.destination = rhandor.neutral_patrol[rhandor.current_position].position;
+        rhandor.agent.Resume();
 
         rhandor.time_waiting_on_position = 0.1f;
     }

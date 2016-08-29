@@ -10,16 +10,12 @@ public class EnemyManager : MonoBehaviour
     public bool fow_disabled = false; //If the fog of war is disabled the enemies are always visible
 
     [HideInInspector] public BarionController barion; //Specific reference to barion, for interaction with corpses
-    public List<GameObject> list_of_corpses, list_of_portals;
 
     [HideInInspector] public bool god_mode = false; //Only used by console. For read only.
 
     void Awake()
     {
-        enemies = GameObject.FindGameObjectsWithTag(Tags.enemy);
-        players = GameObject.FindGameObjectsWithTag(Tags.player);
-
-        barion = GameObject.Find("Barion").GetComponent<BarionController>();
+       barion = GameObject.Find("Barion").GetComponent<BarionController>();
     }
 
 	// Use this for initialization
@@ -45,21 +41,5 @@ public class EnemyManager : MonoBehaviour
                 enemy_to_destroy.GetComponent<RhandorController>().Dead();
                 break;
         }        
-    }
-
-    /// <summary>
-    /// Is that element already identified? Enemies won't activate the alarm if the element has already been checked.
-    /// </summary>
-    /// <param name="element_to_check">The corpse to check</param>
-    /// <returns>True if the elmenet has been already identified. False, otherwise</returns>
-    public bool IsElementAlreadyIdentify(GameObject element_to_check, List<GameObject> list_to_check)
-    {
-        foreach(GameObject element in list_to_check)
-        {
-            if (element_to_check == element)
-                return true;
-        }      
-            
-        return false;
     }
 }

@@ -40,6 +40,7 @@ public class RhandorAlertState : IRhandorStates
             rhandor.agent.speed = rhandor.alert_speed;
             rhandor.current_position = rhandor.findClosestPoint(rhandor.alert_patrol);
             rhandor.agent.destination = rhandor.alert_patrol[rhandor.current_position].position;
+            rhandor.agent.Resume();
 
             rhandor.time_waiting_on_position = 0.1f;
         }  
