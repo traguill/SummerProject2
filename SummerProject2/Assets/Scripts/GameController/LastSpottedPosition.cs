@@ -4,7 +4,6 @@ using System.Collections;
 public class LastSpottedPosition : MonoBehaviour {
 
     private Vector3 last_position;
-    public GameObject spotted_element; // Element spotted. Use in spotted_state state
     private bool something_spotted;
     private float time_for_new_last_position, max_time;
 
@@ -12,7 +11,6 @@ public class LastSpottedPosition : MonoBehaviour {
 	void Start ()
     {
         last_position = new Vector3(0, 0, 0);
-        spotted_element = null;
         time_for_new_last_position = 0.0f;
         max_time = 5.0f;
         something_spotted = false;

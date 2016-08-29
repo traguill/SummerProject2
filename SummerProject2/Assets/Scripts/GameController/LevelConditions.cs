@@ -33,6 +33,7 @@ public class LevelConditions : MonoBehaviour
             p.transform.position = new Vector3(radius * Mathf.Cos(angle) + start_point.position.x, 0, radius * Mathf.Sin(angle) + start_point.position.z);
             angle += incr_angle;
         }
+
     }
 
     // Update is called once per frame
