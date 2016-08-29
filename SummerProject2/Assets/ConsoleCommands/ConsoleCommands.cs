@@ -22,9 +22,10 @@ public class ConsoleCommands : MonoBehaviour {
 	}
 
     private void AddCommands()
-    {
+    {  
         console.RegisterCommand("fow", FogOfWar);
         console.RegisterCommand("time", TimeScale);
+        console.RegisterCommand("god_mode", GodMode);
     }
 
 
@@ -56,5 +57,15 @@ public class ConsoleCommands : MonoBehaviour {
         Time.timeScale = value;
 
         return "Time now is " + value * 100 + "%";
+    }
+
+
+    private string GodMode(params string[] args)
+    {
+        bool enabled = bool.Parse(args[0]);
+
+        enemy_manager.god_mode = enabled;
+
+        return (enabled) ? "God Mode is enabled." : "God mode is disabled";
     }
 }

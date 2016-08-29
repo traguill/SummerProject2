@@ -78,6 +78,7 @@ public class PlayersManager : MonoBehaviour
         Vector3 distance = agent.destination - position;
         position = new Vector3(portal_position.x, position.y,portal_position.z); //Teleport
         player.transform.position = position; //Position updated after crossing the portal
+        agent.Warp(position);
 
         RaycastHit hit;
         if (Physics.Raycast(position, agent.destination.normalized, out hit, distance.magnitude, environment_collision_layer) == false)

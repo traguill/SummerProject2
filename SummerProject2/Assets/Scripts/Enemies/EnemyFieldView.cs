@@ -87,6 +87,10 @@ public class EnemyFieldView : MonoBehaviour
     /// </summary>
     public void CheckVisibleTargets()
     {
+        if (enemy_manager.god_mode == true) //Don't check visible characters if god mode is activated. 
+            return;
+
+
         foreach(Transform t in visible_targets)
         {
             // Response for players!

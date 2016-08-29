@@ -11,6 +11,8 @@ public class EnemyManager : MonoBehaviour
 
     [HideInInspector] public BarionController barion; //Specific reference to barion, for interaction with corpses
 
+    [HideInInspector] public bool god_mode = false; //Only used by console. For read only.
+
     void Awake()
     {
        barion = GameObject.Find("Barion").GetComponent<BarionController>();
