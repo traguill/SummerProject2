@@ -94,5 +94,9 @@ public class NyxKillingState : INyxState
         Debug.Log("Nyx can't transition from KILLING to DEATH_TRAP");
     }
 
+    public void ToChainedState()
+    {
+        Debug.Log("Nyx can't transition from KILLING to CHAINED");
+    }
     
 }

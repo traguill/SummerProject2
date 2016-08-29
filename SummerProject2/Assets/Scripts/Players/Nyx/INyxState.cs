@@ -18,4 +18,6 @@ public interface INyxState
     void ToDashState();
 
     void ToDeathTrapState();
+
+    void ToChainedState();
 }

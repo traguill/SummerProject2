@@ -43,7 +43,7 @@ public class CosmoIdleState : ICosmoState
 
     public void ToHideState()
     {
-
+        Debug.Log("TODO: Cosmo to hide state");
     }
 
    public void ToPortalState()
@@ -51,7 +51,12 @@ public class CosmoIdleState : ICosmoState
         cosmo.ChangeStateTo(cosmo.portal_state);
     }
 
-    
+   public void ToChainedState()
+   {
+       cosmo.ChangeStateTo(cosmo.chained_state);
+   }
+
+
     /// <summary>
     /// Checks the conditons to transition to another state.
     /// </summary>

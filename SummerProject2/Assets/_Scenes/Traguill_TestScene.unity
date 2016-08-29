@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed_camera: 30
-  enable_mouse_displacement: 1
+  enable_mouse_displacement: 0
   zone_for_displacement: 0.05
 --- !u!4 &222577980 stripped
 Transform:
@@ -2877,6 +2877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d915ad8075eec41b5f6ca121851e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spotted_element: {fileID: 0}
 --- !u!1001 &1534824568
 Prefab:
   m_ObjectHideFlags: 0
@@ -3287,6 +3288,8 @@ MonoBehaviour:
   fow_disabled: 0
   barion: {fileID: 0}
   list_of_corpses: []
+  list_of_portals: []
+  god_mode: 0
 --- !u!114 &1795589378
 MonoBehaviour:
   m_ObjectHideFlags: 0

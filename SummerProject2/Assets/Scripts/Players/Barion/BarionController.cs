@@ -47,6 +47,7 @@ public class BarionController : MonoBehaviour {
     public LayerMask floor_layer; //Layer to set directions depending on mouse position
     //Shield Ability
     public GameObject shield_prefab; //Prefab to create the shield
+    public ShieldZone shield_zone; //Zone where other characters will follow Barion when invisible shield is on
 
     void Awake()
     {

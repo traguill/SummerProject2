@@ -16,4 +16,6 @@ public interface ICosmoState
     void ToHideState();
 
     void ToPortalState();
+
+    void ToChainedState();
 }

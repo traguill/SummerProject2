@@ -91,6 +91,19 @@ public class NyxHidingState : INyxState
         Debug.Log("Nyx can't transition from HIDING to DEATH_TRAP");
     }
 
+    public void ToChainedState()
+    {
+        Debug.Log("Nyx can't transition from WALKING to CHAINED");
+    }
+
+
+
+
+
+
+
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void Hide()
     {
         hiding = true;

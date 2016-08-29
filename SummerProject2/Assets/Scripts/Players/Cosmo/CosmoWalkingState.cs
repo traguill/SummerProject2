@@ -88,5 +88,10 @@ public class CosmoWalkingState : ICosmoState
         cosmo.ChangeStateTo(cosmo.portal_state);
     }
 
+    public void ToChainedState()
+    {
+        Debug.Log("Cosmo can't transition from WALKING to CHAINED");
+    }
+
     
 }

@@ -29,6 +29,7 @@ public class NyxController : MonoBehaviour {
     [HideInInspector] public NyxHidingState hiding_state;
     [HideInInspector] public NyxDashState dash_state;
     [HideInInspector] public NyxDeathTrapState death_trap_state;
+    [HideInInspector] public NyxChainedState chained_state;
 
     //Killing
     [HideInInspector] public GameObject target_to_kill; //Enemy marked to kill with passive.
@@ -69,6 +70,8 @@ public class NyxController : MonoBehaviour {
         hiding_state = new NyxHidingState(this);
         dash_state = new NyxDashState(this);
         death_trap_state = new NyxDeathTrapState(this);
+        Transform barion_transform = GameObject.Find("Barion").transform;
+        chained_state = new NyxChainedState(this, barion_transform);
     }
 
     void Start ()

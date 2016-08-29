@@ -17,6 +17,9 @@ public class BarionShieldState : IBarionState
     {
         barion.cooldown_inst.StartCooldown(2);
 
+        //Enable connection zone
+        barion.shield_zone.EnableCollision(true);
+
         //Create shield
 
         //Calculate direction with mouse
@@ -50,6 +53,7 @@ public class BarionShieldState : IBarionState
         InvisibleShield invisible_shield = shield.GetComponent<InvisibleShield>();
         invisible_shield.barion = barion;
         invisible_shield.delay_pos = shield_position - barion.transform.position;
+        invisible_shield.shield_zone = barion.shield_zone;
 
         //Show HUD shield effect
         invisible_shield.hud = barion.hud;

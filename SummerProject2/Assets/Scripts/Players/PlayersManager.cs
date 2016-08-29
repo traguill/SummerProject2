@@ -106,4 +106,20 @@ public class PlayersManager : MonoBehaviour
     {
         return nyx.is_selected;
     }
+
+    /// <summary>
+    /// Stops all characters to follow Barion if they were, because the shield is destroyed.
+    /// </summary>
+    public void ShieldDisabled()
+    {
+        if(nyx.GetState() == nyx.chained_state)
+        {
+            nyx.chained_state.ToIdleState();
+        }
+
+        if(cosmo.GetState() == cosmo.chained_state)
+        {
+            cosmo.chained_state.ToIdleState();
+        }
+    }
 }

@@ -108,5 +108,10 @@ public class CosmoSensorialState : ICosmoState
     {
         Debug.Log("Cosmo can't transition from SENSORIAL to PORTAL");
     }
+
+    public void ToChainedState()
+    {
+        Debug.Log("Cosmo can't transition from SENSORIAL to CHAINED");
+    }
   
 }

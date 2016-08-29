@@ -85,6 +85,11 @@ public class CosmoHidingState : ICosmoState
     {
         Debug.Log("Cosmo can't transition from HIDING to PORTAL");
     }
+    public void ToChainedState()
+    {
+        Debug.Log("Cosmo can't transition from HIDING to CHAINED");
+    }
+
 
     void Hide()
     {

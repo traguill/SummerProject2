@@ -112,5 +112,10 @@ public class NyxDashState : INyxState {
     {
         Debug.Log("Nyx can't transition from DASH to DEATH_TRAP");
     }
+
+    public void ToChainedState()
+    {
+        Debug.Log("Nyx can't transition from WALKING to CHAINED");
+    }
    
 }

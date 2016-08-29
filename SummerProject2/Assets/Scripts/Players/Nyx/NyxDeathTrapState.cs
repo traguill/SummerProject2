@@ -94,4 +94,9 @@ public class NyxDeathTrapState : INyxState
     {
         Debug.Log("Nyx can't transition from DEATH_TRAP to DEATH_TRAP");
     }
+
+    public void ToChainedState()
+    {
+        Debug.Log("Nyx can't transition from WALKING to CHAINED");
+    }
 }

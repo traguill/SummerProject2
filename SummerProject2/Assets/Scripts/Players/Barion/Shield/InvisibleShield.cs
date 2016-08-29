@@ -14,6 +14,8 @@ public class InvisibleShield : MonoBehaviour
     bool key_up = false; //Saves previous button up before click the button again
 
     [HideInInspector] public Vector3 delay_pos = new Vector3(); //Delay of position respect barion
+
+    [HideInInspector] public ShieldZone shield_zone; //Reference to the zone where the players will follow barion with the shield. Used to disable collider on shield destroy.
 	
 	// Update is called once per frame
 	void Update ()
@@ -25,8 +27,7 @@ public class InvisibleShield : MonoBehaviour
         }
         else
         {
-            hud.EffectFinished(Enums.Characters.BARION, hud_id);
-            Destroy(gameObject);
+            DestroyShield();
         }
 
         //Update position (follow barion)
@@ -40,7 +41,15 @@ public class InvisibleShield : MonoBehaviour
         //Key pressed again to cancel ability
         if(barion.is_selected && Input.GetAxis("Ability2") != 0 && key_up == true)
         {
-            Destroy(gameObject);
+            DestroyShield();
         }
 	}
+
+
+    private void DestroyShield()
+    {
+        shield_zone.EnableCollision(false);
+        hud.EffectFinished(Enums.Characters.BARION, hud_id);
+        Destroy(gameObject);
+    }
 }

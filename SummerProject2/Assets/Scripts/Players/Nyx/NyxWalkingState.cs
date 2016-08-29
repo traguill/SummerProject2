@@ -93,5 +93,10 @@ public class NyxWalkingState : INyxState
         nyx.ChangeStateTo(nyx.death_trap_state);
     }
 
+    public void ToChainedState()
+    {
+        Debug.Log("Nyx can't transition from WALKING to CHAINED");
+    }
+
     
 }

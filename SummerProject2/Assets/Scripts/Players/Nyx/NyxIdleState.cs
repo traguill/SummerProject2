@@ -79,7 +79,6 @@ public class NyxIdleState : INyxState
             ToDeathTrapState();
             return;
         }
-
     }
 
     public void ToDashState()
@@ -92,6 +91,9 @@ public class NyxIdleState : INyxState
         nyx.ChangeStateTo(nyx.death_trap_state);
     }
 
-   
+    public void ToChainedState()
+    {
+        nyx.ChangeStateTo(nyx.chained_state);
+    }
 
 }

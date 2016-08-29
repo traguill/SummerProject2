@@ -130,6 +130,11 @@ public class CosmoPortalState : ICosmoState
         Debug.Log("Cosmo can't transition from PORTAL to WALKING");
     }
 
+    public void ToChainedState()
+    {
+        Debug.Log("Cosmo can't transition from PORTAL to CHAINED");
+    }
+
 
     /// <summary>
     /// Check under the mouse if the zone is able to build a portal

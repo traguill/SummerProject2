@@ -17,12 +17,13 @@ public class CosmoController : MonoBehaviour {
     public LayerMask movement_layers; //Layers that the raycast must hit to start movement.
 
     //State machine
-     [HideInInspector] ICosmoState current_state;
-     [HideInInspector] public CosmoIdleState idle_state;
-     [HideInInspector] public CosmoWalkingState walking_state;
-     [HideInInspector] public CosmoSensorialState sensorial_state;
-     [HideInInspector] public CosmoHidingState hiding_state;
-     [HideInInspector] public CosmoPortalState portal_state;   
+    [HideInInspector] ICosmoState current_state;
+    [HideInInspector] public CosmoIdleState idle_state;
+    [HideInInspector] public CosmoWalkingState walking_state;
+    [HideInInspector] public CosmoSensorialState sensorial_state;
+    [HideInInspector] public CosmoHidingState hiding_state;
+    [HideInInspector] public CosmoPortalState portal_state;   
+    [HideInInspector] public CosmoChainedState chained_state;
 
     [HideInInspector] public bool is_hide; 
 
@@ -59,6 +60,8 @@ public class CosmoController : MonoBehaviour {
         sensorial_state = new CosmoSensorialState(this);
         hiding_state = new CosmoHidingState(this);
         portal_state = new CosmoPortalState(this);
+        Transform barion = GameObject.Find(Objects.barion).transform;
+        chained_state = new CosmoChainedState(this, barion);
     }
 
 	// Use this for initialization
