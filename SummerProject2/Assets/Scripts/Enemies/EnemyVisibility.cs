@@ -13,16 +13,13 @@ public class EnemyVisibility : MonoBehaviour
     public Material normal_material;
     public float max_detection_time = 3.0f;
 
-    // EnemyManager
-    private EnemyManager enemy_manager;
-
-    // DEBUG --> Arrow
-    MeshRenderer arrow;
+    private EnemyManager enemy_manager; // EnemyManager
+    MeshRenderer arrow;                 // DEBUG --> Arrow
 
     void Awake()
     {
         render = GetComponent<MeshRenderer>();
-        render.enabled = false; //Set to invisible by default
+        render.enabled = false;                     // Set to invisible by default
         is_detected = false;
         is_visible = false;
         detected_time = 0.0f;
