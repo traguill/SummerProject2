@@ -6,6 +6,11 @@ public class BulletTime : MonoBehaviour {
     public float amount_slow = 0.5f;
 
     bool enabled = false;
+
+    void Start()
+    {
+        Time.timeScale = 1.0f;
+    }
 	
 	// Update is called once per frame
 	void Update () 
