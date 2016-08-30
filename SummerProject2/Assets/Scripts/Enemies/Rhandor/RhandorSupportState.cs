@@ -18,8 +18,8 @@ public class RhandorSupportState : IRhandorStates
         max_time_for_support = 10.0f;
         tfs_timer = 0.0f;
         on_zone = false;
-
-        rhandor.agent.destination = rhandor.last_spotted_position.LastPosition;
+        
+        rhandor.agent.SetDestination(rhandor.last_spotted_position.LastPosition);
         rhandor.agent.Resume();
     }
 
@@ -88,7 +88,7 @@ public class RhandorSupportState : IRhandorStates
         {
             on_zone = true;
             Vector3 direction = (rhandor.agent.destination - rhandor.transform.position).normalized;
-            rhandor.agent.destination += (-direction * min_dist * Random.value);
+            rhandor.agent.SetDestination(rhandor.agent.destination + (-direction * min_dist * Random.value));
         }
     }
 }
