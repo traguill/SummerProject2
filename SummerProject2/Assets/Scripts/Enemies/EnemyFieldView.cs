@@ -5,8 +5,7 @@ using System.Collections.Generic;
 public class EnemyFieldView : MonoBehaviour
 {
     public float view_radius;
-    [Range(0, 360)]
-    public float view_angle;
+    [Range(0, 360)] public float view_angle;
 
     public LayerMask target_mask;
     public LayerMask obstacle_mask;
@@ -16,8 +15,8 @@ public class EnemyFieldView : MonoBehaviour
     private EnemyManager enemy_manager;
     private CameraMove main_camera;
     private LastSpottedPosition last_spotted_position;
-    public List<GameObject> list_of_spotted_elements;
-    public Queue<GameObject> queue_of_spotted_elements;
+
+    public Queue<GameObject> pending_identification_elements;
 
     private bool player_found;
 
@@ -37,8 +36,7 @@ public class EnemyFieldView : MonoBehaviour
     {
         StartCoroutine("FindTargetsWithDelay", 0.25f);
         player_found = false;
-        list_of_spotted_elements = new List<GameObject>();
-        queue_of_spotted_elements = new Queue<GameObject>();
+        pending_identification_elements = new Queue<GameObject>();
     }
 
      IEnumerator FindTargetsWithDelay(float delay)
@@ -77,7 +75,7 @@ public class EnemyFieldView : MonoBehaviour
                 }
             }
         }
-        
+
         return visible_targets.Count > 0;
     }
 
@@ -89,7 +87,6 @@ public class EnemyFieldView : MonoBehaviour
     {
         if (enemy_manager.god_mode == true) //Don't check visible characters if god mode is activated. 
             return;
-
 
         foreach(Transform t in visible_targets)
         {
@@ -112,16 +109,16 @@ public class EnemyFieldView : MonoBehaviour
                 }
             }         
 
-            if(!IsElementAlreadyIdentify(t.gameObject))
+            if(!enemy_manager.IsElementAlreadyIdentify(t.gameObject))
             {
-                // Response for corpses: If enemy corpse is found, the enemy will move
-                // to a near position to cleary identify the corpse
+                // Response: If something is found, the enemy will move
+                // to a near position to cleary identify that element
                 if ((t.tag.Equals(Tags.corpse) || t.tag.Equals(Tags.portal)) && !IsElementIdentificationPending(t.gameObject) )
                 {
-                    queue_of_spotted_elements.Enqueue(t.gameObject);
+                    pending_identification_elements.Enqueue(t.gameObject);
                     RhandorController rhandor = GetComponent<RhandorController>();
                     last_spotted_position.LastPosition = t.transform.position;                
-                    rhandor.ChangeStateTo(rhandor.spotted_state);              
+                    rhandor.ChangeStateTo(rhandor.spotted_state);                     
                 }                
             }
         }        
@@ -129,12 +126,7 @@ public class EnemyFieldView : MonoBehaviour
 
     private bool IsElementIdentificationPending(GameObject element_to_check)
     {
-        return queue_of_spotted_elements.Contains(element_to_check);
-    }
-
-    private bool IsElementAlreadyIdentify(GameObject element_to_check)
-    {
-        return list_of_spotted_elements.Contains(element_to_check);
+        return pending_identification_elements.Contains(element_to_check);
     }
 
     public Vector3 DirectionFromAngle(float angle, bool angle_is_global)

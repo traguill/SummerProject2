@@ -10,15 +10,13 @@ public enum ALARM_STATE : byte
 public class AlarmSystem : MonoBehaviour
 {
     public float alarm_max_duration;      // Time (in seconds) that alarm is on
-    private float alarm_timer;        
+    public float alarm_timer;        
     private ALARM_STATE alarm_state;      // Alarm state: ON or OFF
-    public bool activate_alarm;           // Debug porpuses
-
+    
     // Called before first start function
     void Awake()
     {
-        alarm_state = ALARM_STATE.ALARM_OFF;
-        activate_alarm = false;
+        alarm_state = ALARM_STATE.ALARM_OFF;        
     }
 
 	// Use this for initialization
@@ -39,23 +37,21 @@ public class AlarmSystem : MonoBehaviour
             else
             {
                 alarm_state = ALARM_STATE.ALARM_OFF;
-                activate_alarm = false;
                 alarm_timer = 0.0f;
             }
         }
 
         // Debug
         if (Input.GetKeyDown(KeyCode.Alpha0))
-            activate_alarm = !activate_alarm;
-
-        if(activate_alarm)
-            alarm_state = ALARM_STATE.ALARM_ON;        
+            SetAlarm(ALARM_STATE.ALARM_ON);     
 
     }
 
     public void SetAlarm(ALARM_STATE _alarm_state)
     {
         alarm_state = _alarm_state;
+        if (_alarm_state == ALARM_STATE.ALARM_ON)
+            alarm_timer = 0.0f;
     }
 
     public bool isAlarmActive()

@@ -36,7 +36,8 @@ public class RhandorInformationEditor : Editor
     void OnSceneGUI()
     {
         ShowState();
-        ShowPatrols();      
+        ShowPatrols();
+        ShowSupportCall();     
     }
 
     /// <summary>
@@ -94,8 +95,12 @@ public class RhandorInformationEditor : Editor
             Handles.Label(draw_pos, "ALERT");
         else if (state == rhandor.spotted_state)
             Handles.Label(draw_pos, "SPOTTED");
+        else if (state == rhandor.support_state)
+            Handles.Label(draw_pos, "SUPPORT");
         else if (state == rhandor.corpse_state)
-            Handles.Label(draw_pos, "CORPSE");        
+            Handles.Label(draw_pos, "CORPSE");  
+        else
+            Handles.Label(draw_pos, "UNKNOWN");
     }
 
     private void ShowPatrols()
@@ -200,6 +205,12 @@ public class RhandorInformationEditor : Editor
                 Handles.ConeCap(1, path_alert_positions[i], Quaternion.Euler(-90, 0, 0), 1);
             }
         }            
+    }
+
+    private void ShowSupportCall()
+    {
+        Handles.color = Color.blue;
+        Handles.DrawWireArc(rhandor.transform.position, Vector3.up, Vector3.forward, 360, rhandor.ask_for_help_radius);
     }
 
     private void ShowInspectorPatrolControls()
@@ -378,6 +389,13 @@ public class RhandorInformationEditor : Editor
                 }
             }
         }
+
+        // Support information
+        EditorGUILayout.LabelField("--- Support parameters ---");
+        rhandor.max_num_of_helpers = EditorGUILayout.IntField("Nº support enemies", rhandor.max_num_of_helpers, GUILayout.Width(175));
+        if (rhandor.max_num_of_helpers < 0) rhandor.max_num_of_helpers = 0;
+        rhandor.ask_for_help_radius = EditorGUILayout.FloatField("Radius call", rhandor.ask_for_help_radius);
+        if (rhandor.ask_for_help_radius < 0.0f) rhandor.ask_for_help_radius = 0.0f;
     }
 
     private void LoadNeutralPatrol()

@@ -26,13 +26,7 @@ public class RhandorIdleState : IRhandorStates
 
         // If the alarm is active, the enemy change its current state to Alert
         if (rhandor.alarm_system.isAlarmActive())
-        {
-            // If the alarm is active, the enemy goes to that point to find the player.
-            if (rhandor.last_spotted_position.IsSomethingSpotted())
-                ToSpottedState();
-            else
-                ToAlertState();
-        }
+            ToAlertState();
     }
 
     public void ToIdleState()
@@ -53,6 +47,11 @@ public class RhandorIdleState : IRhandorStates
     public void ToSpottedState()
     {
         rhandor.ChangeStateTo(rhandor.spotted_state);
+    }
+
+    public void ToSupportState()
+    {
+        rhandor.ChangeStateTo(rhandor.support_state);
     }
 
     public void ToCorpseState()

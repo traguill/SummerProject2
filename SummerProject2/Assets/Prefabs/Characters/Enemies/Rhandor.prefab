@@ -82,10 +82,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163476}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 39.3, y: 0.7, z: 23.48}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
+  m_LocalPosition: {x: -29.6, y: 0.7, z: 18.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
   - {fileID: 465218}
   - {fileID: 471058}
@@ -255,10 +255,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  enemy_manager: {fileID: 0}
   neutral_path: {fileID: 0}
   alert_path: {fileID: 0}
-  neutral_path_loop: 0
+  neutral_path_loop: 1
   alert_path_loop: 0
   static_neutral: 1
   static_alert: 1
@@ -268,9 +267,9 @@ MonoBehaviour:
   neutral_patrol: []
   alert_patrol: []
   stopping_time_neutral_patrol:
-  - 5
   - 0
-  - 5
+  - 0
+  - 0
   stopping_time_alert_patrol:
   - 0
   - 0
@@ -281,11 +280,15 @@ MonoBehaviour:
   current_position: 0
   initial_position: {x: 0, y: 0, z: 0}
   initial_forward_direction: {x: 0, y: 0, z: 0}
+  initial_orientation: {x: 0, y: 0, z: 0, w: 0}
+  ask_for_help_radius: 15
+  max_num_of_helpers: 2
   render: {fileID: 0}
   alarm_system: {fileID: 0}
   last_spotted_position: {fileID: 0}
   enemy_field_view: {fileID: 0}
   agent: {fileID: 0}
+  enemy_manager: {fileID: 0}
 --- !u!114 &11413268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -369,7 +372,7 @@ MonoBehaviour:
   view_angle: 75
   target_mask:
     serializedVersion: 2
-    m_Bits: 67072
+    m_Bits: 83456
   obstacle_mask:
     serializedVersion: 2
     m_Bits: 34816

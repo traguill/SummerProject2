@@ -80,19 +80,24 @@ public class RhandorAlertState : IRhandorStates
         rhandor.ChangeStateTo(rhandor.patrol_state);
     }
 
-    public void ToAlertState()
-    {
-        Debug.Log("Enemy" + rhandor.name + "can't transition to same state ALERT");
-    }
-
     public void ToSpottedState()
     {
         rhandor.ChangeStateTo(rhandor.spotted_state);
     }
 
+    public void ToSupportState()
+    {
+        rhandor.ChangeStateTo(rhandor.support_state);
+    }
+
     public void ToCorpseState()
     {
         rhandor.ChangeStateTo(rhandor.corpse_state);
+    }
+
+    public void ToAlertState()
+    {
+        Debug.Log("Enemy" + rhandor.name + "can't transition to same state ALERT");
     }
 
     private void ReturningInitialPosition()

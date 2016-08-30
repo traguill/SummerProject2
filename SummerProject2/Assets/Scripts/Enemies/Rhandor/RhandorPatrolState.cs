@@ -50,13 +50,7 @@ public class RhandorPatrolState : IRhandorStates
     {
         // If the alarm is active, the enemy change its current state to Alert
         if (rhandor.alarm_system.isAlarmActive())
-        {
-            // If the alarm is active, the enemy goes to that point to find whatever it is.
-            if (rhandor.last_spotted_position.IsSomethingSpotted())
-                ToSpottedState();
-            else
-                ToAlertState();
-        }
+            ToAlertState();
 
         rhandor.CheckNextMovement(rhandor.neutral_patrol, rhandor.stopping_time_neutral_patrol, rhandor.neutral_path_loop);
     }
@@ -64,12 +58,7 @@ public class RhandorPatrolState : IRhandorStates
     public void ToIdleState()
     {
         rhandor.ChangeStateTo(rhandor.idle_state);
-    }
-
-    public void ToPatrolState()
-    {
-        Debug.Log("Enemy" + rhandor.name + "can't transition to same state PATROL");
-    }
+    }   
 
     public void ToAlertState()
     {
@@ -81,8 +70,18 @@ public class RhandorPatrolState : IRhandorStates
         rhandor.ChangeStateTo(rhandor.spotted_state);
     }
 
+    public void ToSupportState()
+    {
+        rhandor.ChangeStateTo(rhandor.support_state);
+    }
+
     public void ToCorpseState()
     {
         rhandor.ChangeStateTo(rhandor.corpse_state);
-    }  
+    }
+
+    public void ToPatrolState()
+    {
+        Debug.Log("Enemy" + rhandor.name + "can't transition to same state PATROL");
+    }
 }
