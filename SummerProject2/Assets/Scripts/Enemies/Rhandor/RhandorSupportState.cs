@@ -1,12 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
+
+/*  --- Support State ---
+ * 
+ *  Rhandor enemies will go to the spotted element (portal, corpse, ...whatever) wheter they are
+ *  within the radius call of the Rhandor that has spotted these elements. Once Rhandor has arrived to 
+ *  the alert zone, he will wait some time (max_time_for_support) and he will return to whatever he was 
+ *  doing before the calling for support.* 
+ * 
+ */
 
 public class RhandorSupportState : IRhandorStates
 {
     private readonly RhandorController rhandor;
-    private float max_time_for_support, tfs_timer;
-    private bool on_zone;
+    private float max_time_for_support, tfs_timer;       // On seconds
+    private bool on_zone;                                // Mark whether Rhandor has arrived to the spotted zone
 
     public RhandorSupportState(RhandorController enemy_controller)
     {
@@ -15,10 +23,11 @@ public class RhandorSupportState : IRhandorStates
 
     public void StartState()
     {
-        max_time_for_support = 10.0f;
+        max_time_for_support = 5.0f;
         tfs_timer = 0.0f;
         on_zone = false;
-        
+
+        rhandor.agent.speed = rhandor.spotted_speed;
         rhandor.agent.SetDestination(rhandor.last_spotted_position.LastPosition);
         rhandor.agent.Resume();
     }
@@ -28,25 +37,14 @@ public class RhandorSupportState : IRhandorStates
         if(on_zone)
         {
             if (tfs_timer > max_time_for_support)
-            {
-                if (rhandor.alarm_system.isAlarmActive())
-                    ToAlertState();
-                else
-                {
-                    if (rhandor.static_neutral)
-                        ToIdleState();
-                    else
-                        ToPatrolState();
-                }
-            }
+                rhandor.ReturnDefaultBehaviour();
             else
                 tfs_timer += Time.deltaTime;                
         }
         else
         {
             ApproachingToSpottedZone();
-        }
-            
+        }            
     }
 
     public void ToIdleState()
@@ -79,6 +77,11 @@ public class RhandorSupportState : IRhandorStates
         Debug.Log("Enemy" + rhandor.name + "can't transition to same state SUPPORT");
     }
 
+    /// <summary>
+    ///  ApproachingToSpottedZone sets a new destination position when the Rhandor 
+    ///  arrives to the Spotted Zone. That way, the Rhandor will stop AROUND the position 
+    ///  of the spotted element and not OVER the spotted element.
+    /// </summary>
     private void ApproachingToSpottedZone()
     {
         float distance_to_target = Vector3.Distance(rhandor.transform.position, rhandor.agent.destination);

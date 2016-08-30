@@ -30,6 +30,12 @@ public class EnemyManager : MonoBehaviour
 	void Update ()
     { }
 
+    /// <summary>
+    /// IsElementAlreadyIdentify checks for an element (corpse, portals, etc) that it has already
+    /// been spotted. So, the enemeis won't react again to the same element.
+    /// </summary>
+    /// <param name="element_to_check"></param>
+    /// <returns>True if it has already been identified. False otherwise </returns>
     public bool IsElementAlreadyIdentify(GameObject element_to_check)
     {
         return list_of_spotted_elements.Contains(element_to_check);

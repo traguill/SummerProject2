@@ -75,7 +75,7 @@ public class EnemyFieldView : MonoBehaviour
                 }
             }
         }
-        
+
         return visible_targets.Count > 0;
     }
 

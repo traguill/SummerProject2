@@ -252,7 +252,23 @@ public class RhandorController : Enemies {
         }
         else
             return false;
+    }
 
+    /// <summary>
+    /// ReturnDefaultBehaviour changes the state of the Rhandor in order to return to one of
+    /// the three basic states: IDLE, PATROL or ALERT
+    /// </summary>
+    public void ReturnDefaultBehaviour()
+    {
+        if (alarm_system.isAlarmActive())
+            ChangeStateTo(alert_state);
+        else
+        {
+            if (static_neutral)
+                ChangeStateTo(idle_state);
+            else
+                ChangeStateTo(patrol_state);
+        }
     }
 
     /// <summary>

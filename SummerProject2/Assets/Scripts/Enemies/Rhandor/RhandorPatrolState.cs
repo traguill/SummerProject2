@@ -50,14 +50,7 @@ public class RhandorPatrolState : IRhandorStates
     {
         // If the alarm is active, the enemy change its current state to Alert
         if (rhandor.alarm_system.isAlarmActive())
-        {
             ToAlertState();
-            //// If the alarm is active, the enemy goes to that point to find whatever it is.
-            //if (rhandor.last_spotted_position.IsSomethingSpotted())
-            //    ToSpottedState();
-            //else
-            //    ToAlertState();
-        }
 
         rhandor.CheckNextMovement(rhandor.neutral_patrol, rhandor.stopping_time_neutral_patrol, rhandor.neutral_path_loop);
     }
