@@ -15,7 +15,8 @@ public class EnemyManager : MonoBehaviour
 
     void Awake()
     {
-       barion = GameObject.Find("Barion").GetComponent<BarionController>();
+        players = GameObject.FindGameObjectsWithTag(Tags.player);
+        barion = GameObject.Find("Barion").GetComponent<BarionController>();
     }
 
 	// Use this for initialization

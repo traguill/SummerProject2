@@ -42,7 +42,7 @@ public class EnemyVisibility : MonoBehaviour
     {
         if (is_visible || enemy_manager.fow_disabled)
         {
-            render.enabled = true; // Visible
+            render.enabled = true;      // Visible
             arrow.enabled = true;
             if (is_detected)
             {
