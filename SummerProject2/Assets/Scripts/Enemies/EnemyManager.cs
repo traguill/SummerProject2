@@ -5,7 +5,8 @@ using System.Collections.Generic;
 public class EnemyManager : MonoBehaviour
 { 
     [HideInInspector] public GameObject[] enemies;
-    [HideInInspector] public GameObject[] players; //For enemy view
+    [HideInInspector] public GameObject[] players;  // For EnemyViewField
+    [HideInInspector] public List<GameObject> list_of_spotted_elements;
 
     public bool fow_disabled = false; //If the fog of war is disabled the enemies are always visible
 
@@ -16,7 +17,9 @@ public class EnemyManager : MonoBehaviour
     void Awake()
     {
         players = GameObject.FindGameObjectsWithTag(Tags.player);
+        enemies = GameObject.FindGameObjectsWithTag(Tags.enemy);
         barion = GameObject.Find("Barion").GetComponent<BarionController>();
+        list_of_spotted_elements = new List<GameObject>();
     }
 
 	// Use this for initialization
@@ -26,6 +29,11 @@ public class EnemyManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     { }
+
+    public bool IsElementAlreadyIdentify(GameObject element_to_check)
+    {
+        return list_of_spotted_elements.Contains(element_to_check);
+    }
 
     /// <summary>
     /// Destroy an enemy.

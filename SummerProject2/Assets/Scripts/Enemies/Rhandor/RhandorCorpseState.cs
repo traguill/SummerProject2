@@ -45,6 +45,11 @@ public class RhandorCorpseState : IRhandorStates {
         Debug.Log("The enemy is dead. Resurrection is still not possible...");
     }
 
+    public void ToSupportState()
+    {
+        Debug.Log("The enemy is dead. Resurrection is still not possible...");
+    }
+
     public void ToCorpseState()
     {
         Debug.Log("Enemy" + enemy.name + "can't transition to same state CORPSE");

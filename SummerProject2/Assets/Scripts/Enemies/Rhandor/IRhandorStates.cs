@@ -3,7 +3,6 @@ using System.Collections;
 
 public interface IRhandorStates
 {
-
     void StartState();
 
     void UpdateState();
@@ -18,5 +17,6 @@ public interface IRhandorStates
 
     void ToCorpseState();
 
+    void ToSupportState();
 }
 

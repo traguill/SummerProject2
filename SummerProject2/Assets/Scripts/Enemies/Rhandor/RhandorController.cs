@@ -23,6 +23,10 @@ public class RhandorController : Enemies {
 
     private float time_recovering_timer, max_time_recovering;
 
+    // When something is identified, the enemy will ask for help...
+    public float ask_for_help_radius;
+    public int max_num_of_helpers;
+
     // For corpses representation
     [HideInInspector] public SpriteRenderer render;
 
@@ -32,6 +36,7 @@ public class RhandorController : Enemies {
     [HideInInspector] public RhandorPatrolState patrol_state;
     [HideInInspector] public RhandorAlertState alert_state;
     [HideInInspector] public RhandorSpottedState spotted_state;
+    [HideInInspector] public RhandorSupportState support_state;
     [HideInInspector] public RhandorCorpseState corpse_state;
 
     // Scripts references
@@ -60,6 +65,8 @@ public class RhandorController : Enemies {
         alert_patrol = alert_state.AwakeState();     // It transforms the path GameObject to Transform[] 
         // -- SPOTTED --
         spotted_state = new RhandorSpottedState(this);
+        // -- SPOTTED --
+        support_state = new RhandorSupportState(this);
         // -- CORPSE --
         corpse_state = new RhandorCorpseState(this);
 
