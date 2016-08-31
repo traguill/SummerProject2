@@ -2,6 +2,54 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
+public class Patrol
+{
+    public int size;
+    public Vector3[] path;
+    public float[] stop_times;
+    public bool[] trigger_movement;
+    public bool[] recieve_trigger;
+
+    public Patrol(int _size)
+    {
+        size = _size;
+        path = new Vector3[_size];
+        stop_times = new float[_size];
+        trigger_movement = new bool[_size];
+        recieve_trigger = new bool[_size];
+    }
+
+    public Patrol(Patrol patrol)
+    {
+        size = patrol.size;
+
+        path = patrol.path;
+        stop_times = patrol.stop_times;
+        trigger_movement = patrol.trigger_movement;
+        recieve_trigger = patrol.recieve_trigger;
+    }
+
+    public void Set(Patrol patrol)
+    {
+        size = patrol.size;
+
+        path = patrol.path;
+        stop_times = patrol.stop_times;
+        trigger_movement = patrol.trigger_movement;
+        recieve_trigger = patrol.recieve_trigger;
+    }
+
+    public void Set(Vector3[] vec3, float[] stops, bool[] triggers, bool[] recieves)
+    {
+        size = vec3.Length;
+        path = vec3;
+        stop_times = stops;
+        trigger_movement = triggers;
+        recieve_trigger = recieves;
+    }
+}
+
 public class RhandorController : Enemies {
 
     // NavMeshAgent variables and patrol routes
@@ -12,9 +60,15 @@ public class RhandorController : Enemies {
 
     private bool inverse_patrol;
 
+    [HideInInspector] public Patrol neutral_patrol_test;
+    [HideInInspector] public Vector3[] path = new Vector3[1];
+    [HideInInspector] public float[] stop_time = new float[1];
+    [HideInInspector] public bool[] trigger_movement = new bool[1];
+    [HideInInspector] public bool[] recieve_trigger = new bool[1];
+
     [HideInInspector] public Transform[] neutral_patrol, alert_patrol;
     [HideInInspector] public float[] stopping_time_neutral_patrol = new float[1];
-    [HideInInspector] public float[] stopping_time_alert_patrol = new float[1];
+    [HideInInspector] public float[] stopping_time_alert_patrol; //= new float[1];
     [HideInInspector] public int num_neutral_waypoints = 0, num_alert_waypoints = 0;
     [HideInInspector] public float time_waiting_on_position;      
     [HideInInspector] public int current_position;
@@ -26,6 +80,10 @@ public class RhandorController : Enemies {
     // When something is identified, the enemy will ask for help...
     public float ask_for_help_radius;
     public int max_num_of_helpers;
+
+    // Synchronizity
+    public bool is_synchronized_neutral, is_synchronized_alert;
+    public GameObject synchronized_neutral_Rhandor, synchronized_alert_Rhandor;
 
     // For corpses representation
     [HideInInspector] public SpriteRenderer render;
