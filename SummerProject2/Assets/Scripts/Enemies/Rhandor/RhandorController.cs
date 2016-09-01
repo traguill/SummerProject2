@@ -270,14 +270,14 @@ public class RhandorController : Enemies {
     ///  Check if the enemy has to change its destination or has to wait the number of seconds the user
     ///  has introduced on the current position.
     /// </summary>
-    public void CheckNextMovement(Vector3[] current_path, float[] current_stopping_times, bool is_path_looped)
+    public void CheckNextMovement(Patrol current_patrol)
     {
         //Choose the next destination point when the agent gets close to the current one.
         if (agent.remainingDistance < agent.stoppingDistance)
         {
-            if (time_waiting_on_position > current_stopping_times[current_position])
+            if (time_waiting_on_position > current_patrol.stop_times[current_position])
             {
-                goToNextPoint(current_path, is_path_looped);
+                goToNextPoint(current_patrol.path, current_patrol.loop);
                 time_waiting_on_position = 0.1f;
                 agent.Resume();
             }

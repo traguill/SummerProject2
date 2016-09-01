@@ -28,7 +28,7 @@ public class RhandorPatrolState : IRhandorStates
         if (rhandor.alarm_system.isAlarmActive())
             ToAlertState();
 
-        rhandor.CheckNextMovement(rhandor.neutral_patrol.path, rhandor.neutral_patrol.stop_times, rhandor.neutral_patrol.loop);
+        rhandor.CheckNextMovement(rhandor.neutral_patrol);
     }
 
     public void ToIdleState()

@@ -46,7 +46,7 @@ public class RhandorAlertState : IRhandorStates
         }
 
         if(!rhandor.alert_patrol.static_patrol)
-            rhandor.CheckNextMovement(rhandor.alert_patrol.path, rhandor.alert_patrol.stop_times, rhandor.alert_patrol.loop);
+            rhandor.CheckNextMovement(rhandor.alert_patrol);
     }
 
     public void ToIdleState()
