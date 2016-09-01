@@ -7,9 +7,6 @@ public class RhandorInformationEditor : Editor
 {
     private RhandorController rhandor;
     private IRhandorStates state;
-    private float ground_level;     // ground correction for proper visualization of patrols
-    private Vector3[] path_alert_positions;
-    private Vector3 initial_position;  
 
     private bool neutral_expanded = false, alert_expanded = false;
     private GameObject old_neutral_path, old_alert_path;    
@@ -17,12 +14,9 @@ public class RhandorInformationEditor : Editor
     void OnEnable()
     {
         rhandor = target as RhandorController;
-
-        ground_level = rhandor.transform.position.y - (rhandor.transform.localScale.y / 2);
-        initial_position = new Vector3(rhandor.initial_position.x, ground_level, rhandor.initial_position.z);
-
-        LoadNeutralPatrol();
-        LoadAlertPatrol();        
+   
+        rhandor.LoadNeutralPatrol();
+        rhandor.LoadAlertPatrol();        
     }
 
     override public void OnInspectorGUI()
@@ -63,103 +57,103 @@ public class RhandorInformationEditor : Editor
     private void ShowPatrols()
     {
         // ---------------- For neutral patrols ----------------
-        if(rhandor.static_neutral)
+        if(rhandor.neutral_patrol.static_patrol)
         {
             // Label indicating the Waypoint number
             Handles.BeginGUI();
             GUI.color = new Color(1, 1, 1, 0.75f);
-            Vector2 gui_point = HandleUtility.WorldToGUIPoint(initial_position);
+            Vector2 gui_point = HandleUtility.WorldToGUIPoint(rhandor.initial_position);
             Rect rect = new Rect(gui_point.x - 40.0f, gui_point.y - 40.0f, 80.0f, 20.0f);
             GUI.Box(rect, "Waypoint");
             Handles.EndGUI();
             // Cones to indicate positions
             Handles.color = Color.white;
-            Handles.ConeCap(0, initial_position, Quaternion.Euler(-90, 0, 0), 1);
+            Handles.ConeCap(0, rhandor.initial_position, Quaternion.Euler(-90, 0, 0), 1);
         }
         else
         {
-            Vector3[] line_segments = new Vector3[rhandor.neutral_patrol_test.size * 2];
+            Vector3[] line_segments = new Vector3[rhandor.neutral_patrol.Length * 2];
             int point_index = 0;
 
-            for (int i = 0; i < rhandor.neutral_patrol_test.size - 1; i++)
+            for (int i = 0; i < rhandor.neutral_patrol.Length - 1; i++)
             {
-                line_segments[point_index++] = rhandor.neutral_patrol_test.path[i];
-                line_segments[point_index++] = rhandor.neutral_patrol_test.path[i + 1];
+                line_segments[point_index++] = rhandor.neutral_patrol.path[i];
+                line_segments[point_index++] = rhandor.neutral_patrol.path[i + 1];
             }
 
             // We close the patrol loop
-            if (!rhandor.neutral_path_loop)
+            if (!rhandor.neutral_patrol.loop)
             {
-                line_segments[point_index++] = rhandor.neutral_patrol_test.path[rhandor.neutral_patrol_test.size - 1];
-                line_segments[point_index] = rhandor.neutral_patrol_test.path[0];
+                line_segments[point_index++] = rhandor.neutral_patrol.path[rhandor.neutral_patrol.size - 1];
+                line_segments[point_index] = rhandor.neutral_patrol.path[0];
             }
 
             Handles.color = Color.white;
             Handles.DrawDottedLines(line_segments, 1.5f);
 
-            for (int i = 0; i < rhandor.neutral_patrol_test.size; i++)
+            for (int i = 0; i < rhandor.neutral_patrol.Length; i++)
             {
                 // Label indicating the Waypoint number
                 Handles.BeginGUI();
                 GUI.color = new Color(1, 1, 1, 0.75f);
-                Vector2 gui_point = HandleUtility.WorldToGUIPoint(rhandor.neutral_patrol_test.path[i]);
+                Vector2 gui_point = HandleUtility.WorldToGUIPoint(rhandor.neutral_patrol.path[i]);
                 Rect rect = new Rect(gui_point.x - 40.0f, gui_point.y - 40.0f, 80.0f, 20.0f);
                 GUI.Box(rect, "Waypoint: " + (i + 1));
                 Handles.EndGUI();
                 // Cones to indicate positions
                 Handles.color = Color.white;
-                Handles.ConeCap(0, rhandor.neutral_patrol_test.path[i], Quaternion.Euler(-90, 0, 0), 1);
+                Handles.ConeCap(0, rhandor.neutral_patrol.path[i], Quaternion.Euler(-90, 0, 0), 1);
             }
         }
 
         // ---------------- For alert patrols ----------------
-        if (rhandor.static_alert)
+        if (rhandor.alert_patrol.static_patrol)
         {    
             // Label indicating the Waypoint number
             Handles.BeginGUI();
             GUI.color = new Color(1, 0, 0, 0.75f);
-            Vector2 gui_point = HandleUtility.WorldToGUIPoint(initial_position);
+            Vector2 gui_point = HandleUtility.WorldToGUIPoint(rhandor.initial_position);
             Rect rect = new Rect(gui_point.x - 40.0f, gui_point.y - 40.0f, 80.0f, 20.0f);
             GUI.Box(rect, "Waypoint");            
             Handles.EndGUI();
 
             // Cones to indicate positions
             Handles.color = Color.red;
-            Handles.ConeCap(0, initial_position, Quaternion.Euler(-90, 0, 0), 1);
+            Handles.ConeCap(0, rhandor.initial_position, Quaternion.Euler(-90, 0, 0), 1);
         }
         else
         {
-            Vector3[] line_segments = new Vector3[path_alert_positions.Length * 2];
+            Vector3[] line_segments = new Vector3[rhandor.alert_patrol.Length * 2];
             int point_index = 0;
 
-            for (int i = 0; i < path_alert_positions.Length - 1; i++)
+            for (int i = 0; i < rhandor.alert_patrol.Length - 1; i++)
             {
-                line_segments[point_index++] = path_alert_positions[i];
-                line_segments[point_index++] = path_alert_positions[i + 1];
+                line_segments[point_index++] = rhandor.alert_patrol.path[i];
+                line_segments[point_index++] = rhandor.alert_patrol.path[i + 1];
             }
 
             // We close the alert patrol loop
-            if (!rhandor.alert_path_loop)
+            if (!rhandor.alert_patrol.loop)
             {
-                line_segments[point_index++] = path_alert_positions[path_alert_positions.Length - 1];
-                line_segments[point_index] = path_alert_positions[0];
+                line_segments[point_index++] = rhandor.alert_patrol.path[rhandor.alert_patrol.Length - 1];
+                line_segments[point_index] = rhandor.alert_patrol.path[0];
             }
 
             Handles.color = Color.red;
             Handles.DrawDottedLines(line_segments, 1.5f);
 
-            for (int i = 0; i < path_alert_positions.Length; i++)
+            for (int i = 0; i < rhandor.alert_patrol.Length; i++)
             {
                 // Label indicating the Waypoint number
                 Handles.BeginGUI();
                 GUI.color = new Color(1, 0, 0, 0.75f);
-                Vector2 gui_point = HandleUtility.WorldToGUIPoint(path_alert_positions[i]);
+                Vector2 gui_point = HandleUtility.WorldToGUIPoint(rhandor.alert_patrol.path[i]);
                 Rect rect = new Rect(gui_point.x - 40.0f, gui_point.y - 40.0f, 80.0f, 20.0f);
                 GUI.Box(rect, "Waypoint: " + (i + 1));
                 Handles.EndGUI();
                 // Cones to indicate positions
                 Handles.color = Color.red;
-                Handles.ConeCap(1, path_alert_positions[i], Quaternion.Euler(-90, 0, 0), 1);
+                Handles.ConeCap(1, rhandor.alert_patrol.path[i], Quaternion.Euler(-90, 0, 0), 1);
             }
         }            
     }
@@ -181,136 +175,6 @@ public class RhandorInformationEditor : Editor
         SupportPatrolInspector();
     }
     
-    private void LoadNeutralPatrol()
-    {
-        // Patrols initialization
-        if (!rhandor.static_neutral)
-        {
-            if (rhandor.neutral_path != null)
-            {
-                // ---- Neutral patrol initialization for editor ----
-                Transform[] path = rhandor.neutral_path.transform.getChilds();
-                if (path.Length > 1)
-                {
-                    Patrol tmp_patrol = new Patrol(path.Length);
-                   
-                    for (int i = 0; i < path.Length; ++i)
-                    {
-                        tmp_patrol.path[i] = path[i].transform.position;
-                        tmp_patrol.path[i].y = ground_level;
-
-                        if (rhandor.neutral_patrol_test.size > i)
-                        {
-                            tmp_patrol.stop_times[i] = rhandor.neutral_patrol_test.stop_times[i];
-                            tmp_patrol.trigger_movement[i] = rhandor.neutral_patrol_test.trigger_movement[i];
-                            tmp_patrol.recieve_trigger[i] = rhandor.neutral_patrol_test.recieve_trigger[i];
-                        }                            
-                    }
-
-                    for(int i = 0; i < rhandor.neutral_patrol_test.size; ++i)
-                    {
-                        Debug.Log("Before: Stop nº " + i + ": " + rhandor.neutral_patrol_test.stop_times[i]);
-                    }
-
-                    rhandor.neutral_patrol_test.Set(tmp_patrol);
-
-                    for (int i = 0; i < rhandor.neutral_patrol_test.size; ++i)
-                    {
-                        Debug.Log("After: Stop nº " + i + ": " + rhandor.neutral_patrol_test.stop_times[i]);
-                    }
-
-                    //rhandor.neutral_patrol_test.path = tmp_path;
-                    //rhandor.num_neutral_waypoints = path.Length;
-
-                    //if (rhandor.stop_time.Length != rhandor.num_neutral_waypoints)
-                    //{
-                    //    float[] tmp_stop_time = new float[rhandor.num_neutral_waypoints];                        
-
-                    //    for (int x = 0; x < rhandor.num_neutral_waypoints; ++x)
-                    //    {
-                    //        if (rhandor.stop_time.Length > x)                            
-                    //            tmp_stop_time[x] = rhandor.stop_time[x]; 
-                    //    }
-
-                    //    rhandor.stop_time = tmp_stop_time;                   
-                    //}
-
-                    //if (rhandor.recieve_trigger.Length != rhandor.num_neutral_waypoints)
-                    //{
-                    //    bool[] tmp_trigger = new bool[rhandor.num_neutral_waypoints];                        
-
-                    //    for (int x = 0; x < rhandor.num_neutral_waypoints; ++x)
-                    //    {
-                    //        if (rhandor.trigger_movement.Length > x)
-                    //            tmp_trigger[x] = rhandor.trigger_movement[x];                           
-                    //    }
-
-                    //    rhandor.trigger_movement = tmp_trigger;
-
-                    //}
-
-                    //if (rhandor.recieve_trigger.Length != rhandor.num_neutral_waypoints)
-                    //{
-                    //    bool[] tmp_recieve = new bool[rhandor.num_neutral_waypoints];
-
-                    //    for (int x = 0; x < rhandor.num_neutral_waypoints; ++x)
-                    //    {
-                    //        if (rhandor.recieve_trigger.Length > x)
-                    //            tmp_recieve[x] = rhandor.recieve_trigger[x];
-                    //    }
-
-                    //    rhandor.recieve_trigger = tmp_recieve;
-                    //}
-                }
-                else
-                    Debug.Log("Error loading NEUTRAL PATROL: The patrol must contain more than one waypoint.");
-            }
-            else
-                Debug.Log("Error loading NEUTRAL PATROL: There is no GameObject attached!");
-        }
-    }
-
-    private void LoadAlertPatrol()
-    {
-        // Patrols initialization        
-        if (!rhandor.static_alert)
-        {
-            if (rhandor.alert_path != null)
-            {
-                // ---- Alert patrol initialization for editor ----
-                Transform[] path = rhandor.alert_path.transform.getChilds();
-                if (path.Length > 1)
-                {
-                    path_alert_positions = new Vector3[path.Length];
-
-                    for (int i = 0; i < path.Length; ++i)
-                    {
-                        path_alert_positions[i] = path[i].transform.position;
-                        path_alert_positions[i].y = ground_level;
-                    }
-
-                    rhandor.num_alert_waypoints = path_alert_positions.Length;                    
-                    if (rhandor.stopping_time_alert_patrol.Length != rhandor.num_alert_waypoints)
-                    {
-                        float[] new_array = new float[rhandor.num_alert_waypoints];
-                        for (int x = 0; x < rhandor.num_alert_waypoints; ++x)
-                        {
-                            if (rhandor.stopping_time_alert_patrol.Length > x)
-                            {
-                                new_array[x] = rhandor.stopping_time_alert_patrol[x];
-                            }
-                        }
-                        rhandor.stopping_time_alert_patrol = new_array;
-                    }
-                }
-                else
-                    Debug.Log("Error loading ALERT PATROL: The patrol must contain more than one waypoint.");
-            }
-            else
-                Debug.Log("Error loading ALERT PATROL: There is no GameObject attached!");
-        }
-    }
-
     private void NeutralPatrolInspector()
     {
         // ---- Neutral patrol editor information ---
@@ -318,8 +182,8 @@ public class RhandorInformationEditor : Editor
         if (neutral_expanded)
         {
             // Patrols attached as GameObjects and number of waypoints
-            rhandor.static_neutral = EditorGUILayout.Toggle("Static", rhandor.static_neutral);
-            if (rhandor.static_neutral)
+            rhandor.neutral_patrol.static_patrol = EditorGUILayout.Toggle("Static", rhandor.neutral_patrol.static_patrol);
+            if (rhandor.neutral_patrol.static_patrol)
             {
                 EditorGUILayout.LabelField("Waypoints: 1");
                 rhandor.patrol_speed = EditorGUILayout.FloatField("Patrol speed", rhandor.patrol_speed, GUILayout.Width(160));
@@ -330,23 +194,23 @@ public class RhandorInformationEditor : Editor
                 rhandor.neutral_path = EditorGUILayout.ObjectField("Path", rhandor.neutral_path, typeof(GameObject), true) as GameObject;
                 if (old_neutral_path != rhandor.neutral_path)
                 {
-                    LoadNeutralPatrol();
+                    rhandor.LoadNeutralPatrol();
                     old_neutral_path = rhandor.neutral_path;
                 }
 
-                if (rhandor.neutral_path_loop)
-                    EditorGUILayout.LabelField("Waypoints: " + ((2 * rhandor.neutral_patrol_test.size) - 2));
+                if (rhandor.neutral_patrol.loop)
+                    EditorGUILayout.LabelField("Waypoints: " + ((2 * rhandor.neutral_patrol.Length) - 2));
                 else
-                    EditorGUILayout.LabelField("Waypoints: " + rhandor.neutral_patrol_test.size);
+                    EditorGUILayout.LabelField("Waypoints: " + rhandor.neutral_patrol.Length);
                 EditorGUILayout.EndHorizontal();
 
                 // Speeds information and patrol loop option
                 EditorGUILayout.BeginHorizontal();
                 rhandor.patrol_speed = EditorGUILayout.FloatField("Patrol speed", rhandor.patrol_speed, GUILayout.Width(160));
-                if (rhandor.path.Length > 1)
-                    rhandor.neutral_path_loop = EditorGUILayout.Toggle("Loop", rhandor.neutral_path_loop);
+                if (rhandor.neutral_patrol.Length > 2)
+                    rhandor.neutral_patrol.loop = EditorGUILayout.Toggle("Loop", rhandor.neutral_patrol.loop);
                 else
-                    rhandor.neutral_path_loop = false;
+                    rhandor.neutral_patrol.loop = false;
                 EditorGUILayout.EndHorizontal();
 
                 // Synchronous activity
@@ -367,7 +231,7 @@ public class RhandorInformationEditor : Editor
 
             EditorGUILayout.Space();
 
-            if (rhandor.static_neutral)
+            if (rhandor.neutral_patrol.static_patrol)
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("Waypoint 1:", GUILayout.Width(80));
@@ -376,36 +240,36 @@ public class RhandorInformationEditor : Editor
             }
             else
             {
-                for (int i = 0; i < rhandor.neutral_patrol_test.size; ++i)
+                for (int i = 0; i < rhandor.neutral_patrol.Length; ++i)
                 {
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField("Waypoint " + (i + 1).ToString() + ":", GUILayout.Width(80));
-                    EditorGUILayout.Vector3Field("", rhandor.neutral_patrol_test.path[i], GUILayout.Width(240));
+                    EditorGUILayout.Vector3Field("", rhandor.neutral_patrol.path[i], GUILayout.Width(240));
                     EditorGUILayout.EndHorizontal();
 
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField("Stop time", GUILayout.Width(75));
-                    rhandor.neutral_patrol_test.stop_times[i] = EditorGUILayout.FloatField(rhandor.neutral_patrol_test.stop_times[i], GUILayout.Width(75));
+                    rhandor.neutral_patrol.stop_times[i] = EditorGUILayout.FloatField(rhandor.neutral_patrol.stop_times[i], GUILayout.Width(75));
                     if (GUILayout.Button("Reset", GUILayout.Width(55)))
-                        rhandor.neutral_patrol_test.stop_times[i] = 0.0f;
+                        rhandor.neutral_patrol.stop_times[i] = 0.0f;
 
                     EditorGUILayout.EndHorizontal();
                 }
 
-                if (rhandor.neutral_path_loop)
+                if (rhandor.neutral_patrol.loop)
                 {
-                    for (int i = rhandor.neutral_patrol_test.size - 2; i > 0; --i)
+                    for (int i = rhandor.neutral_patrol.Length - 2; i > 0; --i)
                     {
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.LabelField("Waypoint " + (i + 1).ToString() + ":", GUILayout.Width(80));
-                        EditorGUILayout.Vector3Field("", rhandor.neutral_patrol_test.path[i], GUILayout.Width(240));
+                        EditorGUILayout.Vector3Field("", rhandor.neutral_patrol.path[i], GUILayout.Width(240));
                         EditorGUILayout.EndHorizontal();
 
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.LabelField("Stop time", GUILayout.Width(75));
-                        rhandor.neutral_patrol_test.stop_times[i] = EditorGUILayout.FloatField(rhandor.neutral_patrol_test.stop_times[i], GUILayout.Width(75));
+                        rhandor.neutral_patrol.stop_times[i] = EditorGUILayout.FloatField(rhandor.neutral_patrol.stop_times[i], GUILayout.Width(75));
                         if (GUILayout.Button("Reset", GUILayout.Width(55)))
-                            rhandor.neutral_patrol_test.stop_times[i] = 0.0f;
+                            rhandor.neutral_patrol.stop_times[i] = 0.0f;
 
                         EditorGUILayout.EndHorizontal();
                     }
@@ -420,8 +284,8 @@ public class RhandorInformationEditor : Editor
         alert_expanded = EditorGUILayout.Foldout(alert_expanded, "Alert patrol");
         if (alert_expanded)
         {
-            rhandor.static_alert = EditorGUILayout.Toggle("Static", rhandor.static_alert);
-            if (rhandor.static_alert)
+            rhandor.alert_patrol.static_patrol = EditorGUILayout.Toggle("Static", rhandor.alert_patrol.static_patrol);
+            if (rhandor.alert_patrol.static_patrol)
             {
                 EditorGUILayout.LabelField("Waypoints: 1");
                 EditorGUILayout.BeginHorizontal();
@@ -435,29 +299,29 @@ public class RhandorInformationEditor : Editor
                 rhandor.alert_path = EditorGUILayout.ObjectField("Path", rhandor.alert_path, typeof(GameObject), true) as GameObject;
                 if (rhandor.alert_path != old_alert_path)
                 {
-                    LoadAlertPatrol();
+                    rhandor.LoadAlertPatrol();
                     old_alert_path = rhandor.alert_path;
                 }
 
-                if (rhandor.alert_path_loop)
-                    EditorGUILayout.LabelField("Waypoints: " + ((2 * path_alert_positions.Length) - 2));
+                if (rhandor.alert_patrol.loop)
+                    EditorGUILayout.LabelField("Waypoints: " + ((2 * rhandor.alert_patrol.Length) - 2));
                 else
-                    EditorGUILayout.LabelField("Waypoints: " + path_alert_positions.Length);
+                    EditorGUILayout.LabelField("Waypoints: " + rhandor.alert_patrol.Length);
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
                 rhandor.alert_speed = EditorGUILayout.FloatField("Alert speed", rhandor.alert_speed, GUILayout.Width(160));
                 rhandor.spotted_speed = EditorGUILayout.FloatField("Spotted speed", rhandor.spotted_speed, GUILayout.Width(160));
                 EditorGUILayout.EndHorizontal();
-                if (path_alert_positions.Length > 1)
-                    rhandor.alert_path_loop = EditorGUILayout.Toggle("Loop", rhandor.alert_path_loop);
+                if (rhandor.alert_patrol.Length > 2)
+                    rhandor.alert_patrol.loop = EditorGUILayout.Toggle("Loop", rhandor.alert_patrol.loop);
                 else
-                    rhandor.alert_path_loop = false;
+                    rhandor.alert_patrol.loop = false;
             }
 
             EditorGUILayout.Space();
 
-            if (rhandor.static_alert)
+            if (rhandor.alert_patrol.static_patrol)
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("Waypoint 1:", GUILayout.Width(80));
@@ -466,35 +330,35 @@ public class RhandorInformationEditor : Editor
             }
             else
             {
-                for (int i = 0; i < path_alert_positions.Length; ++i)
+                for (int i = 0; i < rhandor.alert_patrol.Length; ++i)
                 {
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField("Waypoint " + (i + 1).ToString() + ":", GUILayout.Width(80));
-                    EditorGUILayout.Vector3Field("", path_alert_positions[i], GUILayout.Width(240));
+                    EditorGUILayout.Vector3Field("", rhandor.alert_patrol.path[i], GUILayout.Width(240));
                     EditorGUILayout.EndHorizontal();
 
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField("Stop time", GUILayout.Width(75));
-                    rhandor.stopping_time_alert_patrol[i] = EditorGUILayout.FloatField(rhandor.stopping_time_alert_patrol[i], GUILayout.Width(75));
+                    rhandor.alert_patrol.stop_times[i] = EditorGUILayout.FloatField(rhandor.alert_patrol.stop_times[i], GUILayout.Width(75));
                     if (GUILayout.Button("Reset", GUILayout.Width(55)))
-                        rhandor.stopping_time_alert_patrol[i] = 0.0f;
+                        rhandor.alert_patrol.stop_times[i] = 0.0f;
                     EditorGUILayout.EndHorizontal();
                 }
 
-                if (rhandor.alert_path_loop)
+                if (rhandor.alert_patrol.loop)
                 {
-                    for (int i = path_alert_positions.Length - 2; i > 0; --i)
+                    for (int i = rhandor.alert_patrol.Length - 2; i > 0; --i)
                     {
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.LabelField("Waypoint " + (i + 1).ToString() + ":", GUILayout.Width(80));
-                        EditorGUILayout.Vector3Field("", path_alert_positions[i], GUILayout.Width(240));
+                        EditorGUILayout.Vector3Field("", rhandor.alert_patrol.path[i], GUILayout.Width(240));
                         EditorGUILayout.EndHorizontal();
 
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.LabelField("Stop time", GUILayout.Width(75));
-                        rhandor.stopping_time_alert_patrol[i] = EditorGUILayout.FloatField(rhandor.stopping_time_alert_patrol[i], GUILayout.Width(75));
+                        rhandor.alert_patrol.stop_times[i] = EditorGUILayout.FloatField(rhandor.alert_patrol.stop_times[i], GUILayout.Width(75));
                         if (GUILayout.Button("Reset", GUILayout.Width(55)))
-                            rhandor.stopping_time_alert_patrol[i] = 0.0f;
+                            rhandor.alert_patrol.stop_times[i] = 0.0f;
 
                         EditorGUILayout.EndHorizontal();
                     }

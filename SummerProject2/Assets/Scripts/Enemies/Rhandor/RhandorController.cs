@@ -5,11 +5,14 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Patrol
 {
-    public int size;
-    public Vector3[] path;
-    public float[] stop_times;
-    public bool[] trigger_movement;
-    public bool[] recieve_trigger;
+    public bool static_patrol;                 // Rhandor will remain on its initial position
+    public bool loop;                          // Rhandor will change its direction upon reaching last position
+
+    public int size;                    // Number of waypoints
+    public Vector3[] path;              // The colection of positions that conforms the patrol
+    public float[] stop_times;          // Number of seconds that the enemy will stop at the selected position
+    public bool[] trigger_movement;     // This position will trigger the movement of the synchronized Rhandor
+    public bool[] recieve_trigger;      // Response to a trigger movement from the synchronzied Rhandor
 
     public Patrol(int _size)
     {
@@ -40,13 +43,13 @@ public class Patrol
         recieve_trigger = patrol.recieve_trigger;
     }
 
-    public void Set(Vector3[] vec3, float[] stops, bool[] triggers, bool[] recieves)
+    // Property
+    public int Length
     {
-        size = vec3.Length;
-        path = vec3;
-        stop_times = stops;
-        trigger_movement = triggers;
-        recieve_trigger = recieves;
+        get
+        {
+            return size;
+        }
     }
 }
 
@@ -54,26 +57,17 @@ public class RhandorController : Enemies {
 
     // NavMeshAgent variables and patrol routes
     public GameObject neutral_path, alert_path;
-    public bool neutral_path_loop, alert_path_loop;
-    public bool static_neutral, static_alert;    
     public float patrol_speed, alert_speed, spotted_speed;
 
     private bool inverse_patrol;
 
-    [HideInInspector] public Patrol neutral_patrol_test;
-    [HideInInspector] public Vector3[] path = new Vector3[1];
-    [HideInInspector] public float[] stop_time = new float[1];
-    [HideInInspector] public bool[] trigger_movement = new bool[1];
-    [HideInInspector] public bool[] recieve_trigger = new bool[1];
+    [HideInInspector] public Patrol neutral_patrol, alert_patrol;   
 
-    [HideInInspector] public Transform[] neutral_patrol, alert_patrol;
-    [HideInInspector] public float[] stopping_time_neutral_patrol = new float[1];
-    [HideInInspector] public float[] stopping_time_alert_patrol; //= new float[1];
-    [HideInInspector] public int num_neutral_waypoints = 0, num_alert_waypoints = 0;
     [HideInInspector] public float time_waiting_on_position;      
     [HideInInspector] public int current_position;
     [HideInInspector] public Vector3 initial_position, initial_forward_direction;
     [HideInInspector] public Quaternion initial_orientation;
+    private float ground_level;     // ground correction for proper visualization of patrols
 
     private float time_recovering_timer, max_time_recovering;
 
@@ -117,10 +111,10 @@ public class RhandorController : Enemies {
         idle_state = new RhandorIdleState(this);
         // -- PATROL --
         patrol_state = new RhandorPatrolState(this);
-        neutral_patrol = patrol_state.AwakeState();  // It transforms the path GameObject to Transform[]
+        //neutral_patrol = patrol_state.AwakeState();  // It transforms the path GameObject to Transform[]
         // -- ALERT --
         alert_state = new RhandorAlertState(this);
-        alert_patrol = alert_state.AwakeState();     // It transforms the path GameObject to Transform[] 
+        //alert_patrol = alert_state.AwakeState();     // It transforms the path GameObject to Transform[] 
         // -- SPOTTED --
         spotted_state = new RhandorSpottedState(this);
         // -- SPOTTED --
@@ -128,18 +122,20 @@ public class RhandorController : Enemies {
         // -- CORPSE --
         corpse_state = new RhandorCorpseState(this);
 
+        LoadNeutralPatrol();
+        LoadAlertPatrol();
+
         render = GetComponent<SpriteRenderer>();
         type = ENEMY_TYPES.RHANDOR;
 
-        initial_position = transform.position;
-        initial_orientation = transform.rotation;
         initial_forward_direction = transform.forward;
         time_recovering_timer = max_time_recovering = 2.0f;
 
         alarm_system = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<AlarmSystem>();
         last_spotted_position = GameObject.FindGameObjectWithTag(Tags.game_controller).GetComponent<LastSpottedPosition>();
         enemy_field_view = GetComponent<EnemyFieldView>();
-        enemy_manager = GetComponentInParent<EnemyManager>(); //Every enemy should be child of the enemy manager
+        enemy_manager = GetComponentInParent<EnemyManager>();   //Every enemy should be child of the enemy manager
+        agent = GetComponent<NavMeshAgent>();                   // Agent for NavMesh
 
         //Insert all menus in the dictionary
         RadialMenu_ObjectInteractable[] menus_scripts = GetComponents<RadialMenu_ObjectInteractable>();
@@ -151,18 +147,10 @@ public class RhandorController : Enemies {
     
     void Start()
     {
-        if (static_neutral)
+        if (neutral_patrol.static_patrol)
             ChangeStateTo(idle_state);
         else
-        {
-            if (neutral_patrol != null && neutral_patrol.Length > 1)
-                ChangeStateTo(patrol_state);
-            else
-                Debug.Log("Enemy " + name + " hasn't a proper PATROL PATH associated or has only one waypoint (use Static toggle instead).");
-        }
-
-        if (!static_alert && ( alert_patrol == null || alert_patrol.Length <= 1 ))
-            Debug.Log("Enemy " + name + " hasn't a proper ALERT PATH associated or has only one waypoint (use Static toggle instead).");
+            ChangeStateTo(patrol_state);         
 
         // DEBUG
         if (tag.Equals(Tags.corpse))
@@ -200,7 +188,7 @@ public class RhandorController : Enemies {
     /// goToNextPoint gives the index for the next position of the argument current path
     /// </summary>
     /// <returns> The index of the next position </returns>
-    public void goToNextPoint(Transform[] current_path, bool is_path_looped)
+    public void goToNextPoint(Vector3[] current_path, bool is_path_looped)
     {
         // Returns if no points have been set up
         if (current_path.Length == 0)
@@ -235,7 +223,7 @@ public class RhandorController : Enemies {
             current_position = (current_position + 1) % current_path.Length;
 
         // Set the agent to go to the currently selected destination.
-        agent.destination = current_path[current_position].position;        
+        agent.destination = current_path[current_position];        
     }
 
     /// <summary>
@@ -243,7 +231,7 @@ public class RhandorController : Enemies {
     /// assigned to this enemy. It is used when the game switches between patroling states.
     /// </summary>
     /// <returns> The index of the closest position </returns>
-    public int findClosestPoint(Transform[] path_to_search)
+    public int findClosestPoint(Vector3[] path_to_search)
     {
         int index = -1;
         NavMeshPath path = new NavMeshPath();
@@ -251,7 +239,7 @@ public class RhandorController : Enemies {
 
         for (int i = 0; i < path_to_search.Length; ++i)
         {
-            agent.CalculatePath(path_to_search[i].position, path);
+            agent.CalculatePath(path_to_search[i], path);
             float distance = 0;
             for (int j = 0; j < path.corners.Length - 1; ++j)
             {
@@ -272,7 +260,7 @@ public class RhandorController : Enemies {
     ///  Check if the enemy has to change its destination or has to wait the number of seconds the user
     ///  has introduced on the current position.
     /// </summary>
-    public void CheckNextMovement(Transform[] current_path, float[] current_stopping_times, bool is_path_looped)
+    public void CheckNextMovement(Vector3[] current_path, float[] current_stopping_times, bool is_path_looped)
     {
         //Choose the next destination point when the agent gets close to the current one.
         if (agent.remainingDistance < agent.stoppingDistance)
@@ -322,7 +310,7 @@ public class RhandorController : Enemies {
             ChangeStateTo(alert_state);
         else
         {
-            if (static_neutral)
+            if (neutral_patrol.static_patrol)
                 ChangeStateTo(idle_state);
             else
                 ChangeStateTo(patrol_state);
@@ -371,6 +359,82 @@ public class RhandorController : Enemies {
             {
                 menus[drop_id].OnInteractableClicked(); //Drop
             }
+        }
+    }
+
+    public void LoadNeutralPatrol()
+    {
+        ground_level = transform.position.y - (transform.localScale.y / 2);
+        initial_position = new Vector3(transform.position.x, ground_level, transform.position.z);
+        initial_orientation = transform.rotation;
+
+        // Patrols initialization
+        if (!neutral_patrol.static_patrol)
+        {
+            if (neutral_path != null)
+            {
+                // ---- Neutral patrol initialization for editor ----
+                Transform[] path = neutral_path.transform.getChilds();
+                if (path.Length > 1)
+                {
+                    Patrol tmp_patrol = new Patrol(path.Length);
+
+                    for (int i = 0; i < path.Length; ++i)
+                    {
+                        tmp_patrol.path[i] = path[i].transform.position;
+                        tmp_patrol.path[i].y = ground_level;
+
+                        if (neutral_patrol.Length > i)
+                        {
+                            tmp_patrol.stop_times[i] = neutral_patrol.stop_times[i];
+                            tmp_patrol.trigger_movement[i] = neutral_patrol.trigger_movement[i];
+                            tmp_patrol.recieve_trigger[i] = neutral_patrol.recieve_trigger[i];
+                        }
+                    }
+
+                    neutral_patrol.Set(tmp_patrol);
+                }
+                else
+                    Debug.Log("Error loading NEUTRAL PATROL: The patrol must contain more than one waypoint (use Static toggle instead).");
+            }
+            else
+                Debug.Log("Error loading NEUTRAL PATROL: There is no GameObject attached!");
+        }
+    }
+
+    public void LoadAlertPatrol()
+    {
+        // Patrols initialization
+        if (!alert_patrol.static_patrol)
+        {
+            if (alert_path != null)
+            {
+                // ---- Alert patrol initialization for editor ----
+                Transform[] path = alert_path.transform.getChilds();
+                if (path.Length > 1)
+                {
+                    Patrol tmp_patrol = new Patrol(path.Length);
+
+                    for (int i = 0; i < path.Length; ++i)
+                    {
+                        tmp_patrol.path[i] = path[i].transform.position;
+                        tmp_patrol.path[i].y = ground_level;
+
+                        if (alert_patrol.Length > i)
+                        {
+                            tmp_patrol.stop_times[i] = alert_patrol.stop_times[i];
+                            tmp_patrol.trigger_movement[i] = alert_patrol.trigger_movement[i];
+                            tmp_patrol.recieve_trigger[i] = alert_patrol.recieve_trigger[i];
+                        }
+                    }
+
+                    alert_patrol.Set(tmp_patrol);
+                }
+                else
+                    Debug.Log("Error loading ALERT PATROL: The patrol must contain more than one waypoint (use Static toggle instead).");
+            }
+            else
+                Debug.Log("Error loading ALERT PATROL: There is no GameObject attached!");
         }
     }
 }

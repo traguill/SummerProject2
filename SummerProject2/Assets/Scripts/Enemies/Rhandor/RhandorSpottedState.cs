@@ -55,17 +55,7 @@ public class RhandorSpottedState : IRhandorStates
                     element_identified = false;
                 }
                 else if(last_time_identification > lti_timer)
-                {
-                    if (rhandor.alarm_system.isAlarmActive())
-                        ToAlertState();
-                    else
-                    {
-                        if (rhandor.static_neutral)
-                            ToIdleState();
-                        else
-                            ToPatrolState();
-                    }
-                }
+                    rhandor.ReturnDefaultBehaviour();
                 else
                     lti_timer += Time.deltaTime;
             }

@@ -30,7 +30,7 @@ public class RhandorPatrolState : IRhandorStates
             neutral_patrol = null;
         }
           
-        rhandor.agent = rhandor.GetComponent<NavMeshAgent>();     // Agent for NavMesh  
+          
         
         return neutral_patrol;
     }
@@ -39,8 +39,8 @@ public class RhandorPatrolState : IRhandorStates
     {
         rhandor.agent.speed = rhandor.patrol_speed;
       
-        rhandor.current_position = rhandor.findClosestPoint(rhandor.neutral_patrol);
-        rhandor.agent.destination = rhandor.neutral_patrol[rhandor.current_position].position;
+        rhandor.current_position = rhandor.findClosestPoint(rhandor.neutral_patrol.path);
+        rhandor.agent.SetDestination(rhandor.neutral_patrol.path[rhandor.current_position]);
         rhandor.agent.Resume();
 
         rhandor.time_waiting_on_position = 0.1f;
@@ -52,7 +52,7 @@ public class RhandorPatrolState : IRhandorStates
         if (rhandor.alarm_system.isAlarmActive())
             ToAlertState();
 
-        rhandor.CheckNextMovement(rhandor.neutral_patrol, rhandor.stopping_time_neutral_patrol, rhandor.neutral_path_loop);
+        rhandor.CheckNextMovement(rhandor.neutral_patrol.path, rhandor.neutral_patrol.stop_times, rhandor.neutral_patrol.loop);
     }
 
     public void ToIdleState()
