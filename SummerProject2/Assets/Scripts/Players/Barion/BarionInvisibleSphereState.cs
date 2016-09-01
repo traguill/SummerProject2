@@ -6,6 +6,8 @@ public class BarionInvisibleSphereState : IBarionState
 {
     private readonly BarionController barion;
 
+    float delay_position_sphere = 1.5f; //Delay of position from barion when the sphere is created
+
     public BarionInvisibleSphereState(BarionController barion_controller)
     {
         barion = barion_controller;
@@ -32,8 +34,10 @@ public class BarionInvisibleSphereState : IBarionState
             Debug.Log("ERROR: Barion can't use INVISIBLE SPHERE because the mouse didn't find a floor collison to set the direction");
         }
 
+        Vector3 delay_pos = direction * delay_position_sphere;
+
         //Create invisible sphere
-        GameObject sphere = GameObject.Instantiate(barion.invisible_sphere_prefab, barion.transform.position, new Quaternion()) as GameObject;
+        GameObject sphere = GameObject.Instantiate(barion.invisible_sphere_prefab, barion.transform.position + delay_pos, new Quaternion()) as GameObject;
 
         sphere.GetComponent<InvisibleSphere>().direction = direction;
         

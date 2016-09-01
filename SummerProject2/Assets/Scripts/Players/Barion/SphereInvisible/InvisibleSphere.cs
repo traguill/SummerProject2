@@ -19,8 +19,7 @@ public class InvisibleSphere : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if(col.name != "Barion")
-        {
+
             if (players_layer == (players_layer | (1 << col.gameObject.layer))) //Another player has been hit
             {
                 col.gameObject.GetComponent<Invisible>().TurnInvisible(); //Turn the player invisible
@@ -31,8 +30,5 @@ public class InvisibleSphere : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-
-        }
-  
     }
 }
