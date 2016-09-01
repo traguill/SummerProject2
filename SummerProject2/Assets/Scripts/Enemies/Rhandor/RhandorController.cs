@@ -2,21 +2,38 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public enum PATROL_TYPE
+{
+    NEUTRAL,
+    ALERT
+};
+
 [System.Serializable]
 public class Patrol
 {
-    public bool static_patrol;                 // Rhandor will remain on its initial position
-    public bool loop;                          // Rhandor will change its direction upon reaching last position
+    public PATROL_TYPE type;                    // Type of the patrol
+    public bool expanded;                       // For Editor use;
 
-    public int size;                    // Number of waypoints
-    public Vector3[] path;              // The colection of positions that conforms the patrol
-    public float[] stop_times;          // Number of seconds that the enemy will stop at the selected position
-    public bool[] trigger_movement;     // This position will trigger the movement of the synchronized Rhandor
-    public bool[] recieve_trigger;      // Response to a trigger movement from the synchronzied Rhandor
+    public bool static_patrol;                  // Rhandor will remain on its initial position
+    public bool loop;                           // Rhandor will change its direction upon reaching last position
 
-    public Patrol(int _size)
+    // Synchronizity
+    public bool is_synchronized;                // Declares a synchronized patrol with ONLY other Rhandor (so far)
+    public GameObject synchronized_Rhandor;     // The Rhandor synchronized with
+
+    public GameObject path_attached;            // The GameObject that contains waypoints as childs.
+
+    public int size;                            // Number of waypoints
+    public Vector3[] path;                      // The colection of positions that conforms the patrol
+    public float[] stop_times;                  // Number of seconds that the enemy will stop at the selected position
+    public bool[] trigger_movement;             // This position will trigger the movement of the synchronized Rhandor
+    public bool[] recieve_trigger;              // Response to a trigger movement from the synchronzied Rhandor
+
+    public Patrol(int _size, PATROL_TYPE _type)
     {
         size = _size;
+        type = _type;
+
         path = new Vector3[_size];
         stop_times = new float[_size];
         trigger_movement = new bool[_size];
@@ -26,6 +43,7 @@ public class Patrol
     public Patrol(Patrol patrol)
     {
         size = patrol.size;
+        type = patrol.type;
 
         path = patrol.path;
         stop_times = patrol.stop_times;
@@ -36,6 +54,7 @@ public class Patrol
     public void Set(Patrol patrol)
     {
         size = patrol.size;
+        type = patrol.type;
 
         path = patrol.path;
         stop_times = patrol.stop_times;
@@ -55,8 +74,6 @@ public class Patrol
 
 public class RhandorController : Enemies {
 
-    // NavMeshAgent variables and patrol routes
-    public GameObject neutral_path, alert_path;
     public float patrol_speed, alert_speed, spotted_speed;
 
     private bool inverse_patrol;
@@ -74,10 +91,6 @@ public class RhandorController : Enemies {
     // When something is identified, the enemy will ask for help...
     public float ask_for_help_radius;
     public int max_num_of_helpers;
-
-    // Synchronizity
-    public bool is_synchronized_neutral, is_synchronized_alert;
-    public GameObject synchronized_neutral_Rhandor, synchronized_alert_Rhandor;
 
     // For corpses representation
     [HideInInspector] public SpriteRenderer render;
@@ -111,19 +124,16 @@ public class RhandorController : Enemies {
         idle_state = new RhandorIdleState(this);
         // -- PATROL --
         patrol_state = new RhandorPatrolState(this);
-        //neutral_patrol = patrol_state.AwakeState();  // It transforms the path GameObject to Transform[]
+        LoadNeutralPatrol();
         // -- ALERT --
         alert_state = new RhandorAlertState(this);
-        //alert_patrol = alert_state.AwakeState();     // It transforms the path GameObject to Transform[] 
+        LoadAlertPatrol();
         // -- SPOTTED --
         spotted_state = new RhandorSpottedState(this);
         // -- SPOTTED --
         support_state = new RhandorSupportState(this);
         // -- CORPSE --
-        corpse_state = new RhandorCorpseState(this);
-
-        LoadNeutralPatrol();
-        LoadAlertPatrol();
+        corpse_state = new RhandorCorpseState(this);      
 
         render = GetComponent<SpriteRenderer>();
         type = ENEMY_TYPES.RHANDOR;
@@ -371,13 +381,13 @@ public class RhandorController : Enemies {
         // Patrols initialization
         if (!neutral_patrol.static_patrol)
         {
-            if (neutral_path != null)
+            if (neutral_patrol.path_attached != null)
             {
                 // ---- Neutral patrol initialization for editor ----
-                Transform[] path = neutral_path.transform.getChilds();
+                Transform[] path = neutral_patrol.path_attached.transform.getChilds();
                 if (path.Length > 1)
                 {
-                    Patrol tmp_patrol = new Patrol(path.Length);
+                    Patrol tmp_patrol = new Patrol(path.Length, PATROL_TYPE.NEUTRAL);
 
                     for (int i = 0; i < path.Length; ++i)
                     {
@@ -394,7 +404,7 @@ public class RhandorController : Enemies {
 
                     neutral_patrol.Set(tmp_patrol);
                 }
-                else
+                else              
                     Debug.Log("Error loading NEUTRAL PATROL: The patrol must contain more than one waypoint (use Static toggle instead).");
             }
             else
@@ -407,13 +417,13 @@ public class RhandorController : Enemies {
         // Patrols initialization
         if (!alert_patrol.static_patrol)
         {
-            if (alert_path != null)
+            if (alert_patrol.path_attached != null)
             {
                 // ---- Alert patrol initialization for editor ----
-                Transform[] path = alert_path.transform.getChilds();
+                Transform[] path = alert_patrol.path_attached.transform.getChilds();
                 if (path.Length > 1)
                 {
-                    Patrol tmp_patrol = new Patrol(path.Length);
+                    Patrol tmp_patrol = new Patrol(path.Length, PATROL_TYPE.ALERT);
 
                     for (int i = 0; i < path.Length; ++i)
                     {

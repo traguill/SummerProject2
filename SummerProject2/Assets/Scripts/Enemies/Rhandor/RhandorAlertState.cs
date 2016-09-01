@@ -12,27 +12,6 @@ public class RhandorAlertState : IRhandorStates
         rhandor = enemy_controller;
     }
 
-    public Transform[] AwakeState()
-    {
-        // For the alert path as an enemy child, we create its corresponding alert_path that 
-        // the enemy will use.
-        Transform[] alert_patrol;
-        if (rhandor.alert_path != null)
-        {
-            alert_patrol = new Transform[rhandor.alert_path.transform.childCount];
-
-            int i = 0;
-            foreach (Transform path_unit in rhandor.alert_path.transform.GetComponentInChildren<Transform>())
-                alert_patrol[i++] = path_unit;
-        }
-        else
-        {
-            alert_patrol = null;
-        }
-
-        return alert_patrol;
-    }
-
     public void StartState()
     {
         if(rhandor.alert_patrol.static_patrol)
