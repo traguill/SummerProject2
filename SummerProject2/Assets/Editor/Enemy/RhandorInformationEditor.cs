@@ -9,6 +9,8 @@ public class RhandorInformationEditor : Editor
     private IRhandorStates state;
 
     private GameObject old_neutral_path, old_alert_path;
+    private GameObject old_sync_Rhandor;
+    private RhandorController sync_Rhandor;
 
     void OnEnable()
     {
@@ -191,10 +193,11 @@ public class RhandorInformationEditor : Editor
 
         if (patrol.expanded)
         {
-            // Patrols attached as GameObjects and number of waypoints
+            // Checking for static or non-static patrol configuration
             patrol.static_patrol = EditorGUILayout.Toggle("Static", patrol.static_patrol);
             if (patrol.static_patrol)
             {
+                // Static: Only one waypoint (initial position) and speed information depending on alarm state
                 EditorGUILayout.LabelField("Waypoints: 1");
                 switch (type)
                 {
@@ -211,30 +214,14 @@ public class RhandorInformationEditor : Editor
             }
             else
             {
+                // Non-static: A lot of options, explained next to each one
                 EditorGUILayout.BeginHorizontal();
-                patrol.path_attached = EditorGUILayout.ObjectField("Path", patrol.path_attached, typeof(GameObject), true) as GameObject;
-                switch (type)
-                {
-                    case (PATROL_TYPE.NEUTRAL):
-                        {
-                            if (old_neutral_path != patrol.path_attached)
-                            {
-                                rhandor.LoadNeutralPatrol();
-                                old_neutral_path = patrol.path_attached;
-                            }
-                            break;
-                        }
-                    case (PATROL_TYPE.ALERT):
-                        {
-                            if (old_alert_path != patrol.path_attached)
-                            {
-                                rhandor.LoadAlertPatrol();
-                                old_alert_path = patrol.path_attached;
-                            }
-                            break;
-                        }
-                }
 
+                // Path attached that represents neutral or alert patrol route
+                patrol.path_attached = EditorGUILayout.ObjectField("Path", patrol.path_attached, typeof(GameObject), true) as GameObject;
+                CheckNewPathAttached(patrol, type);
+
+                // Is the patrol path looped? Different information shown
                 if (patrol.loop)
                     EditorGUILayout.LabelField("Waypoints: " + ((2 * patrol.Length) - 2));
                 else
@@ -268,19 +255,45 @@ public class RhandorInformationEditor : Editor
                 if (patrol.is_synchronized = EditorGUILayout.Toggle("Patrol synchronized", patrol.is_synchronized))
                 {
                     patrol.synchronized_Rhandor = EditorGUILayout.ObjectField("Synchronized Rhandor", patrol.synchronized_Rhandor, typeof(GameObject), true) as GameObject;
-
-                    if (patrol.synchronized_Rhandor != null)
+                    if(patrol.synchronized_Rhandor != null)
                     {
-                        if (patrol.synchronized_Rhandor == rhandor.gameObject || patrol.synchronized_Rhandor.GetComponent<RhandorController>() == null)
-                        {
-                            Debug.Log("You cannot synchronize this Rhandor itself or " + patrol.synchronized_Rhandor + "is not a Rhandor!");
-                            patrol.synchronized_Rhandor = null;
+                        if (old_sync_Rhandor != patrol.synchronized_Rhandor.gameObject)
+                        { 
+                            if (patrol.synchronized_Rhandor == rhandor.gameObject || patrol.synchronized_Rhandor.GetComponent<RhandorController>() == null)
+                            {
+                                Debug.Log("You cannot synchronize this Rhandor itself or " + patrol.synchronized_Rhandor + "is not a Rhandor!");
+                                patrol.synchronized_Rhandor = null;
+                            }
+                            else
+                            {
+                                sync_Rhandor = patrol.synchronized_Rhandor.GetComponent<RhandorController>();
+                                Patrol sync_patrol = sync_Rhandor.GetPatrolByType(type);                                
+                                sync_patrol.is_synchronized = true;
+                                sync_patrol.synchronized_Rhandor = rhandor.gameObject;
+                                old_sync_Rhandor = sync_Rhandor.gameObject;
+                            }
                         }
-                    }
+                    } 
+                    else
+                    {
+
+                        if (sync_Rhandor != null)
+                        {
+                            Patrol sync_patrol = sync_Rhandor.GetPatrolByType(type);
+                            sync_patrol.is_synchronized = false;
+                        }                                            
+                        sync_Rhandor = null;
+                    }                   
                 }
                 else
                 {
                     patrol.synchronized_Rhandor = null;
+                    if (sync_Rhandor != null)
+                    {
+                        Patrol sync_patrol = sync_Rhandor.GetPatrolByType(type);
+                        sync_patrol.is_synchronized = false;
+                    }
+                    sync_Rhandor = null;
                 }
             }                 
 
@@ -387,6 +400,31 @@ public class RhandorInformationEditor : Editor
                 patrol.recieve_trigger[i] = false;
                 break;
             }
+        }
+    }
+
+    private void CheckNewPathAttached(Patrol patrol, PATROL_TYPE type)
+    {
+        switch (type)
+        {
+            case (PATROL_TYPE.NEUTRAL):
+                {
+                    if (old_neutral_path != patrol.path_attached)
+                    {
+                        rhandor.LoadNeutralPatrol();
+                        old_neutral_path = patrol.path_attached;
+                    }
+                    break;
+                }
+            case (PATROL_TYPE.ALERT):
+                {
+                    if (old_alert_path != patrol.path_attached)
+                    {
+                        rhandor.LoadAlertPatrol();
+                        old_alert_path = patrol.path_attached;
+                    }
+                    break;
+                }
         }
     }
 
