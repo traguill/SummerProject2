@@ -6,12 +6,9 @@ using UnityEditor;
 public class RhandorInformationEditor : Editor
 {
     private RhandorController rhandor;
-    private RhandorController rhandor_linked;   // For shynchronous patrols.
-    private bool sync_is_assigned;
     private IRhandorStates state;
 
     private GameObject old_neutral_path, old_alert_path;
-    private GameObject old_sync_gameobject;
 
     void OnEnable()
     {
