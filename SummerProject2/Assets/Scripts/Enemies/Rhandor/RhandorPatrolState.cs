@@ -15,12 +15,17 @@ public class RhandorPatrolState : IRhandorStates
     {
         rhandor.agent.speed = rhandor.patrol_speed;
       
-        rhandor.current_position = rhandor.findClosestPoint(rhandor.neutral_patrol.path);
+        if(!rhandor.same_neutral_alert_path)
+            rhandor.current_position = rhandor.findClosestPoint(rhandor.neutral_patrol.path);
         rhandor.agent.SetDestination(rhandor.neutral_patrol.path[rhandor.current_position]);
         rhandor.agent.Resume();
 
         rhandor.time_waiting_on_position = 0.1f;
-    }
+
+        rhandor.movement_allowed = false;
+        rhandor.permission_given = false;
+        rhandor.waiting_permission = false;
+}
 
     public void UpdateState()
     {

@@ -21,12 +21,19 @@ public class RhandorAlertState : IRhandorStates
         }  
         else
         {
+            initial_position_achieved = true;
+
             rhandor.agent.speed = rhandor.alert_speed;
-            rhandor.current_position = rhandor.findClosestPoint(rhandor.alert_patrol.path);
+            if (!rhandor.same_neutral_alert_path)
+                rhandor.current_position = rhandor.findClosestPoint(rhandor.alert_patrol.path);
             rhandor.agent.SetDestination(rhandor.alert_patrol.path[rhandor.current_position]);
             rhandor.agent.Resume();
 
             rhandor.time_waiting_on_position = 0.1f;
+
+            rhandor.movement_allowed = false;
+            rhandor.permission_given = false;
+            rhandor.waiting_permission = false;
         }     
     }
 

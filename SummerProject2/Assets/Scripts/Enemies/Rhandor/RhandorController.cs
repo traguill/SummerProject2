@@ -8,16 +8,21 @@ public enum PATROL_TYPE
     ALERT
 };
 
+/* Patrol class contains all the related information to proper execute the different patrols. Rhadnor controller
+ * will deal with two: neutral (without alarm) and alert (with alarm). Both patrols can use the same path but different
+ * configuration between them can be applied;
+ */
+
 [System.Serializable]
 public class Patrol
 {
-    public PATROL_TYPE type;                    // Type of the patrol
-    public bool expanded;                       // For Editor use;
+    public PATROL_TYPE type;                    // Type of the patrol: NEUTRAL or ALERT
+    public bool expanded;                       // For Toggle Editor use, useful to expand the different patrol info
 
-    public bool static_patrol;                  // Rhandor will remain on its initial position
-    public bool loop;                           // Rhandor will change its direction upon reaching last position
+    public bool static_patrol;                  // Rhandor will remain on its initial position without doing patrols
+    public bool loop;                           // Rhandor will change its direction upon reaching last position and the same 
+                                                // to the first position. If false, Rhandor will close its patrol path.
 
-    // Synchronizity
     public bool is_synchronized;                // Declares a synchronized patrol with ONLY other Rhandor (so far)
     public GameObject synchronized_Rhandor;     // The Rhandor synchronized with
     public int give_permission_pos;             // Position where Rhandor will give permission to move to the synchronized Rhandor.
@@ -78,17 +83,18 @@ public class Patrol
 
 public class RhandorController : Enemies {
 
-    public float patrol_speed, alert_speed, spotted_speed;
+    
+    public float patrol_speed, alert_speed, spotted_speed;   // Speed for the different patrols
+    private bool inverse_patrol;                             // Determines patrol direction when loop boolean is active
+    public bool same_neutral_alert_path;                     // Neutral and alert path is exactly the same.
 
-    private bool inverse_patrol;
+    public Patrol neutral_patrol, alert_patrol;   
 
-    [HideInInspector] public Patrol neutral_patrol, alert_patrol;   
-
-    [HideInInspector] public float time_waiting_on_position;      
-    [HideInInspector] public int current_position;
-    [HideInInspector] public Vector3 initial_position, initial_forward_direction;
-    [HideInInspector] public Quaternion initial_orientation;
-    private float ground_level;     // ground correction for proper visualization of patrols
+    public float time_waiting_on_position;      
+    public int current_position;
+    public Vector3 initial_position, initial_forward_direction;
+    public Quaternion initial_orientation;
+    private float ground_level;                              // ground correction for proper visualization of patrols
 
     private float time_recovering_timer, max_time_recovering;
 
@@ -98,8 +104,8 @@ public class RhandorController : Enemies {
 
     // Synchronicity
     public bool movement_allowed = false;
-    private bool permission_given;
-    private bool waiting_permission;
+    public bool permission_given = false;
+    public bool waiting_permission = false;
 
     // For corpses representation
     [HideInInspector] public SpriteRenderer render;
@@ -148,7 +154,10 @@ public class RhandorController : Enemies {
             LoadSynchronousConfiguration(neutral_patrol);
 
         if (alert_patrol.is_synchronized)
-            LoadSynchronousConfiguration(alert_patrol);  
+            LoadSynchronousConfiguration(alert_patrol);
+
+        if (neutral_patrol.path_attached == alert_patrol.path_attached)
+            same_neutral_alert_path = true;
 
         render = GetComponent<SpriteRenderer>();
         type = ENEMY_TYPES.RHANDOR;
@@ -289,6 +298,7 @@ public class RhandorController : Enemies {
             {
                 permission_given = true;
                 patrol.synchronized_Rhandor.GetComponent<RhandorController>().movement_allowed = true;
+                Debug.Log(name + " gives permission to " + patrol.synchronized_Rhandor.GetComponent<RhandorController>().name);
             }
         }                     
     }
@@ -296,7 +306,11 @@ public class RhandorController : Enemies {
     private void RecievePermission(Patrol patrol)
     {
         if (current_position == patrol.ask_for_permission_pos)
+        {
             waiting_permission = true;
+            Debug.Log(name + " wants to move");
+        }
+            
     }
 
     /// <summary>
@@ -312,7 +326,7 @@ public class RhandorController : Enemies {
             {
                 if (current_patrol.can_give_permission && !permission_given) GivePermission(current_patrol);
                 if (current_patrol.can_get_permission && !waiting_permission) RecievePermission(current_patrol);               
-            }
+            }            
 
             if(waiting_permission)
             {
