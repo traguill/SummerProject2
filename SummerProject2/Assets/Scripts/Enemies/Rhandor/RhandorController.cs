@@ -438,8 +438,27 @@ public class RhandorController : Enemies {
         }
     }
 
+    public Patrol GetPatrolByType(PATROL_TYPE type)
+    {
+        Patrol sync_patrol = null;
+        switch (type)
+        {
+            case (PATROL_TYPE.NEUTRAL):
+                {
+                    sync_patrol = neutral_patrol;
+                    break;
+                }
+            case (PATROL_TYPE.ALERT):
+                {
+                    sync_patrol = alert_patrol;
+                    break;
+                }
+        }
+        return sync_patrol;
+    }
+
     // ---- LOADING METHODS ----
-   private void LoadSynchronousConfiguration(Patrol patrol)
+    private void LoadSynchronousConfiguration(Patrol patrol)
     {
         patrol.give_permission_pos = -1;
         for (int i = 0; i < patrol.trigger_movement.Length; ++i)
