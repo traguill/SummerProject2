@@ -70,7 +70,7 @@ public class HUD_Controller : MonoBehaviour
 
         //Create effect
         GameObject effect_created = Instantiate(effect_prefab) as GameObject;
-        effect_created.transform.SetParent(canvas.transform);
+        effect_created.transform.SetParent(canvas.transform, false);
         HUD_Effect effect_controller = effect_created.GetComponent<HUD_Effect>();
 
         Sprite image = null;
