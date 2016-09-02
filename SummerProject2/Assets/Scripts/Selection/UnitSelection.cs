@@ -133,6 +133,11 @@ public class UnitSelection : MonoBehaviour
                     object_selected.GetComponent<RhandorController>().CorpseSelected(); //TODO: Adapt this for different type of enemies
                     return;
                 }
+                if(object_selected.tag == Tags.portal)
+                {
+                    object_selected.GetComponent<Portal>().Selected();
+                    return;
+                }
                 object_selected.GetComponent<RadialMenu_ObjectInteractable>().OnInteractableClicked(); //Others
             }
             else

@@ -14,6 +14,8 @@ public class Portal : MonoBehaviour
 
     public PortalController controller;
 
+    bool destroying = false; //The portals are closed?
+
 	void OnTriggerEnter(Collider coll)
     {
 
@@ -42,7 +44,8 @@ public class Portal : MonoBehaviour
 
     public void Selected()
     {
-        GetComponent<RadialMenu_ObjectInteractable>().OnInteractableClicked();
+        if(destroying == false)
+            GetComponent<RadialMenu_ObjectInteractable>().OnInteractableClicked();
     }
 
     /// <summary>
@@ -62,6 +65,7 @@ public class Portal : MonoBehaviour
 
     public void PlayDestroyAnimation()
     {
+        destroying = true;
         //Animation
         portal_active_anim.SetActive(false);
 
