@@ -316,8 +316,10 @@ public class RhandorInformationEditor : Editor
                     if (patrol.is_synchronized)
                     {
                         EditorGUILayout.BeginHorizontal();
-                        patrol.trigger_movement[i] = EditorGUILayout.Toggle("Trigger move", patrol.trigger_movement[i]);
-                        patrol.recieve_trigger[i] = EditorGUILayout.Toggle("Recieve trigger", patrol.recieve_trigger[i]);
+                        if (patrol.trigger_movement[i] = EditorGUILayout.Toggle("Trigger move", patrol.trigger_movement[i]))
+                            CheckOneOptionTrigger(patrol, i);
+                        if (patrol.recieve_trigger[i] = EditorGUILayout.Toggle("Recieve trigger", patrol.recieve_trigger[i]))
+                            CheckOneOptionReciever(patrol, i);
                         EditorGUILayout.EndHorizontal();
                         EditorGUILayout.Space();
                     }
@@ -362,6 +364,35 @@ public class RhandorInformationEditor : Editor
         rhandor.ask_for_help_radius = EditorGUILayout.FloatField("Radius call", rhandor.ask_for_help_radius);
         if (rhandor.ask_for_help_radius < 0.0f) rhandor.ask_for_help_radius = 0.0f;
     }
+
+// --------------------------------------------------------------------------
+// ------------------- CHECKING METHODS FOR INSPECTOR -----------------------
+// --------------------------------------------------------------------------
+
+    private void CheckOneOptionTrigger(Patrol patrol, int index_to_check)
+    {
+        for (int i = 0; i < patrol.trigger_movement.Length; ++i)
+        {
+            if (patrol.trigger_movement[i] && i != index_to_check)
+            {
+                patrol.trigger_movement[i] = false;
+                break;
+            }
+        }
+    }
+
+    private void CheckOneOptionReciever(Patrol patrol, int index_to_check)
+    {
+        for (int i = 0; i < patrol.recieve_trigger.Length; ++i)
+        {
+            if (patrol.recieve_trigger[i] && i != index_to_check)
+            {
+                patrol.recieve_trigger[i] = false;
+                break;
+            }
+        }
+    }
+
 }
 
-    
+
