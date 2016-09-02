@@ -21,7 +21,7 @@ public class Patrol
     public bool is_synchronized;                // Declares a synchronized patrol with ONLY other Rhandor (so far)
     public GameObject synchronized_Rhandor;     // The Rhandor synchronized with
 
-    public GameObject path_attached;            // The GameObject that contains waypoints as childs.
+    public GameObject path_attached;            // The GameObject that contains waypoints as childs and represents the patrol path.
 
     public int size;                            // Number of waypoints
     public Vector3[] path;                      // The colection of positions that conforms the patrol
@@ -93,10 +93,10 @@ public class RhandorController : Enemies {
     public int max_num_of_helpers;
 
     // Synchronicity
-    int give_permission_position, wait_for_permission_position;
+    int give_permission_pos, ask_for_permission_pos;
     private bool can_give_permission = false;
-    private bool can_recieve_permission = false;
-    public bool can_move = false;
+    private bool can_get_permission = false;
+    public bool movement_allowed = false;
     private bool permission_given;
     private bool waiting_permission;
 
@@ -144,10 +144,7 @@ public class RhandorController : Enemies {
         corpse_state = new RhandorCorpseState(this);
 
         if(neutral_patrol.is_synchronized)
-        {
-            can_give_permission = FindTriggerPosition();
-            can_recieve_permission = FindRecievePosition();
-        }        
+            LoadSynchronousConfiguration();     
 
         render = GetComponent<SpriteRenderer>();
         type = ENEMY_TYPES.RHANDOR;
@@ -167,32 +164,6 @@ public class RhandorController : Enemies {
         {
             menus.Add(menu_script.id, menu_script);
         }
-    }
-
-    private bool FindTriggerPosition()
-    {
-        int index = -1;
-        for(int i = 0; i < neutral_patrol.trigger_movement.Length; ++i)
-        {
-            if (neutral_patrol.trigger_movement[i])
-                index = i;
-        }
-
-        give_permission_position = index;
-        return give_permission_position != -1;
-    }
-
-    private bool FindRecievePosition()
-    {
-        int index = -1;
-        for (int i = 0; i < neutral_patrol.recieve_trigger.Length; ++i)
-        {
-            if (neutral_patrol.recieve_trigger[i])
-                index = i;
-        }
-
-        wait_for_permission_position = index;
-        return wait_for_permission_position != -1;
     }
 
     void Start()
@@ -310,22 +281,18 @@ public class RhandorController : Enemies {
     {
         if (neutral_patrol.synchronized_Rhandor.GetComponent<RhandorController>().waiting_permission)
         {
-            if (current_position == give_permission_position)
+            if (current_position == give_permission_pos)
             {
                 permission_given = true;
-                neutral_patrol.synchronized_Rhandor.GetComponent<RhandorController>().can_move = true;
-                Debug.Log(name + " has given permission to " + neutral_patrol.synchronized_Rhandor.GetComponent<RhandorController>().gameObject.name + " to move.");
+                neutral_patrol.synchronized_Rhandor.GetComponent<RhandorController>().movement_allowed = true;
             }
         }                     
     }
 
     private void RecievePermission()
     {
-        if (current_position == wait_for_permission_position)
-        {
-            Debug.Log(name + " is waiting for permission to move.");            
+        if (current_position == ask_for_permission_pos)
             waiting_permission = true;
-        }
     }
 
     /// <summary>
@@ -340,16 +307,16 @@ public class RhandorController : Enemies {
             if (neutral_patrol.is_synchronized)
             {
                 if (can_give_permission && !permission_given) GivePermission();
-                if (can_recieve_permission && !waiting_permission) RecievePermission();               
+                if (can_get_permission && !waiting_permission) RecievePermission();               
             }
 
             if(waiting_permission)
             {
-                if(can_move)
+                if(movement_allowed)
                 {
                     goToNextPoint(neutral_patrol.path, neutral_patrol.loop);
                     neutral_patrol.synchronized_Rhandor.GetComponent<RhandorController>().permission_given = false;
-                    can_move = false;
+                    movement_allowed = false;
                     waiting_permission = false;
                 }                           
             }
@@ -452,6 +419,33 @@ public class RhandorController : Enemies {
             }
         }
     }
+
+    // ---- LOADING METHODS ----
+   private void LoadSynchronousConfiguration()
+    {
+        give_permission_pos = -1;
+        for (int i = 0; i < neutral_patrol.trigger_movement.Length; ++i)
+        {
+            if (neutral_patrol.trigger_movement[i])
+            {
+                give_permission_pos = i;
+                break;
+            }                
+        }
+
+        can_give_permission = (give_permission_pos != -1);
+
+        for (int i = 0; i < neutral_patrol.recieve_trigger.Length; ++i)
+        {
+            if (neutral_patrol.recieve_trigger[i])
+            {
+                ask_for_permission_pos = i;
+                break;
+            }               
+        }
+
+        can_get_permission = (ask_for_permission_pos != -1);
+}
 
     public void LoadNeutralPatrol()
     {
