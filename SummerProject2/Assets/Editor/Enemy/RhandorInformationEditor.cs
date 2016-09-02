@@ -7,9 +7,11 @@ public class RhandorInformationEditor : Editor
 {
     private RhandorController rhandor;
     private RhandorController rhandor_linked;   // For shynchronous patrols.
+    private bool sync_is_assigned;
     private IRhandorStates state;
 
-    private GameObject old_neutral_path, old_alert_path;   
+    private GameObject old_neutral_path, old_alert_path;
+    private GameObject old_sync_gameobject;
 
     void OnEnable()
     {
@@ -197,7 +199,7 @@ public class RhandorInformationEditor : Editor
             if (patrol.static_patrol)
             {
                 EditorGUILayout.LabelField("Waypoints: 1");
-                switch(type)
+                switch (type)
                 {
                     case (PATROL_TYPE.NEUTRAL):
                         rhandor.patrol_speed = EditorGUILayout.FloatField("Patrol speed", rhandor.patrol_speed, GUILayout.Width(160));
@@ -215,7 +217,7 @@ public class RhandorInformationEditor : Editor
                 EditorGUILayout.BeginHorizontal();
                 patrol.path_attached = EditorGUILayout.ObjectField("Path", patrol.path_attached, typeof(GameObject), true) as GameObject;
                 switch (type)
-                {                    
+                {
                     case (PATROL_TYPE.NEUTRAL):
                         {
                             if (old_neutral_path != patrol.path_attached)
@@ -233,8 +235,8 @@ public class RhandorInformationEditor : Editor
                                 old_alert_path = patrol.path_attached;
                             }
                             break;
-                        }                        
-                }                
+                        }
+                }
 
                 if (patrol.loop)
                     EditorGUILayout.LabelField("Waypoints: " + ((2 * patrol.Length) - 2));
@@ -269,31 +271,21 @@ public class RhandorInformationEditor : Editor
                 if (patrol.is_synchronized = EditorGUILayout.Toggle("Patrol synchronized", patrol.is_synchronized))
                 {
                     patrol.synchronized_Rhandor = EditorGUILayout.ObjectField("Synchronized Rhandor", patrol.synchronized_Rhandor, typeof(GameObject), true) as GameObject;
-                                            
-                    if(patrol.synchronized_Rhandor != null)
+
+                    if (patrol.synchronized_Rhandor != null)
                     {
                         if (patrol.synchronized_Rhandor == rhandor.gameObject || patrol.synchronized_Rhandor.GetComponent<RhandorController>() == null)
                         {
-                            Debug.Log("You cannot synchronize the Rhandor itself or " + patrol.synchronized_Rhandor + "is not a Rhandor!");
+                            Debug.Log("You cannot synchronize this Rhandor itself or " + patrol.synchronized_Rhandor + "is not a Rhandor!");
                             patrol.synchronized_Rhandor = null;
-                            if(rhandor_linked != null) rhandor_linked.neutral_patrol.is_synchronized = false;
                         }
-                        else
-                        {
-                            RhandorController other_rhandor = patrol.synchronized_Rhandor.GetComponent<RhandorController>();
-                            other_rhandor.neutral_patrol.is_synchronized = true;
-                            other_rhandor.neutral_patrol.synchronized_Rhandor = rhandor.gameObject;
-                            rhandor_linked = other_rhandor;
-                        }
-                    }                                     
+                    }
                 }
                 else
                 {
-                    if (rhandor_linked != null) rhandor_linked.neutral_patrol.is_synchronized = false;
-                    rhandor_linked = null;
-                    patrol.synchronized_Rhandor = null;                                      
+                    patrol.synchronized_Rhandor = null;
                 }
-            }
+            }                 
 
             EditorGUILayout.Space();
             EditorGUILayout.Space();
