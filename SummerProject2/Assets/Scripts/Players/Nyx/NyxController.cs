@@ -167,9 +167,11 @@ public class NyxController : MonoBehaviour {
                 {
                     if(hit.transform.tag == Tags.enemy) //Check if the hitted point is an enemy (alive)
                     {
-
-                        target_to_kill = hit.transform.gameObject;
-                        return true;
+                        if(hit.transform.GetComponent<EnemyVisibility>().IsVisible()) //Is the enemy hided inside the fog of war
+                        {
+                            target_to_kill = hit.transform.gameObject;
+                            return true;
+                        }   
                     }
                   
                 }
