@@ -305,7 +305,7 @@ public class RhandorController : Enemies {
 
     private void RecievePermission(Patrol patrol)
     {
-        if (current_position == patrol.ask_for_permission_pos)
+        if (current_position == patrol.ask_for_permission_pos && !patrol.synchronized_Rhandor.GetComponent<RhandorController>().waiting_permission)
         {
             waiting_permission = true;
             Debug.Log(name + " wants to move");

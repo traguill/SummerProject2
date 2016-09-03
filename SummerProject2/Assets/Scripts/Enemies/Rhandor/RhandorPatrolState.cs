@@ -25,7 +25,7 @@ public class RhandorPatrolState : IRhandorStates
         rhandor.movement_allowed = false;
         rhandor.permission_given = false;
         rhandor.waiting_permission = false;
-}
+    }
 
     public void UpdateState()
     {

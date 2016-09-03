@@ -203,12 +203,14 @@ public class RhandorInformationEditor : Editor
                 {
                     case (PATROL_TYPE.NEUTRAL):
                         rhandor.patrol_speed = EditorGUILayout.FloatField("Patrol speed", rhandor.patrol_speed, GUILayout.Width(160));
+                        rhandor.neutral_patrol.path_attached = null;
                         break;
                     case (PATROL_TYPE.ALERT):
                         EditorGUILayout.BeginHorizontal();
                         rhandor.alert_speed = EditorGUILayout.FloatField("Alert speed", rhandor.alert_speed, GUILayout.Width(160));
                         rhandor.spotted_speed = EditorGUILayout.FloatField("Spotted speed", rhandor.spotted_speed, GUILayout.Width(160));
                         EditorGUILayout.EndHorizontal();
+                        rhandor.alert_patrol.path_attached = null;
                         break;
                 }
             }
