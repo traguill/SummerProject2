@@ -9,8 +9,8 @@ public class RhandorInformationEditor : Editor
     private IRhandorStates state;
 
     private GameObject old_neutral_path, old_alert_path;
-    private GameObject old_sync_Rhandor;
-    private RhandorController sync_Rhandor;
+    private bool sync_correct;
+    RhandorController rhandor_sync, old_sync_Rhandor;
 
     void OnEnable()
     {
@@ -251,14 +251,15 @@ public class RhandorInformationEditor : Editor
                         break;
                 }
 
-                // Synchronous activity
+                
+
                 if (patrol.is_synchronized = EditorGUILayout.Toggle("Patrol synchronized", patrol.is_synchronized))
                 {
                     patrol.synchronized_Rhandor = EditorGUILayout.ObjectField("Synchronized Rhandor", patrol.synchronized_Rhandor, typeof(GameObject), true) as GameObject;
-                    if(patrol.synchronized_Rhandor != null)
+                    if (patrol.synchronized_Rhandor != null)
                     {
-                        if (old_sync_Rhandor != patrol.synchronized_Rhandor.gameObject)
-                        { 
+                        if (old_sync_Rhandor != patrol.synchronized_Rhandor)
+                        {
                             if (patrol.synchronized_Rhandor == rhandor.gameObject || patrol.synchronized_Rhandor.GetComponent<RhandorController>() == null)
                             {
                                 Debug.Log("You cannot synchronize this Rhandor itself or " + patrol.synchronized_Rhandor + "is not a Rhandor!");
@@ -266,36 +267,41 @@ public class RhandorInformationEditor : Editor
                             }
                             else
                             {
-                                sync_Rhandor = patrol.synchronized_Rhandor.GetComponent<RhandorController>();
-                                Patrol sync_patrol = sync_Rhandor.GetPatrolByType(type);                                
-                                sync_patrol.is_synchronized = true;
-                                sync_patrol.synchronized_Rhandor = rhandor.gameObject;
-                                old_sync_Rhandor = sync_Rhandor.gameObject;
+                                old_sync_Rhandor = rhandor_sync = patrol.synchronized_Rhandor.GetComponent<RhandorController>();
+                                if (rhandor_sync.GetPatrolByType(type).synchronized_Rhandor != null)
+                                {
+                                    if (rhandor_sync.GetPatrolByType(type).synchronized_Rhandor != rhandor.gameObject)
+                                    {
+                                        Debug.Log(rhandor.name + " has not previously linked with " + rhandor_sync.name +
+                                            "or is already linked with other Rhandor" );
+                                        patrol.synchronized_Rhandor = null;
+                                        
+                                    }
+                                    else
+                                    {
+                                        sync_correct = true;
+                                    }                    
+                                }                                
                             }
                         }
-                    } 
+
+                        if (sync_correct)
+                            EditorGUILayout.HelpBox(rhandor.name + " properly synchronized with " + rhandor_sync.name, MessageType.Info);
+                        else
+                            EditorGUILayout.HelpBox(rhandor.name + " is pending for synchronization with " + rhandor_sync.name, MessageType.Error);
+                    }
                     else
                     {
-
-                        if (sync_Rhandor != null)
-                        {
-                            Patrol sync_patrol = sync_Rhandor.GetPatrolByType(type);
-                            sync_patrol.is_synchronized = false;
-                        }                                            
-                        sync_Rhandor = null;
-                    }                   
+                        patrol.synchronized_Rhandor = null;
+                        sync_correct = false;
+                    }                                    
                 }
                 else
                 {
+                    sync_correct = false;
                     patrol.synchronized_Rhandor = null;
-                    if (sync_Rhandor != null)
-                    {
-                        Patrol sync_patrol = sync_Rhandor.GetPatrolByType(type);
-                        sync_patrol.is_synchronized = false;
-                    }
-                    sync_Rhandor = null;
-                }
-            }                 
+                }                
+            }            
 
             EditorGUILayout.Space();
             EditorGUILayout.Space();

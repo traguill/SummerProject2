@@ -472,6 +472,7 @@ public class RhandorController : Enemies {
 
         patrol.can_give_permission = (patrol.give_permission_pos != -1);
 
+        patrol.ask_for_permission_pos = -1;
         for (int i = 0; i < patrol.recieve_trigger.Length; ++i)
         {
             if (patrol.recieve_trigger[i])
