@@ -12,42 +12,28 @@ public class RhandorAlertState : IRhandorStates
         rhandor = enemy_controller;
     }
 
-    public Transform[] AwakeState()
-    {
-        // For the alert path as an enemy child, we create its corresponding alert_path that 
-        // the enemy will use.
-        Transform[] alert_patrol;
-        if (rhandor.alert_path != null)
-        {
-            alert_patrol = new Transform[rhandor.alert_path.transform.childCount];
-
-            int i = 0;
-            foreach (Transform path_unit in rhandor.alert_path.transform.GetComponentInChildren<Transform>())
-                alert_patrol[i++] = path_unit;
-        }
-        else
-        {
-            alert_patrol = null;
-        }
-
-        return alert_patrol;
-    }
-
     public void StartState()
     {
-        if(!rhandor.static_alert)
+        if(rhandor.alert_patrol.static_patrol)
         {
-            rhandor.agent.speed = rhandor.alert_speed;
-            rhandor.current_position = rhandor.findClosestPoint(rhandor.alert_patrol);
-            rhandor.agent.destination = rhandor.alert_patrol[rhandor.current_position].position;
-            rhandor.agent.Resume();
-
-            rhandor.time_waiting_on_position = 0.1f;
+            rhandor.agent.SetDestination(rhandor.initial_position);
+            initial_position_achieved = false;            
         }  
         else
         {
-            rhandor.agent.destination = rhandor.initial_position;
-            initial_position_achieved = false;
+            initial_position_achieved = true;
+
+            rhandor.agent.speed = rhandor.alert_speed;
+            if (!rhandor.same_neutral_alert_path)
+                rhandor.current_position = rhandor.findClosestPoint(rhandor.alert_patrol.path);
+            rhandor.agent.SetDestination(rhandor.alert_patrol.path[rhandor.current_position]);
+            rhandor.agent.Resume();
+
+            rhandor.time_waiting_on_position = 0.1f;
+
+            rhandor.movement_allowed = false;
+            rhandor.permission_given = false;
+            rhandor.waiting_permission = false;
         }     
     }
 
@@ -60,14 +46,14 @@ public class RhandorAlertState : IRhandorStates
         // If the alarm is turned off, the enemy reverts its current state to Patrol
         if (!rhandor.alarm_system.isAlarmActive())
         {
-            if (rhandor.static_neutral)
+            if (rhandor.neutral_patrol.static_patrol)
                 ToIdleState();
             else
                 ToPatrolState();
         }
 
-        if(!rhandor.static_alert)
-            rhandor.CheckNextMovement(rhandor.alert_patrol, rhandor.stopping_time_alert_patrol, rhandor.alert_path_loop);
+        if(!rhandor.alert_patrol.static_patrol)
+            rhandor.CheckNextMovement(rhandor.alert_patrol);
     }
 
     public void ToIdleState()
