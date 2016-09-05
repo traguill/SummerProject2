@@ -280,6 +280,7 @@ public class RhandorController : Enemies {
                         tag = Tags.enemy;
                         gameObject.layer = LayerMask.NameToLayer("Enemy");
                         agent.enabled = true;
+                        GetComponent<MeshRenderer>().material.color = new Color(0, 0, 255, 1);
 
                         if (neutral_patrol.static_patrol)
                             ChangeStateTo(idle_state);
@@ -325,23 +326,30 @@ public class RhandorController : Enemies {
     {
         if (patrol.synchronized_Rhandor.GetComponent<RhandorController>().waiting_permission)
         {
+            // Avoids synchronicity when Rhandor is returning on a loop patrol
+            if (inverse_patrol && (current_position > 0 && current_position < patrol.path.Length - 1))
+                return;                
+
             if (current_position == patrol.give_permission_pos)
             {
                 permission_given = true;
                 patrol.synchronized_Rhandor.GetComponent<RhandorController>().movement_allowed = true;
                 Debug.Log(name + " gives permission to " + patrol.synchronized_Rhandor.GetComponent<RhandorController>().name);
-            }
+            }                   
         }                     
     }
 
     private void RecievePermission(Patrol patrol)
     {
-        if (current_position == patrol.ask_for_permission_pos && !patrol.synchronized_Rhandor.GetComponent<RhandorController>().waiting_permission)
+        // Avoids synchronicity when Rhandor is returning on a loop patrol
+        if (inverse_patrol && (current_position > 0 && current_position < patrol.path.Length - 1))
+            return;
+
+        if (!patrol.synchronized_Rhandor.GetComponent<RhandorController>().waiting_permission && current_position == patrol.ask_for_permission_pos)
         {
             waiting_permission = true;
-            Debug.Log(name + " wants to move");
-        }
-            
+            //Debug.Log(name + " wants to move");
+        }        
     }
 
     /// <summary>

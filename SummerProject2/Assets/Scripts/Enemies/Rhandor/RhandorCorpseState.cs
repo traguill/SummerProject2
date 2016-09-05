@@ -28,6 +28,8 @@ public class RhandorCorpseState : IRhandorStates {
         rhandor.alert_patrol.synchronized_Rhandor.GetComponent<RhandorController>().neutral_patrol.is_synchronized = false;
         rhandor.alert_patrol.synchronized_Rhandor.GetComponent<RhandorController>().alert_patrol.is_synchronized = false;
 
+        rhandor.alert_patrol.synchronized_Rhandor.GetComponent<RhandorController>().movement_allowed = true;
+
         //Tint black the enemy if it's dead
         rhandor.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 1);
     }

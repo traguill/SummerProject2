@@ -251,9 +251,7 @@ public class RhandorInformationEditor : Editor
                         else
                             patrol.loop = false;
                         break;
-                }
-
-                
+                }                
 
                 if (patrol.is_synchronized = EditorGUILayout.Toggle("Patrol synchronized", patrol.is_synchronized))
                 {
@@ -359,14 +357,14 @@ public class RhandorInformationEditor : Editor
                             patrol.stop_times[i] = 0.0f;
                         EditorGUILayout.EndHorizontal();
 
-                        if (patrol.is_synchronized)
-                        {
-                            EditorGUILayout.BeginHorizontal();
-                            patrol.trigger_movement[i] = EditorGUILayout.Toggle("Trigger move", patrol.trigger_movement[i]);
-                            patrol.recieve_trigger[i] = EditorGUILayout.Toggle("Recieve trigger", patrol.recieve_trigger[i]);
-                            EditorGUILayout.EndHorizontal();
-                            EditorGUILayout.Space();
-                        }
+                        //if (patrol.is_synchronized)
+                        //{
+                        //    EditorGUILayout.BeginHorizontal();
+                        //    patrol.trigger_movement[i] = EditorGUILayout.Toggle("Trigger move", patrol.trigger_movement[i]);
+                        //    patrol.recieve_trigger[i] = EditorGUILayout.Toggle("Recieve trigger", patrol.recieve_trigger[i]);
+                        //    EditorGUILayout.EndHorizontal();
+                        //    EditorGUILayout.Space();
+                        //}
                     }
                 }
             }
