@@ -11,20 +11,39 @@ public class RhandorPatrolState : IRhandorStates
         rhandor = enemy_controller;
     }
 
+    public Transform[] AwakeState()
+    {
+        // For the neutral path gameobject attach to this enemy, we create its corresponding patrol_path that 
+        // the enemy will use, considering or not a loop patrol.
+
+        Transform[] neutral_patrol;
+        if (rhandor.neutral_path != null)
+        {
+            neutral_patrol = new Transform[rhandor.neutral_path.transform.childCount];
+
+            int i = 0;
+            foreach (Transform path_unit in rhandor.neutral_path.transform.GetComponentInChildren<Transform>())
+                neutral_patrol[i++] = path_unit;                       
+        }            
+        else
+        {
+            neutral_patrol = null;
+        }
+          
+        rhandor.agent = rhandor.GetComponent<NavMeshAgent>();     // Agent for NavMesh  
+        
+        return neutral_patrol;
+    }
+
     public void StartState()
     {
         rhandor.agent.speed = rhandor.patrol_speed;
       
-        if(!rhandor.same_neutral_alert_path)
-            rhandor.current_position = rhandor.findClosestPoint(rhandor.neutral_patrol.path);
-        rhandor.agent.SetDestination(rhandor.neutral_patrol.path[rhandor.current_position]);
+        rhandor.current_position = rhandor.findClosestPoint(rhandor.neutral_patrol);
+        rhandor.agent.destination = rhandor.neutral_patrol[rhandor.current_position].position;
         rhandor.agent.Resume();
 
         rhandor.time_waiting_on_position = 0.1f;
-
-        rhandor.movement_allowed = false;
-        rhandor.permission_given = false;
-        rhandor.waiting_permission = false;
     }
 
     public void UpdateState()
@@ -33,7 +52,7 @@ public class RhandorPatrolState : IRhandorStates
         if (rhandor.alarm_system.isAlarmActive())
             ToAlertState();
 
-        rhandor.CheckNextMovement(rhandor.neutral_patrol);
+        rhandor.CheckNextMovement(rhandor.neutral_patrol, rhandor.stopping_time_neutral_patrol, rhandor.neutral_path_loop);
     }
 
     public void ToIdleState()
