@@ -164,7 +164,7 @@ public class CosmoPortalState : ICosmoState
                 {
                     
                     //3- Sphere collision if there is enough space to build the portal
-                    Collider[] objects = Physics.OverlapSphere(point, 0.5f);
+                    Collider[] objects = Physics.OverlapSphere(point, 1.25f);
 
                     if(objects.Length == 0)
                     {

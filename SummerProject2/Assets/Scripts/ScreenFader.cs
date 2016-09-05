@@ -74,7 +74,7 @@ public class ScreenFader : MonoBehaviour {
             if (fade_img.color.a >= 0.95f)
             {
                 // ... reload the level
-                SceneManager.LoadScene(SceneNumber);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 yield break;
             }
             else
