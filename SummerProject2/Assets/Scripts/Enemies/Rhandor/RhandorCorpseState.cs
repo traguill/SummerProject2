@@ -3,33 +3,21 @@ using System.Collections;
 
 public class RhandorCorpseState : IRhandorStates {
 
-    private readonly RhandorController rhandor;
+    private readonly RhandorController enemy;
 
     public RhandorCorpseState(RhandorController enemy_controller)
     {
-        rhandor = enemy_controller;
+        enemy = enemy_controller;
     }
 
     public void StartState()
     {
-        rhandor.agent.Stop();
-        rhandor.agent.enabled = false;
-
-        // Changes on Tags and Layers
-        rhandor.tag = Tags.corpse;
-        rhandor.gameObject.layer = LayerMask.NameToLayer("Corpse");
-
-        // Stop looking for players
-        rhandor.enemy_field_view.StopCoroutine("FindTargetsWithDelay");  
-
-        // The synchronized Rhandor will not be synchronized anymore
-        rhandor.neutral_patrol.synchronized_Rhandor.GetComponent<RhandorController>().neutral_patrol.is_synchronized = false;
-        rhandor.neutral_patrol.synchronized_Rhandor.GetComponent<RhandorController>().alert_patrol.is_synchronized = false;
-        rhandor.alert_patrol.synchronized_Rhandor.GetComponent<RhandorController>().neutral_patrol.is_synchronized = false;
-        rhandor.alert_patrol.synchronized_Rhandor.GetComponent<RhandorController>().alert_patrol.is_synchronized = false;
+        enemy.agent.Stop();
+        enemy.agent.enabled = false;
+        enemy.enemy_field_view.StopCoroutine("FindTargetsWithDelay");
 
         //Tint black the enemy if it's dead
-        rhandor.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 1);
+        enemy.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 1);
     }
 
     public void UpdateState()
@@ -64,6 +52,6 @@ public class RhandorCorpseState : IRhandorStates {
 
     public void ToCorpseState()
     {
-        Debug.Log("Enemy" + rhandor.name + "can't transition to same state CORPSE");
+        Debug.Log("Enemy" + enemy.name + "can't transition to same state CORPSE");
     }
 }

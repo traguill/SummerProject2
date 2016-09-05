@@ -14,7 +14,7 @@ public class RhandorIdleState : IRhandorStates
 
     public void StartState()
     {
-        rhandor.agent.SetDestination(rhandor.initial_position);
+        rhandor.agent.destination = rhandor.initial_position;
         initial_position_achieved = false;        
     }
 
