@@ -193,6 +193,10 @@ public class RhandorController : Enemies {
 
     void Update()
     {
+        // Debug
+        if (Input.GetKeyDown(KeyCode.X))
+            KillRhandor();
+
         current_state.UpdateState();
     }
 
@@ -258,6 +262,33 @@ public class RhandorController : Enemies {
 
         // Set the agent to go to the currently selected destination.
         agent.SetDestination(current_path[current_position]);        
+    }
+
+    private void KillRhandor()
+    {
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100, LayerMask.GetMask("Enemy", "Corpse")))
+            {
+                if (hit.collider == GetComponent<CapsuleCollider>())
+                {
+                    if(current_state != corpse_state)                    
+                        ChangeStateTo(corpse_state);
+                    else
+                    {
+                        tag = Tags.enemy;
+                        gameObject.layer = LayerMask.NameToLayer("Enemy");
+                        agent.enabled = true;
+
+                        if (neutral_patrol.static_patrol)
+                            ChangeStateTo(idle_state);
+                        else
+                            ChangeStateTo(patrol_state);
+                    }
+                }
+            }
+        }
     }
 
     /// <summary>

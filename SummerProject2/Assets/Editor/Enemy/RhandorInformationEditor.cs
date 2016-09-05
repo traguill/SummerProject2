@@ -290,7 +290,7 @@ public class RhandorInformationEditor : Editor
                         if (sync_correct)
                             EditorGUILayout.HelpBox(rhandor.name + " properly synchronized with " + rhandor_sync.name, MessageType.Info);
                         else
-                            EditorGUILayout.HelpBox(rhandor.name + " is pending for synchronization with " + rhandor_sync.name, MessageType.Error);
+                            EditorGUILayout.HelpBox(rhandor_sync.name + " is pending for synchronization with " + rhandor.name, MessageType.Error);
                     }
                     else
                     {
