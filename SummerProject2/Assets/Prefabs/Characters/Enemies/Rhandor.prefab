@@ -255,32 +255,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  neutral_path: {fileID: 0}
-  alert_path: {fileID: 0}
-  neutral_path_loop: 1
-  alert_path_loop: 0
-  static_neutral: 1
-  static_alert: 1
   patrol_speed: 2.5
   alert_speed: 5
   spotted_speed: 7.5
-  neutral_patrol: []
-  alert_patrol: []
-  stopping_time_neutral_patrol:
-  - 0
-  - 0
-  - 0
-  stopping_time_alert_patrol:
-  - 0
-  - 0
-  - 0
-  num_neutral_waypoints: 3
-  num_alert_waypoints: 3
+  neutral_patrol:
+    type: 0
+    expanded: 0
+    static_patrol: 1
+    loop: 0
+    is_synchronized: 0
+    synchronized_Rhandor: {fileID: 0}
+    path_attached: {fileID: 0}
+    size: 0
+    path: []
+    stop_times: []
+    trigger_movement: 
+    recieve_trigger: 
+  alert_patrol:
+    type: 0
+    expanded: 0
+    static_patrol: 1
+    loop: 0
+    is_synchronized: 0
+    synchronized_Rhandor: {fileID: 0}
+    path_attached: {fileID: 0}
+    size: 0
+    path: []
+    stop_times: []
+    trigger_movement: 
+    recieve_trigger: 
   time_waiting_on_position: 0
   current_position: 0
-  initial_position: {x: 0, y: 0, z: 0}
+  initial_position: {x: -29.6, y: 0.19999999, z: 18.5}
   initial_forward_direction: {x: 0, y: 0, z: 0}
-  initial_orientation: {x: 0, y: 0, z: 0, w: 0}
+  initial_orientation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
   ask_for_help_radius: 15
   max_num_of_helpers: 2
   render: {fileID: 0}
