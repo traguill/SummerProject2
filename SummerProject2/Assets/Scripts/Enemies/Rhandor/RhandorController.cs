@@ -334,7 +334,7 @@ public class RhandorController : Enemies {
             {
                 permission_given = true;
                 patrol.synchronized_Rhandor.GetComponent<RhandorController>().movement_allowed = true;
-                Debug.Log(name + " gives permission to " + patrol.synchronized_Rhandor.GetComponent<RhandorController>().name);
+                //Debug.Log(name + " gives permission to " + patrol.synchronized_Rhandor.GetComponent<RhandorController>().name);
             }                   
         }                     
     }
