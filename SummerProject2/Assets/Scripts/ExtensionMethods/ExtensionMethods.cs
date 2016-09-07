@@ -6,7 +6,7 @@ public static class ExtensionMethods
 {
     /// <summary>
     /// getChilds: Own script to get all the direct childs.
-    /// Complaints to CRZ!
+    /// Complaints to CRZ! Improved by Traguill, but complains still go to CRZ.
     /// </summary>
     public static Transform[] getChilds(this Transform trans)
     {
@@ -22,8 +22,7 @@ public static class ExtensionMethods
         }
         else
         {
-            ret = new Transform[1];
-            ret[0] = null;
+            ret = new Transform[0];
         }
 
         return ret;

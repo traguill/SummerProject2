@@ -537,7 +537,7 @@ public class RhandorController : Enemies {
             {
                 // ---- Neutral patrol initialization for editor ----
                 Transform[] path = neutral_patrol.path_attached.transform.getChilds();
-                if (path.Length > 1)
+                if (path.Length > 0)
                 {
                     Patrol tmp_patrol = new Patrol(path.Length, PATROL_TYPE.NEUTRAL);
 
@@ -573,7 +573,7 @@ public class RhandorController : Enemies {
             {
                 // ---- Alert patrol initialization for editor ----
                 Transform[] path = alert_patrol.path_attached.transform.getChilds();
-                if (path.Length > 1)
+                if (path.Length > 0)
                 {
                     Patrol tmp_patrol = new Patrol(path.Length, PATROL_TYPE.ALERT);
 
