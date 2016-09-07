@@ -24,10 +24,24 @@ public class LevelEditor : EditorWindow
 
     Brushes brush = Brushes.NONE;
 
+    //Tools
+    enum Tools
+    {
+        NONE,
+        PAINT,
+        ERASE,
+        RECT,
+        DROPPER
+    }
+
+    Tools tool = Tools.NONE;
+
     //Options
     bool paint_enable = false;
     bool erase_enable = false;
+    bool rect_enable = false;
     bool editor_enable = false;
+    bool dropper_enable = false;
 
     //Containers
     GameObject wall_container;
@@ -47,6 +61,8 @@ public class LevelEditor : EditorWindow
     void OnEnable()
     {
         SceneView.onSceneGUIDelegate = OnSceneGUI;
+
+       
 
         Init();
     }
@@ -121,16 +137,36 @@ public class LevelEditor : EditorWindow
 
         //Paint
         paint_enable = EditorGUILayout.Toggle("Paint", paint_enable);
-
-        //Conditions
-        if (paint_enable == true)
-            erase_enable = false;
+        if (paint_enable && tool != Tools.PAINT)
+        {
+            tool = Tools.PAINT;
+            UpdateToolCheck();
+        }
+        
 
         //Erase 
         erase_enable = EditorGUILayout.Toggle("Erase", erase_enable);
-        //Conditions
-        if (erase_enable == true)
-            paint_enable = false;
+        if (erase_enable && tool != Tools.ERASE)
+        {
+            tool = Tools.ERASE;
+            UpdateToolCheck();
+        }
+
+        //Rect
+        rect_enable = EditorGUILayout.Toggle("Rect", rect_enable);
+        if(rect_enable && tool != Tools.RECT)
+        {
+            tool = Tools.RECT;
+            UpdateToolCheck();
+        }
+
+        //Dropper
+        dropper_enable = EditorGUILayout.Toggle("Dropper", dropper_enable);
+        if(dropper_enable && tool != Tools.DROPPER)
+        {
+            tool = Tools.DROPPER;
+            UpdateToolCheck();
+        }
 
 
         //Brushes ------------------------------------------------------------------------------------------------
@@ -173,6 +209,34 @@ public class LevelEditor : EditorWindow
                 brush_obj = wall_prefab;
                 brush = Brushes.WALL;
             }
+        } 
+    }
+
+
+    private void UpdateToolCheck()
+    {
+        //Update tools checkpoints
+        //Set all false
+        paint_enable = false;
+        erase_enable = false;
+        rect_enable = false;
+        dropper_enable = false;
+
+        //Only set the current tool to true
+        switch (tool)
+        {
+            case Tools.PAINT:
+                paint_enable = true;
+                break;
+            case Tools.ERASE:
+                erase_enable = true;
+                break;
+            case Tools.RECT:
+                rect_enable = true;
+                break;
+            case Tools.DROPPER:
+                dropper_enable = true;
+                break;
         }
     }
 
@@ -267,27 +331,45 @@ public class LevelEditor : EditorWindow
         if (!editor_enable)
             return;
 
+        HandleUtility.AddDefaultControl(0); //Disable engine input
+
         //Shortcuts
         Event e = Event.current;
 
+        //Paint (B)
         if (e.keyCode == KeyCode.B && e.type == EventType.keyDown)
         {
-            paint_enable = true;
-            erase_enable = false;
+            tool = Tools.PAINT;
+            UpdateToolCheck();
             Repaint();
         }
 
+        //Erase (E)
         if (e.keyCode == KeyCode.E && e.type == EventType.keyDown)
         {
-            erase_enable = true;
-            paint_enable = false;
+            tool = Tools.ERASE;
+            UpdateToolCheck();
             Repaint();
         }
 
+        //Rect (R)
+        if(e.keyCode == KeyCode.R && e.type == EventType.keyDown)
+        {
+            tool = Tools.RECT;
+            UpdateToolCheck();
+            Repaint();
+        }
+
+        if(e.keyCode == KeyCode.I && e.type == EventType.keyDown)
+        {
+            tool = Tools.DROPPER;
+            UpdateToolCheck();
+            Repaint();
+        }
+
+        //Paint or Erase
         if(paint_enable || erase_enable)
         {
-            HandleUtility.AddDefaultControl(0); //Disable engine input
-
             if ((e.type == EventType.mouseDown || e.type == EventType.mouseDrag) && e.button == 0 && e.alt == false)
             {    
                 if(paint_enable)
@@ -296,7 +378,22 @@ public class LevelEditor : EditorWindow
                 if (erase_enable)
                     EraseObject(e);
             }
-        }    
+        } 
+   
+        //Draw Rect
+        if(rect_enable)
+        {
+
+        }
+
+        //Dropper
+        if(dropper_enable)
+        {
+            if(e.type == EventType.mouseDown && e.button == 0 && e.alt == false)
+            {
+                DropperTool(e);
+            }
+        }
     }
 
     private void CreateObject(Event e)
@@ -377,6 +474,42 @@ public class LevelEditor : EditorWindow
             {
                 DestroyImmediate(hit.transform.gameObject);
             }
+        }
+    }
+
+
+    private void DropperTool(Event e)
+    {
+        Ray ray = HandleUtility.GUIPointToWorldRay(e.mousePosition);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit) != false)
+        {
+            SearchBrushByTag(hit.transform.tag);
+            Repaint();
+        }
+    }
+
+    /// <summary>
+    /// Searches a Brush by his tag and sets the current brush.
+    /// </summary>
+    private void SearchBrushByTag(string tag)
+    {
+        brush_obj = null;
+        brush = Brushes.NONE;
+
+        if (floor_prefab.tag == tag)
+        {
+            brush_obj = floor_prefab;
+            brush = Brushes.FLOOR;
+        }
+           
+
+        if (wall_prefab.tag == tag)
+        {
+            brush_obj = wall_prefab;
+            brush = Brushes.WALL;
         }
     }
 }
