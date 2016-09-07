@@ -9,6 +9,8 @@ TagManager:
   - Corpse
   - Box
   - Portal
+  - Floor
+  - Wall
   layers:
   - Default
   - TransparentFX

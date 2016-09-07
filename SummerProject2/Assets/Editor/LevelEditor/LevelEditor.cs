@@ -10,6 +10,10 @@ public class LevelEditor : EditorWindow
     GameObject floor_prefab = null;
     GameObject wall_prefab = null;
 
+    //Creation height
+    float floor_height = 0.05f;
+    float wall_height = 0.5f;
+
     //Brushes
     enum Brushes
     {
@@ -30,8 +34,8 @@ public class LevelEditor : EditorWindow
     GameObject floor_container;
 
     //Saved data
-    Transform[] floor_positions = new Transform[0];
-    Transform[] wall_positions = new Transform[0];
+    Vector3[] floor_positions = new Vector3[0];
+    Vector3[] wall_positions = new Vector3[0];
 
     [MenuItem("Window/Level Editor")]
 
@@ -72,21 +76,26 @@ public class LevelEditor : EditorWindow
             floor_container.transform.SetParent(level.transform);
         }
 
-        //Load objects position
-        floor_positions = new Transform[floor_container.transform.childCount];
+        SavePositions();
+
+    }
+
+    private void SavePositions()
+    {
+        //Save objects position
+        floor_positions = new Vector3[floor_container.transform.childCount];
         Transform[] childs_floor = floor_container.transform.getChilds();
-        for (int i = 0; i < childs_floor.Length; i++ )
+        for (int i = 0; i < childs_floor.Length; i++)
         {
-            floor_positions[i] = childs_floor[i];
+            floor_positions[i] = childs_floor[i].position;
         }
 
-        wall_positions = new Transform[wall_container.transform.childCount];
+        wall_positions = new Vector3[wall_container.transform.childCount];
         Transform[] childs_wall = wall_container.transform.getChilds();
         for (int i = 0; i < childs_wall.Length; i++)
         {
-            wall_positions[i] = childs_wall[i];
+            wall_positions[i] = childs_wall[i].position;
         }
-
     }
 
 
@@ -133,6 +142,8 @@ public class LevelEditor : EditorWindow
         //Floor
         floor_prefab = (GameObject)EditorGUILayout.ObjectField("Floor: ", floor_prefab, typeof(GameObject), true);
 
+        floor_height = EditorGUILayout.FloatField("Floor height: ", floor_height);
+
         if (floor_prefab == null)
         {
             EditorGUILayout.HelpBox("A floor prefab must be assigned.", MessageType.Warning);
@@ -148,6 +159,8 @@ public class LevelEditor : EditorWindow
 
         //Wall
         wall_prefab = (GameObject)EditorGUILayout.ObjectField("Wall: ", wall_prefab, typeof(GameObject), true);
+
+        wall_height = EditorGUILayout.FloatField("Wall height: ", wall_height);
 
         if (wall_prefab == null)
         {
@@ -188,6 +201,7 @@ public class LevelEditor : EditorWindow
 
     private void OptimizeLevel()
     {
+        SavePositions();
         CombineMeshes(floor_container, "Floor");
         CombineMeshes(wall_container, "Wall");     
     }
@@ -229,7 +243,7 @@ public class LevelEditor : EditorWindow
         CreateIndividualObjects(wall_container, wall_positions, wall_prefab, "Wall");
     }
 
-    private void CreateIndividualObjects(GameObject container, Transform[] positions_list, GameObject obj, string obj_name)
+    private void CreateIndividualObjects(GameObject container, Vector3[] positions_list, GameObject obj, string obj_name)
     {
         //Erase childs
         Transform[] childs = container.transform.getChilds();
@@ -241,7 +255,7 @@ public class LevelEditor : EditorWindow
         //Create new objects
         for (int i = 0; i < positions_list.Length; i++)
         {
-            GameObject item = Instantiate(obj, positions_list[i].position, new Quaternion()) as GameObject;
+            GameObject item = Instantiate(obj, positions_list[i], new Quaternion()) as GameObject;
             item.name = obj_name;
             item.transform.SetParent(container.transform);
         }
@@ -301,9 +315,10 @@ public class LevelEditor : EditorWindow
 
             Vector3 position = ray.origin + (ray.direction * lenght);
 
+            //Round X-Z
             position.x = Mathf.Round(position.x);
-            position.y = 0.5f;
             position.z = Mathf.Round(position.z);
+
 
             if(Physics.Raycast(ray, out hit) == false)
             {
@@ -321,22 +336,26 @@ public class LevelEditor : EditorWindow
             if(can_create) //Create the object
             {
                 GameObject obj = (GameObject)Instantiate(brush_obj);
-                obj.transform.position = position;
+                
 
                 switch(brush)
                 {
                     case Brushes.FLOOR:
                         obj.transform.SetParent(floor_container.transform);
                         obj.name = "Floor";
+                        position.y = floor_height;
                         break;
                     case Brushes.WALL:
                         obj.transform.SetParent(wall_container.transform);
                         obj.name = "Wall";
+                        position.y = wall_height;
                         break;
                     case Brushes.NONE:
                         Debug.Log("LEVEL EDITOR ERROR: no brush has been assigned. The object cannot be placed.");
                         break;
                 }
+
+                obj.transform.position = position;
             }
             
         }

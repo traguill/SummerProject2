@@ -11,4 +11,6 @@ public static class Tags {
     public const string corpse = "Corpse";
     public const string box = "Box";
     public const string portal = "Portal";
+    public const string wall = "Wall";
+    public const string floor = "Floor";
 }
