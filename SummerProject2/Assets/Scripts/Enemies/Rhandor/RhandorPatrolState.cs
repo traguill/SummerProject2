@@ -13,10 +13,13 @@ public class RhandorPatrolState : IRhandorStates
 
     public void StartState()
     {
-        rhandor.agent.speed = rhandor.patrol_speed;
-      
-        if(!rhandor.same_neutral_alert_path)
+        if (!rhandor.initial_state_assign || !rhandor.same_neutral_alert_path)
+        {
             rhandor.current_position = rhandor.findClosestPoint(rhandor.neutral_patrol.path);
+            rhandor.initial_state_assign = true;
+        }
+
+        rhandor.agent.speed = rhandor.patrol_speed;
         rhandor.agent.SetDestination(rhandor.neutral_patrol.path[rhandor.current_position]);
         rhandor.agent.Resume();
 

@@ -118,6 +118,8 @@ public class RhandorController : Enemies {
     [HideInInspector] public RhandorSpottedState spotted_state;
     [HideInInspector] public RhandorSupportState support_state;
     [HideInInspector] public RhandorCorpseState corpse_state;
+    public bool initial_state_assign = false;
+    
 
     // Scripts references
     [HideInInspector] public AlarmSystem alarm_system;
