@@ -228,7 +228,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   raycast_layers:
     serializedVersion: 2
-    m_Bits: 4294954975
+    m_Bits: 4294954971
   movement_layers:
     serializedVersion: 2
     m_Bits: 2816

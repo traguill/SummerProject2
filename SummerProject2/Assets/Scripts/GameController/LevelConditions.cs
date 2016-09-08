@@ -9,6 +9,8 @@ public class LevelConditions : MonoBehaviour
     private float radius;
     public static int players_at_end_level;
 
+    CheckPointManager checkpoint_manager;
+
     // Call before any Start function
     void Awake()
     {
@@ -18,11 +20,16 @@ public class LevelConditions : MonoBehaviour
         start_point = GameObject.Find("Start_point").transform;   // I don't know any other efficient way!
         radius = 3.5f;
         players_at_end_level = 0;
+
+
+        checkpoint_manager = GameObject.Find("CheckPointSystem").GetComponent<CheckPointManager>();
     }
 
     // Use this for initialization
     void Start()
     {
+        checkpoint_manager.InitializeCheckpoints(start_point); //Get the checkpoint to spawn in the right position
+
         // The different players is distributed equidistantly on a circle of radius "radius". The script automatically take into account
         // the number of players to put along the circle.
         float angle = 0.0f;
