@@ -1,24 +1,15 @@
 fileFormatVersion: 2
-guid: bac628901e163d0489ee189736b03c0d
-timeCreated: 1473260397
+guid: 866f028790e83d64899428f67287d51f
+timeCreated: 1473323634
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Barion
-    100002: //RootNode
-    100004: Collider
-    100006: Collider 1
-    400000: Barion
-    400002: //RootNode
-    400004: Collider
-    400006: Collider 1
-    2300000: Barion
-    2300002: Collider 1
-    3300000: Barion
-    3300002: Collider 1
-    4300000: Collider
-    4300002: Barion
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Cosmo1
   materials:
     importMaterials: 1
     materialName: 0
@@ -43,7 +34,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 60
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

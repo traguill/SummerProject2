@@ -1,24 +1,15 @@
 fileFormatVersion: 2
-guid: 155b4e2a69724e94aa2a0a196a71591e
-timeCreated: 1473261361
+guid: 300e0e90aacd3ca499894b8f6bd47eb7
+timeCreated: 1473323529
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Collider
-    100002: Collider_Cosmo
-    100004: //RootNode
-    100006: Cosmo1
-    400000: Collider
-    400002: Collider_Cosmo
-    400004: //RootNode
-    400006: Cosmo1
-    2300000: Collider_Cosmo
-    2300002: Cosmo1
-    3300000: Collider_Cosmo
-    3300002: Cosmo1
-    4300000: Collider_Cosmo
-    4300002: Cosmo1
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: pSphere2
   materials:
     importMaterials: 1
     materialName: 0
@@ -43,7 +34,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 25
+    globalScale: 50
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
