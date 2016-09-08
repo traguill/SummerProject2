@@ -258,7 +258,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3072
   dash_range: 10
-  death_trap_prefab: {fileID: 153180, guid: 0927d7e9587231442885542b186a9591, type: 2}
+  death_trap_prefab: {fileID: 167900, guid: 0df6e52f192a15248891363355a445c8, type: 2}
   is_hide: 0
   target_box: {fileID: 0}
   cooldown_inst: {fileID: 0}

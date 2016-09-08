@@ -6,8 +6,8 @@ public class DeathTrap : MonoBehaviour {
     bool active = false; //The trap has activate?
 
 
-    ParticleSystem mark; //Mark on the floor
-    ParticleSystem explosion; //Explosion of the trap
+    public GameObject idle;
+    public GameObject explosion;
 
     [HideInInspector]public NyxDeathTrapState nyx_death_trap_state; //Reference to the nyx state
 
@@ -16,10 +16,17 @@ public class DeathTrap : MonoBehaviour {
 
     EnemyManager enemy_manager;
 
+    GameObject idle_anim;
+    GameObject explosion_anim;
+
+    public float explosion_duration = 1.5f;
+    float timer_explosion = 0.0f;
+
     void Awake()
     {
-        mark = transform.FindChild("Mark").GetComponent<ParticleSystem>();
-        explosion = transform.FindChild("Explosion").GetComponent<ParticleSystem>();
+        idle_anim = Instantiate(idle);
+        idle_anim.transform.SetParent(transform);
+        idle_anim.transform.localPosition = new Vector3(0, 0, 0);
         enemy_manager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
     }
 
@@ -31,7 +38,8 @@ public class DeathTrap : MonoBehaviour {
         //The trap is activated, wait for finish explosion animation and destroy it.
 	    if(active)
         {
-            if (explosion.IsAlive() == false)
+            timer_explosion += Time.deltaTime;
+            if(timer_explosion >= explosion_duration)
             {
                 DestroyDeathTrap(null);
             }
@@ -55,8 +63,11 @@ public class DeathTrap : MonoBehaviour {
             nyx_death_trap_state.trap = null; //Nyx has no control over the trap when it has been activated.
             active = true;
 
-            mark.Stop();
-            explosion.Play();
+            Destroy(idle_anim);
+
+            explosion_anim = Instantiate(explosion);
+            explosion_anim.transform.SetParent(transform);
+            explosion_anim.transform.localPosition = new Vector3(0, 0, 0);
 
             //Kill the enemy
             Collider[] enemies = Physics.OverlapSphere(transform.position, kill_radius, enemy_layer);
