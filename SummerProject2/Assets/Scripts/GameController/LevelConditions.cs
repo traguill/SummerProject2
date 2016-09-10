@@ -11,9 +11,12 @@ public class LevelConditions : MonoBehaviour
 
     CheckPointManager checkpoint_manager;
 
+    CameraMove cam; //To do camera transitions
+
     // Call before any Start function
     void Awake()
     {
+        cam = Camera.main.GetComponent<CameraMove>();
         players = GameObject.FindGameObjectsWithTag(Tags.player);
         screen_fader = GameObject.FindGameObjectWithTag(Tags.screen_fader).GetComponent<ScreenFader>();
 
@@ -40,6 +43,8 @@ public class LevelConditions : MonoBehaviour
             p.GetComponent<NavMeshAgent>().Warp(new Vector3(radius * Mathf.Cos(angle) + start_point.position.x, 0, radius * Mathf.Sin(angle) + start_point.position.z));
             angle += incr_angle;
         }
+
+        cam.MoveCameraTo(start_point.position); //Center camera to start point;
 
     }
 
