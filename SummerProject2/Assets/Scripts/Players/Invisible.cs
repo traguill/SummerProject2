@@ -14,9 +14,14 @@ public class Invisible : MonoBehaviour
 
     public Enums.Characters character; //Current character
 
+    public GameObject invisible_sphere; //Invisible sphere prefab to create the effect
+
     void Awake()
     {
         hud = GameObject.Find(Objects.HUD).GetComponent<HUD_Controller>();
+
+
+        invisible_sphere.SetActive(false);
     }
 
     void Update()
@@ -61,9 +66,7 @@ public class Invisible : MonoBehaviour
     /// </summary>
     void TurnVisibleAnim()
     {
-        Color new_color = GetComponent<MeshRenderer>().material.color; //TODO: for now only change the alpha color of the sprite. Make an awesome animation for this and replace it.
-        new_color.a = 1.0f;
-        GetComponent<MeshRenderer>().material.color = new_color;
+        invisible_sphere.SetActive(false);
     }
 
     /// <summary>
@@ -71,8 +74,6 @@ public class Invisible : MonoBehaviour
     /// </summary>
     void TurnInvisibleAnim()
     {
-        Color new_color = GetComponent<MeshRenderer>().material.color; //TODO: for now only change the alpha color of the sprite. Make an awesome animation for this and replace it.
-        new_color.a = 0.4f;
-        GetComponent<MeshRenderer>().material.color = new_color;
+        invisible_sphere.SetActive(true);
     }
 }
