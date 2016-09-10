@@ -27,6 +27,8 @@ public class HUD_Controller : MonoBehaviour
     public Sprite shield_image;
     //-----------------------------------------------------------------------------------------------
 
+    public AbilityDescription ability_description; //Reference to the HUD ability description object.
+
     void Start()
     {
         //Clear the effects
@@ -132,6 +134,26 @@ public class HUD_Controller : MonoBehaviour
 
         return ret;
                    
+    }
+
+    /// <summary>
+    /// Shows the description of an ability with the values passed.
+    /// </summary>
+    public void ShowAbilityDescription(string name, string key, string cooldown, string description)
+    {
+        ability_description.gameObject.SetActive(true);
+        ability_description.SetName(name);
+        ability_description.SetKey(key);
+        ability_description.SetCooldown(cooldown);
+        ability_description.SetDescription(description);
+    }
+
+    /// <summary>
+    /// Hides the description of an ability.
+    /// </summary>
+    public void HideAbilityDescription()
+    {
+        ability_description.gameObject.SetActive(false);
     }
 
 

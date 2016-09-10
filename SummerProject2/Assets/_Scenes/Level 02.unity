@@ -434,7 +434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed_camera: 50
   enable_mouse_displacement: 1
-  zone_for_displacement: 0.1
+  zone_for_displacement: 0.06
   max_camera_height: 75
   min_camera_height: 5
 --- !u!4 &222577980 stripped
@@ -2926,46 +2926,46 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 11473290, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 1402751563}
-    - target: {fileID: 11413350, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 1576264771}
-    - target: {fileID: 11472972, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 1576264771}
-    - target: {fileID: 11462032, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 1576264769}
-    - target: {fileID: 11490182, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 434072686}
-    - target: {fileID: 11465722, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 434072686}
-    - target: {fileID: 11423454, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 434072684}
-    - target: {fileID: 11408066, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 1197501161}
-    - target: {fileID: 11410596, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 1197501161}
     - target: {fileID: 11410346, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
       propertyPath: character
       value: 
       objectReference: {fileID: 1197501159}
+    - target: {fileID: 11410596, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1197501161}
+    - target: {fileID: 11408066, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1197501161}
+    - target: {fileID: 11423454, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 434072684}
+    - target: {fileID: 11465722, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 434072686}
+    - target: {fileID: 11490182, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 434072686}
+    - target: {fileID: 11462032, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1576264769}
+    - target: {fileID: 11472972, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1576264771}
+    - target: {fileID: 11413350, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1576264771}
+    - target: {fileID: 11473290, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1402751563}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 344a6b3d5154cf94fbebeb8b6397ed62, type: 2}
   m_IsPrefabParent: 0

@@ -18,6 +18,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &111444
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22479064}
+  - 222: {fileID: 22295764}
+  - 114: {fileID: 11433360}
+  m_Layer: 5
+  m_Name: Cooldown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &115184
 GameObject:
   m_ObjectHideFlags: 1
@@ -120,6 +137,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &130576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22414948}
+  - 222: {fileID: 22285990}
+  - 114: {fileID: 11470808}
+  - 114: {fileID: 11476802}
+  m_Layer: 5
+  m_Name: AbilityDescription
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &137218
 GameObject:
   m_ObjectHideFlags: 1
@@ -148,6 +183,7 @@ GameObject:
   - 224: {fileID: 22429144}
   - 222: {fileID: 22211270}
   - 114: {fileID: 11423404}
+  - 114: {fileID: 11484884}
   m_Layer: 5
   m_Name: Cosmo_Ability2
   m_TagString: Untagged
@@ -195,6 +231,7 @@ GameObject:
   - 224: {fileID: 22428310}
   - 222: {fileID: 22238626}
   - 114: {fileID: 11478924}
+  - 114: {fileID: 11482704}
   m_Layer: 5
   m_Name: Barion_Ability2
   m_TagString: Untagged
@@ -212,6 +249,7 @@ GameObject:
   - 224: {fileID: 22415380}
   - 222: {fileID: 22211410}
   - 114: {fileID: 11419258}
+  - 114: {fileID: 11449550}
   m_Layer: 5
   m_Name: Barion_Ability1
   m_TagString: Untagged
@@ -254,6 +292,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &156486
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22407954}
+  - 222: {fileID: 22266052}
+  - 114: {fileID: 11485234}
+  m_Layer: 5
+  m_Name: Description
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &157554
 GameObject:
   m_ObjectHideFlags: 1
@@ -281,6 +336,7 @@ GameObject:
   - 224: {fileID: 22447800}
   - 222: {fileID: 22230668}
   - 114: {fileID: 11492740}
+  - 114: {fileID: 11404682}
   m_Layer: 5
   m_Name: Nyx_Ability2
   m_TagString: Untagged
@@ -315,6 +371,7 @@ GameObject:
   - 224: {fileID: 22445932}
   - 222: {fileID: 22220132}
   - 114: {fileID: 11458012}
+  - 114: {fileID: 11460968}
   m_Layer: 5
   m_Name: Cosmo_Ability1
   m_TagString: Untagged
@@ -350,8 +407,26 @@ GameObject:
   - 224: {fileID: 22499074}
   - 222: {fileID: 22243420}
   - 114: {fileID: 11462834}
+  - 114: {fileID: 11404956}
   m_Layer: 5
   m_Name: Nyx_Ability1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &184018
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22467446}
+  - 222: {fileID: 22209622}
+  - 114: {fileID: 11418696}
+  m_Layer: 5
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,6 +462,23 @@ GameObject:
   - 114: {fileID: 11410596}
   m_Layer: 5
   m_Name: Barion_Cooldown1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &196418
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22427764}
+  - 222: {fileID: 22204644}
+  - 114: {fileID: 11412202}
+  m_Layer: 5
+  m_Name: Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -480,6 +572,41 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11404682
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df731aa65eab97f4c81aae55eb6fce3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Death Trap
+  key: W
+  cooldown: 6
+  description: 'Nyx plants a trap on the floor. The trap does not affect alies and
+    is invisible for the enemies. If an enemy steps on the trap it explodes killing
+    all the enemies in a short area.
+
+    The trap can be removed at any time clicking on it.'
+--- !u!114 &11404956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df731aa65eab97f4c81aae55eb6fce3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Dash
+  key: Q
+  cooldown: 7
+  description: Nyx runs forward at high speed. If Nyx touches an enemy during the
+    dash she kills him.
 --- !u!114 &11405912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -608,6 +735,39 @@ MonoBehaviour:
   character: {fileID: 11410346}
   selected_sprite: {fileID: 21300066, guid: 6f1b36bd6e28e864c90c9d9acdd2ef42, type: 3}
   unselected_sprite: {fileID: 21300076, guid: 6f1b36bd6e28e864c90c9d9acdd2ef42, type: 3}
+--- !u!114 &11412202
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 3b1bc996485d7e045aa907ee013f3972, type: 3}
+    m_FontSize: 9
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 2
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "<b><color=orange>[K]</color></b> \t\t\t\t\t\t\t\t"
 --- !u!114 &11413350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -651,6 +811,39 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11418696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 3b1bc996485d7e045aa907ee013f3972, type: 3}
+    m_FontSize: 9
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: <color=white>Ability name</color>
 --- !u!114 &11419258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -664,13 +857,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300026, guid: 6f1b36bd6e28e864c90c9d9acdd2ef42, type: 3}
+  m_Sprite: {fileID: 21300036, guid: aea26918748ff264eb69ba8565854616, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -691,7 +884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -774,6 +967,39 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11433360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 3b1bc996485d7e045aa907ee013f3972, type: 3}
+    m_FontSize: 9
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 2
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: <b><color=white>0 sec cooldown</color></b>
 --- !u!114 &11434388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -855,6 +1081,22 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11449550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df731aa65eab97f4c81aae55eb6fce3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Invisible Sphere
+  key: Q
+  cooldown: 6
+  description: Barion throws a sphere that turns a character invisible during <color=white>8
+    seconds</color> on contact.
 --- !u!114 &11458012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -868,13 +1110,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300028, guid: 6f1b36bd6e28e864c90c9d9acdd2ef42, type: 3}
+  m_Sprite: {fileID: 21300038, guid: aea26918748ff264eb69ba8565854616, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -882,6 +1124,23 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11460968
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df731aa65eab97f4c81aae55eb6fce3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Extrasensorial
+  key: Q
+  cooldown: 10
+  description: Cosmo concentrates his mental power for <color=white>1 second</color>.
+    After that a mental wave appears revealing all the enemies inside the wave area
+    for <color=white>7 seconds</color>.
 --- !u!114 &11462032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -910,7 +1169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -967,6 +1226,33 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 2
+--- !u!114 &11470808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300008, guid: aea26918748ff264eb69ba8565854616, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &11472972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1002,6 +1288,22 @@ MonoBehaviour:
   effect_prefab: {fileID: 174390, guid: c9e9a5b46feaee84f91cb67f453c5343, type: 2}
   invisible_image: {fileID: 21300036, guid: aea26918748ff264eb69ba8565854616, type: 3}
   shield_image: {fileID: 21300050, guid: aea26918748ff264eb69ba8565854616, type: 3}
+  ability_description: {fileID: 11476802}
+--- !u!114 &11476802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa7a0d04af64ce4baeaa507635313d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: {fileID: 11418696}
+  key: {fileID: 11412202}
+  cooldown: {fileID: 11433360}
+  description: {fileID: 11485234}
 --- !u!114 &11478924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1015,13 +1317,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300024, guid: 6f1b36bd6e28e864c90c9d9acdd2ef42, type: 3}
+  m_Sprite: {fileID: 21300050, guid: aea26918748ff264eb69ba8565854616, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1029,6 +1331,24 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11482704
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df731aa65eab97f4c81aae55eb6fce3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Invisible Shield
+  key: W
+  cooldown: 20
+  description: 'Barion creates a shield that reflects everything behind it. Enemies
+    can''t see the characters behind the <color=white>Invisible Shield</color>.
+
+    Press again to desactivate the shield.'
 --- !u!114 &11484566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1056,6 +1376,62 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 2
+--- !u!114 &11484884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df731aa65eab97f4c81aae55eb6fce3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Portal
+  key: W
+  cooldown: 10
+  description: '<color=orange>Key presed:</color> An indicator appears to show where
+    the portal can be build. <color=green>Can be built</color> or <color=red>Can NOT
+    be build</color>.
+
+    <color=orange>Right click:</color> The portal is built at the mouse position.'
+--- !u!114 &11485234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 3b1bc996485d7e045aa907ee013f3972, type: 3}
+    m_FontSize: 9
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1.2
+  m_Text: '<color=lightblue>Description of the ability
+
+    gfslkgs
+
+    gjkfsgs</color>'
 --- !u!114 &11490182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1085,7 +1461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1111,6 +1487,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 156402}
+--- !u!222 &22204644
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196418}
 --- !u!222 &22204970
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1135,6 +1517,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115184}
+--- !u!222 &22209622
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184018}
 --- !u!222 &22211270
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1207,6 +1595,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194416}
+--- !u!222 &22266052
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156486}
 --- !u!222 &22275128
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1219,12 +1613,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137218}
+--- !u!222 &22285990
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130576}
 --- !u!222 &22291620
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 125056}
+--- !u!222 &22295764
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111444}
 --- !u!222 &22297096
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1264,12 +1670,53 @@ RectTransform:
   - {fileID: 22420196}
   - {fileID: 22474640}
   - {fileID: 22491220}
+  - {fileID: 22414948}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: -0.000012998, y: 31.167}
   m_SizeDelta: {x: 385, y: 62.333}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &22407954
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156486}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 22414948}
+  m_RootOrder: 3
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.05000305, y: -13.6}
+  m_SizeDelta: {x: -11, y: -37}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &22414948
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130576}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 22467446}
+  - {fileID: 22427764}
+  - {fileID: 22479064}
+  - {fileID: 22407954}
+  m_Father: {fileID: 22406170}
+  m_RootOrder: 3
+  m_AnchorMin: {x: 0.5, y: 0.15333387}
+  m_AnchorMax: {x: 0.5, y: 0.15333387}
+  m_AnchoredPosition: {x: 0.000009059899, y: 98.8}
+  m_SizeDelta: {x: 300.6, y: 78.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22415380
 RectTransform:
@@ -1286,7 +1733,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.37998343, y: 0.000001331}
+  m_AnchoredPosition: {x: -0.379982, y: 0.0000013411045}
   m_SizeDelta: {x: -0.75998, y: -0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22417134
@@ -1387,6 +1834,24 @@ RectTransform:
   m_AnchoredPosition: {x: 20, y: -2.9}
   m_SizeDelta: {x: 48.1, y: 50.2}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &22427764
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196418}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 22414948}
+  m_RootOrder: 1
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -19.7, y: -10.8}
+  m_SizeDelta: {x: 27.7, y: 12.6}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22428310
 RectTransform:
   m_ObjectHideFlags: 1
@@ -1402,8 +1867,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.37998343, y: 0.000001331}
-  m_SizeDelta: {x: -0.75998, y: -0}
+  m_AnchoredPosition: {x: -0.06, y: 0.000001331}
+  m_SizeDelta: {x: -1.65, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22429144
 RectTransform:
@@ -1515,6 +1980,24 @@ RectTransform:
   m_AnchoredPosition: {x: -32.09, y: -1.44}
   m_SizeDelta: {x: 19.41, y: 19.4}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &22467446
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184018}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 22414948}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 77.5, y: -11.05}
+  m_SizeDelta: {x: 144.3, y: 13.1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22468496
 RectTransform:
   m_ObjectHideFlags: 1
@@ -1573,6 +2056,24 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -5.97, y: 0.0000038146973}
   m_SizeDelta: {x: 84.9, y: 62.3}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &22479064
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111444}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 22414948}
+  m_RootOrder: 2
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -48.9, y: -23.4}
+  m_SizeDelta: {x: 86.2, y: 11.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22482514
 RectTransform:
