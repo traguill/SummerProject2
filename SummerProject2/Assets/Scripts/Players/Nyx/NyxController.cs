@@ -62,7 +62,6 @@ public class NyxController : MonoBehaviour {
         enemy_manager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         cooldown_inst = GetComponent<Cooldown>();
         agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
 
         idle_state = new NyxIdleState(this);
         walking_state = new NyxWalkingState(this);
