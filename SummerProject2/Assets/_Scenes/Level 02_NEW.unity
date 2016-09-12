@@ -51,7 +51,7 @@ LightmapSettings:
     m_TemporalCoherenceThreshold: 1
     m_EnvironmentLightingMode: 0
     m_EnableBakedLightmaps: 0
-    m_EnableRealtimeLightmaps: 0
+    m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
     serializedVersion: 3
     m_Resolution: 2
@@ -325,11 +325,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400412, guid: 16d21f8955199944e943c599fdaf8311, type: 2}
       propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 158210, guid: 16d21f8955199944e943c599fdaf8311, type: 2}
-      propertyPath: m_Name
-      value: endMapPS
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16d21f8955199944e943c599fdaf8311, type: 2}
@@ -625,7 +621,7 @@ Transform:
   - {fileID: 940737945}
   - {fileID: 208827447}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 13
 --- !u!1 &249890920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,7 +1648,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 423358, guid: 62c884da7d02096409585561f138caf6, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 10890532, guid: 62c884da7d02096409585561f138caf6, type: 2}
       propertyPath: m_Shadows.m_Type
@@ -1692,7 +1688,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 10890532, guid: 62c884da7d02096409585561f138caf6, type: 2}
       propertyPath: m_Intensity
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 10890532, guid: 62c884da7d02096409585561f138caf6, type: 2}
       propertyPath: m_Shadows.m_Bias
@@ -2203,7 +2199,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 488654, guid: 25ab6aa46bf217f499ad8de5925415a5, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 438804, guid: 25ab6aa46bf217f499ad8de5925415a5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2762,7 +2758,7 @@ Transform:
   - {fileID: 819795622}
   - {fileID: 109662287}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 11
 --- !u!1 &1213957333
 GameObject:
   m_ObjectHideFlags: 0
@@ -3105,7 +3101,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: 2cea168450a79486e94c931fe953714a, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 2cea168450a79486e94c931fe953714a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cea168450a79486e94c931fe953714a, type: 2}
@@ -3729,7 +3729,7 @@ Transform:
   - {fileID: 677671081}
   - {fileID: 261604565}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 12
 --- !u!114 &1795589377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4683,6 +4683,22 @@ Prefab:
     - target: {fileID: 106724, guid: 2ae9010307562a54d921d22c742409dd, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 112162, guid: 2ae9010307562a54d921d22c742409dd, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2006454, guid: 2ae9010307562a54d921d22c742409dd, type: 2}
+      propertyPath: far clip plane
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11986092, guid: 2ae9010307562a54d921d22c742409dd, type: 2}
+      propertyPath: m_Orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11986092, guid: 2ae9010307562a54d921d22c742409dd, type: 2}
+      propertyPath: m_IgnoreLayers.m_Bits
+      value: 12322
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ae9010307562a54d921d22c742409dd, type: 2}
