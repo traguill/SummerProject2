@@ -51,7 +51,6 @@ public class EnemyManager : MonoBehaviour
         switch(enemy.type)
         {
             case (ENEMY_TYPES.RHANDOR):
-                enemy_to_destroy.tag = Tags.corpse;
                 enemy_to_destroy.layer = LayerMask.NameToLayer(Layers.corpse);
                 enemy_to_destroy.GetComponent<RhandorController>().Dead();
                 break;

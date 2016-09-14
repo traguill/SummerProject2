@@ -23,6 +23,9 @@ public class RhandorInformationEditor : Editor
     override public void OnInspectorGUI()
     {
         ShowInspectorPatrolControls();
+
+        //Dead animation prefab
+        rhandor.blood_splash_prefab = (GameObject)EditorGUILayout.ObjectField("Blood prefab", rhandor.blood_splash_prefab, typeof(GameObject), false);
     }
 
     [ExecuteInEditMode]

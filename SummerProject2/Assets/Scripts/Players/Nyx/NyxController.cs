@@ -40,6 +40,8 @@ public class NyxController : MonoBehaviour {
     public float dash_speed = 100; //Speed of the dash
     public LayerMask dash_collision_layer; //Layers that will stop the dash on collision
     public float dash_range = 20; //Maximum range of the dash ability
+    public GameObject dash_trail;
+    public GameObject dash_end;
 
     //DeathTrap
     public GameObject death_trap_prefab;
@@ -62,7 +64,6 @@ public class NyxController : MonoBehaviour {
         enemy_manager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         cooldown_inst = GetComponent<Cooldown>();
         agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
 
         idle_state = new NyxIdleState(this);
         walking_state = new NyxWalkingState(this);

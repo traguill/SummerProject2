@@ -9,6 +9,8 @@ public class NyxDashState : INyxState {
     public Vector3 destination = new Vector3(); //Final position of the dash
     Vector3 direction = new Vector3(); //Direction of nyx dashing
 
+    GameObject dash_trail = null; //Dash trail animation
+
     public NyxDashState(NyxController nyx_controller)
     {
         nyx = nyx_controller;
@@ -32,6 +34,10 @@ public class NyxDashState : INyxState {
             //Calculate nyx direction to destination
             direction = destination - nyx.transform.position;
             direction.Normalize();
+
+            //Set Nyx rotation to destination
+            Quaternion rot = Quaternion.FromToRotation(Vector3.forward, direction);
+            nyx.transform.rotation = rot;
 
             //Destination point in range
             float distance = Vector3.Distance(nyx.transform.position, destination);
@@ -65,6 +71,14 @@ public class NyxDashState : INyxState {
         {
             Debug.Log("ERROR: Nyx can't find a floor point to start dashing");
         }
+
+        dash_trail = GameObject.Instantiate(nyx.dash_trail, new Vector3(0,0,0), nyx.transform.rotation) as GameObject;
+        dash_trail.transform.SetParent(nyx.transform);
+        dash_trail.transform.localPosition = new Vector3(0, 0, 0);
+
+        GameObject end_spark = GameObject.Instantiate(nyx.dash_end) as GameObject;
+        end_spark.transform.position = nyx.transform.position;
+
     }
 
     public void UpdateState()
@@ -77,6 +91,7 @@ public class NyxDashState : INyxState {
         if(Mathf.Sign(dst.x) != Mathf.Sign(direction.x) || Mathf.Sign(dst.z) != Mathf.Sign(direction.z))
         {
             nyx.transform.position = new Vector3(destination.x, nyx.transform.position.y, destination.z);
+            EndDashAnim();
             ToIdleState();
         }
     }
@@ -116,6 +131,17 @@ public class NyxDashState : INyxState {
     public void ToChainedState()
     {
         Debug.Log("Nyx can't transition from WALKING to CHAINED");
+    }
+
+    /// <summary>
+    /// Handles the end of the dash animation
+    /// </summary>
+    private void EndDashAnim()
+    {
+        GameObject.Destroy(dash_trail);
+        dash_trail = null;
+
+        
     }
    
 }

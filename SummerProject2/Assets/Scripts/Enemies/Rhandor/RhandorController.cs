@@ -134,6 +134,9 @@ public class RhandorController : Enemies {
     private string carry_id = "Carry";
     private string drop_id = "Drop";
 
+    //Dead animations
+    public GameObject blood_splash_prefab;
+
     void Awake()
     {
         // State machine

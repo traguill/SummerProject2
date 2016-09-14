@@ -52,7 +52,6 @@ public class CosmoController : MonoBehaviour {
         selection_system = GameObject.Find("SelectionSystem").GetComponent<UnitSelection>();
         cooldown_inst = GetComponent<Cooldown>();
         agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
 
         //State machine
         idle_state = new CosmoIdleState(this);
