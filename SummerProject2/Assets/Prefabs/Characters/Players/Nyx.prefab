@@ -323,6 +323,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3072
   dash_range: 10
+  dash_trail: {fileID: 118474, guid: b4d5e7332c5c0d24da1929037abb1204, type: 2}
+  dash_end: {fileID: 129900, guid: 86ff64d7e1ed50f4589aa3fa7c17e2ae, type: 2}
   death_trap_prefab: {fileID: 167900, guid: 0df6e52f192a15248891363355a445c8, type: 2}
   is_hide: 0
   target_box: {fileID: 0}
