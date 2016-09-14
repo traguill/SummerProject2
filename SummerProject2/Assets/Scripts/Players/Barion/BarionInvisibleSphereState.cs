@@ -6,7 +6,7 @@ public class BarionInvisibleSphereState : IBarionState
 {
     private readonly BarionController barion;
 
-    float delay_position_sphere = 1.5f; //Delay of position from barion when the sphere is created
+    float delay_position_sphere = 1.8f; //Delay of position from barion when the sphere is created
 
     public BarionInvisibleSphereState(BarionController barion_controller)
     {
