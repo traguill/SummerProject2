@@ -572,6 +572,8 @@ MonoBehaviour:
   speed_camera: 10
   enable_mouse_displacement: 0
   zone_for_displacement: 0.1
+  max_camera_height: 0
+  min_camera_height: 0
 --- !u!1001 &298613974
 Prefab:
   m_ObjectHideFlags: 0
@@ -2641,7 +2643,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.path.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: neutral_patrol.path.Array.size
@@ -2649,7 +2651,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.stop_times.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: neutral_patrol.stop_times.Array.size
@@ -2657,11 +2659,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.recieve_trigger.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.trigger_movement.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: neutral_patrol.recieve_trigger.Array.size
@@ -2709,7 +2711,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: neutral_patrol.expanded
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: neutral_patrol.static_patrol
@@ -2733,11 +2735,11 @@ Prefab:
       objectReference: {fileID: 712457417}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.expanded
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.static_patrol
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.type
@@ -2746,34 +2748,34 @@ Prefab:
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.path_attached
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 616234191}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.path.Array.data[0].x
-      value: -2.6849556
+      value: -39.89496
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.path.Array.data[0].z
-      value: 32.74986
+      value: 32.54986
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.path.Array.data[1].x
-      value: -2.6849556
+      value: -39.89496
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.path.Array.data[1].z
-      value: 25.349857
+      value: 20.349857
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.path.Array.data[2].x
-      value: 17.305044
+      value: -18.104958
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.path.Array.data[2].z
-      value: 44.74986
+      value: 20.349857
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: neutral_patrol.path.Array.data[0].x
@@ -2949,6 +2951,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
       propertyPath: alert_patrol.ask_for_permission_pos
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408062, guid: a39140324cf11e64ba5c04c733e783fa, type: 2}
+      propertyPath: initial_state_assign
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
