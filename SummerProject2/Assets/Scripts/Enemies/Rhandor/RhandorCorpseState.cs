@@ -12,6 +12,13 @@ public class RhandorCorpseState : IRhandorStates {
 
     public void StartState()
     {
+
+        //Tint black the enemy if it's dead
+        rhandor.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 1);
+
+        //Play blood animation
+        DeadAnim();
+
         rhandor.agent.Stop();
         rhandor.agent.enabled = false;
 
@@ -28,10 +35,7 @@ public class RhandorCorpseState : IRhandorStates {
         rhandor.alert_patrol.synchronized_Rhandor.GetComponent<RhandorController>().neutral_patrol.is_synchronized = false;
         rhandor.alert_patrol.synchronized_Rhandor.GetComponent<RhandorController>().alert_patrol.is_synchronized = false;
 
-        rhandor.alert_patrol.synchronized_Rhandor.GetComponent<RhandorController>().movement_allowed = true;
-
-        //Tint black the enemy if it's dead
-        rhandor.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 1);
+        rhandor.alert_patrol.synchronized_Rhandor.GetComponent<RhandorController>().movement_allowed = true;    
     }
 
     public void UpdateState()
@@ -67,5 +71,16 @@ public class RhandorCorpseState : IRhandorStates {
     public void ToCorpseState()
     {
         Debug.Log("Enemy" + rhandor.name + "can't transition to same state CORPSE");
+    }
+
+    /// <summary>
+    /// Blood splash animation for now.
+    /// </summary>
+    private void DeadAnim()
+    {
+        GameObject blood = GameObject.Instantiate(rhandor.blood_splash_prefab);
+        blood.transform.SetParent(rhandor.transform);
+        blood.transform.localPosition = new Vector3(0, -rhandor.transform.position.y, 0); //Position Y is -Y of the rhandor to stay on the floor (y = 0) TODO: improve this
+        
     }
 }
