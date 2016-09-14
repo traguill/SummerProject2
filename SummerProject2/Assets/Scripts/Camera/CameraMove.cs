@@ -19,12 +19,15 @@ public class CameraMove : MonoBehaviour {
     public float min_camera_height;         // Min height when scrolling;
     private float initial_height;           // When the camera has started.
     private Vector3 scroll_direction;       // Direction of camera when scrolling acts.
+    private bool scrolling;
 
     // Orbital movement
     private Vector3 center_ground;
     private float angle_circle;
     private float radius_circle;
     private bool orbiting;
+
+    private Vector3 fwd, lat;
 
     // Use this for initialization
     void Start ()
@@ -33,14 +36,17 @@ public class CameraMove : MonoBehaviour {
         z_correction = CalculateZCorrection(transform.position.y);
 
         edge_offset.Set(zone_for_displacement * Screen.width, zone_for_displacement * Screen.height);
-        float angle = 90.0f - transform.rotation.eulerAngles.x;
-        float center_to_camera_floor = Mathf.Tan(angle * (Mathf.PI / 180)) * transform.position.y;
-        scroll_direction = (new Vector3(0, 0, center_to_camera_floor) - new Vector3( 0, transform.position.y, 0)).normalized;
-        initial_height = transform.position.y;
 
-        radius_circle = center_to_camera_floor;
-        angle_circle = 270;
         center_ground = new Vector3(transform.position.x, 0.0f, transform.position.z + z_correction);
+        scroll_direction = (transform.position - center_ground).normalized;
+        initial_height = transform.position.y;
+        scrolling = false;
+
+        fwd = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
+        lat = Vector3.ProjectOnPlane(transform.right, Vector3.up);
+
+        radius_circle = Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(center_ground.x, center_ground.z));
+        angle_circle = 270;
 
         orbiting = false;
 
@@ -63,62 +69,71 @@ public class CameraMove : MonoBehaviour {
         Vector3 mouse_position = Input.mousePosition;
         Vector3 curr_pos = target_position;
 
+        fwd = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
+        lat = Vector3.ProjectOnPlane(transform.right, Vector3.up);
+
         // With mouse on the screen edges
-        if(enable_mouse_displacement)
+        if (enable_mouse_displacement)
         {
             if (mouse_position.x < edge_offset.x)
             {
-                curr_pos.Set(curr_pos.x + (-speed_camera * Time.deltaTime), curr_pos.y, curr_pos.z);
+                curr_pos = curr_pos - speed_camera * Time.deltaTime * lat;
+                //curr_pos.Set(curr_pos.x + (-speed_camera * Time.deltaTime), curr_pos.y, curr_pos.z);
             }                
             else if (mouse_position.x > Screen.width - edge_offset.x)
             {
-                curr_pos.Set(curr_pos.x + (speed_camera * Time.deltaTime), curr_pos.y, curr_pos.z);
+                curr_pos = curr_pos + speed_camera * Time.deltaTime * lat;
+                //curr_pos.Set(curr_pos.x + (speed_camera * Time.deltaTime), curr_pos.y, curr_pos.z);
             }                
 
             if (mouse_position.y < edge_offset.y)
             {
-                curr_pos.Set(curr_pos.x, curr_pos.y, curr_pos.z + (-speed_camera * Time.deltaTime));
+                curr_pos = curr_pos - speed_camera * Time.deltaTime * fwd;
+                //curr_pos.Set(curr_pos.x, curr_pos.y, curr_pos.z + (-speed_camera * Time.deltaTime));
             }                
             else if (mouse_position.y > Screen.height - edge_offset.y)
             {
-                curr_pos.Set(curr_pos.x, curr_pos.y, curr_pos.z + (speed_camera * Time.deltaTime));
+                curr_pos = curr_pos + speed_camera * Time.deltaTime * fwd;
+                //curr_pos.Set(curr_pos.x, curr_pos.y, curr_pos.z + (speed_camera * Time.deltaTime));
             }                
         }
 
         // With mouse with arrow keys
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+        if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
+        {
+            float v_dis = Input.GetAxis("CameraVertical");
+            curr_pos = curr_pos + (v_dis * speed_camera * Time.deltaTime * fwd);
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
         {
             float h_dis = Input.GetAxis("CameraHorizontal");
-            float v_dis = Input.GetAxis("CameraVertical");
-            curr_pos.Set(curr_pos.x + (h_dis * speed_camera * Time.deltaTime), curr_pos.y, curr_pos.z + (v_dis * speed_camera * Time.deltaTime));
-        }
+            curr_pos = curr_pos + (h_dis * speed_camera * Time.deltaTime * lat);
+        }   
 
         // With scroll whell from mouse
         Vector2 mouse_scroll = Input.mouseScrollDelta;  // X for horizontal and Y for vertical movement
 
         if (mouse_scroll.y != 0) // Zoom in / zoom out 
         {
-            float new_height = curr_pos.y + mouse_scroll.y * scroll_direction.y * speed_camera * Time.deltaTime;
-            float zcorr = 0.0f; 
+            scrolling = true;
 
-            if (new_height > max_camera_height)
-            {
-                zcorr = CalculateZCorrection(max_camera_height, curr_pos.y);
-                curr_pos.Set(curr_pos.x, max_camera_height, curr_pos.z - zcorr);
-            }                
-            else if (new_height < min_camera_height)
-            {
-                zcorr = CalculateZCorrection(min_camera_height, curr_pos.y);
-                curr_pos.Set(curr_pos.x, min_camera_height, curr_pos.z - zcorr);
-            }              
-            else
-                curr_pos.Set(curr_pos.x, new_height, curr_pos.z + mouse_scroll.y * scroll_direction.z * speed_camera * Time.deltaTime);
+            float new_height = curr_pos.y + (scroll_direction.y * speed_camera * Time.deltaTime * -mouse_scroll.y);
+
+            if (new_height > min_camera_height && new_height < max_camera_height)
+                curr_pos = curr_pos + (scroll_direction * speed_camera * Time.deltaTime * -mouse_scroll.y); 
         }
 
+        // Recovering orientation and height
         if (Input.GetMouseButtonUp(2))
         {
-            float zcorr = CalculateZCorrection(initial_height, curr_pos.y);
-            curr_pos.Set(curr_pos.x, initial_height, curr_pos.z - zcorr);
+            orbiting = true;
+            float factor = (initial_height - curr_pos.y) / scroll_direction.y;
+            curr_pos = curr_pos + (factor * scroll_direction);
+
+            angle_circle = 270;
+            curr_pos.Set(center_ground.x + radius_circle * Mathf.Cos(angle_circle * (Mathf.PI / 180)), curr_pos.y,
+                                          center_ground.z + radius_circle * Mathf.Sin(angle_circle * (Mathf.PI / 180)));
         }
 
         // Orbiting
@@ -151,6 +166,7 @@ public class CameraMove : MonoBehaviour {
         {
             do_translation = false;
             orbiting = false;
+            scrolling = false;
         }     
         else
         {
@@ -159,12 +175,17 @@ public class CameraMove : MonoBehaviour {
                 transform.position = Vector3.Slerp(transform.position, target_position, 0.2f);
                 transform.LookAt(center_ground);
             }
+            else if(scrolling)
+            {
+                transform.position = Vector3.Lerp(transform.position, target_position, 0.2f);
+            }      
             else
             {
                 transform.position = Vector3.Lerp(transform.position, target_position, 0.2f);
-                center_ground = new Vector3(transform.position.x, 0.0f, transform.position.z + z_correction);
-            }        
-            
+                center_ground = transform.position + (Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized * radius_circle);
+                center_ground.y = 0.0f;
+                scroll_direction = (transform.position - center_ground).normalized;
+            }   
         }                 
     }
 

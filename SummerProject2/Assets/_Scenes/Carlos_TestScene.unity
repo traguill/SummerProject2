@@ -569,11 +569,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6908b9dab2d6c4fb0af479a80b6526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_camera: 10
-  enable_mouse_displacement: 0
+  speed_camera: 50
+  enable_mouse_displacement: 1
   zone_for_displacement: 0.1
-  max_camera_height: 0
-  min_camera_height: 0
+  max_camera_height: 40
+  min_camera_height: 20
 --- !u!1001 &298613974
 Prefab:
   m_ObjectHideFlags: 0
