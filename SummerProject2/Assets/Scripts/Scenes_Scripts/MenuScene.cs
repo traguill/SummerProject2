@@ -21,7 +21,7 @@ public class MenuScene : MonoBehaviour {
 
     public void ButtonLevel1()
     {
-        SceneManager.LoadScene("Prototype_v0.2"); //TODO: implement a level selector
+        SceneManager.LoadScene("Level 02_NEW"); //TODO: implement a level selector
     }
 
 }

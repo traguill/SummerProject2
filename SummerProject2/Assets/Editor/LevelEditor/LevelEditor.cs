@@ -2,29 +2,12 @@
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 
 public class LevelEditor : EditorWindow
 {
-    GameObject brush_obj = null;
-
-    //Prefabs (brush)
-    GameObject floor_prefab = null;
-    GameObject wall_prefab = null;
-
-    //Creation height
-    float floor_height = -0.05f;
-    float wall_height = 0.5f;
-
-    //Brushes
-    enum Brushes
-    {
-        NONE,
-        WALL,
-        FLOOR
-    }
-
-    Brushes brush = Brushes.NONE;
+    Brush brush_obj = null;
 
     //Tools
     enum Tools
@@ -39,19 +22,15 @@ public class LevelEditor : EditorWindow
     Tools tool = Tools.NONE;
 
     //Options
+    bool editor_enable = false;
     bool paint_enable = false;
     bool erase_enable = false;
     bool rect_enable = false;
-    bool editor_enable = false;
     bool dropper_enable = false;
+    
 
-    //Containers
-    GameObject wall_container;
-    GameObject floor_container;
-
-    //Saved data
-    List<Vector3> floor_positions = new List<Vector3>();
-    List<Vector3> wall_positions = new List<Vector3>();
+    List<Brush> brushes_2 = new List<Brush>();
+    List<GameObject> brush_containers = new List<GameObject>();
 
     [MenuItem("Window/Level Editor")]
 
@@ -65,34 +44,49 @@ public class LevelEditor : EditorWindow
         SceneView.onSceneGUIDelegate = OnSceneGUI;
 
         Init();
+
     }
+
+
 
     private void Init()
     {
         GameObject level = GameObject.Find("Level");
-        wall_container = GameObject.Find("Walls");
-        floor_container = GameObject.Find("Floors");
         if (level == null)
         {
             level = new GameObject();
             level.name = "Level";
         }
+        //Load Settings
+        GameObject settings = GameObject.Find("LevelEditorSettings");
 
-        if (wall_container == null)
+        //Load Brushes
+        GameObject brushes_container = settings.transform.FindChild("Brushes").gameObject;
+
+        brushes_2.Clear();
+
+        int id = 0;
+        foreach(Transform brush_object in brushes_container.transform.getChilds())
         {
-            wall_container = new GameObject();
-            wall_container.name = "Walls";
-            wall_container.transform.SetParent(level.transform);
+            Brush brush = brush_object.GetComponent<Brush>();
+            brush.id = id;
+            brushes_2.Add(brush);
+            ++id;
         }
 
-        if (floor_container == null)
+       
+        foreach(Brush brush_object in brushes_2)
         {
-            floor_container = new GameObject();
-            floor_container.name = "Floors";
-            floor_container.transform.SetParent(level.transform);
+            string container_name = brush_object.folder_name;
+            GameObject container = level.transform.FindChild(container_name).gameObject;
+            if(container == null) //Create folder if doesn't exist
+            {
+                container = new GameObject();
+                container.transform.SetParent(level.transform);
+                container.name = container_name;               
+            }
+            brush_containers.Add(container);
         }
-
-        SavePositions();
 
     }
 
@@ -114,6 +108,7 @@ public class LevelEditor : EditorWindow
     //SceneView Input manager
     void OnSceneGUI(SceneView sceneView)
     {
+
         if (!editor_enable)
             return;
 
@@ -189,19 +184,14 @@ public class LevelEditor : EditorWindow
     /// </summary>
     private void SavePositions()
     {
-        //Save objects position
-        floor_positions.Clear();
-        Transform[] childs_floor = floor_container.transform.getChilds();
-        for (int i = 0; i < childs_floor.Length; i++)
+        int id = 0;
+        foreach(Brush brush_obj in brushes_2)
         {
-            floor_positions.Add(childs_floor[i].position);
-        }
+            Transform[] childs = brush_containers[id].transform.getChilds();
+            for (int i = 0; i < childs.Length; i++)
+                brush_obj.obj_positions.Add(childs[i].position);
 
-        wall_positions.Clear();
-        Transform[] childs_wall = wall_container.transform.getChilds();
-        for (int i = 0; i < childs_wall.Length; i++)
-        {
-            wall_positions.Add(childs_wall[i].position);
+            ++id;
         }
     }
 
@@ -252,41 +242,22 @@ public class LevelEditor : EditorWindow
         else
             GUILayout.Label("Brushes", EditorStyles.boldLabel);
 
-        //Floor
-        floor_prefab = (GameObject)EditorGUILayout.ObjectField("Floor: ", floor_prefab, typeof(GameObject), true);
-
-        floor_height = EditorGUILayout.FloatField("Floor height: ", floor_height);
-
-        if (floor_prefab == null)
+        foreach(Brush brush_item in brushes_2)
         {
-            EditorGUILayout.HelpBox("A floor prefab must be assigned.", MessageType.Warning);
-        }
-        else
-        {
-            if (GUILayout.Button("Floor", EditorStyles.miniButtonLeft))
+            GUILayout.BeginHorizontal();
+            GUILayout.Label(brush_item.object_name);
+            if(GUILayout.Button("Select"))
             {
-                brush_obj = floor_prefab;
-                brush = Brushes.FLOOR;
+                brush_obj = brush_item;
             }
-        }
-
-        //Wall
-        wall_prefab = (GameObject)EditorGUILayout.ObjectField("Wall: ", wall_prefab, typeof(GameObject), true);
-
-        wall_height = EditorGUILayout.FloatField("Wall height: ", wall_height);
-
-        if (wall_prefab == null)
-        {
-            EditorGUILayout.HelpBox("A wall prefab must be assigned.", MessageType.Warning);
-        }
-        else
-        {
-            if (GUILayout.Button("Wall", EditorStyles.miniButtonLeft))
+            if (GUILayout.Button("Edit"))
             {
-                brush_obj = wall_prefab;
-                brush = Brushes.WALL;
+                Debug.Log(brush_item.object_name + " Edit");
             }
+            GUILayout.EndHorizontal();
         }
+
+       
     }
 
     /// <summary>
@@ -351,8 +322,11 @@ public class LevelEditor : EditorWindow
     private void OptimizeLevel()
     {
         SavePositions();
-        CombineMeshes(floor_container, "Floor");
-        CombineMeshes(wall_container, "Wall");
+        foreach(GameObject brush in brush_containers)
+        {
+            CombineMeshes(brush, "CombinedMesh"); //TODO set a name
+        }
+        
     }
     /// <summary>
     /// Actual method that combines the meshes
@@ -394,8 +368,12 @@ public class LevelEditor : EditorWindow
     /// </summary>
     private void TakeApart()
     {
-        CreateIndividualObjects(floor_container, floor_positions, floor_prefab, "Floor");
-        CreateIndividualObjects(wall_container, wall_positions, wall_prefab, "Wall");
+        int id = 0;
+        foreach(Brush brush in brushes_2)
+        {
+            CreateIndividualObjects(brush_containers[id], brush.obj_positions, brush.obj, brush.object_name);
+            ++id;
+        }
     }
     /// <summary>
     /// Creates every object from the list of positions of every object.
@@ -454,24 +432,11 @@ public class LevelEditor : EditorWindow
 
             if (can_create) //Create the object
             {
-                GameObject obj = (GameObject)Instantiate(brush_obj);
+                GameObject obj = (GameObject)Instantiate(brush_obj.obj);
 
-                switch (brush)
-                {
-                    case Brushes.FLOOR:
-                        obj.transform.SetParent(floor_container.transform);
-                        obj.name = "Floor";
-                        position.y = floor_height;
-                        break;
-                    case Brushes.WALL:
-                        obj.transform.SetParent(wall_container.transform);
-                        obj.name = "Wall";
-                        position.y = wall_height;
-                        break;
-                    case Brushes.NONE:
-                        Debug.Log("LEVEL EDITOR ERROR: no brush has been assigned. The object cannot be placed.");
-                        break;
-                }
+                obj.name = brush_obj.object_name;
+                position.y = brush_obj.height;
+                obj.transform.SetParent(brush_containers[brush_obj.id].transform);
 
                 obj.transform.position = position;
             }
@@ -492,7 +457,7 @@ public class LevelEditor : EditorWindow
 
         if (Physics.Raycast(ray, out hit) != false)
         {
-            if (hit.transform.tag == brush_obj.tag)
+            if (hit.transform.tag == brush_obj.obj.tag)
             {
                 DestroyImmediate(hit.transform.gameObject);
             }
@@ -521,20 +486,15 @@ public class LevelEditor : EditorWindow
     private void SearchBrushByTag(string tag)
     {
         brush_obj = null;
-        brush = Brushes.NONE;
 
-        if (floor_prefab.tag == tag)
+        foreach(Brush brush in brushes_2)
         {
-            brush_obj = floor_prefab;
-            brush = Brushes.FLOOR;
-        }
-
-
-        if (wall_prefab.tag == tag)
-        {
-            brush_obj = wall_prefab;
-            brush = Brushes.WALL;
-        }
+            if(brush.obj.tag == tag)
+            {
+                brush_obj = brush;
+                return;
+            }
+        }      
     }
 
     private void RectTool(Event e)
