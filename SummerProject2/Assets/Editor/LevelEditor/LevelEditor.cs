@@ -29,8 +29,12 @@ public class LevelEditor : EditorWindow
     bool dropper_enable = false;
     
 
-    List<Brush> brushes_2 = new List<Brush>();
+    List<Brush> brushes_list = new List<Brush>();
     List<GameObject> brush_containers = new List<GameObject>();
+
+    //Rect Tool utils
+    Vector3 start_pos;
+    Vector3 final_pos;
 
     [MenuItem("Window/Level Editor")]
 
@@ -63,27 +67,33 @@ public class LevelEditor : EditorWindow
         //Load Brushes
         GameObject brushes_container = settings.transform.FindChild("Brushes").gameObject;
 
-        brushes_2.Clear();
+        brushes_list.Clear();
 
         int id = 0;
         foreach(Transform brush_object in brushes_container.transform.getChilds())
         {
             Brush brush = brush_object.GetComponent<Brush>();
             brush.id = id;
-            brushes_2.Add(brush);
+            brushes_list.Add(brush);
             ++id;
         }
 
-       
-        foreach(Brush brush_object in brushes_2)
+
+        brush_containers.Clear();
+        foreach(Brush brush_object in brushes_list)
         {
             string container_name = brush_object.folder_name;
-            GameObject container = level.transform.FindChild(container_name).gameObject;
-            if(container == null) //Create folder if doesn't exist
+            Transform container_trans = level.transform.FindChild(container_name);
+            GameObject container;
+            if(container_trans == null) //Create folder if doesn't exist
             {
                 container = new GameObject();
                 container.transform.SetParent(level.transform);
                 container.name = container_name;               
+            }
+            else
+            {
+                container = container_trans.gameObject;
             }
             brush_containers.Add(container);
         }
@@ -185,7 +195,7 @@ public class LevelEditor : EditorWindow
     private void SavePositions()
     {
         int id = 0;
-        foreach(Brush brush_obj in brushes_2)
+        foreach(Brush brush_obj in brushes_list)
         {
             Transform[] childs = brush_containers[id].transform.getChilds();
             for (int i = 0; i < childs.Length; i++)
@@ -242,7 +252,7 @@ public class LevelEditor : EditorWindow
         else
             GUILayout.Label("Brushes", EditorStyles.boldLabel);
 
-        foreach(Brush brush_item in brushes_2)
+        foreach(Brush brush_item in brushes_list)
         {
             GUILayout.BeginHorizontal();
             GUILayout.Label(brush_item.object_name);
@@ -369,7 +379,7 @@ public class LevelEditor : EditorWindow
     private void TakeApart()
     {
         int id = 0;
-        foreach(Brush brush in brushes_2)
+        foreach(Brush brush in brushes_list)
         {
             CreateIndividualObjects(brush_containers[id], brush.obj_positions, brush.obj, brush.object_name);
             ++id;
@@ -432,15 +442,21 @@ public class LevelEditor : EditorWindow
 
             if (can_create) //Create the object
             {
-                GameObject obj = (GameObject)Instantiate(brush_obj.obj);
-
-                obj.name = brush_obj.object_name;
-                position.y = brush_obj.height;
-                obj.transform.SetParent(brush_containers[brush_obj.id].transform);
-
-                obj.transform.position = position;
+                InstantiateGameObject(position.x, position.z);
             }
         }
+    }
+
+    private void InstantiateGameObject(float x, float z)
+    {
+        Vector3 position = new Vector3(x, 0, z);
+        GameObject obj = (GameObject)Instantiate(brush_obj.obj);
+
+        obj.name = brush_obj.object_name;
+        position.y = brush_obj.height;
+        obj.transform.SetParent(brush_containers[brush_obj.id].transform);
+
+        obj.transform.position = position;
     }
 
     /// <summary>
@@ -487,7 +503,7 @@ public class LevelEditor : EditorWindow
     {
         brush_obj = null;
 
-        foreach(Brush brush in brushes_2)
+        foreach(Brush brush in brushes_list)
         {
             if(brush.obj.tag == tag)
             {
@@ -501,16 +517,72 @@ public class LevelEditor : EditorWindow
     {
         if (e.type == EventType.mouseDown && e.button == 0 && e.alt == false)
         {
-            //Save down position as reference
+            start_pos = RayTo(e.mousePosition, brush_obj.height);
+            return;
         }
 
         if(e.type == EventType.mouseUp && e.button == 0 && e.alt == false)
         {
+            final_pos = RayTo(e.mousePosition, brush_obj.height);
+            
+            //Calculate rectangle center and size
+            Vector3 distance = final_pos - start_pos;
+            Vector3 center = start_pos + (distance * 0.5f);
+
+            distance.y = 1; //Set 1 to box collider height
+
+            //Create collision box
+            Collider[] collider = Physics.OverlapBox(center, distance * 0.5f, new Quaternion(), brush_obj.obj.layer);
+
+            //Remove all objects that collide
+            foreach(Collider obj_col in collider)
+            {
+                DestroyImmediate(obj_col.gameObject);
+            }
+
+            //Create objects 
+
+            Vector3 upper_left;
+            upper_left.x = (start_pos.x < final_pos.x) ? start_pos.x : final_pos.x;
+            upper_left.y = brush_obj.height;
+            upper_left.z = (start_pos.z > final_pos.z) ? start_pos.z : final_pos.z;
+
+            Vector3 bottom_right;
+            bottom_right.x = (start_pos.x > final_pos.x) ? start_pos.x : final_pos.x;
+            bottom_right.y = brush_obj.height;
+            bottom_right.z = (start_pos.z < final_pos.z) ? start_pos.z : final_pos.z;
+
+            for(int x = (int)upper_left.x; x < (int)bottom_right.x; x++)
+            {
+                for(int z = (int)upper_left.z; z > (int)bottom_right.z; z--)
+                {
+                    InstantiateGameObject(x, z);
+                }
+            }
 
         }
 
-        //Save up position as last position
-        //Calculate up-left and down-right
-        //Create object and check if the position is already created
+
+        
+    }
+
+    /// <summary>
+    /// Creates a ray from the mouse with the given height and returns the hit position
+    /// </summary>
+    Vector3 RayTo(Vector2 mouse_pos, float height)
+    {
+        Ray ray = HandleUtility.GUIPointToWorldRay(mouse_pos);
+
+        //Calculate position to create
+        float lenght = Vector3.Dot(-ray.origin, Vector3.up) / Vector3.Dot(ray.direction, Vector3.up);
+
+        Vector3 position = ray.origin + (ray.direction * lenght);
+
+        //Round X-Z
+        position.x = Mathf.Round(position.x);
+        position.z = Mathf.Round(position.z);
+        position.y = height;
+
+        return position;
     }
 }
