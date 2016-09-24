@@ -161,11 +161,21 @@ public class LevelEditor : EditorWindow
         //Paint or Erase
         if(paint_enable || erase_enable)
         {
-            if ((e.type == EventType.mouseDown || e.type == EventType.mouseDrag) && e.button == 0 && e.alt == false)
+            //Continuous Painting
+            if ((e.type == EventType.mouseDown || e.type == EventType.mouseDrag) && e.button == 0 && e.alt == false && brush_obj.continuous_painting)
             {    
                 if(paint_enable)
                     CreateObject(e);
 
+                if (erase_enable)
+                    EraseObject(e);
+            }
+
+            //Only one paint by click
+            if(brush_obj.continuous_painting == false && e.button == 0 && e.type == EventType.mouseUp && e.alt == false)
+            {
+                if (paint_enable)
+                    CreateObject(e);
                 if (erase_enable)
                     EraseObject(e);
             }

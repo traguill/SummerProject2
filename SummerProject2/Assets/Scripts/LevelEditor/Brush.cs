@@ -9,6 +9,8 @@ public class Brush : MonoBehaviour
     public string folder_name;
     public string object_name;
 
+    public bool continuous_painting = true;
+
     [HideInInspector]
     public int id; //List id
 
