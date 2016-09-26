@@ -160,7 +160,17 @@ public class CosmoPortalState : ICosmoState
 
                 RaycastHit vision_hit;
                 bool vision_raycast = Physics.Raycast(cosmo.transform.position, direction, out vision_hit, distance, cosmo.portal_build_layers);
-                if (vision_raycast == false || vision_hit.transform.tag == Tags.portal) //Nothing is between
+               
+                if(vision_raycast != false)
+                {
+                    if (vision_hit.transform.tag == Tags.portal) //Portal is between. Raycast from the new portal again
+                    {
+                        distance = Vector3.Distance(vision_hit.transform.position, point);
+                        vision_raycast = Physics.Raycast(vision_hit.transform.position, direction, out vision_hit, distance, cosmo.portal_build_layers);
+                    }
+                }
+               
+                if (vision_raycast == false) //Nothing is between
                 {
                     
                     //3- Sphere collision if there is enough space to build the portal
